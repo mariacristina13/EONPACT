@@ -6,4 +6,12 @@ public abstract class Riddle {
     private String answer;
     private String hint;
     private int countAttempts;
+
+     // Initialise class variables.
+    public Riddle(String question, String answer, String hint){
+        this.question = question;
+        this.answer = answer;
+        this.hint = hint;
+        this.countAttempts = 0;
+    }
 }
