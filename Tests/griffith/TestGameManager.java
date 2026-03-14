@@ -39,14 +39,18 @@ public class TestGameManager {
     @Test
     public void testIncrementAttempt(){
         Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear", "Inwinter I go into a deep sleep called hibernation.");
+        
+        // Check that the counter starts from zero in the begining.
         int expected = 0;
         int actual = riddle.getCountAttempts();
         assertEquals(expected, actual);
 
+        // Increase the counter.
         riddle.incrementAttempt();
         riddle.incrementAttempt();
         riddle.incrementAttempt();
         
+        // Check if the counter increases correctly.
         int expected1 = 3;
         int actual1 = riddle.getCountAttempts();
 
