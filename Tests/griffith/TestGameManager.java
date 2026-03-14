@@ -9,11 +9,12 @@ import org.junit.Test;
 
 public class TestGameManager {
 
-    // Riddle Tests
+    // Riddle Class Tests
     @Test
-    public void testCheckAnswer(){
+    public void testCheckAnswer() {
         // Initialise the riddle class.
-        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear", "Inwinter I go into a deep sleep called hibernation.");
+        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear",
+                "In winter I go into a deep sleep called hibernation.");
 
         // Actual values generated when we run the checkAnswer method.
         boolean actual = riddle.checkAnswer(" Bear ");
@@ -31,18 +32,19 @@ public class TestGameManager {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             riddle.checkAnswer(null);
         });
-         String expectedMessage = "null";
-       
+        String expectedMessage = "null";
+
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
     @Test
-    public void testIncrementAttempt(){
+    public void testIncrementAttempt() {
         // Initialise the riddle class.
-        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear", "Inwinter I go into a deep sleep called hibernation.");
-        
+        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear",
+                "In winter I go into a deep sleep called hibernation.");
+
         // Check that the counter starts from zero in the begining.
         int expected = 0;
         int actual = riddle.getCountAttempts();
@@ -52,18 +54,19 @@ public class TestGameManager {
         riddle.incrementAttempt();
         riddle.incrementAttempt();
         riddle.incrementAttempt();
-        
+
         // Check if the counter increases correctly.
         int expected1 = 3;
         int actual1 = riddle.getCountAttempts();
 
-         assertEquals(expected1, actual1);
+        assertEquals(expected1, actual1);
     }
 
     @Test
-    public void testAttemptsFinished(){
+    public void testAttemptsFinished() {
         // Initialise the riddle class.
-        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear", "Inwinter I go into a deep sleep called hibernation.");
+        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear",
+                "In winter I go into a deep sleep called hibernation.");
 
         // Increase the number of attempts.
         riddle.incrementAttempt();
@@ -78,13 +81,12 @@ public class TestGameManager {
         // Increase the attempts counter.
         riddle.incrementAttempt();
         riddle.incrementAttempt();
-    
+
         // Check if the attempts have finished.
         boolean actual1 = riddle.attemptsFinished();
         boolean expected1 = true;
 
         assertEquals(expected1, actual1);
-
 
         // Increase the attempts counter.
         riddle.incrementAttempt();
@@ -94,5 +96,38 @@ public class TestGameManager {
         boolean expected2 = true;
 
         assertEquals(expected2, actual2);
+    }
+
+    @Test
+    public void testDisplayHint() {
+        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear",
+                "In winter I go into a deep sleep called hibernation.");
+
+        // Test the displayHint method before the treshold when the hint is going to apear is reached.
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+
+        String actual = riddle.displayHint();
+        String expected = "";
+
+        assertEquals(expected, actual);
+
+        // Test the displayHint method at the treshold when the hint is going to apear.
+        riddle.incrementAttempt();
+
+        String actual1 = riddle.displayHint();
+        String expected1 = "In winter I go into a deep sleep called hibernation.";
+
+        assertEquals(expected1, actual1);
+        
+        // Test the displayHint method after the treshold when the hint is going to apear is reached.
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+
+        String actual2 = riddle.displayHint();
+        String expected2 = "In winter I go into a deep sleep called hibernation.";
+
+        assertEquals(expected2, actual2);
+
     }
 }
