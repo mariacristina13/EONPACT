@@ -1,5 +1,7 @@
 package griffith;
 
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 public class Riddle {
     // Class variables.
     private String question;
@@ -34,7 +36,11 @@ public class Riddle {
     }
 
     // Check if the answer given by the players is correct.
-    public boolean checkAnswer(String answer){
+    public boolean checkAnswer(String input){
+        // If the input provided by the players matches the answer of the riddle then return true, otherwise return false.
+        if (input.trim().equalsIgnoreCase(answer)){
+            return true;
+        }
         return false;
     }
 
