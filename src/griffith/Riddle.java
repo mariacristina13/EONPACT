@@ -71,7 +71,7 @@ public class Riddle {
 
     // Check if the hint is already displayed.
     public boolean isHintDisplayed(){
-        return false;
+        return displayed;
     }
     
 }
