@@ -58,7 +58,10 @@ public class Riddle {
 
     // Show the players the hint after reaching a number of failed attempts.
     public String displayHint(){
-        return null;
+        if(countAttempts >= Constants.SHOW_HINT_AFTER_ATTEMPTS){
+            return hint;
+        }
+        return "";
     }
 
     // Check if the hint is already displayed.
