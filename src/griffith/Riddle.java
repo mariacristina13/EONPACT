@@ -1,6 +1,6 @@
 package griffith;
 
-public abstract class Riddle {
+public class Riddle {
     // Class variables.
     private String question;
     private String answer;
@@ -17,7 +17,6 @@ public abstract class Riddle {
 
     
     // Getters
-
     public String getQuestion() {
         return question;
     }
@@ -33,6 +32,8 @@ public abstract class Riddle {
     public int getCountAttempts() {
         return countAttempts;
     }
+
+    
 
    
     
