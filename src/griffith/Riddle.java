@@ -1,7 +1,5 @@
 package griffith;
 
-import static org.junit.jupiter.api.DynamicTest.stream;
-
 public class Riddle {
     // Class variables.
     private String question;
