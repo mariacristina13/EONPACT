@@ -35,4 +35,21 @@ public class TestGameManager {
 
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
+    @Test
+    public void testIncrementAttempt(){
+        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear", "Inwinter I go into a deep sleep called hibernation.");
+        int expected = 0;
+        int actual = riddle.getCountAttempts();
+        assertEquals(expected, actual);
+
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+        
+        int expected1 = 3;
+        int actual1 = riddle.getCountAttempts();
+
+         assertEquals(expected1, actual1);
+    }
 }
