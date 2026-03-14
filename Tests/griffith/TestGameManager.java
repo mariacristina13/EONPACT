@@ -3,6 +3,7 @@ package griffith;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 
 import org.junit.Test;
@@ -18,10 +19,12 @@ public class TestGameManager {
         boolean actual = riddle.checkAnswer(" Bear ");
         boolean actual1 = riddle.checkAnswer("bear");
         boolean actual2 = riddle.checkAnswer("");
+        boolean actual3 = riddle.checkAnswer("hair");
 
         assertTrue(actual);
         assertTrue(actual1);
         assertFalse(actual2);
+        assertFalse(actual3);
 
         Exception exception = assertThrows(NullPointerException.class, () -> {
             riddle.checkAnswer(null);
@@ -32,7 +35,4 @@ public class TestGameManager {
 
         assertTrue(actualMessage.contains(expectedMessage));
     }
-
-    
-
 }
