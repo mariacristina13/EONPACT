@@ -56,4 +56,40 @@ public class TestGameManager {
 
          assertEquals(expected1, actual1);
     }
+
+    @Test
+    public void testAttemptsFinished(){
+        // Initialise the riddle class.
+        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear", "Inwinter I go into a deep sleep called hibernation.");
+
+        // Increase the number of attempts.
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+
+        // Check if the user has finished all their attempts.
+        boolean actual = riddle.attemptsFinished();
+        boolean expected = false;
+        assertEquals(expected, actual);
+
+        // Increase the attempts counter.
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+    
+        // Check if the attempts have finished.
+        boolean actual1 = riddle.attemptsFinished();
+        boolean expected1 = true;
+
+        assertEquals(expected1, actual1);
+
+
+        // Increase the attempts counter.
+        riddle.incrementAttempt();
+
+        // Check if the attempts have finished.
+        boolean actual2 = riddle.attemptsFinished();
+        boolean expected2 = true;
+
+        assertEquals(expected2, actual2);
+    }
 }
