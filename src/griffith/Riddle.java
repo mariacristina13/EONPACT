@@ -49,6 +49,10 @@ public class Riddle {
 
     // Check if the players have reached the maximum number of attempts.
     public boolean attemptsFinished(){
+        if (countAttempts >= Constants.MAX_ATTEMPTS){
+            return true;
+        }
+
         return false;
     }
 
