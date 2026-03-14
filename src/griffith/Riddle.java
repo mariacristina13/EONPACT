@@ -14,4 +14,26 @@ public abstract class Riddle {
         this.hint = hint;
         this.countAttempts = 0;
     }
+
+    
+    // Getters
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public String getHint() {
+        return hint;
+    }
+
+    public int getCountAttempts() {
+        return countAttempts;
+    }
+
+   
+    
 }
