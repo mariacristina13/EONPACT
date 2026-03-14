@@ -100,6 +100,7 @@ public class TestGameManager {
 
     @Test
     public void testDisplayHint() {
+        // Initialise the riddle class.
         Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear",
                 "In winter I go into a deep sleep called hibernation.");
 
@@ -130,4 +131,38 @@ public class TestGameManager {
         assertEquals(expected2, actual2);
 
     }
+
+    @Test
+    public void testIsHintDisplayed(){
+        // Initialise the riddle class.
+        Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear",
+                "In winter I go into a deep sleep called hibernation.");
+
+        // Test that the hint is hiden in the begining.
+        boolean actual = riddle.isHintDisplayed();
+        
+        assertFalse(actual);
+
+        // Test that the hint is hiden if the treshold hasn't been reached.
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+
+        boolean actual1 = riddle.isHintDisplayed();
+        
+        assertFalse(actual1);
+
+
+
+        // Test that the hint is shown when the treshold is reached.
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+        riddle.incrementAttempt();
+
+        riddle.displayHint();
+
+        boolean actual2 = riddle.isHintDisplayed();
+
+        assertTrue(actual2);
+    }
+
 }
