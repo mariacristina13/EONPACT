@@ -6,6 +6,8 @@ public class Riddle {
     private String answer;
     private String hint;
     private int countAttempts;
+    // Variable to check if hint has been displayed;
+    private boolean displayed;
 
      // Initialise class variables.
     public Riddle(String question, String answer, String hint){
@@ -13,6 +15,7 @@ public class Riddle {
         this.answer = answer;
         this.hint = hint;
         this.countAttempts = 0;
+        this.displayed = false;
     }
 
     
@@ -59,6 +62,8 @@ public class Riddle {
     // Show the players the hint after reaching a number of failed attempts.
     public String displayHint(){
         if(countAttempts >= Constants.SHOW_HINT_AFTER_ATTEMPTS){
+            // Change the displayed variable to true if the hint is shown to the player.
+            displayed = true;
             return hint;
         }
         return "";
