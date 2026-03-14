@@ -42,8 +42,10 @@ public class Riddle {
         return false;
     }
 
-    // Every time the user submits a wrong answer increase the attempts counter.
-    public void incrementAttempt(){}
+    // This method will help increase the attempts counter every time the player submits a wrong answer.
+    public void incrementAttempt(){
+        countAttempts ++;
+    }
 
     // Check if the players have reached the maximum number of attempts.
     public boolean attemptsFinished(){
