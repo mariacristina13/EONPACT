@@ -33,8 +33,27 @@ public class Riddle {
         return countAttempts;
     }
 
-    
+    // Check if the answer given by the players is correct.
+    public boolean checkAnswer(String answer){
+        return false;
+    }
 
-   
+    // Every time the user submits a wrong answer increase the attempts counter.
+    public void incrementAttempt(){}
+
+    // Check if the players have reached the maximum number of attempts.
+    public boolean attemptsFinished(){
+        return false;
+    }
+
+    // Show the players the hint after reaching a number of failed attempts.
+    public String displayHint(){
+        return null;
+    }
+
+    // Check if the hint is already displayed.
+    public boolean isHintDisplayed(){
+        return false;
+    }
     
 }
