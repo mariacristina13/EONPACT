@@ -1,8 +1,8 @@
 package griffith;
 
 public class PlayerMovement extends Player {
-	public int x ;
-    public int y ;
+	public int x ;//Left or Right
+    public int y ;//Up or Down
     //Constructor
     public PlayerMovement(String name, int x, int y) {
 		super(name);
@@ -26,11 +26,19 @@ public class PlayerMovement extends Player {
 		this.y = y;
 	}
 	//Move up
-	public int moveUp(int x,int y) {
-    	return --y;
+	public int moveUp() {
+    	return 0;
     }
 	//Move Down
-	public int moveDown(int x,int y) {
-		return ++x;
+	public int moveDown() {
+		return 0;
 	}
+	//Move Left
+	public int moveLeft() {
+			return 0;
+		}
+	//Move right
+	public int moveRight() {
+			return 0;
+		}
 }
