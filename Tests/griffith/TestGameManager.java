@@ -10,12 +10,10 @@ import org.junit.Test;
 public class TestGameManager {
 //Player class Test
 	@Test
-	public void movementUp() {
-		Player player=new Player(4,4);
-		GameManager game=new GameManager(player);//Creates a new game alongside player
-		player.moveUp();
-		assertEquals(4,player.getY());
-		
+	public void testmovementUp() {
+		PlayerMovement player=new PlayerMovement(null,4,4);
+		player.moveUp(4,4);
+		assertEquals(4,player.getY());		
 	}
     // Riddle Class Tests
     @Test
