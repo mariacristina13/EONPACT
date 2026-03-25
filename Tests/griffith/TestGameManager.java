@@ -13,7 +13,7 @@ public class TestGameManager {
 	public void movementUp() {
 		Player player=new Player(4,4);
 		GameManager game=new GameManager(player);//Creates a new game alongside player
-		game.updateGame();//Update players movements
+		player.moveUp();
 		assertEquals(4,player.getY());
 		
 	}
