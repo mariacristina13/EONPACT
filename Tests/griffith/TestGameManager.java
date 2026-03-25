@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class TestGameManager {
-//Player class Test
+//PlayerMovement class Test
 	@Test
 	public void testPlayerMoveUp() {
 		PlayerMovement player=new PlayerMovement(null,4,4);
