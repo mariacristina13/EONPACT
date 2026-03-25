@@ -10,7 +10,7 @@ import org.junit.Test;
 public class TestGameManager {
 //Player class Test
 	@Test
-	public void testmovementUp() {
+	public void testmoveUp() {
 		PlayerMovement player=new PlayerMovement(null,4,4);
 		player.moveUp(4,4);
 		assertEquals(4,player.getY());		
