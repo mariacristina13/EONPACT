@@ -11,7 +11,7 @@ public class PlayerMovement extends Player {
 	}
     
 	public int getX() {
-		return 0;
+		return x;
 	}
 
 	public void setX(int x) {
@@ -19,7 +19,7 @@ public class PlayerMovement extends Player {
 	}
 
 	public int getY() {
-		return 0;
+		return y;
 	}
 
 	public void setY(int y) {
@@ -27,6 +27,6 @@ public class PlayerMovement extends Player {
 	}
 	//Move up
 	public int moveUp(int x,int y) {
-    	return 0;
+    	return --y;
     }
 }
