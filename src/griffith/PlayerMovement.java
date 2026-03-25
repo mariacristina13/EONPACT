@@ -29,4 +29,8 @@ public class PlayerMovement extends Player {
 	public int moveUp(int x,int y) {
     	return --y;
     }
+	//Move Down
+	public int moveDown(int x,int y) {
+		return 0;
+	}
 }

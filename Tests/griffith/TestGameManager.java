@@ -15,6 +15,13 @@ public class TestGameManager {
 		int actual=player.moveUp(4,4);
 		assertEquals(3,actual);		
 	}
+	@Test
+	public void testPlayerMoveDown() {
+		PlayerMovement player=new PlayerMovement(null,0,0);
+		int actual=player.moveDown(0,0);
+		assertEquals(1,actual);
+	}
+	
     // Riddle Class Tests
     @Test
     public void testCheckAnswer() {
