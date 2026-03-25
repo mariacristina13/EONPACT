@@ -103,4 +103,26 @@ public class RiddleData {
         return riddleList;
     }
 
+    // Get the riddles from the Linked Hash Map by a specific index.
+    public Riddle getRiddlesByIndex(int index){
+        ArrayList<Riddle> riddleList = new ArrayList<Riddle>();
+
+        // Loop through the  Linked Hash Map and add the riddles into an  ArrayList.
+        for (Map.Entry<String, RiddleInfo> entery : riddleData.entrySet()) {
+            String riddle = entery.getKey();
+            RiddleInfo riddleInformation = entery.getValue();
+
+            String answer = riddleInformation.getAnswer();
+            String hint = riddleInformation.getHint();
+
+            riddleList.add(new Riddle(riddle, answer, hint));
+        }
+
+        // Check if the index is within the bounds of the list.
+        if(index < 0 || index >= riddleList.size()){
+            return null;
+        }
+        // Return the riddle at the specific index.
+        return riddleList.get(index);
+    }
 }
