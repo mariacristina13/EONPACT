@@ -35,7 +35,7 @@ public class PlayerMovement extends Player {
 	}
 	//Move Left
 	public int moveLeft() {
-			return 0;
+			return x-1 ;
 		}
 	//Move right
 	public int moveRight() {
