@@ -27,9 +27,10 @@ public class TestGameManager {
 		int actual=player.moveLeft();
 		assertEquals(4,actual);
 	}
+	@Test
 	public void testPlayerMoveRight() {
 		PlayerMovement player=new PlayerMovement(null,6,6);
-		int actual=player.moveLeft();
+		int actual=player.moveRight();
 		assertEquals(7,actual);
 	}
 	
