@@ -12,4 +12,9 @@ public class RiddleData {
         riddleData = new LinkedHashMap<String, RiddleInfo>();
     }
 
+    // Method to add the riddles to the Linked Hash Map.
+    private void addRiddles(String riddle, String answer, String hint) {
+        riddleData.put(riddle, new RiddleInfo(answer, hint));
+    }
+
 }
