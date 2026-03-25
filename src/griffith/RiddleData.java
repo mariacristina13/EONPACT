@@ -1,6 +1,8 @@
 package griffith;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 public class RiddleData {
@@ -81,6 +83,24 @@ public class RiddleData {
                         "A patient bird who won’t take chance.\n" + //
                         "Years may pass before I try\n" + //
                         "Timing matters, that’s no lie.", "Kakapo", "My family plans depend on trees.");
+    }
+
+    // Get the readles from the Linked Hash Map.
+    public ArrayList<Riddle> getRiddles() {
+        ArrayList<Riddle> riddleList = new ArrayList<Riddle>();
+
+        // Loop through the  Linked Hash Map and add the riddles into an  ArrayList.
+        for (Map.Entry<String, RiddleInfo> entery : riddleData.entrySet()) {
+            String riddle = entery.getKey();
+            RiddleInfo riddleInformation = entery.getValue();
+
+            String answer = riddleInformation.getAnswer();
+            String hint = riddleInformation.getHint();
+
+            riddleList.add(new Riddle(riddle, answer, hint));
+        }
+        // Return the riddle list.
+        return riddleList;
     }
 
 }
