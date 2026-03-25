@@ -8,7 +8,15 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class TestGameManager {
-
+//Player class Test
+	@Test
+	public void movementUp() {
+		Player player=new Player(4,4);
+		GameManager game=new GameManager(player);//Creates a new game alongside player
+		game.updateGame();//Update players movements
+		assertEquals(4,player.getY());
+		
+	}
     // Riddle Class Tests
     @Test
     public void testCheckAnswer() {
