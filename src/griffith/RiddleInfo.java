@@ -11,4 +11,12 @@ public class RiddleInfo {
         this.hint = hint;
     }
 
+    // Getters and setters.
+    public String getAnswer() {
+        return answer;
+    }
+
+      public String getHint() {
+        return hint;
+    }
 }
