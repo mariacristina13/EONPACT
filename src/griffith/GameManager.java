@@ -6,11 +6,6 @@ import java.util.Set;
 
 public class GameManager {
 
-<<<<<<< HEAD
-
-    
-}
-=======
     private Set<Integer> keysHeld = new HashSet<>();
 
     public void keyPressed(int keyCode) {
@@ -33,4 +28,3 @@ public class GameManager {
     }
 
 }
->>>>>>> e5f78a098c75b97552561c19ecf47bf15dcadac9
