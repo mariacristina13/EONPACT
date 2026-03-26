@@ -8,6 +8,9 @@ public class Init {
         JFrame frame = new JFrame();
         MyPannel panel = new MyPannel();
         frame.add(panel);
+
+        frame.setSize(Constants.SCREEN_SIZE.width/2,Constants.SCREEN_SIZE.height/2);
+		frame.setVisible(true);
     }
 
     
