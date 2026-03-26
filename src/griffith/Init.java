@@ -11,6 +11,9 @@ public class Init {
 
         frame.setSize(Constants.SCREEN_SIZE.width/2,Constants.SCREEN_SIZE.height/2);
 		frame.setVisible(true);
+
+        frame.requestFocus();
+        panel.requestFocus();
     }
 
     
