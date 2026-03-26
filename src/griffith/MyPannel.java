@@ -12,7 +12,12 @@ import javax.swing.JPanel;
 
 public class MyPannel extends JPanel implements KeyListener{
 
-    private GameManager game;
+private GameManager game;
+
+public MyPannel(){
+    addKeyListener(this);
+    game = new GameManager();
+}
 
 @Override
 public void paint(Graphics g){
