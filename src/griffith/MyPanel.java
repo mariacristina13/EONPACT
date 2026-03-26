@@ -10,11 +10,11 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
-public class MyPannel extends JPanel implements KeyListener{
+public class MyPanel extends JPanel implements KeyListener{
 
 private GameManager game;
 
-public MyPannel(){
+public MyPanel(){
     addKeyListener(this);
     game = new GameManager();
 }
@@ -23,7 +23,6 @@ public MyPannel(){
 public void paint(Graphics g){
 super.paint(g);
 Graphics2D graphics = (Graphics2D) g;
-BufferedImage image;
 //improve rendering quality
 RenderingHints hints = new RenderingHints( RenderingHints.KEY_ANTIALIASING,   RenderingHints.VALUE_ANTIALIAS_ON);
 graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html

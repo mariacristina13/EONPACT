@@ -6,7 +6,7 @@ public class Init {
 
     public static void main (String[] args){
         JFrame frame = new JFrame();
-        MyPannel panel = new MyPannel();
+        MyPanel panel = new MyPanel();
         frame.add(panel);
 
         frame.setSize(Constants.SCREEN_SIZE.width/2,Constants.SCREEN_SIZE.height/2);
