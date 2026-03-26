@@ -37,7 +37,7 @@ public void keyPressed(KeyEvent e) {
 
 @Override
 public void keyReleased(KeyEvent e) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
+    game.keyReleased(e.getKeyCode());
+    this.repaint();
 }
 }
