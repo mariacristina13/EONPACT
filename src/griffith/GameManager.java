@@ -8,9 +8,14 @@ public class GameManager {
 
     private Set<Integer> keysHeld = new HashSet<>();
 
+    public void keyPressed(int keyCode) {
+        keysHeld.add(keyCode);
+        System.out.println(KeyEvent.getKeyText(keyCode));
+    }
+
     public void keyReleased(int keyCode) {
         keysHeld.remove(keyCode);
-        System.out.println("Key released: " + KeyEvent.getKeyText(keyCode));
+        System.out.println(KeyEvent.getKeyText(keyCode));
     }
 
 }
