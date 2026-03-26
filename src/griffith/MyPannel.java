@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 
 public class MyPannel extends JPanel implements KeyListener{
 
+    private GameManager game;
+
 @Override
 public void paint(Graphics g){
 super.paint(g);
@@ -24,14 +26,13 @@ graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/
 
 @Override
 public void keyTyped(KeyEvent e) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
+    
 }
 
 @Override
 public void keyPressed(KeyEvent e) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
+    game.keyPressed(e.getKeyCode());
+    this.repaint();
 }
 
 @Override
