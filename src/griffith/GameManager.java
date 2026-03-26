@@ -18,4 +18,13 @@ public class GameManager {
         System.out.println(KeyEvent.getKeyText(keyCode));
     }
 
+    public boolean isKeyHeld(int keyCode) {
+        return keysHeld.contains(keyCode);
+    }
+
+    public void update() {
+        if (isKeyHeld(Constants.LEFTKEY))  System.out.println("Left");
+        if (isKeyHeld(Constants.RIGHTKEY)) System.out.println("Right");
+    }
+
 }
