@@ -14,6 +14,11 @@ public class Init {
 
         frame.requestFocus();
         panel.requestFocus();
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		long startTime = System.currentTimeMillis();
+
     }
 
     
