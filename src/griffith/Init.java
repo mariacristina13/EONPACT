@@ -19,6 +19,15 @@ public class Init {
 		
 		long startTime = System.currentTimeMillis();
 
+        while(true){
+            long elapsedTime = System.currentTimeMillis() - startTime;
+			if (elapsedTime > Constants.REFRESH_RATE)  
+			{ 
+				panel.update();
+				startTime = System.currentTimeMillis();
+			}
+        }
+
     }
 
     
