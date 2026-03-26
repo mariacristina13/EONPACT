@@ -45,4 +45,10 @@ public void keyReleased(KeyEvent e) {
     game.keyReleased(e.getKeyCode());
     this.repaint();
 }
+
+public void update()
+{
+    game.update();
+    this.repaint();
+}
 }
