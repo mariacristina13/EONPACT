@@ -9,4 +9,8 @@ public final class Constants {
     public final static Dimension SCREEN_SIZE =  Toolkit.getDefaultToolkit().getScreenSize();
 	public final static int GROUND_HEIGHT  = SCREEN_SIZE.height/3;
 
+    public final static int LEFTKEY =37;
+    public final static int RIGHTKEY =39;
+    public final static int SPACEKEY =32;
+
 }
