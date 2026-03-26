@@ -5,7 +5,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.KeyListener;
+
 
 
 import javax.swing.JPanel;
