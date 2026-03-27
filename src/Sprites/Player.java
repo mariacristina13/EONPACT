@@ -1,21 +1,30 @@
 package Sprites;
 
-public abstract class Player {//abstract class represents a player in the game
+public class Player extends Sprite {//Class represents a player in the game
+	public String name;
 
-	public int x = 0;
-    public int y = 0;
-    public String name;
-
-    public Player(String name) {//constructor
-
-        this.name = name;
-
-    }
-
-    public void move(int dx, int dy) {//update the player position by using x and y changes
-
-        x += dx;
-        y += dy;
-
-    }
+  //Constructor
+    public Player(String fileName , int x, int y , int width, int height) {
+    	super(fileName, x,y,width,height);
+	}
+  //Move up
+  	public int moveUp() {
+  	setY(getY()-1);
+  		return getY();
+      }
+  //Move Down
+  	public int moveDown() {
+  		setY(getY()+1);
+  		return getY();
+  	}
+  //Move Left
+  	public int moveLeft() {
+  		setX(getX()-1);
+  		return getX();
+  		}
+  //Move right
+  	public int moveRight() {
+  		setX(getX()+1);
+  		return getX();
+  		}
 }

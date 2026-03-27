@@ -7,6 +7,7 @@ import constants.Constants;
 public class Init {
 
     public static void main (String[] args){
+    	
         JFrame frame = new JFrame();
         MyPanel panel = new MyPanel();
         frame.add(panel);

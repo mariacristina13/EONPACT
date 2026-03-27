@@ -10,7 +10,6 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 public class MyPanel extends JPanel implements KeyListener{
-
 private GameManager game;
 
 public MyPanel(){
@@ -29,7 +28,7 @@ graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/
 
 @Override
 public void keyTyped(KeyEvent e) {
-    
+   
 }
 
 @Override
