@@ -7,6 +7,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import riddles.Riddle;
+
 public class TestGameManager {
 
     // Riddle Class Tests

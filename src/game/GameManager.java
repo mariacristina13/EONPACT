@@ -1,8 +1,10 @@
-package griffith;
+package game;
 
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
+
+import constants.Constants;
 
 public class GameManager {
 

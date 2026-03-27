@@ -1,4 +1,4 @@
-package griffith;
+package riddles;
 
 public class RiddleInfo {
     // Class variables that represent the riddle information.

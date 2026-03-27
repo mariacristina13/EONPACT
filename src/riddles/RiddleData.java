@@ -1,4 +1,4 @@
-package griffith;
+package riddles;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
