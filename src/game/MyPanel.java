@@ -9,10 +9,13 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import Sprites.Player;
+
 public class MyPanel extends JPanel implements KeyListener{
 private GameManager game;
-
-public MyPanel(){
+private Player movement;
+public MyPanel(Player movement){
+	this.movement=movement;
     addKeyListener(this);
     game = new GameManager();
 }
