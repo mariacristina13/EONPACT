@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import constants.Constants;
+
 public class MyPanel extends JPanel implements KeyListener{
 private GameManager game;
 
@@ -47,5 +49,13 @@ public void update()
 {
     game.update();
     this.repaint();
+}
+
+public void drawBG(	Graphics2D graphics) {
+    graphics.setColor(Constants.BLUE);
+    graphics.fillRect(0,0,Constants.SCREEN_SIZE.width,Constants.SCREEN_SIZE.height);
+     
+    graphics.setColor(Constants.GREEN);
+    graphics.fillRect(0,Constants.GROUND_HEIGHT ,Constants.SCREEN_SIZE.width,Constants.SCREEN_SIZE.height);
 }
 }
