@@ -3,7 +3,8 @@ package griffith;
 import javax.swing.JFrame;
 
 public class Init {
-
+    
+         
     public static void main (String[] args){
         JFrame frame = new JFrame();
         MyPanel panel = new MyPanel();
@@ -32,3 +33,4 @@ public class Init {
 
     
 }
+
