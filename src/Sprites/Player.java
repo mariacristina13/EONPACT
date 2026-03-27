@@ -1,15 +1,10 @@
 package Sprites;
 
-public class Player {
+public class Player {//abstract class represents a player in the game
+	public String name;
 
-    public int x = 0;
-    public int y = 0;
-    public String name;
-
-    // Constructor
-    public Player(String name) {
-
-        this.name = name;
-        
+    public Player(String name) {//constructor
+    	this.name = name;
     }
+
 }
