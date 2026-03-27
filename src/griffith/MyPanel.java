@@ -10,11 +10,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 public class MyPanel extends JPanel implements KeyListener{
-private Player movement;
 private GameManager game;
 
-public MyPanel(Player movement){
-	this.movement=movement;
+public MyPanel(){
     addKeyListener(this);
     game = new GameManager();
 }
