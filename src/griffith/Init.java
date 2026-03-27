@@ -6,8 +6,9 @@ public class Init {
     
          
     public static void main (String[] args){
+    	Player movement=new Player(null,5,5);
         JFrame frame = new JFrame();
-        MyPanel panel = new MyPanel();
+        MyPanel panel = new MyPanel(movement);
         frame.add(panel);
 
         frame.setSize(Constants.SCREEN_SIZE.width/2,Constants.SCREEN_SIZE.height/2);

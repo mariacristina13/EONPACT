@@ -10,10 +10,11 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 public class MyPanel extends JPanel implements KeyListener{
-
+private Player movement;
 private GameManager game;
 
-public MyPanel(){
+public MyPanel(Player movement){
+	this.movement=movement;
     addKeyListener(this);
     game = new GameManager();
 }
@@ -29,7 +30,7 @@ graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/
 
 @Override
 public void keyTyped(KeyEvent e) {
-    
+   
 }
 
 @Override
