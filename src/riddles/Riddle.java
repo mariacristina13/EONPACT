@@ -1,4 +1,6 @@
-package griffith;
+package riddles;
+
+import constants.Constants;
 
 public class Riddle {
     // Class variables.

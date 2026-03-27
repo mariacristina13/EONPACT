@@ -1,4 +1,4 @@
-package griffith;
+package riddles;
 
 import java.awt.Color;
 import java.awt.Font;

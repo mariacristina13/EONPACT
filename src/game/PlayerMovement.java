@@ -1,11 +1,10 @@
-package griffith;
+package game;
 
-public class PlayerMovement extends Player {
+public class PlayerMovement {
 	public int x ;//Left or Right
     public int y ;//Up or Down
   //Constructor
-    public PlayerMovement(String name, int x, int y) {
-		super(name);
+    public PlayerMovement(int x, int y) {
 		this.x=x;
 		this.y=y;
 	}

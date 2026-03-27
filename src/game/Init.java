@@ -1,6 +1,8 @@
-package griffith;
+package game;
 
 import javax.swing.JFrame;
+
+import constants.Constants;
 
 public class Init {
 

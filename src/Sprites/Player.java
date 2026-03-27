@@ -1,4 +1,4 @@
-package griffith;
+package Sprites;
 
 public abstract class Player {//abstract class represents a player in the game
 
