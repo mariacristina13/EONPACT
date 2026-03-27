@@ -1,6 +1,6 @@
 package Sprites;
 
-public class Player {//abstract class represents a player in the game
+public class Player {//Class represents a player in the game
 	public String name;
 	public int x ;//Left or Right(original positions)
     public int y ;//Up or Down(original positions)

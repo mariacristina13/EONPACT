@@ -5,8 +5,7 @@ import javax.swing.JFrame;
 import constants.Constants;
 
 public class Init {
-    
-         
+
     public static void main (String[] args){
     	
         JFrame frame = new JFrame();
@@ -36,4 +35,3 @@ public class Init {
 
     
 }
-
