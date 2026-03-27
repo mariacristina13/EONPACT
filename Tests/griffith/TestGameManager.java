@@ -7,29 +7,32 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import game.PlayerMovement;
+import riddles.Riddle;
+
 public class TestGameManager {
 //PlayerMovement class Test
 	@Test
 	public void testPlayerMoveUp() {
-		PlayerMovement player=new PlayerMovement(null,4,4);
+		PlayerMovement player=new PlayerMovement(4,4);
 		int actual=player.moveUp();
 		assertEquals(3,actual);		
 	}
 	@Test
 	public void testPlayerMoveDown() {
-		PlayerMovement player=new PlayerMovement(null,0,0);
+		PlayerMovement player=new PlayerMovement(0,0);
 		int actual=player.moveDown();
 		assertEquals(1,actual);
 	}
 	@Test 
 	public void testPlayerMoveLeft() {
-		PlayerMovement player=new PlayerMovement(null,5,3);
+		PlayerMovement player=new PlayerMovement(5,3);
 		int actual=player.moveLeft();
 		assertEquals(4,actual);
 	}
 	@Test
 	public void testPlayerMoveRight() {
-		PlayerMovement player=new PlayerMovement(null,6,6);
+		PlayerMovement player=new PlayerMovement(6,6);
 		int actual=player.moveRight();
 		assertEquals(7,actual);
 	}
