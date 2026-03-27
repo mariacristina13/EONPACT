@@ -12,4 +12,20 @@ public abstract class Sprite {
 	private int width;
 	private int height;
 	private BufferedImage image;
+
+    public Sprite(String fileName , int x, int y , int width, int height) {
+		this.x = x;
+		this.y = y - height;
+		this.width = width;
+		this.height = height;
+		File pic = new File("images/"+fileName);
+		try {
+			image = ImageIO.read(pic);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.print("file not found");
+		}
+	}
+
+
 }
