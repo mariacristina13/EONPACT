@@ -7,6 +7,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import Sprites.Player;
+import riddles.Riddle;
+
 public class TestGameManager {
 //PlayerMovement class Test
 	@Test

@@ -1,4 +1,4 @@
-package griffith;
+package riddles;
 
 public class RiddleLayout {
     

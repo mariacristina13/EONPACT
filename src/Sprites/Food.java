@@ -1,4 +1,4 @@
-package griffith;
+package Sprites;
 
 public class Food {
     
