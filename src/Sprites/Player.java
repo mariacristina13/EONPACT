@@ -1,43 +1,30 @@
 package Sprites;
 
-public class Player {//Class represents a player in the game
+public class Player extends Sprite {//Class represents a player in the game
 	public String name;
-	public int x ;//Left or Right(original positions)
-    public int y ;//Up or Down(original positions)
+
   //Constructor
-    public Player(String name, int x, int y) {
-		this.name=name;
-		this.x=x;
-		this.y=y;
+    public Player(String fileName , int x, int y , int width, int height) {
+    	super(fileName, x,y,width,height);
 	}
-  //Getter and setter X  
-  	public int getX() {
-  		return x;
-  	}
-  	public void setX(int x) {
-  		this.x = x;
-  	}
-  //Getter and setter Y
-  	public int getY() {
-  		return y;
-  	}
-  	public void setY(int y) {
-  		this.y = y;
-  	}
   //Move up
   	public int moveUp() {
-      	return y-1;
+  	setY(getY()-1);
+  		return getY();
       }
   //Move Down
   	public int moveDown() {
-  		return y+1;
+  		setY(getY()+1);
+  		return getY();
   	}
   //Move Left
   	public int moveLeft() {
-  			return x-1 ;
+  		setX(getX()-1);
+  		return getX();
   		}
   //Move right
   	public int moveRight() {
-  			return x+1;
+  		setX(getX()+1);
+  		return getX();
   		}
 }
