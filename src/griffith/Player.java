@@ -1,6 +1,6 @@
 package griffith;
 
-public abstract class Player {//abstract class represents a player in the game
+public class Player {//abstract class represents a player in the game
 	public String name;
 
     public Player(String name) {//constructor
