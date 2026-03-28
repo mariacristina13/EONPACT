@@ -52,6 +52,12 @@ public class TestGameManager {
 		player.update();
 		assertEquals(beforeY+Constants.PLAYER_FALL_SPEED,player.getY());	
 	}
+	@Test
+	public void testPlayerDoesNotFall() {
+		Player player=new Player(null,50,40,0,0);
+		player.update();	
+		assertEquals(Constants.GROUND_HEIGHT  - 50,player.getY());//players height 50
+	}
 	
     // Riddle Class Tests
     @Test
