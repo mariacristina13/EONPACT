@@ -37,7 +37,7 @@ private Player movement;
         	movement.setDirection(1); } 
         else if(keyCode==Constants.LEFTKEY) { 
         	movement.setDirection(-1); } 
-        /*else if(keyCode==Constants.SPACEKEY) { movement.jump(); }*/
+        else if(keyCode==Constants.SPACEKEY) { movement.jump(); }
         }
     
 
