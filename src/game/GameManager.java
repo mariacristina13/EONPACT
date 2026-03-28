@@ -16,11 +16,13 @@ private Player movement;
 
     public Player player1;
     public Player player2;
-
+    
     public boolean gameWon = false;
     public GameManager() {
         player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 90, 90);
         player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 90, 90);
+        movement=player1;
+        movement=player2;
     }
 
     public void drawSprites(Graphics2D graphics, JPanel panel){
@@ -49,8 +51,13 @@ private Player movement;
     }
 
     public void update() {
-        if (isKeyHeld(Constants.LEFTKEY))  System.out.println("Left");
-        if (isKeyHeld(Constants.RIGHTKEY)) System.out.println("Right");
+        if (isKeyHeld(Constants.LEFTKEY)) {
+        	player1.moveLeft();
+        }
+        if (isKeyHeld(Constants.RIGHTKEY)) {
+        	player1.moveRight();
+        }
+       
     }
 
 }

@@ -1,24 +1,36 @@
 package Sprites;
 
+import constants.Constants;
+
 public class Player extends Sprite {//Class represents a player in the game
 	public String name;
- public int direction;
+	public boolean jump=false;
+ public int direction;//-1left , 0 none ,+1 right
   //Constructor
     public Player(String fileName , int x, int y , int width, int height) {
     	super(fileName, x,y,width,height);
     	direction=0;
 	}
-  
-	//Move up
-  	public int moveUp() {
-  	setY(getY()-1);
-  		return getY();
-      }
-  //Move Down
-  	public int moveDown() {
-  		setY(getY()+1);
-  		return getY();
-  	}
+    
+    public void update(){
+		if(direction == 1)
+			moveRight();
+		else if(direction == -1)
+			moveLeft();
+		if(getY() < Constants.GROUND_HEIGHT - getHeight()) {//if the player is above ground 
+			setY( getY() +Constants.PLAYER_FALL_SPEED);//pull the player down
+		}
+		else
+		{
+			if(jump == true)//if jump
+				setY(Constants.GROUND_HEIGHT  - getHeight());//Player returns to the ground
+			jump = false;//jump false
+		}	
+	}
+  //jump
+	public void jump() {
+		
+	}
   //Move Left
   	public int moveLeft() {
   		setX(getX()-1);
