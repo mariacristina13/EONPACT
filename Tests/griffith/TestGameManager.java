@@ -31,6 +31,13 @@ public class TestGameManager {
 		player.jump();
 		assertEquals(40-Constants.PLAYER_JUMP_HEIGHT,player.getY());
 	}
+	@Test
+	public void testUpdateDirectionIs1() {
+		Player player=new Player(null,20,40,0,0);
+		player.setDirection(1);
+		player.update();
+		assertEquals(21,player.getX());
+	}
 	
     // Riddle Class Tests
     @Test
