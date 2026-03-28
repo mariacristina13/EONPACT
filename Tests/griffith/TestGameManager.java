@@ -50,8 +50,7 @@ public class TestGameManager {
 		Player player=new Player(null,50,40,0,0);
 		int beforeY=player.getY();//players current position
 		player.update();
-		assertEquals(beforeY+Constants.PLAYER_FALL_SPEED,player.getY());
-		
+		assertEquals(beforeY+Constants.PLAYER_FALL_SPEED,player.getY());	
 	}
 	
     // Riddle Class Tests
