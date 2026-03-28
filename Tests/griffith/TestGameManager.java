@@ -38,6 +38,13 @@ public class TestGameManager {
 		player.update();
 		assertEquals(21,player.getX());
 	}
+	@Test
+	public void testUpdateDirection() {
+		Player player=new Player(null,20,40,0,0);
+		player.setDirection(-1);
+		player.update();
+		assertEquals(19,player.getX());
+	}
 	
     // Riddle Class Tests
     @Test
