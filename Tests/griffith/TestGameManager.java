@@ -1,6 +1,8 @@
 package griffith;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -9,7 +11,9 @@ import org.junit.Test;
 
 import Sprites.Player;
 import constants.Constants;
+import game.GameManager;
 import riddles.Riddle;
+import riddles.RiddleData;
 
 public class TestGameManager {
 //PlayerMovement class Test
@@ -207,6 +211,39 @@ public class TestGameManager {
         boolean actual2 = riddle.isHintDisplayed();
 
         assertTrue(actual2);
+    }
+
+    @Test
+    public void testGetRiddleByIndex(){
+        RiddleData riddleData = new RiddleData();
+        Riddle result = riddleData.getRiddlesByIndex(0);
+        assertNotNull(result);
+
+        int total = riddleData.getRiddles().size();
+        result = riddleData.getRiddlesByIndex(total - 1);
+        assertNotNull(result);
+
+        result = riddleData.getRiddlesByIndex(-5);
+        assertNull(result);
+
+        result = riddleData.getRiddlesByIndex(total);
+        assertNull(result);
+    }
+
+    @Test
+    public void testGetRandomRiddle(){
+        GameManager game = new GameManager();
+        Riddle result = game.getRandomRiddle();
+        assertNotNull(result);
+
+        RiddleData data = new RiddleData();
+        int total = data.getRiddles().size();
+        for (int i = 0; i < total; i++) {
+            game.getRandomRiddle();
+        }
+        result = game.getRandomRiddle();
+        assertNull(result);
+
     }
 
 }
