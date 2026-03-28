@@ -16,6 +16,9 @@ public class Player extends Sprite {//Class represents a player in the game
     	if(direction==1) {
     		moveRight();
     	}
+    	else if(direction==-1) {
+    		moveLeft();
+    	}
 			}
   //jump
 	public void jump() {
