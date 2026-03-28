@@ -45,6 +45,14 @@ public class TestGameManager {
 		player.update();
 		assertEquals(19,player.getX());
 	}
+	@Test
+	public void testPlayerFallsInAir() {
+		Player player=new Player(null,50,40,0,0);
+		int beforeY=player.getY();//players current position
+		player.update();
+		assertEquals(beforeY+Constants.PLAYER_FALL_SPEED,player.getY());
+		
+	}
 	
     // Riddle Class Tests
     @Test
