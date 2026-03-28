@@ -11,16 +11,18 @@ import Sprites.Player;
 import constants.Constants;
 
 public class GameManager {
-
+private Player movement;
     private Set<Integer> keysHeld = new HashSet<>();
 
     public Player player1;
     public Player player2;
-
+    
     public boolean gameWon = false;
     public GameManager() {
         player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 90, 90);
         player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 90, 90);
+        movement=player1;
+        movement=player2;
     }
 
     public void drawSprites(Graphics2D graphics, JPanel panel){
@@ -31,8 +33,14 @@ public class GameManager {
 
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        System.out.println(KeyEvent.getKeyText(keyCode));
-    }
+        if(keyCode==Constants.RIGHTKEY){//right
+        	movement.setDirection(1); } 
+        else if(keyCode==Constants.LEFTKEY) { 
+        	movement.setDirection(-1); } 
+        else if(keyCode==Constants.SPACEKEY) { 
+        	movement.jump(); }
+        }
+    
 
     public void keyReleased(int keyCode) {
         keysHeld.remove(keyCode);
@@ -44,8 +52,21 @@ public class GameManager {
     }
 
     public void update() {
-        if (isKeyHeld(Constants.LEFTKEY))  System.out.println("Left");
-        if (isKeyHeld(Constants.RIGHTKEY)) System.out.println("Right");
+        if (isKeyHeld(Constants.LEFTKEY)) {
+        	player1.moveLeft();
+        	player2.moveLeft();
+        }
+        if (isKeyHeld(Constants.RIGHTKEY)) {
+        	player1.moveRight();
+        	player2.moveRight();
+        }
+        if (isKeyHeld(Constants.SPACEKEY)) {
+        	player1.jump();
+        	player2.jump();
+        }
+        player1.update();
+        player2.update();
+       
     }
 
 }

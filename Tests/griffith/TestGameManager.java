@@ -8,22 +8,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import Sprites.Player;
+import constants.Constants;
 import riddles.Riddle;
 
 public class TestGameManager {
 //PlayerMovement class Test
-	@Test
-	public void testPlayerMoveUp() {
-		Player player=new Player(null,2,4, 0, 0);
-		int actual=player.moveUp();
-		assertEquals(3,actual);		
-	}
-	@Test
-	public void testPlayerMoveDown() {
-		Player player=new Player(null,0,0, 0, 0);
-		int actual=player.moveDown();
-		assertEquals(1,actual);
-	}
 	@Test 
 	public void testPlayerMoveLeft() {
 		Player player=new Player(null,5,3, 0, 0);
@@ -35,6 +24,33 @@ public class TestGameManager {
 		Player player=new Player(null,6,6, 0, 0);
 		int actual=player.moveRight();
 		assertEquals(7,actual);
+	}
+	@Test
+	public void testPlayerJump() {
+		Player player=new Player(null,20,40,0,0);
+		player.jump();
+		assertEquals(40-Constants.PLAYER_JUMP_HEIGHT,player.getY());
+	}
+	@Test
+	public void testUpdateDirectionIs1() {
+		Player player=new Player(null,20,40,0,0);
+		player.setDirection(1);
+		player.update();
+		assertEquals(21,player.getX());
+	}
+	@Test
+	public void testUpdateDirection() {
+		Player player=new Player(null,20,40,0,0);
+		player.setDirection(-1);
+		player.update();
+		assertEquals(19,player.getX());
+	}
+	@Test
+	public void testPlayerFallsInAir() {
+		Player player=new Player(null,50,40,0,0);
+		int beforeY=player.getY();//players current position
+		player.update();
+		assertEquals(beforeY+Constants.PLAYER_FALL_SPEED,player.getY());	
 	}
 	
     // Riddle Class Tests
