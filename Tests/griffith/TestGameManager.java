@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import Sprites.Player;
 import constants.Constants;
+import game.GameManager;
 import riddles.Riddle;
 import riddles.RiddleData;
 
@@ -227,6 +228,22 @@ public class TestGameManager {
 
         result = riddleData.getRiddlesByIndex(total);
         assertNull(result);
+    }
+
+    @Test
+    public void testGetRandomRiddle(){
+        GameManager game = new GameManager();
+        Riddle result = game.getRandomRiddle();
+        assertNotNull(result);
+
+        RiddleData data = new RiddleData();
+        int total = data.getRiddles().size();
+        for (int i = 0; i < total; i++) {
+            game.getRandomRiddle();
+        }
+        result = game.getRandomRiddle();
+        assertNull(result);
+
     }
 
 }
