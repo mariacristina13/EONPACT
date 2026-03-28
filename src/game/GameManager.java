@@ -19,8 +19,8 @@ public class GameManager {
 
     public boolean gameWon = false;
     public GameManager() {
-        player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 50, 50);
-        player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 50, 50);
+        player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 90, 90);
+        player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 90, 90);
     }
 
     public void drawSprites(Graphics2D graphics, JPanel panel){
