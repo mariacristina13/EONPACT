@@ -14,6 +14,13 @@ public class GameManager {
     public Player player1;
     public Player player2;
 
+    public boolean gameWon = false;
+    public GameManager() {
+        player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 50, 50);
+        player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 50, 50);
+    }
+
+
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
         System.out.println(KeyEvent.getKeyText(keyCode));
