@@ -11,7 +11,7 @@ import Sprites.Player;
 import constants.Constants;
 
 public class GameManager {
-
+private Player movement;
     private Set<Integer> keysHeld = new HashSet<>();
 
     public Player player1;
@@ -31,8 +31,13 @@ public class GameManager {
 
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        System.out.println(KeyEvent.getKeyText(keyCode));
-    }
+        if(keyCode==Constants.RIGHTKEY){//right
+        	movement.setDirection(1); } 
+        else if(keyCode==Constants.LEFTKEY) { 
+        	movement.setDirection(-1); } 
+        /*else if(keyCode==Constants.SPACEKEY) { movement.jump(); }*/
+        }
+    
 
     public void keyReleased(int keyCode) {
         keysHeld.remove(keyCode);
