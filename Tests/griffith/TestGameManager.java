@@ -214,7 +214,6 @@ public class TestGameManager {
         assertTrue(actual2);
     }
 
-<<<<<<< HEAD
     // Test correct answer
     @Test
     public void testCorrectAnswer() {
@@ -258,39 +257,4 @@ public class TestGameManager {
 
 
 
-=======
-    @Test
-    public void testGetRiddleByIndex(){
-        RiddleData riddleData = new RiddleData();
-        Riddle result = riddleData.getRiddlesByIndex(0);
-        assertNotNull(result);
-
-        int total = riddleData.getRiddles().size();
-        result = riddleData.getRiddlesByIndex(total - 1);
-        assertNotNull(result);
-
-        result = riddleData.getRiddlesByIndex(-5);
-        assertNull(result);
-
-        result = riddleData.getRiddlesByIndex(total);
-        assertNull(result);
-    }
-
-    @Test
-    public void testGetRandomRiddle(){
-        GameManager game = new GameManager();
-        Riddle result = game.getRandomRiddle();
-        assertNotNull(result);
-
-        RiddleData data = new RiddleData();
-        int total = data.getRiddles().size();
-        for (int i = 0; i < total; i++) {
-            game.getRandomRiddle();
-        }
-        result = game.getRandomRiddle();
-        assertNull(result);
-
-    }
-
->>>>>>> a79bd435e923e9a626a234f6d5f8b2cbfabe5c73
 }
