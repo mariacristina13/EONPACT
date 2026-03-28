@@ -27,6 +27,7 @@ Graphics2D graphics = (Graphics2D) g;
 RenderingHints hints = new RenderingHints( RenderingHints.KEY_ANTIALIASING,   RenderingHints.VALUE_ANTIALIAS_ON);
 graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html
 drawBG(graphics);
+game.drawSprites(graphics, this);
 }
 
 @Override
