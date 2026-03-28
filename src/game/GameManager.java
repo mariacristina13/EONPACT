@@ -25,7 +25,7 @@ public class GameManager {
 
     public void drawSprites(Graphics2D graphics, JPanel panel){
         graphics.drawImage(player1.getImage(), player1.getX(), player1.getY(),player1.getWidth(),player1.getHeight(),panel);
-        graphics.drawImage(player2.getImage(), player2.getX(), player2.getY(),player2.getWidth(),player2.getHeight(),panel)
+        graphics.drawImage(player2.getImage(), player2.getX(), player2.getY(),player2.getWidth(),player2.getHeight(),panel);
     }
 
 
