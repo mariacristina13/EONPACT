@@ -23,8 +23,8 @@ public class Player extends Sprite {//Class represents a player in the game
     		setY( getY() +Constants.PLAYER_FALL_SPEED);//change position to fall
     	}
     	else {
-    		if(jump==true) {
-    			setY(Constants.GROUND_HEIGHT  - getHeight());
+    		if(getY()>=Constants.GROUND_HEIGHT - getHeight()) {
+    			setY(Constants.GROUND_HEIGHT - getHeight());
     			jump=false;//reset jump
     		}
     	}

@@ -37,7 +37,8 @@ private Player movement;
         	movement.setDirection(1); } 
         else if(keyCode==Constants.LEFTKEY) { 
         	movement.setDirection(-1); } 
-        else if(keyCode==Constants.SPACEKEY) { movement.jump(); }
+        else if(keyCode==Constants.SPACEKEY) { 
+        	movement.jump(); }
         }
     
 
@@ -53,10 +54,18 @@ private Player movement;
     public void update() {
         if (isKeyHeld(Constants.LEFTKEY)) {
         	player1.moveLeft();
+        	player2.moveLeft();
         }
         if (isKeyHeld(Constants.RIGHTKEY)) {
         	player1.moveRight();
+        	player2.moveRight();
         }
+        if (isKeyHeld(Constants.SPACEKEY)) {
+        	player1.jump();
+        	player2.jump();
+        }
+        player1.update();
+        player2.update();
        
     }
 
