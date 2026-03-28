@@ -222,7 +222,7 @@ public class TestGameManager {
         assertTrue(cp.attempt("dog"));
     }
 
-    // Test wrong answer
+    // Test wrong answer(Checkpoint)
     @Test
     public void testWrongAnswer() {
         Riddle r = new Riddle("Q", "Dog", "Hint");
