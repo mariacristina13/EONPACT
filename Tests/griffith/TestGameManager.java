@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import Sprites.CheckPoint;
 import Sprites.Player;
 import riddles.Riddle;
 
@@ -192,5 +193,48 @@ public class TestGameManager {
 
         assertTrue(actual2);
     }
+
+    // Test correct answer
+    @Test
+    public void testCorrectAnswer() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        assertTrue(cp.attempt("dog"));
+    }
+
+    // Test wrong answer
+    @Test
+    public void testWrongAnswer() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        assertFalse(cp.attempt("cat"));
+    }
+
+    // Test max attempts = 5
+    @Test
+    public void testMaxAttempts() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        for (int i = 0; i < 5; i++) {
+            cp.attempt("wrong");
+        }
+
+        assertTrue(cp.isFailed());
+    }
+
+    // Test hint after 3 attempts
+    @Test
+    public void testHintAfterThreeAttempts() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+
+        cp.attempt("a");
+        cp.attempt("b");
+        cp.attempt("c");
+
+        assertEquals("Hint", cp.getHint());
+    }
+
+
 
 }
