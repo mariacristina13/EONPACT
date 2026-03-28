@@ -29,7 +29,7 @@ public class Player extends Sprite {//Class represents a player in the game
 	}
   //jump
 	public void jump() {
-		
+	setY(getY()-Constants.PLAYER_JUMP_HEIGHT);
 	}
   //Move Left
   	public int moveLeft() {
