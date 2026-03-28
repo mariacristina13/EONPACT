@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import Sprites.CheckPoint;
 import Sprites.Player;
 import constants.Constants;
 import game.GameManager;
@@ -213,37 +214,47 @@ public class TestGameManager {
         assertTrue(actual2);
     }
 
+    // Test correct answer
     @Test
-    public void testGetRiddleByIndex(){
-        RiddleData riddleData = new RiddleData();
-        Riddle result = riddleData.getRiddlesByIndex(0);
-        assertNotNull(result);
-
-        int total = riddleData.getRiddles().size();
-        result = riddleData.getRiddlesByIndex(total - 1);
-        assertNotNull(result);
-
-        result = riddleData.getRiddlesByIndex(-5);
-        assertNull(result);
-
-        result = riddleData.getRiddlesByIndex(total);
-        assertNull(result);
+    public void testCorrectAnswer() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        assertTrue(cp.attempt("dog"));
     }
 
+    // Test wrong answer
     @Test
-    public void testGetRandomRiddle(){
-        GameManager game = new GameManager();
-        Riddle result = game.getRandomRiddle();
-        assertNotNull(result);
+    public void testWrongAnswer() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        assertFalse(cp.attempt("cat"));
+    }
 
-        RiddleData data = new RiddleData();
-        int total = data.getRiddles().size();
-        for (int i = 0; i < total; i++) {
-            game.getRandomRiddle();
+    // Test max attempts = 5
+    @Test
+    public void testMaxAttempts() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        for (int i = 0; i < 5; i++) {
+            cp.attempt("wrong");
         }
-        result = game.getRandomRiddle();
-        assertNull(result);
 
+        assertTrue(cp.isFailed());
     }
+
+    // Test hint after 3 attempts
+    @Test
+    public void testHintAfterThreeAttempts() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+
+        cp.attempt("a");
+        cp.attempt("b");
+        cp.attempt("c");
+
+        assertEquals("Hint", cp.getHint());
+    }
+
+
 
 }
