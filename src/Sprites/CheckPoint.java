@@ -7,8 +7,8 @@ public class CheckPoint extends Sprite {
     private Riddle riddle;
     private boolean completed;
 
-    public CheckPoint(String fileName, int x, int y, int w, int h, Riddle riddle) {
-        super(fileName, x, y, w, h);
+    public CheckPoint(String fileName, int x, int y, int width, int height, Riddle riddle) {
+        super(fileName, x, y, width,height);
         this.riddle = riddle;
         this.completed = false;
     }
