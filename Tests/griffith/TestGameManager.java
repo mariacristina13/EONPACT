@@ -1,6 +1,8 @@
 package griffith;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -9,22 +11,13 @@ import org.junit.Test;
 
 import Sprites.CheckPoint;
 import Sprites.Player;
+import constants.Constants;
+import game.GameManager;
 import riddles.Riddle;
+import riddles.RiddleData;
 
 public class TestGameManager {
 //PlayerMovement class Test
-	@Test
-	public void testPlayerMoveUp() {
-		Player player=new Player(null,2,4, 0, 0);
-		int actual=player.moveUp();
-		assertEquals(3,actual);		
-	}
-	@Test
-	public void testPlayerMoveDown() {
-		Player player=new Player(null,0,0, 0, 0);
-		int actual=player.moveDown();
-		assertEquals(1,actual);
-	}
 	@Test 
 	public void testPlayerMoveLeft() {
 		Player player=new Player(null,5,3, 0, 0);
@@ -36,6 +29,33 @@ public class TestGameManager {
 		Player player=new Player(null,6,6, 0, 0);
 		int actual=player.moveRight();
 		assertEquals(7,actual);
+	}
+	@Test
+	public void testPlayerJump() {
+		Player player=new Player(null,20,40,0,0);
+		player.jump();
+		assertEquals(40-Constants.PLAYER_JUMP_HEIGHT,player.getY());
+	}
+	@Test
+	public void testUpdateDirectionIs1() {
+		Player player=new Player(null,20,40,0,0);
+		player.setDirection(1);
+		player.update();
+		assertEquals(21,player.getX());
+	}
+	@Test
+	public void testUpdateDirection() {
+		Player player=new Player(null,20,40,0,0);
+		player.setDirection(-1);
+		player.update();
+		assertEquals(19,player.getX());
+	}
+	@Test
+	public void testPlayerFallsInAir() {
+		Player player=new Player(null,50,40,0,0);
+		int beforeY=player.getY();//players current position
+		player.update();
+		assertEquals(beforeY+Constants.PLAYER_FALL_SPEED,player.getY());	
 	}
 	
     // Riddle Class Tests
@@ -194,6 +214,7 @@ public class TestGameManager {
         assertTrue(actual2);
     }
 
+<<<<<<< HEAD
     // Test correct answer
     @Test
     public void testCorrectAnswer() {
@@ -237,4 +258,39 @@ public class TestGameManager {
 
 
 
+=======
+    @Test
+    public void testGetRiddleByIndex(){
+        RiddleData riddleData = new RiddleData();
+        Riddle result = riddleData.getRiddlesByIndex(0);
+        assertNotNull(result);
+
+        int total = riddleData.getRiddles().size();
+        result = riddleData.getRiddlesByIndex(total - 1);
+        assertNotNull(result);
+
+        result = riddleData.getRiddlesByIndex(-5);
+        assertNull(result);
+
+        result = riddleData.getRiddlesByIndex(total);
+        assertNull(result);
+    }
+
+    @Test
+    public void testGetRandomRiddle(){
+        GameManager game = new GameManager();
+        Riddle result = game.getRandomRiddle();
+        assertNotNull(result);
+
+        RiddleData data = new RiddleData();
+        int total = data.getRiddles().size();
+        for (int i = 0; i < total; i++) {
+            game.getRandomRiddle();
+        }
+        result = game.getRandomRiddle();
+        assertNull(result);
+
+    }
+
+>>>>>>> a79bd435e923e9a626a234f6d5f8b2cbfabe5c73
 }

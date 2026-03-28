@@ -125,5 +125,5 @@ public class RiddleData {
         }
         // Return the riddle at the specific index.
         return riddleList.get(index);
-    }
+    }  
 }
