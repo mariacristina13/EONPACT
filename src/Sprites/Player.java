@@ -38,14 +38,18 @@ public class Player extends Sprite {//Class represents a player in the game
 	}
   //Move Left
   	public int moveLeft() {
-  		setX(getX()-1);
+  		int newX=getX()-Constants.PLAYER_SPEED;
+  		if(newX<0) {newX=0;}//Prevents user going off board
+  		setX(newX);
   		return getX();
   		}
   //Move right
-  	public int moveRight() {
-  		setX(getX()+1);
-  		return getX();
-  		}
+  	public int moveRight(){
+		if(getX() + getWidth() + Constants.PLAYER_SPEED < Constants.SCREEN_SIZE.width/2) {
+			this.setX(getX() +Constants.PLAYER_SPEED);
+		}
+		return getX();
+	}
   	//Direction:Getter and Setter
   	public int getDirection() {
 		return direction;

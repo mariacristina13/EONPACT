@@ -16,6 +16,7 @@ public final class Constants {
 	public final static int LEFTKEY =37;
 	public final static int RIGHTKEY =39;
 	public final static int SPACEKEY =32;
+	public final static int PLAYER_SPEED = 4;
 
 	public final static int PLAYER_JUMP_HEIGHT = 70;
 	public final static int PLAYER_FALL_SPEED = 6;//The amount of pixels to move the player downwards 
