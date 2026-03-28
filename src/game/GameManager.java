@@ -4,11 +4,15 @@ import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
 
+import Sprites.Player;
 import constants.Constants;
 
 public class GameManager {
 
     private Set<Integer> keysHeld = new HashSet<>();
+
+    public Player player1;
+    public Player player2;
 
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
