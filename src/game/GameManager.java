@@ -2,19 +2,29 @@ package game;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import javax.swing.JPanel;
 
 import Sprites.Player;
 import constants.Constants;
+import riddles.Riddle;
+import riddles.RiddleData;
 
 public class GameManager {
     private Set<Integer> keysHeld = new HashSet<>();
 
     public Player player1;
     public Player player2;
+
+    private ArrayList<Riddle> riddles;
+    private ArrayList<Riddle> unplayedRiddles;
+    private Riddle currentRiddleDisplayed;
+    private boolean riddleActive;
+    Random rand = new Random();
     
     public boolean gameWon = false;
     public GameManager() {
