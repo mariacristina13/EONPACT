@@ -1,16 +1,13 @@
 package game;
 
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.JPanel;
 
-import Sprites.CheckPoint;
 import Sprites.Player;
 import constants.Constants;
-import riddles.RiddleLayout;
 
 public class GameManager {
     private Set<Integer> keysHeld = new HashSet<>();
@@ -28,11 +25,6 @@ public class GameManager {
         graphics.drawImage(player1.getImage(), player1.getX(), player1.getY(),player1.getWidth(),player1.getHeight(),panel);
         graphics.drawImage(player2.getImage(), player2.getX(), player2.getY(),player2.getWidth(),player2.getHeight(),panel);
     }
-
-       // Check if BOTH players are near the checkpoint
-    private boolean reachedCheckpoint() {
-        return Math.abs(player1.getX() - CheckPoint.getX()) < 30 && Math.abs(player2.getX() - CheckPoint.getX()) < 30;
-}
 
 
     public void keyPressed(int keyCode) {
@@ -59,30 +51,19 @@ public class GameManager {
         
     }
 
-    // Update game logic (movement + checkpoint check)
     public void update() {
-
-    // Allow movement only if riddle is not active
-    if (!riddleActive) {
-
-        // Player 1 movement (arrow keys)
-        if (isKeyHeld(Constants.LEFTKEY)) player1.moveLeft();
-        if (isKeyHeld(Constants.RIGHTKEY)) player1.moveRight();
-
-        // Player 2 movement (A / D keys)
-        if (isKeyHeld(Constants.AKEY)) player2.moveLeft();
-        if (isKeyHeld(Constants.DKEY)) player2.moveRight();
+        if (isKeyHeld(Constants.LEFTKEY)) {
+        	player1.moveLeft();
+        }
+        if (isKeyHeld(Constants.RIGHTKEY)) {
+        	player1.moveRight();
+        }
+        if (isKeyHeld(Constants.SPACEKEY)) {
+        	player1.jump();
+        	}
+        player1.update();
+        player2.update();
+       
     }
-
-    // Update both players
-    player1.update();
-    player2.update();
-
-    // Check if both players reached checkpoint
-    if (!riddleActive && reachedCheckpoint()) {
-        riddleActive = true;
-        layout = new RiddleLayout(CheckPoint.getRiddle()); // show riddle UI
-    }
-}
 
 }
