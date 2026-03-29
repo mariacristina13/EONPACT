@@ -56,4 +56,12 @@ public class RiddleLayout{
   if (line.length() > 0) graphics.drawString(line.toString(), x, y);
   }
 
+  public void keyTyped(char c) {
+    if (!active) return;
+    if (Character.isLetterOrDigit(c) || c == ' ') {
+        userInput += c;
+    }
+}
+
+
 }
