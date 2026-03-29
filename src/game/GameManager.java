@@ -7,8 +7,10 @@ import java.util.Set;
 
 import javax.swing.JPanel;
 
+import Sprites.CheckPoint;
 import Sprites.Player;
 import constants.Constants;
+import riddles.RiddleLayout;
 
 public class GameManager {
     private Set<Integer> keysHeld = new HashSet<>();
@@ -52,19 +54,30 @@ public class GameManager {
         
     }
 
+    // Update game logic (movement + checkpoint check)
     public void update() {
-        if (isKeyHeld(Constants.LEFTKEY)) {
-        	player1.moveLeft();
-        }
-        if (isKeyHeld(Constants.RIGHTKEY)) {
-        	player1.moveRight();
-        }
-        if (isKeyHeld(Constants.SPACEKEY)) {
-        	player1.jump();
-        	}
-        player1.update();
-        player2.update();
-       
+
+    // Allow movement only if riddle is not active
+    if (!riddleActive) {
+
+        // Player 1 movement (arrow keys)
+        if (isKeyHeld(Constants.LEFTKEY)) player1.moveLeft();
+        if (isKeyHeld(Constants.RIGHTKEY)) player1.moveRight();
+
+        // Player 2 movement (A / D keys)
+        if (isKeyHeld(Constants.AKEY)) player2.moveLeft();
+        if (isKeyHeld(Constants.DKEY)) player2.moveRight();
     }
+
+    // Update both players
+    player1.update();
+    player2.update();
+
+    // Check if both players reached checkpoint
+    if (!riddleActive && reachedCheckpoint()) {
+        riddleActive = true;
+        layout = new RiddleLayout(CheckPoint.getRiddle()); // show riddle UI
+    }
+}
 
 }
