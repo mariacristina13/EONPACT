@@ -18,6 +18,10 @@ public final class Constants {
 	public final static int SPACEKEY =32;
 	public final static int PLAYER_SPEED = 4;
 
+	// Player 2 keys
+    public final static int AKEY = 65; // A key-left
+    public final static int DKEY = 68; // D key-right
+
 	public final static int PLAYER_JUMP_HEIGHT = 70;
 	public final static int PLAYER_FALL_SPEED = 6;//The amount of pixels to move the player downwards 
 	
