@@ -2,24 +2,41 @@ package game;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import javax.swing.JPanel;
 
 import Sprites.Player;
 import constants.Constants;
+import riddles.Riddle;
+import riddles.RiddleData;
 
 public class GameManager {
     private Set<Integer> keysHeld = new HashSet<>();
 
     public Player player1;
     public Player player2;
+
+    private ArrayList<Riddle> riddles;
+    private ArrayList<Riddle> unplayedRiddles;
+    private Riddle currentRiddleDisplayed;
+    private boolean riddleActive;
+    Random rand = new Random();
     
     public boolean gameWon = false;
     public GameManager() {
         player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 90, 90);
         player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 90, 90);
+
+        RiddleData data = new RiddleData();
+        riddles = data.getRiddles();
+        unplayedRiddles = new ArrayList<Riddle>(riddles);
+        currentRiddleDisplayed = null;
+        riddleActive = false;
+
     }
 
     public void drawSprites(Graphics2D graphics, JPanel panel){
@@ -87,4 +104,27 @@ public class GameManager {
        
     }
 
+    // Method that returns a random riddle from the list.
+    public Riddle getRandomRiddle(){
+        // Check if the copy of the riddle list is emplty and end the game.
+        if (unplayedRiddles.isEmpty()){
+            return null;
+        }
+
+        // If the array isn't empty then return the random riddle picked and delete it form the copy list.
+        int index = rand.nextInt(unplayedRiddles.size());
+        Riddle pickedRiddle = unplayedRiddles.get(index);
+        unplayedRiddles.remove(index);
+
+        return pickedRiddle;
+    }
+
+     // Getters
+    public Riddle getCurrentRiddleDisplayed(){
+        return currentRiddleDisplayed;
+    }
+
+    public boolean isRiddleActive(){
+        return riddleActive;
+    }
 }
