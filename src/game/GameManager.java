@@ -48,8 +48,7 @@ public class GameManager {
     }
 
     public boolean isKeyHeld(int keyCode) {
-        return keysHeld.contains(keyCode);
-        
+        return keysHeld.contains(keyCode);  
     }
 
     public void update() {

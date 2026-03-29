@@ -19,7 +19,7 @@ public final class Constants {
 	public final static int PLAYER_SPEED = 4;
 
 	public final static int PLAYER_JUMP_HEIGHT = 70;
-	public final static int PLAYER_FALL_SPEED = 6;//The amount of pixels to move the player downwards 
+	public final static int PLAYER_FALL_SPEED = 8;//The amount of pixels to move the player downwards 
 	
 	public final static Color BLUE = new Color(174, 227, 245);
 	public final static Color GREEN = new Color(79, 179, 85);

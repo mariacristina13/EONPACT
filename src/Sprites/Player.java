@@ -6,10 +6,12 @@ public class Player extends Sprite {//Class represents a player in the game
 	public String name;
 	public boolean jump=false;
  public int direction;//-1left , 0 none ,+1 right
+ private int verticalSpeed;
   //Constructor
     public Player(String fileName , int x, int y , int width, int height) {
     	super(fileName, x,y,width,height);
     	direction=0;
+    	verticalSpeed=0;
 	}
     
     public void update(){
