@@ -34,8 +34,26 @@ public class RiddleLayout{
    }
 
    private void drawCentered(Graphics2D graphics, String text, int centre, int y){
-    FontMetrics font = graphics.getFontMetrics();
+    FontMetrics font = graphics.getFontMetrics(); // https://docs.oracle.com/javase/8/docs/api/java/awt/FontMetrics.html
     int textWidth = font.stringWidth(text);
     graphics.drawString(text, centre - textWidth/2, y);
    }
+
+   private void drawWrapped(Graphics2D graphics, String text, int x, int y, int maxWidth, int lineHeight){
+    FontMetrics font = graphics.getFontMetrics();
+    String[] words = text.split(" ");
+    StringBuilder line = new StringBuilder();
+    for (String word : words) {
+      String test = line + (line.length() > 0 ? " " : "") + word;
+      if (font.stringWidth(test) > maxWidth) {
+          graphics.drawString(line.toString(), x, y);
+          y += lineHeight;
+          line = new StringBuilder(word);
+      } else {
+          line = new StringBuilder(test);
+      }
+  }
+  if (line.length() > 0) graphics.drawString(line.toString(), x, y);
+  }
+
 }
