@@ -104,4 +104,18 @@ public class GameManager {
        
     }
 
+    // Method that returns a random riddle from the list.
+    public Riddle getRandomRiddle(){
+        // Check if the copy of the riddle list is emplty and end the game.
+        if (unplayedRiddles.isEmpty()){
+            return null;
+        }
+
+        // If the array isn't empty then return the random riddle picked and delete it form the copy list.
+        int index = rand.nextInt(unplayedRiddles.size());
+        Riddle pickedRiddle = unplayedRiddles.get(index);
+        unplayedRiddles.remove(index);
+
+        return pickedRiddle;
+    }
 }
