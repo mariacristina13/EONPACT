@@ -22,13 +22,15 @@ public class TestGameManager {
 	public void testPlayerMoveLeft() {
 		Player player=new Player(null,5,3, 0, 0);
 		int actual=player.moveLeft();
-		assertEquals(4,actual);
+		int expected=5-Constants.PLAYER_SPEED;
+		assertEquals(expected,actual);
 	}
 	@Test
 	public void testPlayerMoveRight() {
 		Player player=new Player(null,6,6, 0, 0);
 		int actual=player.moveRight();
-		assertEquals(7,actual);
+		int expected=6+Constants.PLAYER_SPEED;
+		assertEquals(expected,actual);
 	}
 	@Test
 	public void testPlayerJump() {
@@ -41,14 +43,16 @@ public class TestGameManager {
 		Player player=new Player(null,20,40,0,0);
 		player.setDirection(1);
 		player.update();
-		assertEquals(21,player.getX());
+		int expected=20+Constants.PLAYER_SPEED;
+		assertEquals(expected,player.getX());
 	}
 	@Test
 	public void testUpdateDirection() {
 		Player player=new Player(null,20,40,0,0);
 		player.setDirection(-1);
 		player.update();
-		assertEquals(19,player.getX());
+		int expected=20-Constants.PLAYER_SPEED;
+		assertEquals(expected,player.getX());
 	}
 	@Test
 	public void testPlayerFallsInAir() {
@@ -286,5 +290,4 @@ public class TestGameManager {
         result = gameManager.getRandomRiddle(); 
         assertNull(result); 
     }
-
 }
