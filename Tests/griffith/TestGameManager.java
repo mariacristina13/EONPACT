@@ -255,6 +255,36 @@ public class TestGameManager {
         assertEquals("Hint", cp.getHint());
     }
 
+    @Test
+    public void testGetRiddleByIndex(){
+        RiddleData data = new RiddleData();
+        Riddle result = data.getRiddlesByIndex(0);
+        assertNotNull(result);
 
+        int total = data.getRiddles().size();
+        result = data.getRiddlesByIndex(total-1);
+        assertNotNull(result);
+        
+        result = data.getRiddlesByIndex(-5);
+        assertNull(result);
+       
+        result = data.getRiddlesByIndex(total);
+        assertNull(result);
+    }
+
+    @Test
+    public void testGetRandomRiddle(){
+        GameManager gameManager = new GameManager();
+        Riddle result = gameManager.getRandomRiddle();
+        assertNotNull(result);
+
+        RiddleData data = new RiddleData();
+        int total = data.getRiddles().size();
+        for (int i = 0; i < total; i++) {
+            gameManager.getRandomRiddle();
+        }  
+        result = gameManager.getRandomRiddle(); 
+        assertNull(result); 
+    }
 
 }
