@@ -30,6 +30,13 @@ public class GameManager {
     public GameManager() {
         player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 90, 90);
         player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 90, 90);
+
+        RiddleData data = new RiddleData();
+        riddles = data.getRiddles();
+        unplayedRiddles = new ArrayList<Riddle>(riddles);
+        currentRiddleDisplayed = null;
+        riddleActive = false;
+
     }
 
     public void drawSprites(Graphics2D graphics, JPanel panel){
