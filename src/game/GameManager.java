@@ -30,12 +30,29 @@ public class GameManager {
 
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        if(keyCode==Constants.RIGHTKEY){//right
-        	player1.setDirection(1); } 
-        else if(keyCode==Constants.LEFTKEY) { 
-        	player1.setDirection(-1); } 
-        else if(keyCode==Constants.SPACEKEY) { 
-        	player1.jump(); }
+        switch(keyCode)
+		{
+        //Player1
+		case  Constants.RIGHTKEY: //right
+			player1.setDirection(1);
+			break;
+		case Constants.LEFTKEY: //left
+			player1.setDirection(-1);
+			break;
+		case Constants.SPACEKEY: //space
+			player1.jump();
+			break;
+			//Player 2
+		case  Constants.DKEY: //right
+			player2.setDirection(1);
+			break;
+		case Constants.AKEY: //left
+			player2.setDirection(-1);
+			break;
+		case Constants.WKEY: //space
+			player2.jump();
+			break;
+		}
         }
     
 
@@ -43,7 +60,7 @@ public class GameManager {
         keysHeld.remove(keyCode);
         if(keyCode==Constants.RIGHTKEY){//right
         	player1.setDirection(0); }
-        else if(keyCode==Constants.LEFTKEY) { 
+        else if(keyCode==Constants.LEFTKEY) { //Left
         	player1.setDirection(0); } 
     }
 
