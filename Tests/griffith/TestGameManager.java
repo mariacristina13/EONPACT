@@ -272,4 +272,19 @@ public class TestGameManager {
         assertNull(result);
     }
 
+    @Test
+    public void testGetRandomRiddle(){
+        GameManager gameManager = new GameManager();
+        Riddle result = gameManager.getRandomRiddle();
+        assertNotNull(result);
+
+        RiddleData data = new RiddleData();
+        int total = data.getRiddles().size();
+        for (int i = 0; i < total; i++) {
+            gameManager.getRandomRiddle();
+        }  
+        result = gameManager.getRandomRiddle(); 
+        assertNull(result); 
+    }
+
 }
