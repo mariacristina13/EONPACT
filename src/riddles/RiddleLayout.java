@@ -1,5 +1,6 @@
 package riddles;
 
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
@@ -30,5 +31,11 @@ public class RiddleLayout{
     graphics.setColor(Constants.BLACK);
     graphics.setFont(Constants.QUESTION_FONT);
     riddle.getQuestion();
+   }
+
+   private void drawCentered(Graphics2D graphics, String text, int centre, int y){
+    FontMetrics font = graphics.getFontMetrics();
+    int textWidth = font.stringWidth(text);
+    graphics.drawString(text, centre - textWidth/2, y);
    }
 }
