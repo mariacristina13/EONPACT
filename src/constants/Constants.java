@@ -1,6 +1,7 @@
 package constants;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 
 public final class Constants {
@@ -28,5 +29,10 @@ public final class Constants {
 	
 	public final static Color BLUE = new Color(174, 227, 245);
 	public final static Color GREEN = new Color(79, 179, 85);
+	public final static Color BROWN = new Color(196,164,132);
+	public final static Color BLACK = new Color(0,0,0);
+
+	public final static	Font ATTEMPTS_FONT = new Font( "SansSerif", Font.PLAIN, 12 );
+	public final static Font QUESTION_FONT = new Font("SansSerif", Font.PLAIN, 16);
 
 }
