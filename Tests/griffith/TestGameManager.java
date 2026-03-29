@@ -22,7 +22,8 @@ public class TestGameManager {
 	public void testPlayerMoveLeft() {
 		Player player=new Player(null,5,3, 0, 0);
 		int actual=player.moveLeft();
-		assertEquals(4,actual);
+		int expected=5-Constants.PLAYER_SPEED;
+		assertEquals(expected,actual);
 	}
 	@Test
 	public void testPlayerMoveRight() {
@@ -286,5 +287,4 @@ public class TestGameManager {
         result = gameManager.getRandomRiddle(); 
         assertNull(result); 
     }
-
 }
