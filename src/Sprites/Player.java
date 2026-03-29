@@ -6,10 +6,12 @@ public class Player extends Sprite {//Class represents a player in the game
 	public String name;
 	public boolean jump=false;
  public int direction;//-1left , 0 none ,+1 right
+ private int verticalSpeed;
   //Constructor
     public Player(String fileName , int x, int y , int width, int height) {
     	super(fileName, x,y,width,height);
     	direction=0;
+    	verticalSpeed=0;
 	}
     
     public void update(){
@@ -38,14 +40,18 @@ public class Player extends Sprite {//Class represents a player in the game
 	}
   //Move Left
   	public int moveLeft() {
-  		setX(getX()-1);
+  		int newX=getX()-Constants.PLAYER_SPEED;
+  		if(newX<0) {newX=0;}//Prevents user going off board
+  		setX(newX);
   		return getX();
   		}
   //Move right
-  	public int moveRight() {
-  		setX(getX()+1);
-  		return getX();
-  		}
+  	public int moveRight(){
+		if(getX() + getWidth() + Constants.PLAYER_SPEED < Constants.SCREEN_SIZE.width/2) {
+			this.setX(getX() +Constants.PLAYER_SPEED);
+		}
+		return getX();
+	}
   	//Direction:Getter and Setter
   	public int getDirection() {
 		return direction;

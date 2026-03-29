@@ -1,10 +1,9 @@
 package riddles;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.FontMetrics;
+
+import constants.Constants;
 
 public class RiddleLayout{
     
@@ -15,5 +14,21 @@ public class RiddleLayout{
 
     public RiddleLayout(Riddle riddle){
      this.riddle = riddle;
+   }
+   public void draw(Graphics2D graphics, int width, int height){
+    graphics.setColor(Constants.BROWN);
+    width = 400;
+    height = 300;
+    int x = width/2;
+    int y = height/2;
+    graphics.fillRect(x,y,width,height);
+    
+    String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
+    graphics.setColor(Constants.BLACK);
+    graphics.drawString(attempts, x+width-120, y+24);
+    
+    graphics.setColor(Constants.BLACK);
+    graphics.setFont(Constants.QUESTION_FONT);
+    riddle.getQuestion();
    }
 }

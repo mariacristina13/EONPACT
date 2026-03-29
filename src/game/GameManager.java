@@ -11,7 +11,6 @@ import Sprites.Player;
 import constants.Constants;
 
 public class GameManager {
-private Player movement;
     private Set<Integer> keysHeld = new HashSet<>();
 
     public Player player1;
@@ -21,8 +20,6 @@ private Player movement;
     public GameManager() {
         player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 90, 90);
         player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 90, 90);
-        movement=player1;
-        movement=player2;
     }
 
     public void drawSprites(Graphics2D graphics, JPanel panel){
@@ -33,37 +30,58 @@ private Player movement;
 
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        if(keyCode==Constants.RIGHTKEY){//right
-        	movement.setDirection(1); } 
-        else if(keyCode==Constants.LEFTKEY) { 
-        	movement.setDirection(-1); } 
-        else if(keyCode==Constants.SPACEKEY) { 
-        	movement.jump(); }
+        switch(keyCode)
+		{
+        //Player1
+		case  Constants.RIGHTKEY: //right
+			player1.setDirection(1);
+			break;
+		case Constants.LEFTKEY: //left
+			player1.setDirection(-1);
+			break;
+		case Constants.SPACEKEY: //space
+			player1.jump();
+			break;
+			//Player 2
+		case  Constants.DKEY: //right
+			player2.setDirection(1);
+			break;
+		case Constants.AKEY: //left
+			player2.setDirection(-1);
+			break;
+		case Constants.WKEY: //space
+			player2.jump();
+			break;
+		}
         }
     
 
     public void keyReleased(int keyCode) {
         keysHeld.remove(keyCode);
-        System.out.println(KeyEvent.getKeyText(keyCode));
+        switch(keyCode)
+		{
+        //Player1
+		case  Constants.RIGHTKEY: //right
+			player1.setDirection(0);
+			break;
+		case Constants.LEFTKEY: //left
+			player1.setDirection(0);
+			break;
+			//Player 2
+		case  Constants.DKEY: //right
+			player2.setDirection(0);
+			break;
+		case Constants.AKEY: //left
+			player2.setDirection(0);
+			break;
+		}
     }
 
     public boolean isKeyHeld(int keyCode) {
-        return keysHeld.contains(keyCode);
+        return keysHeld.contains(keyCode);  
     }
 
     public void update() {
-        if (isKeyHeld(Constants.LEFTKEY)) {
-        	player1.moveLeft();
-        	player2.moveLeft();
-        }
-        if (isKeyHeld(Constants.RIGHTKEY)) {
-        	player1.moveRight();
-        	player2.moveRight();
-        }
-        if (isKeyHeld(Constants.SPACEKEY)) {
-        	player1.jump();
-        	player2.jump();
-        }
         player1.update();
         player2.update();
        

@@ -1,15 +1,20 @@
 package griffith;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import Sprites.CheckPoint;
 import Sprites.Player;
 import constants.Constants;
+import game.GameManager;
 import riddles.Riddle;
+import riddles.RiddleData;
 
 public class TestGameManager {
 //PlayerMovement class Test
@@ -207,6 +212,79 @@ public class TestGameManager {
         boolean actual2 = riddle.isHintDisplayed();
 
         assertTrue(actual2);
+    }
+
+    // Test correct answer
+    @Test
+    public void testCorrectAnswer() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        assertTrue(cp.attempt("dog"));
+    }
+
+    // Test wrong answer(Checkpoint)
+    @Test
+    public void testWrongAnswer() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        assertFalse(cp.attempt("cat"));
+    }
+
+    // Test max attempts = 5
+    @Test
+    public void testMaxAttempts() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        for (int i = 0; i < 5; i++) {
+            cp.attempt("wrong");
+        }
+
+        assertTrue(cp.isFailed());
+    }
+
+    // Test hint after 3 attempts
+    @Test
+    public void testHintAfterThreeAttempts() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+
+        cp.attempt("a");
+        cp.attempt("b");
+        cp.attempt("c");
+
+        assertEquals("Hint", cp.getHint());
+    }
+
+    @Test
+    public void testGetRiddleByIndex(){
+        RiddleData data = new RiddleData();
+        Riddle result = data.getRiddlesByIndex(0);
+        assertNotNull(result);
+
+        int total = data.getRiddles().size();
+        result = data.getRiddlesByIndex(total-1);
+        assertNotNull(result);
+        
+        result = data.getRiddlesByIndex(-5);
+        assertNull(result);
+       
+        result = data.getRiddlesByIndex(total);
+        assertNull(result);
+    }
+
+    @Test
+    public void testGetRandomRiddle(){
+        GameManager gameManager = new GameManager();
+        Riddle result = gameManager.getRandomRiddle();
+        assertNotNull(result);
+
+        RiddleData data = new RiddleData();
+        int total = data.getRiddles().size();
+        for (int i = 0; i < total; i++) {
+            gameManager.getRandomRiddle();
+        }  
+        result = gameManager.getRandomRiddle(); 
+        assertNull(result); 
     }
 
 }
