@@ -29,6 +29,11 @@ public class GameManager {
         graphics.drawImage(player2.getImage(), player2.getX(), player2.getY(),player2.getWidth(),player2.getHeight(),panel);
     }
 
+       // Check if BOTH players are near the checkpoint
+    private boolean reachedCheckpoint() {
+        return Math.abs(player1.getX() - CheckPoint.getX()) < 30 && Math.abs(player2.getX() - CheckPoint.getX()) < 30;
+}
+
 
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
