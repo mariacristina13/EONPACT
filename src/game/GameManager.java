@@ -58,10 +58,23 @@ public class GameManager {
 
     public void keyReleased(int keyCode) {
         keysHeld.remove(keyCode);
-        if(keyCode==Constants.RIGHTKEY){//right
-        	player1.setDirection(0); }
-        else if(keyCode==Constants.LEFTKEY) { //Left
-        	player1.setDirection(0); } 
+        switch(keyCode)
+		{
+        //Player1
+		case  Constants.RIGHTKEY: //right
+			player1.setDirection(0);
+			break;
+		case Constants.LEFTKEY: //left
+			player1.setDirection(0);
+			break;
+			//Player 2
+		case  Constants.DKEY: //right
+			player2.setDirection(0);
+			break;
+		case Constants.AKEY: //left
+			player2.setDirection(0);
+			break;
+		}
     }
 
     public boolean isKeyHeld(int keyCode) {
