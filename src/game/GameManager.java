@@ -118,4 +118,13 @@ public class GameManager {
 
         return pickedRiddle;
     }
+
+     // Getters
+    public Riddle getCurrentRiddleDisplayed(){
+        return currentRiddleDisplayed;
+    }
+
+    public boolean isRiddleActive(){
+        return riddleActive;
+    }
 }
