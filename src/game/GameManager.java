@@ -82,15 +82,6 @@ public class GameManager {
     }
 
     public void update() {
-        if (isKeyHeld(Constants.LEFTKEY)) {
-        	player1.moveLeft();
-        }
-        if (isKeyHeld(Constants.RIGHTKEY)) {
-        	player1.moveRight();
-        }
-        if (isKeyHeld(Constants.SPACEKEY)) {
-        	player1.jump();
-        	}
         player1.update();
         player2.update();
        
