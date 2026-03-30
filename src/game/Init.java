@@ -29,6 +29,10 @@ public class Init {
 				panel.update();
 				startTime = System.currentTimeMillis();
 			}
+
+            if(panel.getGameManager().gameWon){
+                break;
+            }
         }
 
     }
