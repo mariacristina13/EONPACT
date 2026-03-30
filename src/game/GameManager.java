@@ -131,7 +131,7 @@ public class GameManager {
         g.setColor(Constants.WHITE);
         g.fillRect(x + 20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
-        g.drawRect(x + 20, y, cardW - 120, 30);
+        g.drawRect(x + 20, input, cardW - 120, 30);
         g.setFont(Constants.QUESTION_FONT);
         g.drawString(userInput, x + 30, input + 20);
 
@@ -147,7 +147,7 @@ public class GameManager {
         if (!feedback.isEmpty()) {
             g.setColor(Constants.BLACK);
             g.setFont(Constants.QUESTION_FONT);
-            drawCentered(g, feedback, panelWidth, y + 250);
+            drawCentered(g, feedback, x + cardW/2, y + 250);
         }
     }
 
