@@ -129,7 +129,7 @@ public class GameManager {
         g.setColor(Constants.WHITE);  
         g.fillRect(x+20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
-        g.drawRect(x+20,y,cardW-120,30);     
+        g.drawRect(x+20,input,cardW-120,30);     
         g.setFont(Constants.QUESTION_FONT);
         g.drawString(userInput, x+30, input+20);
 
