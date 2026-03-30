@@ -9,16 +9,29 @@ import game.GameManager;
 public class RiddleLayout{
     
     private Riddle riddle;
+    private GameManager game;
     private String userInput;
     private String feedback;
     private boolean active = false;
-    
 
-    public RiddleLayout(Riddle riddle){
+
+    public RiddleLayout(Riddle riddle, GameManager game){
      this.riddle = riddle;
+     this.game = game;
    }
+   public void setActive(boolean active) {
+    this.active = active;
+    if (active) {
+        userInput = "";
+        feedback = "";
+    }
+}
+
+public boolean isActive() {
+    return active;
+}
    public void draw(Graphics2D graphics, int width, int height){
-    
+    if (!active) return;
     // card with riddle
     int cardW = 400;
     int cardH = 300;
