@@ -24,7 +24,6 @@ public final class Constants {
 	
 	public final static int PLAYER_SPEED = 4;
 
-
 	public final static int PLAYER_JUMP_HEIGHT = 70;
 	public final static int PLAYER_FALL_SPEED = 8;//The amount of pixels to move the player downwards 
 	
