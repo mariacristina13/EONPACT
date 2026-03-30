@@ -42,8 +42,8 @@ public class GameManager {
 
     public GameManager() {
 
-        player1 = new Player("box turtle.png", 0, Constants.SCREEN_SIZE.height/3, 90, 90);
-        player2 = new Player("kakapo.png", 80, Constants.SCREEN_SIZE.height/3, 90, 90);
+        player1 = new Player("box turtle.png", 0, Constants.GROUND_HEIGHT-90, 90, 90);
+        player2 = new Player("kakapo.png", 80, Constants.GROUND_HEIGHT-90, 90, 90);
 
         // Load riddles
         RiddleData data = new RiddleData();
@@ -141,8 +141,8 @@ public class GameManager {
         g.setFont(Constants.QUESTION_FONT);
         drawCentered(g, "Submit", button + 35, input + 20);
 
-    // feedback
-    if (!feedback.isEmpty()){
+        // feedback
+        if (!feedback.isEmpty()){
         g.setColor(Constants.BLACK);
         g.setFont(Constants.QUESTION_FONT);
         drawCentered(g, feedback, panelWidth, y + 250);
@@ -225,6 +225,13 @@ public class GameManager {
 
     public boolean isKeyHeld(int keyCode) {
         return keysHeld.contains(keyCode);
+    }
+
+    public void keyTyped(char c) {
+        if (!riddleActive) return;
+        if (Character.isLetterOrDigit(c) || c == ' ') {
+            userInput += c;
+        }
     }
 
     // CHECKPOINT CONDITION (both players)
