@@ -11,8 +11,8 @@ public class Riddle {
     // Variable to check if hint has been displayed;
     private boolean displayed;
 
-     // Initialise class variables.
-    public Riddle(String question, String answer, String hint){
+    // Initialise class variables.
+    public Riddle(String question, String answer, String hint) {
         this.question = question;
         this.answer = answer;
         this.hint = hint;
@@ -20,7 +20,6 @@ public class Riddle {
         this.displayed = false;
     }
 
-    
     // Getters
     public String getQuestion() {
         return question;
@@ -39,22 +38,24 @@ public class Riddle {
     }
 
     // Check if the answer given by the players is correct.
-    public boolean checkAnswer(String input){
-        // If the input provided by the players matches the answer of the riddle then return true, otherwise return false.
-        if (input.trim().equalsIgnoreCase(answer)){
+    public boolean checkAnswer(String input) {
+        // If the input provided by the players matches the answer of the riddle then
+        // return true, otherwise return false.
+        if (input.trim().equalsIgnoreCase(answer)) {
             return true;
         }
         return false;
     }
 
-    // This method will help increase the attempts counter every time the player submits a wrong answer.
-    public void incrementAttempt(){
-        countAttempts ++;
+    // This method will help increase the attempts counter every time the player
+    // submits a wrong answer.
+    public void incrementAttempt() {
+        countAttempts++;
     }
 
     // Check if the players have reached the maximum number of attempts.
-    public boolean attemptsFinished(){
-        if (countAttempts >= Constants.MAX_ATTEMPTS){
+    public boolean attemptsFinished() {
+        if (countAttempts >= Constants.MAX_ATTEMPTS) {
             return true;
         }
 
@@ -62,8 +63,8 @@ public class Riddle {
     }
 
     // Show the players the hint after reaching a number of failed attempts.
-    public String displayHint(){
-        if(countAttempts >= Constants.SHOW_HINT_AFTER_ATTEMPTS){
+    public String displayHint() {
+        if (countAttempts >= Constants.SHOW_HINT_AFTER_ATTEMPTS) {
             // Change the displayed variable to true if the hint is shown to the player.
             displayed = true;
             return hint;
@@ -72,8 +73,8 @@ public class Riddle {
     }
 
     // Check if the hint is already displayed.
-    public boolean isHintDisplayed(){
+    public boolean isHintDisplayed() {
         return displayed;
     }
-    
+
 }

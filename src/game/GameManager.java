@@ -32,9 +32,9 @@ public class GameManager {
     private String userInput = "";
     private String feedback = "";
     Random rand = new Random();
-    
+
     public boolean gameWon = false;
-    
+
     private int currentIndex;
 
     // Checkpoint
@@ -42,8 +42,8 @@ public class GameManager {
 
     public GameManager() {
 
-        player1 = new Player("box turtle.png", 0, Constants.GROUND_HEIGHT-90, 90, 90);
-        player2 = new Player("kakapo.png", 80, Constants.GROUND_HEIGHT-90, 90, 90);
+        player1 = new Player("box turtle.png", 0, Constants.GROUND_HEIGHT - 90, 90, 90);
+        player2 = new Player("kakapo.png", 80, Constants.GROUND_HEIGHT - 90, 90, 90);
 
         // Load riddles
         RiddleData data = new RiddleData();
@@ -65,13 +65,14 @@ public class GameManager {
             currentIndex = 0;
         }
 
-        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height/3, 60, 60, riddles.get(currentIndex));
+        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60,
+                riddles.get(currentIndex));
 
         currentIndex++;
     }
 
     // Draw players + checkpoint
-    public void drawSprites(Graphics2D g, JPanel panel){
+    public void drawSprites(Graphics2D g, JPanel panel) {
         g.drawImage(player1.getImage(), player1.getX(), player1.getY(),
                 player1.getWidth(), player1.getHeight(), panel);
 
@@ -82,148 +83,147 @@ public class GameManager {
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
     }
 
-      public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive) return;
+    public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
+        if (!riddleActive)
+            return;
 
         Riddle riddle = checkpoint.getRiddle();
 
         int cardW = 400;
         int cardH = 300;
-        int x = (panelWidth - cardW)/2;
-        int y = (panelHeight - cardH)/2;
+        int x = (panelWidth - cardW) / 2;
+        int y = (panelHeight - cardH) / 2;
 
         g.setColor(Constants.BROWN);
-        g.fillRect(x,y,cardW,cardH);
-    
+        g.fillRect(x, y, cardW, cardH);
+
         // number of attempts
         String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
         g.setColor(Constants.BLACK);
         g.setFont(Constants.ATTEMPTS_FONT);
-        g.drawString(attempts, x+cardW-120, y+24);
+        g.drawString(attempts, x + cardW - 120, y + 24);
 
         int dot = y + 270;
         int spacing = 14;
-        int start = panelWidth/2 - (Constants.MAX_ATTEMPTS * spacing);
+        int start = panelWidth / 2 - (Constants.MAX_ATTEMPTS * spacing);
         for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
             g.setColor(i < riddle.getCountAttempts()
-            ? (Constants.WHITE)   // used
-            : (Constants.GRAY)); // remaining 
+                    ? (Constants.WHITE) // used
+                    : (Constants.GRAY)); // remaining
             g.fillOval(start + i * spacing, dot, 8, 8);
         }
-    
-        //question
+
+        // question
         g.setColor(Constants.BLACK);
         g.setFont(Constants.QUESTION_FONT);
-        drawWrapped(g, riddle.getQuestion(), x+20, y+55, cardW-40, 20);
+        drawWrapped(g, riddle.getQuestion(), x + 20, y + 55, cardW - 40, 20);
 
-        //hint
+        // hint
         String hint = riddle.displayHint();
         if (!hint.isEmpty()) {
             g.setColor(Constants.BLACK);
             g.setFont(Constants.QUESTION_FONT);
-            drawWrapped(g, "Hint:" + hint, x+20, y+150, cardW-40,18);
+            drawWrapped(g, "Hint:" + hint, x + 20, y + 150, cardW - 40, 18);
         }
 
         // answer input field
         int input = y + 195;
-        g.setColor(Constants.WHITE);  
-        g.fillRect(x+20, input, cardW - 120, 30);
+        g.setColor(Constants.WHITE);
+        g.fillRect(x + 20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
-        g.drawRect(x+20,y,cardW-120,30);     
+        g.drawRect(x + 20, y, cardW - 120, 30);
         g.setFont(Constants.QUESTION_FONT);
-        g.drawString(userInput, x+30, input+20);
+        g.drawString(userInput, x + 30, input + 20);
 
         // submit button
         int button = x + cardW - 90;
         g.setColor(Constants.BLACK);
         g.fillRect(button, input, 70, 30);
-        g.setColor(Constants.WHITE);  
+        g.setColor(Constants.WHITE);
         g.setFont(Constants.QUESTION_FONT);
         drawCentered(g, "Submit", button + 35, input + 20);
 
         // feedback
-        if (!feedback.isEmpty()){
-        g.setColor(Constants.BLACK);
-        g.setFont(Constants.QUESTION_FONT);
-        drawCentered(g, feedback, panelWidth, y + 250);
-    }
+        if (!feedback.isEmpty()) {
+            g.setColor(Constants.BLACK);
+            g.setFont(Constants.QUESTION_FONT);
+            drawCentered(g, feedback, panelWidth, y + 250);
+        }
     }
 
-
-    private void drawCentered(Graphics2D graphics, String text, int centre, int y){
+    private void drawCentered(Graphics2D graphics, String text, int centre, int y) {
         FontMetrics font = graphics.getFontMetrics(); // https://docs.oracle.com/javase/8/docs/api/java/awt/FontMetrics.html
         int textWidth = font.stringWidth(text);
-        graphics.drawString(text, centre - textWidth/2, y);
+        graphics.drawString(text, centre - textWidth / 2, y);
     }
 
-    private void drawWrapped(Graphics2D graphics, String text, int x, int y, int maxWidth, int lineHeight){
+    private void drawWrapped(Graphics2D graphics, String text, int x, int y, int maxWidth, int lineHeight) {
         FontMetrics font = graphics.getFontMetrics();
         String[] words = text.split(" ");
         StringBuilder line = new StringBuilder();
         for (String word : words) {
-          String test = line + (line.length() > 0 ? " " : "") + word;
-          if (font.stringWidth(test) > maxWidth) {
-              graphics.drawString(line.toString(), x, y);
-              y += lineHeight;
-              line = new StringBuilder(word);
-          } else {
-              line = new StringBuilder(test);
-          }
-      }
-      if (line.length() > 0) graphics.drawString(line.toString(), x, y);
-      }
-    
+            String test = line + (line.length() > 0 ? " " : "") + word;
+            if (font.stringWidth(test) > maxWidth) {
+                graphics.drawString(line.toString(), x, y);
+                y += lineHeight;
+                line = new StringBuilder(word);
+            } else {
+                line = new StringBuilder(test);
+            }
+        }
+        if (line.length() > 0)
+            graphics.drawString(line.toString(), x, y);
+    }
+
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
         if (riddleActive) {
-            if (keyCode == Constants.ENTERKEY) submitAnswer();
-        }    
-        switch(keyCode)
-		{
-        //Player1
-		case  Constants.RIGHTKEY: //right
-			player1.setDirection(1);
-			break;
-		case Constants.LEFTKEY: //left
-			player1.setDirection(-1);
-			break;
-		case Constants.SPACEKEY: //space
-			player1.jump();
-			break;
-			//Player 2
-		case  Constants.DKEY: //right
-			player2.setDirection(1);
-			break;
-		case Constants.AKEY: //left
-			player2.setDirection(-1);
-			break;
-		case Constants.WKEY: //space
-			player2.jump();
-			break;
-		}
+            if (keyCode == Constants.ENTERKEY)
+                submitAnswer();
         }
-    
+        switch (keyCode) {
+            // Player1
+            case Constants.RIGHTKEY: // right
+                player1.setDirection(1);
+                break;
+            case Constants.LEFTKEY: // left
+                player1.setDirection(-1);
+                break;
+            case Constants.SPACEKEY: // space
+                player1.jump();
+                break;
+            // Player 2
+            case Constants.DKEY: // right
+                player2.setDirection(1);
+                break;
+            case Constants.AKEY: // left
+                player2.setDirection(-1);
+                break;
+            case Constants.WKEY: // space
+                player2.jump();
+                break;
+        }
+    }
 
     public void keyReleased(int keyCode) {
         keysHeld.remove(keyCode);
-        switch(keyCode)
-		{
-        //Player1
-		case  Constants.RIGHTKEY: //right
-			player1.setDirection(0);
-			break;
-		case Constants.LEFTKEY: //left
-			player1.setDirection(0);
-			break;
-			//Player 2
-		case  Constants.DKEY: //right
-			player2.setDirection(0);
-			break;
-		case Constants.AKEY: //left
-			player2.setDirection(0);
-			break;
-		}
+        switch (keyCode) {
+            // Player1
+            case Constants.RIGHTKEY: // right
+                player1.setDirection(0);
+                break;
+            case Constants.LEFTKEY: // left
+                player1.setDirection(0);
+                break;
+            // Player 2
+            case Constants.DKEY: // right
+                player2.setDirection(0);
+                break;
+            case Constants.AKEY: // left
+                player2.setDirection(0);
+                break;
+        }
     }
 
     public boolean isKeyHeld(int keyCode) {
@@ -231,7 +231,8 @@ public class GameManager {
     }
 
     public void keyTyped(char c) {
-        if (!riddleActive) return;
+        if (!riddleActive)
+            return;
         if (Character.isLetterOrDigit(c) || c == ' ') {
             userInput += c;
         }
@@ -240,7 +241,7 @@ public class GameManager {
     // CHECKPOINT CONDITION (both players)
     private boolean reachedCheckpoint() {
         return Math.abs(player1.getX() - checkpoint.getX()) < 30 &&
-               Math.abs(player2.getX() - checkpoint.getX()) < 30;
+                Math.abs(player2.getX() - checkpoint.getX()) < 30;
     }
 
     // UPDATE GAME
@@ -248,11 +249,15 @@ public class GameManager {
 
         // Movement disabled when answering
         if (!riddleActive) {
-            if (isKeyHeld(Constants.LEFTKEY)) player1.setDirection(-1);
-            if (isKeyHeld(Constants.RIGHTKEY)) player1.setDirection(1);
+            if (isKeyHeld(Constants.LEFTKEY))
+                player1.setDirection(-1);
+            if (isKeyHeld(Constants.RIGHTKEY))
+                player1.setDirection(1);
 
-            if (isKeyHeld(Constants.AKEY)) player2.setDirection(-1);
-            if (isKeyHeld(Constants.DKEY)) player2.setDirection(1);
+            if (isKeyHeld(Constants.AKEY))
+                player2.setDirection(-1);
+            if (isKeyHeld(Constants.DKEY))
+                player2.setDirection(1);
         }
 
         player1.update();
@@ -268,13 +273,14 @@ public class GameManager {
     }
 
     // Method that returns a random riddle from the list.
-    public Riddle getRandomRiddle(){
+    public Riddle getRandomRiddle() {
         // Check if the copy of the riddle list is emplty and end the game.
-        if (unplayedRiddles.isEmpty()){
+        if (unplayedRiddles.isEmpty()) {
             return null;
         }
 
-        // If the array isn't empty then return the random riddle picked and delete it form the copy list.
+        // If the array isn't empty then return the random riddle picked and delete it
+        // form the copy list.
         int index = rand.nextInt(unplayedRiddles.size());
         Riddle pickedRiddle = unplayedRiddles.get(index);
         unplayedRiddles.remove(index);
@@ -282,13 +288,14 @@ public class GameManager {
         return pickedRiddle;
     }
 
-     // Getters
-    public Riddle getCurrentRiddleDisplayed(){
+    // Getters
+    public Riddle getCurrentRiddleDisplayed() {
         return currentRiddleDisplayed;
     }
 
     private void submitAnswer() {
-        if (checkpoint.getRiddle().attemptsFinished()) return;
+        if (checkpoint.getRiddle().attemptsFinished())
+            return;
 
         if (checkpoint.attempt(userInput)) {
             feedback = "Correct!";
@@ -311,7 +318,8 @@ public class GameManager {
     // ANSWER SYSTEM
     public void answer(String input) {
 
-        if (!riddleActive) return;
+        if (!riddleActive)
+            return;
 
         if (checkpoint.attempt(input)) {
 
@@ -340,23 +348,23 @@ public class GameManager {
         return riddleActive;
     }
 
+    public void mouseClicked(int mouseX, int mouseY) {
+        if (!riddleActive)
+            return;
 
-public void mouseClicked(int mouseX, int mouseY) {
-    if (!riddleActive) return;
+        int cardW = 400;
+        int cardH = 300;
+        int cardX = (Constants.SCREEN_SIZE.width - cardW) / 2;
+        int cardY = (Constants.SCREEN_SIZE.height - cardH) / 2;
 
-    int cardW = 400;
-    int cardH = 300;
-    int cardX = (Constants.SCREEN_SIZE.width - cardW) / 2;  
-    int cardY = (Constants.SCREEN_SIZE.height - cardH) / 2;
+        int buttonX = cardX + cardW - 90;
+        int inputY = cardY + 195;
 
-    int buttonX = cardX + cardW - 90;
-    int inputY = cardY + 195;
-
-    // Check if click is inside the submit button
-    if (mouseX >= buttonX && mouseX <= buttonX + 70 &&
-        mouseY >= inputY && mouseY <= inputY + 30) {
-        submitAnswer();
+        // Check if click is inside the submit button
+        if (mouseX >= buttonX && mouseX <= buttonX + 70 &&
+                mouseY >= inputY && mouseY <= inputY + 30) {
+            submitAnswer();
+        }
     }
-}
 
 }

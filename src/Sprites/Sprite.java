@@ -1,4 +1,5 @@
 package Sprites;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -6,19 +7,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public abstract class Sprite {
-    private String fileName;
+	private String fileName;
 	private int x;
 	private int y;
 	private int width;
 	private int height;
 	private BufferedImage image;
 
-    public Sprite(String fileName , int x, int y , int width, int height) {
+	public Sprite(String fileName, int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y - height;
 		this.width = width;
 		this.height = height;
-		File pic = new File("images/"+fileName);
+		File pic = new File("images/" + fileName);
 		try {
 			image = ImageIO.read(pic);
 		} catch (IOException e) {
@@ -26,11 +27,11 @@ public abstract class Sprite {
 			System.out.print("file not found");
 		}
 	}
+
 	public BufferedImage getImage() {
 		return image;
 	}
 
-	
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}

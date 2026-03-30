@@ -17,51 +17,56 @@ import riddles.Riddle;
 import riddles.RiddleData;
 
 public class TestGameManager {
-//PlayerMovement class Test
-	@Test 
-	public void testPlayerMoveLeft() {
-		Player player=new Player(null,5,3, 0, 0);
-		int actual=player.moveLeft();
-		int expected=5-Constants.PLAYER_SPEED;
-		assertEquals(expected,actual);
-	}
-	@Test
-	public void testPlayerMoveRight() {
-		Player player=new Player(null,6,6, 0, 0);
-		int actual=player.moveRight();
-		int expected=6+Constants.PLAYER_SPEED;
-		assertEquals(expected,actual);
-	}
-	@Test
-	public void testPlayerJump() {
-		Player player=new Player(null,20,40,0,0);
-		player.jump();
-		assertEquals(40-Constants.PLAYER_JUMP_HEIGHT,player.getY());
-	}
-	@Test
-	public void testUpdateDirectionIs1() {
-		Player player=new Player(null,20,40,0,0);
-		player.setDirection(1);
-		player.update();
-		int expected=20+Constants.PLAYER_SPEED;
-		assertEquals(expected,player.getX());
-	}
-	@Test
-	public void testUpdateDirection() {
-		Player player=new Player(null,20,40,0,0);
-		player.setDirection(-1);
-		player.update();
-		int expected=20-Constants.PLAYER_SPEED;
-		assertEquals(expected,player.getX());
-	}
-	@Test
-	public void testPlayerFallsInAir() {
-		Player player=new Player(null,50,40,0,0);
-		int beforeY=player.getY();//players current position
-		player.update();
-		assertEquals(beforeY+Constants.PLAYER_FALL_SPEED,player.getY());	
-	}
-	
+    // PlayerMovement class Test
+    @Test
+    public void testPlayerMoveLeft() {
+        Player player = new Player(null, 5, 3, 0, 0);
+        int actual = player.moveLeft();
+        int expected = 5 - Constants.PLAYER_SPEED;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPlayerMoveRight() {
+        Player player = new Player(null, 6, 6, 0, 0);
+        int actual = player.moveRight();
+        int expected = 6 + Constants.PLAYER_SPEED;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPlayerJump() {
+        Player player = new Player(null, 20, 40, 0, 0);
+        player.jump();
+        assertEquals(40 - Constants.PLAYER_JUMP_HEIGHT, player.getY());
+    }
+
+    @Test
+    public void testUpdateDirectionIs1() {
+        Player player = new Player(null, 20, 40, 0, 0);
+        player.setDirection(1);
+        player.update();
+        int expected = 20 + Constants.PLAYER_SPEED;
+        assertEquals(expected, player.getX());
+    }
+
+    @Test
+    public void testUpdateDirection() {
+        Player player = new Player(null, 20, 40, 0, 0);
+        player.setDirection(-1);
+        player.update();
+        int expected = 20 - Constants.PLAYER_SPEED;
+        assertEquals(expected, player.getX());
+    }
+
+    @Test
+    public void testPlayerFallsInAir() {
+        Player player = new Player(null, 50, 40, 0, 0);
+        int beforeY = player.getY();// players current position
+        player.update();
+        assertEquals(beforeY + Constants.PLAYER_FALL_SPEED, player.getY());
+    }
+
     // Riddle Class Tests
     @Test
     public void testCheckAnswer() {
@@ -157,7 +162,8 @@ public class TestGameManager {
         Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear",
                 "In winter I go into a deep sleep called hibernation.");
 
-        // Test the displayHint method before the treshold when the hint is going to apear is reached.
+        // Test the displayHint method before the treshold when the hint is going to
+        // apear is reached.
         riddle.incrementAttempt();
         riddle.incrementAttempt();
 
@@ -173,8 +179,9 @@ public class TestGameManager {
         String expected1 = "In winter I go into a deep sleep called hibernation.";
 
         assertEquals(expected1, actual1);
-        
-        // Test the displayHint method after the treshold when the hint is going to apear is reached.
+
+        // Test the displayHint method after the treshold when the hint is going to
+        // apear is reached.
         riddle.incrementAttempt();
         riddle.incrementAttempt();
 
@@ -186,14 +193,14 @@ public class TestGameManager {
     }
 
     @Test
-    public void testIsHintDisplayed(){
+    public void testIsHintDisplayed() {
         // Initialise the riddle class.
         Riddle riddle = new Riddle("I can smell food from a mile away.", "Bear",
                 "In winter I go into a deep sleep called hibernation.");
 
         // Test that the hint is hiden in the begining.
         boolean actual = riddle.isHintDisplayed();
-        
+
         assertFalse(actual);
 
         // Test that the hint is hiden if the treshold hasn't been reached.
@@ -201,10 +208,8 @@ public class TestGameManager {
         riddle.incrementAttempt();
 
         boolean actual1 = riddle.isHintDisplayed();
-        
+
         assertFalse(actual1);
-
-
 
         // Test that the hint is shown when the treshold is reached.
         riddle.incrementAttempt();
@@ -260,24 +265,24 @@ public class TestGameManager {
     }
 
     @Test
-    public void testGetRiddleByIndex(){
+    public void testGetRiddleByIndex() {
         RiddleData data = new RiddleData();
         Riddle result = data.getRiddlesByIndex(0);
         assertNotNull(result);
 
         int total = data.getRiddles().size();
-        result = data.getRiddlesByIndex(total-1);
+        result = data.getRiddlesByIndex(total - 1);
         assertNotNull(result);
-        
+
         result = data.getRiddlesByIndex(-5);
         assertNull(result);
-       
+
         result = data.getRiddlesByIndex(total);
         assertNull(result);
     }
 
     @Test
-    public void testGetRandomRiddle(){
+    public void testGetRandomRiddle() {
         GameManager gameManager = new GameManager();
         Riddle result = gameManager.getRandomRiddle();
         assertNotNull(result);
@@ -286,8 +291,8 @@ public class TestGameManager {
         int total = data.getRiddles().size();
         for (int i = 0; i < total; i++) {
             gameManager.getRandomRiddle();
-        }  
-        result = gameManager.getRandomRiddle(); 
-        assertNull(result); 
+        }
+        result = gameManager.getRandomRiddle();
+        assertNull(result);
     }
 }
