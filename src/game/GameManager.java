@@ -2,10 +2,6 @@ package game;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
 import java.util.*;
 
 import javax.swing.JPanel;
@@ -13,8 +9,6 @@ import javax.swing.JPanel;
 import Sprites.Player;
 import Sprites.CheckPoint;
 import constants.Constants;
-import riddles.Riddle;
-import riddles.RiddleData;
 import riddles.*;
 
 public class GameManager {
@@ -40,6 +34,7 @@ public class GameManager {
     private CheckPoint checkpoint;
 
     private boolean riddleActive = false;
+    private RiddleLayout riddleLayout; 
 
     public GameManager() {
 
@@ -91,6 +86,9 @@ public class GameManager {
         g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
     }
+
+      public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
+        riddleLayout.draw(g, panelWidth, panelHeight);
 
     // INPUT
     public void keyPressed(int keyCode) {

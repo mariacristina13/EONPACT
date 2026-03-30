@@ -9,7 +9,6 @@ import game.GameManager;
 public class RiddleLayout{
     
     private Riddle riddle;
-    private GameManager game;
     private String userInput;
     private String feedback;
     private boolean active = false;
@@ -17,7 +16,6 @@ public class RiddleLayout{
 
     public RiddleLayout(Riddle riddle, GameManager game){
      this.riddle = riddle;
-     this.game = game;
    }
    public void setActive(boolean active) {
     this.active = active;
