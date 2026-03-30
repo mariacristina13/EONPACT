@@ -64,4 +64,5 @@ public void drawBG(	Graphics2D graphics) {
     graphics.fillRect(0,Constants.GROUND_HEIGHT ,Constants.SCREEN_SIZE.width,Constants.SCREEN_SIZE.height);
 
 }
+
 }
