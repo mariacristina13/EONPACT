@@ -65,4 +65,8 @@ public void drawBG(	Graphics2D graphics) {
 
 }
 
+public GameManager getGameManager(){
+    return game;
+}
+
 }
