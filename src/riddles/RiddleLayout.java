@@ -95,34 +95,7 @@ public boolean isActive() {
 
    
 
-   private void drawWrapped(Graphics2D graphics, String text, int x, int y, int maxWidth, int lineHeight){
-    FontMetrics font = graphics.getFontMetrics();
-    String[] words = text.split(" ");
-    StringBuilder line = new StringBuilder();
-    for (String word : words) {
-      String test = line + (line.length() > 0 ? " " : "") + word;
-      if (font.stringWidth(test) > maxWidth) {
-          graphics.drawString(line.toString(), x, y);
-          y += lineHeight;
-          line = new StringBuilder(word);
-      } else {
-          line = new StringBuilder(test);
-      }
-  }
-  if (line.length() > 0) graphics.drawString(line.toString(), x, y);
-  }
-
-  public void keyPressed(int keyCode) {
-    if (!active) return;
-
-    if (keyCode == Constants.ENTERKEY) {
-        submitAnswer();
-    } else if (keyCode == Constants.BACKSPACEKEY) {
-        if (!userInput.isEmpty()) {
-            userInput = userInput.substring(0, userInput.length() - 1);
-        }
-    }
-}
+   
   public void keyTyped(char c) {
     if (!active) return;
     if (Character.isLetterOrDigit(c) || c == ' ') {
