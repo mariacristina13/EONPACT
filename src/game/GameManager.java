@@ -1,11 +1,6 @@
 package game;
 
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
 import java.util.*;
 
 import javax.swing.JPanel;
@@ -15,7 +10,6 @@ import Sprites.CheckPoint;
 import constants.Constants;
 import riddles.Riddle;
 import riddles.RiddleData;
-import riddles.*;
 
 public class GameManager {
 
@@ -24,6 +18,7 @@ public class GameManager {
     public Player player1;
     public Player player2;
 
+    // Riddle system
     private ArrayList<Riddle> riddles;
     private ArrayList<Riddle> unplayedRiddles;
     private Riddle currentRiddleDisplayed;
@@ -31,51 +26,38 @@ public class GameManager {
     Random rand = new Random();
     
     public boolean gameWon = false;
-    // Riddle system
-    private RiddleData riddleData;
-    private List<Riddle> riddles;
-    private int currentIndex = 0;
+    
+    private int currentIndex;
 
     // Checkpoint
     private CheckPoint checkpoint;
 
-    private boolean riddleActive = false;
-
     public GameManager() {
 
-        player1 = new Player("box turtle.png", 100, Constants.SCREEN_SIZE.height/3, 90, 90);
-        player2 = new Player("kakapo.png", 300, Constants.SCREEN_SIZE.height/3, 90, 90);
-
-        RiddleData data = new RiddleData();
-        riddles = data.getRiddles();
-        unplayedRiddles = new ArrayList<Riddle>(riddles);
-        currentRiddleDisplayed = null;
-        riddleActive = false;
+        player1 = new Player("box turtle.png", 0, Constants.SCREEN_SIZE.height/3, 90, 90);
+        player2 = new Player("kakapo.png", 80, Constants.SCREEN_SIZE.height/3, 90, 90);
 
         // Load riddles
-        riddleData = new RiddleData();
-        riddles = riddleData.getRiddles();
-
-        Collections.shuffle(riddles); // random order
+        RiddleData data = new RiddleData();
+        riddles = data.getRiddles();
+        // Craete a list for the riddles that havent been shown to the players.
+        unplayedRiddles = new ArrayList<Riddle>(riddles);
+        // Variable that holds the current riddle displayed.
+        currentRiddleDisplayed = null;
+        // Flag that checks if a riddle is displayed.
+        riddleActive = false;
+        currentIndex = 0;
 
         createCheckpoint();
     }
 
-    // Create new checkpoint with next riddle
+    // Create new checkpoint with next riddle.
     private void createCheckpoint() {
-
         if (currentIndex >= riddles.size()) {
             currentIndex = 0;
         }
 
-        checkpoint = new CheckPoint(
-            "checkpoint.png",
-            500,
-            Constants.SCREEN_SIZE.height/3,
-            60,
-            60,
-            riddles.get(currentIndex)
-        );
+        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height/3, 60, 60, riddles.get(currentIndex));
 
         currentIndex++;
     }
@@ -143,33 +125,6 @@ public class GameManager {
     }
 
     public boolean isKeyHeld(int keyCode) {
-        return keysHeld.contains(keyCode);  
-
-        // Player 1
-        if(keyCode == Constants.RIGHTKEY) player1.setDirection(1);
-        else if(keyCode == Constants.LEFTKEY) player1.setDirection(-1);
-        else if(keyCode == Constants.SPACEKEY) player1.jump();
-
-        // Player 2
-        if(keyCode == Constants.AKEY) player2.setDirection(-1);
-        else if(keyCode == Constants.DKEY) player2.setDirection(1);
-    }
-
-    public void keyReleased(int keyCode) {
-        keysHeld.remove(keyCode);
-
-        // Stop Player 1
-        if(keyCode == Constants.RIGHTKEY || keyCode == Constants.LEFTKEY){
-            player1.setDirection(0);
-        }
-
-        // Stop Player 2
-        if(keyCode == Constants.AKEY || keyCode == Constants.DKEY){
-            player2.setDirection(0);
-        }
-    }
-
-    public boolean isKeyHeld(int keyCode) {
         return keysHeld.contains(keyCode);
     }
 
@@ -198,7 +153,7 @@ public class GameManager {
         if (!riddleActive && reachedCheckpoint()) {
             riddleActive = true;
 
-            System.out.println("=== RIDDLE ===");
+            System.out.println("Read the following riddle and if u get it ull recive food.");
             System.out.println(checkpoint.getRiddle().getQuestion());
         }
     }
@@ -223,10 +178,7 @@ public class GameManager {
         return currentRiddleDisplayed;
     }
 
-    public boolean isRiddleActive(){
-        return riddleActive;
-    }
-}
+
     // ANSWER SYSTEM
     public void answer(String input) {
 
