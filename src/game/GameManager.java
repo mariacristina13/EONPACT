@@ -131,7 +131,7 @@ public class GameManager {
         g.setColor(Constants.BLACK);
         g.drawRect(x+20,y,cardW-120,30);     
         g.setFont(Constants.QUESTION_FONT);
-        g.drawString(userInput, x+30, y+20);
+        g.drawString(userInput, x+30, input+20);
 
         // submit button
         int button = x + cardW - 90;
@@ -176,6 +176,9 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
+        if (riddleActive) {
+            if (keyCode == Constants.ENTERKEY) submitAnswer();
+        }    
         switch(keyCode)
 		{
         //Player1
@@ -335,4 +338,24 @@ public class GameManager {
     public boolean isRiddleActive() {
         return riddleActive;
     }
+
+
+public void mouseClicked(int mouseX, int mouseY) {
+    if (!riddleActive) return;
+
+    int cardW = 400;
+    int cardH = 300;
+    int cardX = (Constants.SCREEN_SIZE.width - cardW) / 2;  
+    int cardY = (Constants.SCREEN_SIZE.height - cardH) / 2;
+
+    int buttonX = cardX + cardW - 90;
+    int inputY = cardY + 195;
+
+    // Check if click is inside the submit button
+    if (mouseX >= buttonX && mouseX <= buttonX + 70 &&
+        mouseY >= inputY && mouseY <= inputY + 30) {
+        submitAnswer();
+    }
+}
+
 }
