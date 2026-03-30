@@ -30,7 +30,7 @@ public class RiddleLayout{
     
     graphics.setColor(Constants.BLACK);
     graphics.setFont(Constants.QUESTION_FONT);
-    riddle.getQuestion();
+    drawWrapped(graphics, riddle.getQuestion(), x+20, y+55, width-40, 20);
    }
 
    private void drawCentered(Graphics2D graphics, String text, int centre, int y){
