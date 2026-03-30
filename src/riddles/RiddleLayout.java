@@ -103,22 +103,7 @@ public boolean isActive() {
     }
 }
 
-private void submitAnswer() {
-  if (riddle.attemptsFinished()) return;
 
-  if (riddle.checkAnswer(userInput)) {
-      feedback = "Correct!";
-      active = false; 
-  } else {
-      riddle.incrementAttempt();
-      if (riddle.attemptsFinished()) {
-          feedback = "No attempts left. The answer was: " + riddle.getAnswer();
-      } else {
-          feedback = "Wrong answer, try again.";
-      }
-  }
-  userInput = "";
-}
 
 
 

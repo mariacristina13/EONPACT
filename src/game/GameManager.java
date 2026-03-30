@@ -30,6 +30,8 @@ public class GameManager {
     private ArrayList<Riddle> unplayedRiddles;
     private Riddle currentRiddleDisplayed;
     private boolean riddleActive;
+    private String userInput = "";
+    private String feedback = "";
     Random rand = new Random();
     
     public boolean gameWon = false;
@@ -38,8 +40,6 @@ public class GameManager {
 
     // Checkpoint
     private CheckPoint checkpoint;
-
-    private boolean riddleActive = false;
 
     public GameManager() {
 
@@ -217,6 +217,25 @@ public class GameManager {
         return currentRiddleDisplayed;
     }
 
+    private void submitAnswer() {
+        if (checkpoint.getRiddle().attemptsFinished()) return;
+
+        if (checkpoint.attempt(userInput)) {
+            feedback = "Correct!";
+            riddleActive = false;
+            userInput = "";
+            createCheckpoint();
+        } else {
+            if (checkpoint.getRiddle().attemptsFinished()) {
+                feedback = "No attempts left. The answer was: " + checkpoint.getRiddle().getAnswer();
+                riddleActive = false;
+                createCheckpoint();
+            } else {
+                feedback = "Wrong answer, try again.";
+            }
+            userInput = "";
+        }
+    }
 
     // ANSWER SYSTEM
     public void answer(String input) {
