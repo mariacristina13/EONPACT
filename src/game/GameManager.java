@@ -176,8 +176,9 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        
-        
+        if (riddleActive) {
+            if (keyCode == Constants.ENTERKEY) submitAnswer();
+        }    
         switch(keyCode)
 		{
         //Player1
