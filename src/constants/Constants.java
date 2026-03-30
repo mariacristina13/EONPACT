@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 public final class Constants {
     public final static int MAX_ATTEMPTS = 5;
@@ -17,6 +18,8 @@ public final class Constants {
 	public final static int LEFTKEY =37;
 	public final static int RIGHTKEY =39;
 	public final static int SPACEKEY =32;
+	public final static int ENTERKEY = KeyEvent.VK_ENTER;
+	public final static int BACKSPACEKEY = KeyEvent.VK_BACK_SPACE;
 	public final static int AKEY=65;
 	public final static int SKEY=83;
 	public final static int DKEY=68;
@@ -31,6 +34,8 @@ public final class Constants {
 	public final static Color GREEN = new Color(79, 179, 85);
 	public final static Color BROWN = new Color(196,164,132);
 	public final static Color BLACK = new Color(0,0,0);
+	public final static Color WHITE = new Color(255,255,255);
+	public final static Color GRAY = new Color(169,169,169);
 
 	public final static	Font ATTEMPTS_FONT = new Font( "SansSerif", Font.PLAIN, 12 );
 	public final static Font QUESTION_FONT = new Font("SansSerif", Font.PLAIN, 16);

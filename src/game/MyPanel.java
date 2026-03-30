@@ -29,11 +29,13 @@ RenderingHints hints = new RenderingHints( RenderingHints.KEY_ANTIALIASING,   Re
 graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html
 drawBG(graphics);
 game.drawSprites(graphics, this);
+game.drawRiddle(graphics, getWidth(), getHeight());
 }
 
 @Override
 public void keyTyped(KeyEvent e) {
-   
+    game.keyTyped(e.getKeyChar()); 
+    this.repaint();
 }
 
 @Override
@@ -60,5 +62,6 @@ public void drawBG(	Graphics2D graphics) {
      
     graphics.setColor(Constants.GREEN);
     graphics.fillRect(0,Constants.GROUND_HEIGHT ,Constants.SCREEN_SIZE.width,Constants.SCREEN_SIZE.height);
+
 }
 }
