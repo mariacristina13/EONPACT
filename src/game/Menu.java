@@ -1,4 +1,4 @@
-package griffith;
+package game;
 
 public class Menu {
 
