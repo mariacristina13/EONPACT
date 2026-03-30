@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -88,6 +89,13 @@ public class GameManager {
         Riddle riddle = checkpoint.getRiddle();
       }
 
+
+    private void drawCentered(Graphics2D graphics, String text, int centre, int y){
+        FontMetrics font = graphics.getFontMetrics(); // https://docs.oracle.com/javase/8/docs/api/java/awt/FontMetrics.html
+        int textWidth = font.stringWidth(text);
+        graphics.drawString(text, centre - textWidth/2, y);
+    }
+    
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
