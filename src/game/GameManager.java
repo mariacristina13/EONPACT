@@ -87,7 +87,68 @@ public class GameManager {
         if (!riddleActive) return;
 
         Riddle riddle = checkpoint.getRiddle();
-      }
+
+        int cardW = 400;
+        int cardH = 300;
+        int x = (panelWidth - cardW)/2;
+        int y = (panelHeight - cardH)/2;
+
+        g.setColor(Constants.BROWN);
+        g.fillRect(x,y,cardW,cardH);
+    
+        // number of attempts
+        String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
+        g.setColor(Constants.BLACK);
+        g.setFont(Constants.ATTEMPTS_FONT);
+        g.drawString(attempts, x+cardW-120, y+24);
+
+        int dot = y + 270;
+        int spacing = 14;
+        int start = panelWidth/2 - (Constants.MAX_ATTEMPTS * spacing);
+        for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
+            g.setColor(i < riddle.getCountAttempts()
+            ? (Constants.WHITE)   // used
+            : (Constants.GRAY)); // remaining 
+            g.fillOval(start + i * spacing, dot, 8, 8);
+        }
+    
+        //question
+        g.setColor(Constants.BLACK);
+        g.setFont(Constants.QUESTION_FONT);
+        drawWrapped(g, riddle.getQuestion(), x+20, y+55, cardW-40, 20);
+
+        //hint
+        String hint = riddle.displayHint();
+        if (!hint.isEmpty()) {
+            g.setColor(Constants.BLACK);
+            g.setFont(Constants.QUESTION_FONT);
+            drawWrapped(g, "Hint:" + hint, x+20, y+150, cardW-40,18);
+        }
+
+        // answer input field
+        int input = y + 195;
+        g.setColor(Constants.WHITE);  
+        g.fillRect(x+20, input, cardW - 120, 30);
+        g.setColor(Constants.BLACK);
+        g.drawRect(x+20,y,cardW-120,30);     
+        g.setFont(Constants.QUESTION_FONT);
+        g.drawString(userInput, x+30, y+20);
+
+        // submit button
+        int button = x + cardW - 90;
+        g.setColor(Constants.BLACK);
+        g.fillRect(button, input, 70, 30);
+        g.setColor(Constants.WHITE);  
+        g.setFont(Constants.QUESTION_FONT);
+        drawCentered(g, "Submit", button + 35, input + 20);
+
+    // feedback
+    if (!feedback.isEmpty()){
+        g.setColor(Constants.BLACK);
+        g.setFont(Constants.QUESTION_FONT);
+        drawCentered(g, feedback, panelWidth, y + 250);
+    }
+    }
 
 
     private void drawCentered(Graphics2D graphics, String text, int centre, int y){
