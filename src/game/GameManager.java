@@ -2,7 +2,7 @@ package game;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -16,7 +16,6 @@ import Sprites.CheckPoint;
 import constants.Constants;
 import riddles.Riddle;
 import riddles.RiddleData;
-import riddles.*;
 
 public class GameManager {
 
