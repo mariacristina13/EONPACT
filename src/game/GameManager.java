@@ -1,6 +1,12 @@
 package game;
 
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 import java.util.*;
 
 import javax.swing.JPanel;
@@ -23,6 +29,8 @@ public class GameManager {
     private ArrayList<Riddle> unplayedRiddles;
     private Riddle currentRiddleDisplayed;
     private boolean riddleActive;
+    private String userInput = "";
+    private String feedback = "";
     Random rand = new Random();
     
     public boolean gameWon = false;
@@ -34,8 +42,8 @@ public class GameManager {
 
     public GameManager() {
 
-        player1 = new Player("box turtle.png", 0, Constants.SCREEN_SIZE.height/3, 90, 90);
-        player2 = new Player("kakapo.png", 80, Constants.SCREEN_SIZE.height/3, 90, 90);
+        player1 = new Player("box turtle.png", 0, Constants.GROUND_HEIGHT-90, 90, 90);
+        player2 = new Player("kakapo.png", 80, Constants.GROUND_HEIGHT-90, 90, 90);
 
         // Load riddles
         RiddleData data = new RiddleData();
@@ -74,6 +82,97 @@ public class GameManager {
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
     }
 
+      public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
+        if (!riddleActive) return;
+
+        Riddle riddle = checkpoint.getRiddle();
+
+        int cardW = 400;
+        int cardH = 300;
+        int x = (panelWidth - cardW)/2;
+        int y = (panelHeight - cardH)/2;
+
+        g.setColor(Constants.BROWN);
+        g.fillRect(x,y,cardW,cardH);
+    
+        // number of attempts
+        String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
+        g.setColor(Constants.BLACK);
+        g.setFont(Constants.ATTEMPTS_FONT);
+        g.drawString(attempts, x+cardW-120, y+24);
+
+        int dot = y + 270;
+        int spacing = 14;
+        int start = panelWidth/2 - (Constants.MAX_ATTEMPTS * spacing);
+        for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
+            g.setColor(i < riddle.getCountAttempts()
+            ? (Constants.WHITE)   // used
+            : (Constants.GRAY)); // remaining 
+            g.fillOval(start + i * spacing, dot, 8, 8);
+        }
+    
+        //question
+        g.setColor(Constants.BLACK);
+        g.setFont(Constants.QUESTION_FONT);
+        drawWrapped(g, riddle.getQuestion(), x+20, y+55, cardW-40, 20);
+
+        //hint
+        String hint = riddle.displayHint();
+        if (!hint.isEmpty()) {
+            g.setColor(Constants.BLACK);
+            g.setFont(Constants.QUESTION_FONT);
+            drawWrapped(g, "Hint:" + hint, x+20, y+150, cardW-40,18);
+        }
+
+        // answer input field
+        int input = y + 195;
+        g.setColor(Constants.WHITE);  
+        g.fillRect(x+20, input, cardW - 120, 30);
+        g.setColor(Constants.BLACK);
+        g.drawRect(x+20,y,cardW-120,30);     
+        g.setFont(Constants.QUESTION_FONT);
+        g.drawString(userInput, x+30, y+20);
+
+        // submit button
+        int button = x + cardW - 90;
+        g.setColor(Constants.BLACK);
+        g.fillRect(button, input, 70, 30);
+        g.setColor(Constants.WHITE);  
+        g.setFont(Constants.QUESTION_FONT);
+        drawCentered(g, "Submit", button + 35, input + 20);
+
+        // feedback
+        if (!feedback.isEmpty()){
+        g.setColor(Constants.BLACK);
+        g.setFont(Constants.QUESTION_FONT);
+        drawCentered(g, feedback, panelWidth, y + 250);
+    }
+    }
+
+
+    private void drawCentered(Graphics2D graphics, String text, int centre, int y){
+        FontMetrics font = graphics.getFontMetrics(); // https://docs.oracle.com/javase/8/docs/api/java/awt/FontMetrics.html
+        int textWidth = font.stringWidth(text);
+        graphics.drawString(text, centre - textWidth/2, y);
+    }
+
+    private void drawWrapped(Graphics2D graphics, String text, int x, int y, int maxWidth, int lineHeight){
+        FontMetrics font = graphics.getFontMetrics();
+        String[] words = text.split(" ");
+        StringBuilder line = new StringBuilder();
+        for (String word : words) {
+          String test = line + (line.length() > 0 ? " " : "") + word;
+          if (font.stringWidth(test) > maxWidth) {
+              graphics.drawString(line.toString(), x, y);
+              y += lineHeight;
+              line = new StringBuilder(word);
+          } else {
+              line = new StringBuilder(test);
+          }
+      }
+      if (line.length() > 0) graphics.drawString(line.toString(), x, y);
+      }
+    
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
@@ -128,6 +227,13 @@ public class GameManager {
         return keysHeld.contains(keyCode);
     }
 
+    public void keyTyped(char c) {
+        if (!riddleActive) return;
+        if (Character.isLetterOrDigit(c) || c == ' ') {
+            userInput += c;
+        }
+    }
+
     // CHECKPOINT CONDITION (both players)
     private boolean reachedCheckpoint() {
         return Math.abs(player1.getX() - checkpoint.getX()) < 30 &&
@@ -178,6 +284,25 @@ public class GameManager {
         return currentRiddleDisplayed;
     }
 
+    private void submitAnswer() {
+        if (checkpoint.getRiddle().attemptsFinished()) return;
+
+        if (checkpoint.attempt(userInput)) {
+            feedback = "Correct!";
+            riddleActive = false;
+            userInput = "";
+            createCheckpoint();
+        } else {
+            if (checkpoint.getRiddle().attemptsFinished()) {
+                feedback = "No attempts left. The answer was: " + checkpoint.getRiddle().getAnswer();
+                riddleActive = false;
+                createCheckpoint();
+            } else {
+                feedback = "Wrong answer, try again.";
+            }
+            userInput = "";
+        }
+    }
 
     // ANSWER SYSTEM
     public void answer(String input) {
