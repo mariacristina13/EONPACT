@@ -294,6 +294,7 @@ public class GameManager {
             feedback = "Correct!";
             riddleActive = false;
             userInput = "";
+            gameWon = true;
             createCheckpoint();
         } else {
             if (checkpoint.getRiddle().attemptsFinished()) {
