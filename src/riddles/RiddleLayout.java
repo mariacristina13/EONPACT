@@ -17,6 +17,7 @@ public class RiddleLayout{
      this.riddle = riddle;
    }
    public void draw(Graphics2D graphics, int width, int height){
+    
     graphics.setColor(Constants.BROWN);
     width = 400;
     height = 300;
@@ -31,6 +32,14 @@ public class RiddleLayout{
     graphics.setColor(Constants.BLACK);
     graphics.setFont(Constants.QUESTION_FONT);
     drawWrapped(graphics, riddle.getQuestion(), x+20, y+55, width-40, 20);
+
+    String hint = riddle.displayHint();
+        if (!hint.isEmpty()) {
+            graphics.setColor(Constants.BLACK);
+            graphics.setFont(Constants.QUESTION_FONT);
+            drawWrapped(graphics, "Hint:" + hint, x+20, y+150, width-40,18);
+        }
+
    }
 
    private void drawCentered(Graphics2D graphics, String text, int centre, int y){
@@ -56,6 +65,17 @@ public class RiddleLayout{
   if (line.length() > 0) graphics.drawString(line.toString(), x, y);
   }
 
+  public void keyPressed(int keyCode) {
+    if (!active) return;
+
+    if (keyCode == Constants.ENTERKEY) {
+        submitAnswer();
+    } else if (keyCode == Constants.BACKSPACEKEY) {
+        if (!userInput.isEmpty()) {
+            userInput = userInput.substring(0, userInput.length() - 1);
+        }
+    }
+}
   public void keyTyped(char c) {
     if (!active) return;
     if (Character.isLetterOrDigit(c) || c == ' ') {
