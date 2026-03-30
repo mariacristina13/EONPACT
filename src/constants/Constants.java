@@ -38,6 +38,8 @@ public final class Constants {
 	public final static Color GREEN = new Color(79, 179, 85);
 	public final static Color BROWN = new Color(196,164,132);
 	public final static Color BLACK = new Color(0,0,0);
+	public final static Color WHITE = new Color(255,255,255);
+	public final static Color GRAY = new Color(169,169,169);
 
 	public final static	Font ATTEMPTS_FONT = new Font( "SansSerif", Font.PLAIN, 12 );
 	public final static Font QUESTION_FONT = new Font("SansSerif", Font.PLAIN, 16);
