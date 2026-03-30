@@ -145,7 +145,7 @@ public class GameManager {
         if (!feedback.isEmpty()){
         g.setColor(Constants.BLACK);
         g.setFont(Constants.QUESTION_FONT);
-        drawCentered(g, feedback, panelWidth, y + 250);
+        drawCentered(g, feedback, x+cardW/2, y + 250);
     }
     }
 
