@@ -83,7 +83,10 @@ public class GameManager {
     }
 
       public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        riddleLayout.draw(g, panelWidth, panelHeight);
+        if (!riddleActive) return;
+
+        Riddle riddle = checkpoint.getRiddle();
+      }
 
     // INPUT
     public void keyPressed(int keyCode) {
