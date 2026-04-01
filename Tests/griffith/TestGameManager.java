@@ -12,7 +12,6 @@ import org.junit.Test;
 import Sprites.CheckPoint;
 import Sprites.Player;
 import constants.Constants;
-import game.GameManager;
 import riddles.Riddle;
 import riddles.RiddleData;
 
@@ -227,7 +226,9 @@ public class TestGameManager {
     @Test
     public void testCorrectAnswer() {
         Riddle r = new Riddle("Q", "Dog", "Hint");
-        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10);
+        cp.setRiddle(r);
+
         assertTrue(cp.attempt("dog"));
     }
 
@@ -235,7 +236,9 @@ public class TestGameManager {
     @Test
     public void testWrongAnswer() {
         Riddle r = new Riddle("Q", "Dog", "Hint");
-        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10);
+        cp.setRiddle(r);
+
         assertFalse(cp.attempt("cat"));
     }
 
@@ -243,7 +246,9 @@ public class TestGameManager {
     @Test
     public void testMaxAttempts() {
         Riddle r = new Riddle("Q", "Dog", "Hint");
-        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10);
+        cp.setRiddle(r);
+
         for (int i = 0; i < 5; i++) {
             cp.attempt("wrong");
         }
@@ -255,7 +260,8 @@ public class TestGameManager {
     @Test
     public void testHintAfterThreeAttempts() {
         Riddle r = new Riddle("Q", "Dog", "Hint");
-        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10);
+        cp.setRiddle(r);
 
         cp.attempt("a");
         cp.attempt("b");
@@ -283,16 +289,16 @@ public class TestGameManager {
 
     @Test
     public void testGetRandomRiddle() {
-        GameManager gameManager = new GameManager();
-        Riddle result = gameManager.getRandomRiddle();
+        RiddleData riddleData = new RiddleData();
+        Riddle result = riddleData.getRandomRiddle();
         assertNotNull(result);
 
         RiddleData data = new RiddleData();
         int total = data.getRiddles().size();
         for (int i = 0; i < total; i++) {
-            gameManager.getRandomRiddle();
+            riddleData.getRandomRiddle();
         }
-        result = gameManager.getRandomRiddle();
+        result = riddleData.getRandomRiddle();
         assertNull(result);
     }
 }
