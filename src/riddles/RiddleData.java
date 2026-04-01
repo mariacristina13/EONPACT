@@ -3,16 +3,21 @@ package riddles;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class RiddleData {
     // Linked Hash Map to store the riddles and the information about them (answer
     // and hint).
     private LinkedHashMap<String, RiddleInfo> riddleData = new LinkedHashMap<String, RiddleInfo>();
+    private ArrayList<Riddle> unplayedRiddles;
+    Random rand = new Random();
 
     // Initialise the Linked Hash Map and add the riddles to it.
     public RiddleData() {
         riddleData = new LinkedHashMap<String, RiddleInfo>();
         loadRiddles();
+
+        this.unplayedRiddles = getRiddles();
     }
 
     // Method to add the riddles to the Linked Hash Map.
@@ -129,5 +134,21 @@ public class RiddleData {
         }
         // Return the riddle at the specific index.
         return riddleList.get(index);
+    }
+
+     // Method that returns a random riddle from the list.
+    public Riddle getRandomRiddle() {
+        // Check if the copy of the riddle list is emplty and end the game.
+        if (unplayedRiddles.isEmpty()) {
+            return null;
+        }
+
+        // If the array isn't empty then return the random riddle picked and delete it
+        // form the copy list.
+        int index = rand.nextInt(unplayedRiddles.size());
+        Riddle pickedRiddle = unplayedRiddles.get(index);
+        unplayedRiddles.remove(index);
+
+        return pickedRiddle;
     }
 }

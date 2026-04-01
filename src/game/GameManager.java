@@ -3,11 +3,8 @@ package game;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
-import java.util.*;
 
 import javax.swing.JPanel;
 
@@ -25,17 +22,13 @@ public class GameManager {
     public Player player2;
 
     // Riddle system
-    private ArrayList<Riddle> riddles;
-    private ArrayList<Riddle> unplayedRiddles;
     private Riddle currentRiddleDisplayed;
+    RiddleData data;
     private boolean riddleActive;
     private String userInput = "";
     private String feedback = "";
-    Random rand = new Random();
 
     public boolean gameWon = false;
-
-    private int currentIndex;
 
     // Checkpoint
     private CheckPoint checkpoint;
@@ -46,29 +39,21 @@ public class GameManager {
         player2 = new Player("kakapo.png", 80, Constants.GROUND_HEIGHT - 90, 90, 90);
 
         // Load riddles
-        RiddleData data = new RiddleData();
-        riddles = data.getRiddles();
-        // Craete a list for the riddles that havent been shown to the players.
-        unplayedRiddles = new ArrayList<Riddle>(riddles);
+        data = new RiddleData();
         // Variable that holds the current riddle displayed.
         currentRiddleDisplayed = null;
         // Flag that checks if a riddle is displayed.
         riddleActive = false;
-        currentIndex = 0;
 
         createCheckpoint();
     }
 
     // Create new checkpoint with next riddle.
     private void createCheckpoint() {
-        if (currentIndex >= riddles.size()) {
-            currentIndex = 0;
-        }
+        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60);
 
-        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60,
-                riddles.get(currentIndex));
-
-        currentIndex++;
+        Riddle randomRiddle = data.getRandomRiddle();
+        checkpoint.setRiddle(randomRiddle);
     }
 
     // Draw players + checkpoint
@@ -266,26 +251,7 @@ public class GameManager {
         // Trigger checkpoint
         if (!riddleActive && reachedCheckpoint()) {
             riddleActive = true;
-
-            System.out.println("Read the following riddle and if u get it ull recive food.");
-            System.out.println(checkpoint.getRiddle().getQuestion());
         }
-    }
-
-    // Method that returns a random riddle from the list.
-    public Riddle getRandomRiddle() {
-        // Check if the copy of the riddle list is emplty and end the game.
-        if (unplayedRiddles.isEmpty()) {
-            return null;
-        }
-
-        // If the array isn't empty then return the random riddle picked and delete it
-        // form the copy list.
-        int index = rand.nextInt(unplayedRiddles.size());
-        Riddle pickedRiddle = unplayedRiddles.get(index);
-        unplayedRiddles.remove(index);
-
-        return pickedRiddle;
     }
 
     // Getters
