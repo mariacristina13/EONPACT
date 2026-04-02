@@ -66,6 +66,7 @@ public class GameManager {
     }
 
     // Method that handles the timer countdown.
+    // https://www.ryisnow.online/2021/04/java-beginner-code-sample-create-timer.html
     private void timer(){
         // Initialise the timer with a delay of 1 second and an ActionListener that updates the timer every second.
         timer = new Timer(1000, new ActionListener() {
@@ -328,7 +329,7 @@ public class GameManager {
     }
 
     // ANSWER SYSTEM
-    public void answer(String input) {
+    /* public void answer(String input) {
 
         if (!riddleActive)
             return;
@@ -354,7 +355,7 @@ public class GameManager {
                 createCheckpoint();
             }
         }
-    }
+    }*/
 
     public boolean isRiddleActive() {
         return riddleActive;
