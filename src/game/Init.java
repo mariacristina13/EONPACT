@@ -51,7 +51,6 @@ public class Init {
                 if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
                     gameManager.stopTimer();
                     ((Timer) e.getSource()).stop();
-                    System.out.println("Game Over!");
                 }
             }
         });
