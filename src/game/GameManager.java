@@ -2,6 +2,11 @@ package game;
 
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
+import javax.swing.Timer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +26,16 @@ public class GameManager {
     public Player player1;
     public Player player2;
 
+    // Timer variables.
+    private Timer timer;
+    private int second = 0;
+    private int minute = 2;
+
+    // Variables to format the timer.
+    private String decimalSecond = "00"; 
+    private String decimalMinute = "02"; 
+    private DecimalFormat decimalTime = new DecimalFormat("00");
+
     // Riddle system
     private Riddle currentRiddleDisplayed;
     RiddleData data;
@@ -28,7 +43,6 @@ public class GameManager {
     private String userInput = "";
     private String feedback = "";
 
-    public boolean gameWon = false;
 
     // Checkpoint
     private CheckPoint checkpoint;
@@ -45,7 +59,40 @@ public class GameManager {
         // Flag that checks if a riddle is displayed.
         riddleActive = false;
 
+        // Initialize timer
+        timer();
+        
         createCheckpoint();
+    }
+
+    // Method that handles the timer countdown.
+    private void timer(){
+        // Initialise the timer with a delay of 1 second and an ActionListener that updates the timer every second.
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                second--;
+
+                decimalSecond = decimalTime.format(second);
+                decimalMinute = decimalTime.format(minute);
+
+                // Check if a minute has passed and update the minute variable.
+                if(second == -1){
+                    second = 59;
+                    minute--;
+
+                    decimalSecond = decimalTime.format(second);
+                    decimalMinute = decimalTime.format(minute);
+                }
+
+                // Check if time has run out and stop the timer.
+                if(minute == 0 && second == 0){
+                    timer.stop();
+                }
+            }
+        });
+
+        timer.start();
     }
 
     // Create new checkpoint with next riddle.
@@ -267,7 +314,6 @@ public class GameManager {
             feedback = "Correct!";
             riddleActive = false;
             userInput = "";
-            gameWon = true;
             createCheckpoint();
         } else {
             if (checkpoint.getRiddle().attemptsFinished()) {
@@ -332,5 +378,23 @@ public class GameManager {
             submitAnswer();
         }
     }
+    
+    public String getTimer(){
+        return decimalMinute + ":" + decimalSecond;
+    }
 
+    public int getMinute(){
+        return minute;
+    }
+
+    public int getSecond(){
+        return second;
+    }
+
+    // Method that stops the timer if the game was won or lost before the timer ran out.
+    public void stopTimer(){
+        if(timer != null){
+            timer.stop();
+        }
+    }
 }
