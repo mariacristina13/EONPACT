@@ -12,6 +12,9 @@ import constants.Constants;
 
 public class MyPanel extends JPanel implements KeyListener {
     private GameManager game;
+    private Menu menuScreen;
+    private CharacterMenu characterMenu;
+    private GameStates currentState;
 
     public MyPanel() {
         addKeyListener(this);
@@ -83,6 +86,7 @@ public class MyPanel extends JPanel implements KeyListener {
 
     }
 
+    // Getters
     public GameManager getGameManager() {
         return game;
     }
