@@ -257,6 +257,15 @@ public class GameManager {
             if (keyCode == Constants.ENTERKEY)
                 submitAnswer();
         }
+
+        if (feedbackActive) {
+            if (keyCode == Constants.ENTERKEY) {
+                feedbackActive = false;
+                createCheckpoint();
+            }
+            return;
+        }
+
         switch (keyCode) {
             // Player1
             case Constants.RIGHTKEY: // right
@@ -404,17 +413,23 @@ public class GameManager {
         return riddleActive;
     }
 
-    public void mouseClicked(int mouseX, int mouseY) {
+    public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
+        if (feedbackActive) {
+            feedbackActive = false;
+            createCheckpoint();
+            return;
+        }
+
         if (!riddleActive)
             return;
 
-        int cardW = 400;
-        int cardH = 300;
-        int cardX = (Constants.SCREEN_SIZE.width - cardW) / 2;
-        int cardY = (Constants.SCREEN_SIZE.height - cardH) / 2;
+        int cardW = 500;
+        int cardH = 350;
+        int cardX = (panelWidth - cardW) / 2;
+        int cardY = (panelHeight - cardH) / 2;
 
         int buttonX = cardX + cardW - 90;
-        int inputY = cardY + 195;
+        int inputY = cardY + 220;
 
         // Check if click is inside the submit button
         if (mouseX >= buttonX && mouseX <= buttonX + 70 &&
