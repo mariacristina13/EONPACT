@@ -16,8 +16,21 @@ public class CharacterButton extends Button{
     private BufferedImage image;
     private boolean selected = false;
 
-    public CharacterButton(int x, int y, int width, int height) {
+    public CharacterButton(String name, String fileName,int x, int y, int width, int height) {
         super(x, y, width, height);
+        this.name = name;
+        loadImage(fileName);
+    }
+
+    // Load the images for the character menu.
+    private void loadImage(String fileName){
+        try{
+            image = ImageIO.read(new File("images/" + fileName));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+			System.out.print("file not found");
+        }
     }
 
     @Override
