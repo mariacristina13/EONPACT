@@ -154,20 +154,21 @@ public class GameManager {
         g.fillRect(x, y, cardW, cardH);
 
         // number of attempts
-        int dot = y + 270;
+        int dot = y + 250;
         int spacing = 14;
-        int start = x + cardW/ 2 - (Constants.MAX_ATTEMPTS * spacing)/2;
+        int dotsWidth = (Constants.MAX_ATTEMPTS - 1)* spacing + 8;
+        int start = x + cardW/ 2 - dotsWidth/2;
         for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
             g.setColor(i < riddle.getCountAttempts()
-                    ? (Constants.WHITE) // used
+                    ? (Constants.LIGHT_GRAY) // used
                     : (Constants.GRAY)); // remaining
             g.fillOval(start + i * spacing, dot, 8, 8);
         }
 
         String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
-        g.setColor(Constants.BLACK);
+        g.setColor(Constants.GRAY);
         g.setFont(Constants.ATTEMPTS_FONT);
-        drawCentered(g, attempts, x + cardW/2, dot + 20);
+        drawCentered(g, attempts, x + cardW/2, dot + 25);
 
         // question
         g.setColor(Constants.BLACK);
@@ -197,7 +198,7 @@ public class GameManager {
         g.fillRect(button, input, 70, 30);
         g.setColor(Constants.WHITE);
         g.setFont(Constants.QUESTION_FONT);
-        drawCentered(g, "Submit", button + 35, input + 20);
+        drawCentered(g, "Answer", button + 35, input + 20);
 
         // feedback
         if (!feedback.isEmpty()) {
