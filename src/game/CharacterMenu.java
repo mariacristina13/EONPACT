@@ -113,4 +113,9 @@ public class CharacterMenu {
         return backBtn.contains(e.getX(), e.getY());
     }
 
+    // Getter
+    public ArrayList<String> getSelectedCharacters() {
+        return selectedCharacters;
+    }
+
 }
