@@ -44,4 +44,10 @@ public class Menu {
         characterBtn.drawButton(g);
         quitBtn.drawButton(g);
     }
+
+    // Event listener for the mouse.
+    public void mouseMoved(MouseEvent e) {
+        characterBtn.setHovered(characterBtn.contains(e.getX(), e.getY()));
+        quitBtn.setHovered(quitBtn.contains(e.getX(), e.getY()));
+    }
 }
