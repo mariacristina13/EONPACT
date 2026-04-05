@@ -1,8 +1,8 @@
 package game;
 
 public enum GameStates {
-    START_MENU,
+    MENU,
+    CHARACTER_SELECT,
     PLAYING,
     GAME_OVER,
-    GAME_WON
 }

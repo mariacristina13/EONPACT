@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 
 import javax.swing.Timer;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -48,21 +49,43 @@ public class GameManager {
     private CheckPoint checkpoint;
 
     public GameManager() {
-
-        player1 = new Player("box turtle.png", 0, Constants.GROUND_HEIGHT - 90, 90, 90);
-        player2 = new Player("kakapo.png", 80, Constants.GROUND_HEIGHT - 90, 90, 90);
-
         // Load riddles
         data = new RiddleData();
         // Variable that holds the current riddle displayed.
         currentRiddleDisplayed = null;
         // Flag that checks if a riddle is displayed.
         riddleActive = false;
+    }
 
-        // Initialize timer
+    public void initializeGame(ArrayList<String> selectedCharacters) {
+        //Initialise the players with the characters choosen.
+        String player1Img = getCharacterImage(selectedCharacters.get(0));
+        String player2Img = getCharacterImage(selectedCharacters.get(1));
+ 
+        player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
+        player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
+ 
+        // Initialize timer.
         timer();
         
+        // Initialise checkpoint.
         createCheckpoint();
+    }
+
+    // Get the images file names.
+    private String getCharacterImage(String characterName) {
+        switch (characterName) {
+            case "Box Turtle":
+                return "box turtle.png";
+            case "Kakapo":
+                return "kakapo.png";
+            case "African Forest Elephant":
+                return "african forest elephant.png";
+            case "Lemur":
+                return "lemur.png";
+            default:
+                return "box turtle.png";
+        }
     }
 
     // Method that handles the timer countdown.
@@ -281,16 +304,16 @@ public class GameManager {
     public void update() {
 
         // Movement disabled when answering
-        if (!riddleActive) {
+        if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
-                player1.setDirection(-1);
+                player1.setDirection(0);
             if (isKeyHeld(Constants.RIGHTKEY))
-                player1.setDirection(1);
+                player1.setDirection(0);
 
             if (isKeyHeld(Constants.AKEY))
-                player2.setDirection(-1);
+                player2.setDirection(0);
             if (isKeyHeld(Constants.DKEY))
-                player2.setDirection(1);
+                player2.setDirection(0);
         }
 
         player1.update();

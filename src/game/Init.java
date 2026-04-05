@@ -48,9 +48,12 @@ public class Init {
                 panel.update();
 
                 // End condition.
-                if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
-                    gameManager.stopTimer();
-                    ((Timer) e.getSource()).stop();
+                if (panel.getCurrentState() == GameStates.PLAYING) {
+                    if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
+                        gameManager.stopTimer();
+                        ((Timer) e.getSource()).stop();
+                        panel.setCurrentState(GameStates.GAME_OVER);
+                    }
                 }
             }
         });
