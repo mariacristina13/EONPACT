@@ -35,14 +35,19 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         // improve rendering quality
         RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html
-        
-        drawBG(graphics);
-
-        game.drawSprites(graphics, this);
-        game.drawRiddle(graphics, getWidth(), getHeight());
-
-        drawTimer(graphics);
     }
+
+    // Draw the game when the PLAYING state is reached.
+        private void drawGame(Graphics2D g) {
+            // Add the backgound.
+            drawBG(g);
+            // Add the animals and checkpoints.
+            game.drawSprites(g, this);
+            // Add the riddle card.
+            game.drawRiddle(g, getWidth(), getHeight());
+            // Add the timer.
+            drawTimer(g);
+        }
 
     // Draw the timer.
     private void drawTimer(Graphics2D graphics){
