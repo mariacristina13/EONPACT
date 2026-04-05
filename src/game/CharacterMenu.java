@@ -81,5 +81,27 @@ public class CharacterMenu {
         backBtn.drawButton(g);
     }
 
+    // Event listener for the mouse.
+    public void mouseClicked(MouseEvent e) {
+        // Handle character selection (toggle)
+        for (CharacterButton character : characters) {
+            if (character.contains(e.getX(), e.getY())) {
+                if (character.isSelected()) {
+                    character.setSelected(false);
+                    selectedCharacters.remove(character.getName());
+                } 
+                else if (selectedCharacters.size() < maxSelections) {
+                    character.setSelected(true);
+                    selectedCharacters.add(character.getName());
+                }
+            }
+        }
+    }
+
+    // Set the hovered variable if the mouse is on the buttons.
+    public void mouseMoved(MouseEvent e) {
+        playBtn.setHovered(playBtn.contains(e.getX(), e.getY()));
+        backBtn.setHovered(backBtn.contains(e.getX(), e.getY()));
+    }
 
 }
