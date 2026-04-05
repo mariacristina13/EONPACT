@@ -52,4 +52,34 @@ public class CharacterMenu {
         backBtn = new MenuButton("Back", startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
     }
 
+    // Draw the character menu.
+    public void draw(Graphics2D g) {
+        // Draw the background.
+        g.setColor(Constants.DARK_GREEN);
+        g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+        // Draw the text on the background.
+        g.setColor(Constants.WHITE);
+        g.setFont(Constants.CHARACTER_MENU_FONT);
+        String title = "Select Your Characters";
+        int titleWidth = g.getFontMetrics().stringWidth(title);
+        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 120);
+
+        // Draw the selected animals counter.
+        g.setFont(Constants.QUESTION_FONT);
+        String countText = "Selected: " + selectedCharacters.size() + "/2";
+        int countWidth = g.getFontMetrics().stringWidth(countText);
+        g.drawString(countText, Constants.SCREEN_CENTER - countWidth / 2, 160);
+
+        // Draw the character buttons
+        for (CharacterButton character : characters) {
+            character.drawButton(g);
+        }
+
+        // Draw the play/back buttons.
+        playBtn.drawButton(g);
+        backBtn.drawButton(g);
+    }
+
+
 }
