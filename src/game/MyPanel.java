@@ -35,6 +35,27 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         // improve rendering quality
         RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html
+
+        switchStates(graphics);
+    }
+
+    // Draw the specific display, based on the state that the game is in.
+    private void switchStates(Graphics2D graphics){
+        
+        switch (currentState) {
+            case MENU:
+                menuScreen.drawMenu(graphics);
+                break;
+            case CHARACTER_SELECT:
+                characterMenu.draw(graphics);
+                break;
+            case PLAYING:
+                drawGame(graphics);
+                break;
+            case GAME_OVER:
+                drawGameOver(graphics);
+                break;
+        }
     }
 
     // Draw the game when the PLAYING state is reached.
