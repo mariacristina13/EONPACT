@@ -171,4 +171,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         return game;
     }
 
+    public GameStates getCurrentState() {
+        return currentState;
+    }
 }
