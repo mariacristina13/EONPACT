@@ -104,4 +104,13 @@ public class CharacterMenu {
         backBtn.setHovered(backBtn.contains(e.getX(), e.getY()));
     }
 
+    // Check if the play/back buttons were clicked.
+    public boolean playButtonClicked(MouseEvent e) {
+        return playBtn.contains(e.getX(), e.getY()) && selectedCharacters.size() == 2;
+    }
+
+    public boolean backButtonClicked(MouseEvent e) {
+        return backBtn.contains(e.getX(), e.getY());
+    }
+
 }
