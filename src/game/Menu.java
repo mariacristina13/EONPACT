@@ -50,4 +50,13 @@ public class Menu {
         characterBtn.setHovered(characterBtn.contains(e.getX(), e.getY()));
         quitBtn.setHovered(quitBtn.contains(e.getX(), e.getY()));
     }
+
+    // Check if the play/quit buttons were pressed.
+    public boolean playButtonClicked(MouseEvent e) {
+        return characterBtn.contains(e.getX(), e.getY());
+    }
+ 
+    public boolean quitButtonClicked(MouseEvent e) {
+        return quitBtn.contains(e.getX(), e.getY());
+    }
 }
