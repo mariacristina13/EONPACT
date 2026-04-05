@@ -43,17 +43,20 @@ public final class Constants {
 	public final static Color BLUE = new Color(174, 227, 245);
 	public final static Color GREEN = new Color(79, 179, 85);
 	public final static Color BROWN = new Color(196, 164, 132);
+	public final static Color COFFEE_BROWN = new Color(78, 53, 30);
 	public final static Color BLACK = new Color(0, 0, 0);
 	public final static Color WHITE = new Color(255, 255, 255);
-	public final static Color GRAY = new Color(169, 169, 169);
+	public final static Color LIGHT_GRAY = new Color(224,224,222);
+	public final static Color GRAY = new Color(90, 90, 85);
 	public final static Color MAROON = new Color(123, 47, 47);
 	public final static Color BROWN_RED = new Color(163, 62, 62);
 	public final static Color GOLD = new Color(255, 215, 0);
 	public final static Color DARK_GREEN = new Color(49, 73, 53);
 
 	// Fonts
-	public final static Font ATTEMPTS_FONT = new Font("SansSerif", Font.PLAIN, 12);
-	public final static Font QUESTION_FONT = new Font("Georgia", Font.PLAIN, 16);
+	public final static Font ATTEMPTS_FONT = new Font("SansSerif", Font.ITALIC, 10);
+	public final static Font QUESTION_FONT = new Font("Monospaced", Font.PLAIN, 16);
+	public final static Font FINAL_FEEDBACK = new Font("Monospaced", Font.BOLD, 20);
 	public final static Font TIMER_FONT = new Font("Monospaced", Font.BOLD, 25);
 	public final static Font BUTTON_FONT = new Font("Arial", Font.BOLD, 20);
 	public final static Font GAME_FONT = new Font("SansSerif", Font.BOLD, 50);

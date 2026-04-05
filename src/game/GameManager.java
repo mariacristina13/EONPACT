@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.BasicStroke;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -41,6 +42,7 @@ public class GameManager {
     private Riddle currentRiddleDisplayed;
     RiddleData data;
     private boolean riddleActive;
+    private boolean feedbackActive = false;
     private String userInput = "";
     private String feedback = "";
 
@@ -125,6 +127,8 @@ public class GameManager {
 
         Riddle randomRiddle = data.getRandomRiddle();
         checkpoint.setRiddle(randomRiddle);
+        feedback = "";
+        userInput = "";
     }
 
     // Draw players + checkpoint
@@ -140,34 +144,50 @@ public class GameManager {
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive)
+        if (!riddleActive && !feedbackActive)
             return;
 
         Riddle riddle = checkpoint.getRiddle();
 
-        int cardW = 400;
-        int cardH = 300;
+        int cardW = 500;
+        int cardH = 350;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
 
         g.setColor(Constants.BROWN);
-        g.fillRect(x, y, cardW, cardH);
+        g.fillRoundRect(x, y, cardW, cardH,20,20);
+        g.setColor(Constants.COFFEE_BROWN);
+        g.setStroke(new BasicStroke(2));
+        g.drawRoundRect(x, y, cardW, cardH,20,20);
 
+        if (feedbackActive) {
+           g.setColor(Constants.BLACK);
+           g.setFont(Constants.FINAL_FEEDBACK);
+           String[] lines = feedback.split("\n");
+           int lineY = y + cardH / 2 - (lines.length * 25) / 2;
+           for (String line : lines) {
+               drawCentered(g, line.trim(), x + cardW / 2, lineY);
+               lineY += 30;
+           }
+           return;
+       }
+        
         // number of attempts
-        int dot = y + 270;
+        int dot = y + 300;
         int spacing = 14;
-        int start = x + cardW/ 2 - (Constants.MAX_ATTEMPTS * spacing)/2;
+        int dotsWidth = (Constants.MAX_ATTEMPTS - 1)* spacing + 8;
+        int start = x + cardW/ 2 - dotsWidth/2;
         for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
             g.setColor(i < riddle.getCountAttempts()
-                    ? (Constants.WHITE) // used
+                    ? (Constants.LIGHT_GRAY) // used
                     : (Constants.GRAY)); // remaining
             g.fillOval(start + i * spacing, dot, 8, 8);
         }
 
         String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
-        g.setColor(Constants.BLACK);
+        g.setColor(Constants.GRAY);
         g.setFont(Constants.ATTEMPTS_FONT);
-        drawCentered(g, attempts, x + cardW/2, dot + 20);
+        drawCentered(g, attempts, x + cardW/2, dot + 25);
 
         // question
         g.setColor(Constants.BLACK);
@@ -183,7 +203,7 @@ public class GameManager {
         }
 
         // answer input field
-        int input = y + 195;
+        int input = y + 220;
         g.setColor(Constants.WHITE);
         g.fillRect(x + 20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
@@ -197,13 +217,13 @@ public class GameManager {
         g.fillRect(button, input, 70, 30);
         g.setColor(Constants.WHITE);
         g.setFont(Constants.QUESTION_FONT);
-        drawCentered(g, "Submit", button + 35, input + 20);
+        drawCentered(g, "Answer", button + 35, input + 20);
 
         // feedback
-        if (!feedback.isEmpty()) {
+        if (!feedback.isEmpty() && !feedbackActive) {
             g.setColor(Constants.BLACK);
             g.setFont(Constants.QUESTION_FONT);
-            drawCentered(g, feedback, x + cardW/2, y + 250);
+            drawCentered(g, feedback, x + cardW/2, input + 63);
         }
     }
 
@@ -234,10 +254,19 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
+        if (feedbackActive) {
+            if (keyCode == Constants.ENTERKEY) {
+                feedbackActive = false;
+            }
+            return;
+        }
         if (riddleActive) {
             if (keyCode == Constants.ENTERKEY)
                 submitAnswer();
+            return;
         }
+
+
         switch (keyCode) {
             // Player1
             case Constants.RIGHTKEY: // right
@@ -320,7 +349,7 @@ public class GameManager {
         player2.update();
 
         // Trigger checkpoint
-        if (!riddleActive && reachedCheckpoint()) {
+        if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
             riddleActive = true;
         }
     }
@@ -337,13 +366,14 @@ public class GameManager {
         if (checkpoint.attempt(userInput)) {
             feedback = "Correct!";
             riddleActive = false;
+            feedbackActive = true;
             userInput = "";
-            createCheckpoint();
         } else {
+            userInput = "";
             if (checkpoint.getRiddle().attemptsFinished()) {
-                feedback = "No attempts left. The answer was: " + checkpoint.getRiddle().getAnswer();
+                feedback = "No attempts left. \n The answer was: " + checkpoint.getRiddle().getAnswer();
                 riddleActive = false;
-                createCheckpoint();
+                feedbackActive = true;
             } else {
                 feedback = "Wrong answer, try again.";
             }
@@ -384,17 +414,22 @@ public class GameManager {
         return riddleActive;
     }
 
-    public void mouseClicked(int mouseX, int mouseY) {
+    public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
+        if (feedbackActive) {
+            feedbackActive = false;
+            return;
+        }
+
         if (!riddleActive)
             return;
 
-        int cardW = 400;
-        int cardH = 300;
-        int cardX = (Constants.SCREEN_SIZE.width - cardW) / 2;
-        int cardY = (Constants.SCREEN_SIZE.height - cardH) / 2;
+        int cardW = 500;
+        int cardH = 350;
+        int cardX = (panelWidth - cardW) / 2;
+        int cardY = (panelHeight - cardH) / 2;
 
         int buttonX = cardX + cardW - 90;
-        int inputY = cardY + 195;
+        int inputY = cardY + 220;
 
         // Check if click is inside the submit button
         if (mouseX >= buttonX && mouseX <= buttonX + 70 &&
