@@ -17,4 +17,7 @@ public abstract class Button {
         this.width = width;
         this.height = height;
     }
+
+    // Abstract method for drawing the buttons.
+    public abstract void drawButton(Graphics2D g);
 }
