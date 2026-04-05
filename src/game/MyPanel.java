@@ -38,16 +38,30 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     }
 
     // Draw the game when the PLAYING state is reached.
-        private void drawGame(Graphics2D g) {
-            // Add the backgound.
-            drawBG(g);
-            // Add the animals and checkpoints.
-            game.drawSprites(g, this);
-            // Add the riddle card.
-            game.drawRiddle(g, getWidth(), getHeight());
-            // Add the timer.
-            drawTimer(g);
-        }
+    private void drawGame(Graphics2D g) {
+        // Add the backgound.
+        drawBG(g);
+        // Add the animals and checkpoints.
+        game.drawSprites(g, this);
+        // Add the riddle card.
+        game.drawRiddle(g, getWidth(), getHeight());
+        // Add the timer.
+        drawTimer(g);
+    }
+
+    // Draw the game over screen.
+    private void drawGameOver(Graphics2D g) {
+        // Draw the background.
+        g.setColor(Constants.DARK_GREEN);
+        g.fillRect(0, 0, getWidth(), getHeight());
+        
+        // Draw the text.
+        g.setColor(Constants.WHITE);
+        g.setFont(Constants.GAME_FONT);
+        String text = "GAME OVER!";
+        int textWidth = g.getFontMetrics().stringWidth(text);
+        g.drawString(text, getWidth() / 2 - textWidth / 2, getHeight() / 2);
+    }
 
     // Draw the timer.
     private void drawTimer(Graphics2D graphics){
