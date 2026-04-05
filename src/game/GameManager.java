@@ -42,6 +42,7 @@ public class GameManager {
     private Riddle currentRiddleDisplayed;
     RiddleData data;
     private boolean riddleActive;
+    private boolean feedbackActive = false;
     private String userInput = "";
     private String feedback = "";
 
@@ -126,6 +127,7 @@ public class GameManager {
 
         Riddle randomRiddle = data.getRandomRiddle();
         checkpoint.setRiddle(randomRiddle);
+        feedback = "";
     }
 
     // Draw players + checkpoint
@@ -141,7 +143,7 @@ public class GameManager {
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive)
+        if (!riddleActive && !feedbackActive)
             return;
 
         Riddle riddle = checkpoint.getRiddle();
@@ -156,6 +158,18 @@ public class GameManager {
         g.setColor(Constants.COFFEE_BROWN);
         g.setStroke(new BasicStroke(2));
         g.drawRoundRect(x, y, cardW, cardH,20,20);
+
+        if (feedbackActive) {
+           g.setColor(Constants.BLACK);
+           g.setFont(Constants.FINAL_FEEDBACK);
+           String[] lines = feedback.split("\n");
+           int lineY = y + cardH / 2 - (lines.length * 25) / 2;
+           for (String line : lines) {
+               drawCentered(g, line.trim(), x + cardW / 2, lineY);
+               lineY += 30;
+           }
+           return;
+       }
         
         // number of attempts
         int dot = y + 300;
@@ -205,7 +219,7 @@ public class GameManager {
         drawCentered(g, "Answer", button + 35, input + 20);
 
         // feedback
-        if (!feedback.isEmpty()) {
+        if (!feedback.isEmpty() && !feedbackActive) {
             g.setColor(Constants.BLACK);
             g.setFont(Constants.QUESTION_FONT);
             drawCentered(g, feedback, x + cardW/2, input + 63);
@@ -342,13 +356,14 @@ public class GameManager {
         if (checkpoint.attempt(userInput)) {
             feedback = "Correct!";
             riddleActive = false;
+            feedbackActive = true;
             userInput = "";
-            createCheckpoint();
         } else {
+            userInput = "";
             if (checkpoint.getRiddle().attemptsFinished()) {
-                feedback = "No attempts left. The answer was: " + checkpoint.getRiddle().getAnswer();
+                feedback = "No attempts left. \n The answer was: " + checkpoint.getRiddle().getAnswer();
                 riddleActive = false;
-                createCheckpoint();
+                feedbackActive = true;
             } else {
                 feedback = "Wrong answer, try again.";
             }
