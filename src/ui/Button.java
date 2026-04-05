@@ -26,4 +26,42 @@ public abstract class Button {
         return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
+     // Getters
+    public boolean isHovered() {
+        return hovered;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    
+    public int getY() {
+        return y;
+    }
+
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    // Setters
+    public void setHovered(boolean hovered) {
+        this.hovered = hovered;
+    }
+
+    public void setPosition(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public void setSize(int width, int height){
+        this.width = width;
+        this.height = height;
+    }
+
 }
