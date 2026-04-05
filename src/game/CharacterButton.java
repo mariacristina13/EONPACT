@@ -32,8 +32,24 @@ public class CharacterButton extends Button{
 			System.out.print("file not found");
         }
     }
-
+    
+    // Draw a box around the buttons for the animals if they were selected and the text on the background.
     @Override
     public void drawButton(Graphics2D g) {
+        if(selected){
+            g.setColor(Constants.GOLD);
+            g.fillRect(getX() - 5, getY() - 5, getWidth() + 10, getHeight() + 10);
+        }
+
+        if (image != null){
+            g.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
+        }
+
+        g.setColor(Constants.WHITE);
+        g.setFont(Constants.ATTEMPTS_FONT);
+
+        int textWidth = g.getFontMetrics().stringWidth(name);
+        g.drawString(name, getX() + (getWidth() - textWidth) / 2, getY() + getHeight() + 25);
     }
+
 }
