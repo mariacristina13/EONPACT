@@ -86,7 +86,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         // Draw the text.
         g.setColor(Constants.WHITE);
         g.setFont(Constants.GAME_FONT);
-        String text = "GAME OVER!";
+        String text = "Game Over!";
         int textWidth = g.getFontMetrics().stringWidth(text);
         g.drawString(text, getWidth() / 2 - textWidth / 2, getHeight() / 2);
     }
@@ -172,7 +172,6 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 characterMenu.mouseMoved(e);
                 break;
             default:
-                currentState = GameStates.MENU;
                 break;
         }
         this.repaint();
@@ -218,5 +217,10 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
 
     public GameStates getCurrentState() {
         return currentState;
+    }
+
+    // Setter
+    public void setCurrentState(GameStates state) {
+        currentState = state;
     }
 }

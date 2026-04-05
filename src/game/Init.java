@@ -52,6 +52,7 @@ public class Init {
                     if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
                         gameManager.stopTimer();
                         ((Timer) e.getSource()).stop();
+                        panel.setCurrentState(GameStates.GAME_OVER);
                     }
                 }
             }
