@@ -1,5 +1,8 @@
 package griffith;
 
+
+import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -7,67 +10,12 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
-
-import Sprites.CheckPoint;
-import Sprites.Player;
-import constants.Constants;
-import game.GameManager;
 import riddles.Riddle;
 import riddles.RiddleData;
 
-public class TestGameManager {
-    // PlayerMovement class Test
-    @Test
-    public void testPlayerMoveLeft() {
-        Player player = new Player(null, 5, 3, 0, 0);
-        int actual = player.moveLeft();
-        int expected = 5 - Constants.PLAYER_SPEED;
-        assertEquals(expected, actual);
-    }
+class TestRiddle {
 
-    @Test
-    public void testPlayerMoveRight() {
-        Player player = new Player(null, 6, 6, 0, 0);
-        int actual = player.moveRight();
-        int expected = 6 + Constants.PLAYER_SPEED;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testPlayerJump() {
-        Player player = new Player(null, 20, 40, 0, 0);
-        player.jump();
-        assertEquals(40 - Constants.PLAYER_JUMP_HEIGHT, player.getY());
-    }
-
-    @Test
-    public void testUpdateDirectionIs1() {
-        Player player = new Player(null, 20, 40, 0, 0);
-        player.setDirection(1);
-        player.update();
-        int expected = 20 + Constants.PLAYER_SPEED;
-        assertEquals(expected, player.getX());
-    }
-
-    @Test
-    public void testUpdateDirection() {
-        Player player = new Player(null, 20, 40, 0, 0);
-        player.setDirection(-1);
-        player.update();
-        int expected = 20 - Constants.PLAYER_SPEED;
-        assertEquals(expected, player.getX());
-    }
-
-    @Test
-    public void testPlayerFallsInAir() {
-        Player player = new Player(null, 50, 40, 0, 0);
-        int beforeY = player.getY();// players current position
-        player.update();
-        assertEquals(beforeY + Constants.PLAYER_FALL_SPEED, player.getY());
-    }
-
-    // Riddle Class Tests
+	// Riddle Class Tests
     @Test
     public void testCheckAnswer() {
         // Initialise the riddle class.
@@ -223,48 +171,7 @@ public class TestGameManager {
         assertTrue(actual2);
     }
 
-    // Test correct answer
-    @Test
-    public void testCorrectAnswer() {
-        Riddle r = new Riddle("Q", "Dog", "Hint");
-        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
-        assertTrue(cp.attempt("dog"));
-    }
-
-    // Test wrong answer(Checkpoint)
-    @Test
-    public void testWrongAnswer() {
-        Riddle r = new Riddle("Q", "Dog", "Hint");
-        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
-        assertFalse(cp.attempt("cat"));
-    }
-
-    // Test max attempts = 5
-    @Test
-    public void testMaxAttempts() {
-        Riddle r = new Riddle("Q", "Dog", "Hint");
-        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
-        for (int i = 0; i < 5; i++) {
-            cp.attempt("wrong");
-        }
-
-        assertTrue(cp.isFailed());
-    }
-
-    // Test hint after 3 attempts
-    @Test
-    public void testHintAfterThreeAttempts() {
-        Riddle r = new Riddle("Q", "Dog", "Hint");
-        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10, r);
-
-        cp.attempt("a");
-        cp.attempt("b");
-        cp.attempt("c");
-
-        assertEquals("Hint", cp.getHint());
-    }
-
-    @Test
+	@Test
     public void testGetRiddleByIndex() {
         RiddleData data = new RiddleData();
         Riddle result = data.getRiddlesByIndex(0);
@@ -283,16 +190,16 @@ public class TestGameManager {
 
     @Test
     public void testGetRandomRiddle() {
-        GameManager gameManager = new GameManager();
-        Riddle result = gameManager.getRandomRiddle();
+        RiddleData riddleData = new RiddleData();
+        Riddle result = riddleData.getRandomRiddle();
         assertNotNull(result);
 
         RiddleData data = new RiddleData();
         int total = data.getRiddles().size();
         for (int i = 0; i < total; i++) {
-            gameManager.getRandomRiddle();
+            riddleData.getRandomRiddle();
         }
-        result = gameManager.getRandomRiddle();
+        result = riddleData.getRandomRiddle();
         assertNull(result);
     }
 }

@@ -1,13 +1,17 @@
 package game;
 
+import java.awt.BasicStroke;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
+import javax.swing.Timer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
-import java.util.*;
 
 import javax.swing.JPanel;
 
@@ -24,51 +28,107 @@ public class GameManager {
     public Player player1;
     public Player player2;
 
+    // Timer variables.
+    private Timer timer;
+    private int second = 0;
+    private int minute = 2;
+
+    // Variables to format the timer.
+    private String decimalSecond = "00"; 
+    private String decimalMinute = "02"; 
+    private DecimalFormat decimalTime = new DecimalFormat("00");
+
     // Riddle system
-    private ArrayList<Riddle> riddles;
-    private ArrayList<Riddle> unplayedRiddles;
     private Riddle currentRiddleDisplayed;
+    RiddleData data;
     private boolean riddleActive;
+    private boolean feedbackActive = false;
     private String userInput = "";
     private String feedback = "";
-    Random rand = new Random();
 
-    public boolean gameWon = false;
-
-    private int currentIndex;
 
     // Checkpoint
     private CheckPoint checkpoint;
 
     public GameManager() {
-
-        player1 = new Player("box turtle.png", 0, Constants.GROUND_HEIGHT - 90, 90, 90);
-        player2 = new Player("kakapo.png", 80, Constants.GROUND_HEIGHT - 90, 90, 90);
-
         // Load riddles
-        RiddleData data = new RiddleData();
-        riddles = data.getRiddles();
-        // Craete a list for the riddles that havent been shown to the players.
-        unplayedRiddles = new ArrayList<Riddle>(riddles);
+        data = new RiddleData();
         // Variable that holds the current riddle displayed.
         currentRiddleDisplayed = null;
         // Flag that checks if a riddle is displayed.
         riddleActive = false;
-        currentIndex = 0;
+    }
 
+    public void initializeGame(ArrayList<String> selectedCharacters) {
+        //Initialise the players with the characters choosen.
+        String player1Img = getCharacterImage(selectedCharacters.get(0));
+        String player2Img = getCharacterImage(selectedCharacters.get(1));
+ 
+        player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
+        player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
+ 
+        // Initialize timer.
+        timer();
+        
+        // Initialise checkpoint.
         createCheckpoint();
+    }
+
+    // Get the images file names.
+    private String getCharacterImage(String characterName) {
+        switch (characterName) {
+            case "Box Turtle":
+                return "box turtle.png";
+            case "Kakapo":
+                return "kakapo.png";
+            case "African Forest Elephant":
+                return "african forest elephant.png";
+            case "Lemur":
+                return "lemur.png";
+            default:
+                return "box turtle.png";
+        }
+    }
+
+    // Method that handles the timer countdown.
+    // https://www.ryisnow.online/2021/04/java-beginner-code-sample-create-timer.html
+    private void timer(){
+        // Initialise the timer with a delay of 1 second and an ActionListener that updates the timer every second.
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                second--;
+
+                decimalSecond = decimalTime.format(second);
+                decimalMinute = decimalTime.format(minute);
+
+                // Check if a minute has passed and update the minute variable.
+                if(second == -1){
+                    second = 59;
+                    minute--;
+
+                    decimalSecond = decimalTime.format(second);
+                    decimalMinute = decimalTime.format(minute);
+                }
+
+                // Check if time has run out and stop the timer.
+                if(minute == 0 && second == 0){
+                    timer.stop();
+                }
+            }
+        });
+
+        timer.start();
     }
 
     // Create new checkpoint with next riddle.
     private void createCheckpoint() {
-        if (currentIndex >= riddles.size()) {
-            currentIndex = 0;
-        }
+        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60);
 
-        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60,
-                riddles.get(currentIndex));
-
-        currentIndex++;
+        Riddle randomRiddle = data.getRandomRiddle();
+        checkpoint.setRiddle(randomRiddle);
+        feedback = "";
+        userInput = "";
     }
 
     // Draw players + checkpoint
@@ -84,34 +144,50 @@ public class GameManager {
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive)
+        if (!riddleActive && !feedbackActive)
             return;
 
         Riddle riddle = checkpoint.getRiddle();
 
-        int cardW = 400;
-        int cardH = 300;
+        int cardW = 500;
+        int cardH = 350;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
 
         g.setColor(Constants.BROWN);
-        g.fillRect(x, y, cardW, cardH);
+        g.fillRoundRect(x, y, cardW, cardH,20,20);
+        g.setColor(Constants.COFFEE_BROWN);
+        g.setStroke(new BasicStroke(2));
+        g.drawRoundRect(x, y, cardW, cardH,20,20);
 
+        if (feedbackActive) {
+           g.setColor(Constants.BLACK);
+           g.setFont(Constants.FINAL_FEEDBACK);
+           String[] lines = feedback.split("\n");
+           int lineY = y + cardH / 2 - (lines.length * 25) / 2;
+           for (String line : lines) {
+               drawCentered(g, line.trim(), x + cardW / 2, lineY);
+               lineY += 30;
+           }
+           return;
+       }
+        
         // number of attempts
-        String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
-        g.setColor(Constants.BLACK);
-        g.setFont(Constants.ATTEMPTS_FONT);
-        g.drawString(attempts, x + cardW - 120, y + 24);
-
-        int dot = y + 270;
+        int dot = y + 300;
         int spacing = 14;
-        int start = panelWidth / 2 - (Constants.MAX_ATTEMPTS * spacing);
+        int dotsWidth = (Constants.MAX_ATTEMPTS - 1)* spacing + 8;
+        int start = x + cardW/ 2 - dotsWidth/2;
         for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
             g.setColor(i < riddle.getCountAttempts()
-                    ? (Constants.WHITE) // used
+                    ? (Constants.LIGHT_GRAY) // used
                     : (Constants.GRAY)); // remaining
             g.fillOval(start + i * spacing, dot, 8, 8);
         }
+
+        String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
+        g.setColor(Constants.GRAY);
+        g.setFont(Constants.ATTEMPTS_FONT);
+        drawCentered(g, attempts, x + cardW/2, dot + 25);
 
         // question
         g.setColor(Constants.BLACK);
@@ -127,7 +203,7 @@ public class GameManager {
         }
 
         // answer input field
-        int input = y + 195;
+        int input = y + 220;
         g.setColor(Constants.WHITE);
         g.fillRect(x + 20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
@@ -141,13 +217,13 @@ public class GameManager {
         g.fillRect(button, input, 70, 30);
         g.setColor(Constants.WHITE);
         g.setFont(Constants.QUESTION_FONT);
-        drawCentered(g, "Submit", button + 35, input + 20);
+        drawCentered(g, "Answer", button + 35, input + 20);
 
         // feedback
-        if (!feedback.isEmpty()) {
+        if (!feedback.isEmpty() && !feedbackActive) {
             g.setColor(Constants.BLACK);
             g.setFont(Constants.QUESTION_FONT);
-            drawCentered(g, feedback, x + cardW/2, y + 250);
+            drawCentered(g, feedback, x + cardW/2, input + 63);
         }
     }
 
@@ -178,10 +254,19 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
+        if (feedbackActive) {
+            if (keyCode == Constants.ENTERKEY) {
+                feedbackActive = false;
+            }
+            return;
+        }
         if (riddleActive) {
             if (keyCode == Constants.ENTERKEY)
                 submitAnswer();
+            return;
         }
+
+
         switch (keyCode) {
             // Player1
             case Constants.RIGHTKEY: // right
@@ -248,44 +333,25 @@ public class GameManager {
     public void update() {
 
         // Movement disabled when answering
-        if (!riddleActive) {
+        if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
-                player1.setDirection(-1);
+                player1.setDirection(0);
             if (isKeyHeld(Constants.RIGHTKEY))
-                player1.setDirection(1);
+                player1.setDirection(0);
 
             if (isKeyHeld(Constants.AKEY))
-                player2.setDirection(-1);
+                player2.setDirection(0);
             if (isKeyHeld(Constants.DKEY))
-                player2.setDirection(1);
+                player2.setDirection(0);
         }
 
         player1.update();
         player2.update();
 
         // Trigger checkpoint
-        if (!riddleActive && reachedCheckpoint()) {
+        if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
             riddleActive = true;
-
-            System.out.println("Read the following riddle and if u get it ull recive food.");
-            System.out.println(checkpoint.getRiddle().getQuestion());
         }
-    }
-
-    // Method that returns a random riddle from the list.
-    public Riddle getRandomRiddle() {
-        // Check if the copy of the riddle list is emplty and end the game.
-        if (unplayedRiddles.isEmpty()) {
-            return null;
-        }
-
-        // If the array isn't empty then return the random riddle picked and delete it
-        // form the copy list.
-        int index = rand.nextInt(unplayedRiddles.size());
-        Riddle pickedRiddle = unplayedRiddles.get(index);
-        unplayedRiddles.remove(index);
-
-        return pickedRiddle;
     }
 
     // Getters
@@ -300,14 +366,14 @@ public class GameManager {
         if (checkpoint.attempt(userInput)) {
             feedback = "Correct!";
             riddleActive = false;
+            feedbackActive = true;
             userInput = "";
-            gameWon = true;
-            createCheckpoint();
         } else {
+            userInput = "";
             if (checkpoint.getRiddle().attemptsFinished()) {
-                feedback = "No attempts left. The answer was: " + checkpoint.getRiddle().getAnswer();
+                feedback = "No attempts left. \n The answer was: " + checkpoint.getRiddle().getAnswer();
                 riddleActive = false;
-                createCheckpoint();
+                feedbackActive = true;
             } else {
                 feedback = "Wrong answer, try again.";
             }
@@ -316,7 +382,7 @@ public class GameManager {
     }
 
     // ANSWER SYSTEM
-    public void answer(String input) {
+    /* public void answer(String input) {
 
         if (!riddleActive)
             return;
@@ -342,23 +408,28 @@ public class GameManager {
                 createCheckpoint();
             }
         }
-    }
+    }*/
 
     public boolean isRiddleActive() {
         return riddleActive;
     }
 
-    public void mouseClicked(int mouseX, int mouseY) {
+    public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
+        if (feedbackActive) {
+            feedbackActive = false;
+            return;
+        }
+
         if (!riddleActive)
             return;
 
-        int cardW = 400;
-        int cardH = 300;
-        int cardX = (Constants.SCREEN_SIZE.width - cardW) / 2;
-        int cardY = (Constants.SCREEN_SIZE.height - cardH) / 2;
+        int cardW = 500;
+        int cardH = 350;
+        int cardX = (panelWidth - cardW) / 2;
+        int cardY = (panelHeight - cardH) / 2;
 
         int buttonX = cardX + cardW - 90;
-        int inputY = cardY + 195;
+        int inputY = cardY + 220;
 
         // Check if click is inside the submit button
         if (mouseX >= buttonX && mouseX <= buttonX + 70 &&
@@ -366,5 +437,23 @@ public class GameManager {
             submitAnswer();
         }
     }
+    
+    public String getTimer(){
+        return decimalMinute + ":" + decimalSecond;
+    }
 
+    public int getMinute(){
+        return minute;
+    }
+
+    public int getSecond(){
+        return second;
+    }
+
+    // Method that stops the timer if the game was won or lost before the timer ran out.
+    public void stopTimer(){
+        if(timer != null){
+            timer.stop();
+        }
+    }
 }

@@ -7,8 +7,14 @@ public class CheckPoint extends Sprite {
     private Riddle riddle;
     private boolean completed;
 
-    public CheckPoint(String fileName, int x, int y, int width, int height, Riddle riddle) {
+    public CheckPoint(String fileName, int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
+        this.riddle = null;
+        this.completed = false;
+    }
+
+
+    public void setRiddle(Riddle riddle){
         this.riddle = riddle;
         this.completed = false;
     }
