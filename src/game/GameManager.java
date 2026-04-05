@@ -281,16 +281,16 @@ public class GameManager {
     public void update() {
 
         // Movement disabled when answering
-        if (!riddleActive) {
+        if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
-                player1.setDirection(-1);
+                player1.setDirection(0);
             if (isKeyHeld(Constants.RIGHTKEY))
-                player1.setDirection(1);
+                player1.setDirection(0);
 
             if (isKeyHeld(Constants.AKEY))
-                player2.setDirection(-1);
+                player2.setDirection(0);
             if (isKeyHeld(Constants.DKEY))
-                player2.setDirection(1);
+                player2.setDirection(0);
         }
 
         player1.update();
