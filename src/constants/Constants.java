@@ -43,6 +43,7 @@ public final class Constants {
 	public final static Color BLUE = new Color(174, 227, 245);
 	public final static Color GREEN = new Color(79, 179, 85);
 	public final static Color BROWN = new Color(196, 164, 132);
+	public final static Color COFFEE_BROWN = new Color(78, 53, 30);
 	public final static Color BLACK = new Color(0, 0, 0);
 	public final static Color WHITE = new Color(255, 255, 255);
 	public final static Color LIGHT_GRAY = new Color(224,224,222);

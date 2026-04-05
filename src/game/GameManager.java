@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.BasicStroke;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -145,14 +146,16 @@ public class GameManager {
 
         Riddle riddle = checkpoint.getRiddle();
 
-        int cardW = 400;
+        int cardW = 500;
         int cardH = 300;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
 
         g.setColor(Constants.BROWN);
-        g.fillRect(x, y, cardW, cardH);
-
+        g.fillRoundRect(x, y, cardW, cardH,20,20);
+        g.setColor(Constants.COFFEE_BROWN);
+        g.setStroke(new BasicStroke(2));
+        g.drawRoundRect(x, y, cardW, cardH,20,20);
         // number of attempts
         int dot = y + 250;
         int spacing = 14;
