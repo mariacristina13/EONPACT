@@ -118,4 +118,11 @@ public class CharacterMenu {
         return selectedCharacters;
     }
 
+    // Reset the animal selection for every game.
+    public void resetSelection() {
+        selectedCharacters.clear();
+        for (CharacterButton character : characters) {
+            character.setSelected(false);
+        }
+    }
 }
