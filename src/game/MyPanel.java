@@ -100,7 +100,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         int textWidth = graphics.getFontMetrics().stringWidth(timeText);
         int padding = 10;
         int x = getWidth() - textWidth - padding * 2 - 30;
-        int y = 30;
+        int y = 70;
 
         graphics.setColor(Constants.GREEN);
         graphics.drawString(timeText, x, y);
