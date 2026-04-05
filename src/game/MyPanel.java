@@ -149,8 +149,11 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     }
 
 
+    // Update the game when in the PLAYING state.
     public void update() {
-        game.update();
+        if (currentState == GameStates.PLAYING) {
+            game.update();
+        }
         this.repaint();
     }
 
