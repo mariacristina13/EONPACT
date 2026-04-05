@@ -83,7 +83,7 @@ public class CharacterMenu {
 
     // Event listener for the mouse.
     public void mouseClicked(MouseEvent e) {
-        // Handle character selection (toggle)
+        // Handle character selection.
         for (CharacterButton character : characters) {
             if (character.contains(e.getX(), e.getY())) {
                 if (character.isSelected()) {
@@ -94,6 +94,7 @@ public class CharacterMenu {
                     character.setSelected(true);
                     selectedCharacters.add(character.getName());
                 }
+                return;
             }
         }
     }
