@@ -11,6 +11,7 @@ public class MenuButton extends Button {
 
     public MenuButton(int x, int y, int width, int height) {
         super(x, y, width, height);
+        this.text = text;
     }
 
     @Override
