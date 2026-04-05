@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 
 import javax.swing.Timer;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,6 +55,21 @@ public class GameManager {
         currentRiddleDisplayed = null;
         // Flag that checks if a riddle is displayed.
         riddleActive = false;
+    }
+
+    public void initializeGame(ArrayList<String> selectedCharacters) {
+        //Initialise the players with the characters choosen.
+        String player1Img = getCharacterImage(selectedCharacters.get(0));
+        String player2Img = getCharacterImage(selectedCharacters.get(1));
+ 
+        player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
+        player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
+ 
+        // Initialize timer.
+        timer();
+        
+        // Initialise checkpoint.
+        createCheckpoint();
     }
 
     // Get the images file names.
