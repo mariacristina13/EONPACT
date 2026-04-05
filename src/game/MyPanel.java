@@ -5,12 +5,15 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
 import constants.Constants;
 
-public class MyPanel extends JPanel implements KeyListener {
+public class MyPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
     private GameManager game;
     private Menu menuScreen;
     private CharacterMenu characterMenu;
@@ -18,6 +21,9 @@ public class MyPanel extends JPanel implements KeyListener {
 
     public MyPanel() {
         addKeyListener(this);
+        addMouseListener(this);
+        addMouseMotionListener(this);
+
         game = new GameManager();
     }
 
@@ -71,6 +77,77 @@ public class MyPanel extends JPanel implements KeyListener {
         game.keyReleased(e.getKeyCode());
         this.repaint();
     }
+
+    // Event listener for the mouse.
+    public void mousePressed(MouseEvent e) {
+        // Switch between game states.
+        switch (currentState) {
+            case MENU:
+                if (menuScreen.playButtonClicked(e)) {
+                    currentState = GameStates.CHARACTER_SELECT;
+                }
+                if (menuScreen.quitButtonClicked(e)) {
+                    System.exit(0);
+                }
+                break;
+            case CHARACTER_SELECT:
+                characterMenu.mouseClicked(e);
+ 
+                if (characterMenu.playButtonClicked(e)) {
+                    currentState = GameStates.PLAYING;
+                    game.initializeGame(characterMenu.getSelectedCharacters());
+                }
+ 
+                if (characterMenu.backButtonClicked(e)) {
+                    currentState = GameStates.MENU;
+                    characterMenu.resetSelection();
+                }
+                break;
+            case PLAYING:
+                game.mouseClicked(e.getX(), e.getY());
+                break;
+            default:
+                currentState = GameStates.MENU;
+                break;
+        }
+        this.repaint();
+    }
+ 
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+ 
+    public void mouseMoved(MouseEvent e) {
+        switch (currentState) {
+            case MENU:
+                menuScreen.mouseMoved(e);
+                break;
+            case CHARACTER_SELECT:
+                characterMenu.mouseMoved(e);
+                break;
+            default:
+                currentState = GameStates.MENU;
+                break;
+        }
+       this.repaint();
+    }
+ 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+ 
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+ 
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+ 
+    @Override
+    public void mouseDragged(MouseEvent e) {
+    }
+
 
     public void update() {
         game.update();
