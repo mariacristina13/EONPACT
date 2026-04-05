@@ -20,4 +20,10 @@ public abstract class Button {
 
     // Abstract method for drawing the buttons.
     public abstract void drawButton(Graphics2D g);
+
+    // Check if the mouse is on the button.
+    public boolean contains(int mouseX, int mouseY) {
+        return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
+    }
+
 }
