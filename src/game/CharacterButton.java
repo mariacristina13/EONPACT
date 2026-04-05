@@ -11,6 +11,10 @@ import constants.Constants;
 import ui.Button;
 
 public class CharacterButton extends Button{
+    // Class variables.
+    private String name;
+    private BufferedImage image;
+    private boolean selected = false;
 
     public CharacterButton(int x, int y, int width, int height) {
         super(x, y, width, height);
