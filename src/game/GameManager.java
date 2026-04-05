@@ -128,6 +128,7 @@ public class GameManager {
         Riddle randomRiddle = data.getRandomRiddle();
         checkpoint.setRiddle(randomRiddle);
         feedback = "";
+        userInput = "";
     }
 
     // Draw players + checkpoint
@@ -253,18 +254,18 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        if (riddleActive) {
-            if (keyCode == Constants.ENTERKEY)
-                submitAnswer();
-        }
-
         if (feedbackActive) {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
-                createCheckpoint();
             }
             return;
         }
+        if (riddleActive) {
+            if (keyCode == Constants.ENTERKEY)
+                submitAnswer();
+            return;
+        }
+
 
         switch (keyCode) {
             // Player1
@@ -348,7 +349,7 @@ public class GameManager {
         player2.update();
 
         // Trigger checkpoint
-        if (!riddleActive && reachedCheckpoint()) {
+        if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
             riddleActive = true;
         }
     }
@@ -416,7 +417,6 @@ public class GameManager {
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
         if (feedbackActive) {
             feedbackActive = false;
-            createCheckpoint();
             return;
         }
 
