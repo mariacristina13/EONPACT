@@ -154,20 +154,20 @@ public class GameManager {
         g.fillRect(x, y, cardW, cardH);
 
         // number of attempts
-        String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
-        g.setColor(Constants.BLACK);
-        g.setFont(Constants.ATTEMPTS_FONT);
-        g.drawString(attempts, x + cardW - 120, y + 24);
-
         int dot = y + 270;
         int spacing = 14;
-        int start = panelWidth / 2 - (Constants.MAX_ATTEMPTS * spacing);
+        int start = x + cardW/ 2 - (Constants.MAX_ATTEMPTS * spacing)/2;
         for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
             g.setColor(i < riddle.getCountAttempts()
                     ? (Constants.WHITE) // used
                     : (Constants.GRAY)); // remaining
             g.fillOval(start + i * spacing, dot, 8, 8);
         }
+
+        String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
+        g.setColor(Constants.BLACK);
+        g.setFont(Constants.ATTEMPTS_FONT);
+        drawCentered(g, attempts, x + cardW/2, dot + 20);
 
         // question
         g.setColor(Constants.BLACK);
