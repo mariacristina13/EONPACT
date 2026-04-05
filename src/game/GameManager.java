@@ -147,7 +147,7 @@ public class GameManager {
         Riddle riddle = checkpoint.getRiddle();
 
         int cardW = 500;
-        int cardH = 300;
+        int cardH = 350;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
 
@@ -156,8 +156,9 @@ public class GameManager {
         g.setColor(Constants.COFFEE_BROWN);
         g.setStroke(new BasicStroke(2));
         g.drawRoundRect(x, y, cardW, cardH,20,20);
+        
         // number of attempts
-        int dot = y + 250;
+        int dot = y + 300;
         int spacing = 14;
         int dotsWidth = (Constants.MAX_ATTEMPTS - 1)* spacing + 8;
         int start = x + cardW/ 2 - dotsWidth/2;
@@ -187,7 +188,7 @@ public class GameManager {
         }
 
         // answer input field
-        int input = y + 195;
+        int input = y + 220;
         g.setColor(Constants.WHITE);
         g.fillRect(x + 20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
@@ -207,7 +208,7 @@ public class GameManager {
         if (!feedback.isEmpty()) {
             g.setColor(Constants.BLACK);
             g.setFont(Constants.QUESTION_FONT);
-            drawCentered(g, feedback, x + cardW/2, y + 250);
+            drawCentered(g, feedback, x + cardW/2, input + 63);
         }
     }
 
