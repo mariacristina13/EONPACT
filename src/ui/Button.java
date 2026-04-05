@@ -9,4 +9,12 @@ public abstract class Button {
     private int width;
     private int height;
     private boolean hovered = false;
+
+    // Initialise class variables.
+    public Button(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
 }
