@@ -48,21 +48,28 @@ public class GameManager {
     private CheckPoint checkpoint;
 
     public GameManager() {
-
-        player1 = new Player("box turtle.png", 0, Constants.GROUND_HEIGHT - 90, 90, 90);
-        player2 = new Player("kakapo.png", 80, Constants.GROUND_HEIGHT - 90, 90, 90);
-
         // Load riddles
         data = new RiddleData();
         // Variable that holds the current riddle displayed.
         currentRiddleDisplayed = null;
         // Flag that checks if a riddle is displayed.
         riddleActive = false;
+    }
 
-        // Initialize timer
-        timer();
-        
-        createCheckpoint();
+    // Get the images file names.
+    private String getCharacterImage(String characterName) {
+        switch (characterName) {
+            case "Box Turtle":
+                return "box turtle.png";
+            case "Kakapo":
+                return "kakapo.png";
+            case "African Forest Elephant":
+                return "african forest elephant.png";
+            case "Lemur":
+                return "lemur.png";
+            default:
+                return "box turtle.png";
+        }
     }
 
     // Method that handles the timer countdown.
