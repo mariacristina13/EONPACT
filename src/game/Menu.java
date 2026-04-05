@@ -27,4 +27,21 @@ public class Menu {
         quitBtn = new MenuButton("Quit", startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
     }
 
+    // Draw the menu display.
+    public void drawMenu(Graphics2D g) {
+        // Dtaw the background.
+        g.setColor(Constants.DARK_GREEN);
+        g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+ 
+        // Draw the title of the game.
+        g.setColor(Constants.GOLD);
+        g.setFont(Constants.GAME_FONT);
+        String title = "EONPACT";
+        int titleWidth = g.getFontMetrics().stringWidth(title);
+        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
+ 
+        // Draw the buttons.
+        characterBtn.drawButton(g);
+        quitBtn.drawButton(g);
+    }
 }
