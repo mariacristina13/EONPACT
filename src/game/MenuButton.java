@@ -33,7 +33,15 @@ public class MenuButton extends Button {
         int textHeight = g.getFontMetrics().getAscent();
 
         g.drawString(text, getX() +(getWidth() - textWidth)/2, getY() +(getHeight() + textHeight)/2);
-
     }
+
+    // Getters and setters
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }  
 
 }
