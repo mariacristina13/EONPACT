@@ -24,7 +24,14 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         addMouseListener(this);
         addMouseMotionListener(this);
 
+        // Initialise the game.
         game = new GameManager();
+        // Initialise the main menu.
+        menuScreen = new Menu();
+        // Initialise the character menu.
+        characterMenu = new CharacterMenu();
+        // Set the initial state.
+        currentState = GameStates.MENU;
     }
 
     // https://projectai.in/projects/e79f02df-4d51-473e-90f0-4ff8443ff473/tasks/5b55ecc1-ac91-4092-8e63-097ce794218b?tab=task
@@ -40,8 +47,8 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     }
 
     // Draw the specific display, based on the state that the game is in.
-    private void switchStates(Graphics2D graphics){
-        
+    private void switchStates(Graphics2D graphics) {
+
         switch (currentState) {
             case MENU:
                 menuScreen.drawMenu(graphics);
@@ -75,7 +82,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         // Draw the background.
         g.setColor(Constants.DARK_GREEN);
         g.fillRect(0, 0, getWidth(), getHeight());
-        
+
         // Draw the text.
         g.setColor(Constants.WHITE);
         g.setFont(Constants.GAME_FONT);
@@ -85,12 +92,11 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     }
 
     // Draw the timer.
-    private void drawTimer(Graphics2D graphics){
+    private void drawTimer(Graphics2D graphics) {
         String timeText = "Time remaining: " + game.getTimer();
 
         graphics.setFont(Constants.TIMER_FONT);
 
-        
         int textWidth = graphics.getFontMetrics().stringWidth(timeText);
         int padding = 10;
         int x = getWidth() - textWidth - padding * 2 - 30;
@@ -132,12 +138,12 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 break;
             case CHARACTER_SELECT:
                 characterMenu.mouseClicked(e);
- 
+
                 if (characterMenu.playButtonClicked(e)) {
                     currentState = GameStates.PLAYING;
                     game.initializeGame(characterMenu.getSelectedCharacters());
                 }
- 
+
                 if (characterMenu.backButtonClicked(e)) {
                     currentState = GameStates.MENU;
                     characterMenu.resetSelection();
@@ -152,11 +158,11 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         }
         this.repaint();
     }
- 
+
     @Override
     public void mouseReleased(MouseEvent e) {
     }
- 
+
     public void mouseMoved(MouseEvent e) {
         switch (currentState) {
             case MENU:
@@ -169,25 +175,24 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 currentState = GameStates.MENU;
                 break;
         }
-       this.repaint();
+        this.repaint();
     }
- 
+
     @Override
     public void mouseClicked(MouseEvent e) {
     }
- 
+
     @Override
     public void mouseEntered(MouseEvent e) {
     }
- 
+
     @Override
     public void mouseExited(MouseEvent e) {
     }
- 
+
     @Override
     public void mouseDragged(MouseEvent e) {
     }
-
 
     // Update the game when in the PLAYING state.
     public void update() {
