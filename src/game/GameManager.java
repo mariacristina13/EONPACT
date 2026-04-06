@@ -267,15 +267,22 @@ public class GameManager {
             return;
         }
         if (riddleActive) {
+            // BACKSPACE
             if (keyCode == Constants.BACKSPACEKEY) {
                 if (!userInput.isEmpty()) {
-                userInput = userInput.substring(0, userInput.length() - 1);
+                    userInput = userInput.substring(0, userInput.length() - 1);
                 }
             return;
+            }
+            // ENTER
+            if (keyCode == Constants.ENTERKEY) {
+                submitAnswer();
+                return;
+            }
+            //BLOCK ALL MOVEMENT INPUT
+            return;
         }
-    }
-
-
+    
         switch (keyCode) {
             // Player1
             case Constants.RIGHTKEY: // right
@@ -341,6 +348,14 @@ public class GameManager {
     // UPDATE GAME
     public void update() {
 
+        if (riddleActive || feedbackActive) {
+            player1.setDirection(0);
+            player2.setDirection(0);
+        }
+        if (!riddleActive && !feedbackActive) {
+            player1.update();
+            player2.update();
+        }
         // Movement disabled when answering
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
