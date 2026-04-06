@@ -267,10 +267,13 @@ public class GameManager {
             return;
         }
         if (riddleActive) {
-            if (keyCode == Constants.ENTERKEY)
-                submitAnswer();
+            if (keyCode == Constants.BACKSPACEKEY) {
+                if (!userInput.isEmpty()) {
+                userInput = userInput.substring(0, userInput.length() - 1);
+                }
             return;
         }
+    }
 
 
         switch (keyCode) {
