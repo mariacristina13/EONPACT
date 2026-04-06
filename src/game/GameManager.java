@@ -369,26 +369,33 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        if (checkpoint.getRiddle().attemptsFinished())
-            return;
-
+        
+        if (checkpoint == null) return;
         if (checkpoint.attempt(userInput)) {
-            feedback = "Correct!";
+
+           feedback = "Correct!";
+           userInput = "";
+           riddleActive = false;
+           feedbackActive = true;
+           dismissCheckpoint();
+           createCheckpoint();
+        } else {
+
+           userInput = "";
+        if (checkpoint.getRiddle().attemptsFinished()) {
+            feedback = "No attempts left.\nThe answer was: " 
+                     + checkpoint.getRiddle().getAnswer();
+
             riddleActive = false;
             feedbackActive = true;
-            userInput = "";
+
+            dismissCheckpoint();
+            createCheckpoint();
         } else {
-            userInput = "";
-            if (checkpoint.getRiddle().attemptsFinished()) {
-                feedback = "No attempts left. \n The answer was: " + checkpoint.getRiddle().getAnswer();
-                riddleActive = false;
-                feedbackActive = true;
-            } else {
-                feedback = "Wrong answer, try again.";
-            }
-            userInput = "";
+            feedback = "Wrong answer, try again.";
         }
     }
+}
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
