@@ -328,10 +328,10 @@ public class GameManager {
     }
 
     // CHECKPOINT CONDITION (both players)
-    private boolean reachedCheckpoint() {
-        return Math.abs(player1.getX() - checkpoint.getX()) < 30 &&
-                Math.abs(player2.getX() - checkpoint.getX()) < 30;
-    }
+   private boolean reachedCheckpoint() {
+    if (checkpoint == null) return false;
+    return Math.abs(player1.getX() - checkpoint.getX()) < 30 && Math.abs(player2.getX() - checkpoint.getX()) < 30;
+}
 
     // UPDATE GAME
     public void update() {
