@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.BasicStroke;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -41,12 +42,17 @@ public class GameManager {
     private Riddle currentRiddleDisplayed;
     RiddleData data;
     private boolean riddleActive;
+    private boolean feedbackActive = false;
     private String userInput = "";
     private String feedback = "";
 
 
     // Checkpoint
     private CheckPoint checkpoint;
+    private void dismissCheckpoint() {
+        checkpoint = null;
+        riddleActive = false;
+    }
 
     public GameManager() {
         // Load riddles
@@ -125,6 +131,8 @@ public class GameManager {
 
         Riddle randomRiddle = data.getRandomRiddle();
         checkpoint.setRiddle(randomRiddle);
+        feedback = "";
+        userInput = "";
     }
 
     // Draw players + checkpoint
@@ -135,39 +143,57 @@ public class GameManager {
         g.drawImage(player2.getImage(), player2.getX(), player2.getY(),
                 player2.getWidth(), player2.getHeight(), panel);
 
+        if (checkpoint != null) {
         g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
+        }
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive)
+        if (!riddleActive && !feedbackActive)
             return;
 
         Riddle riddle = checkpoint.getRiddle();
 
-        int cardW = 400;
-        int cardH = 300;
+        int cardW = 500;
+        int cardH = 350;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
 
         g.setColor(Constants.BROWN);
-        g.fillRect(x, y, cardW, cardH);
+        g.fillRoundRect(x, y, cardW, cardH,20,20);
+        g.setColor(Constants.COFFEE_BROWN);
+        g.setStroke(new BasicStroke(2));
+        g.drawRoundRect(x, y, cardW, cardH,20,20);
 
+        if (feedbackActive) {
+           g.setColor(Constants.BLACK);
+           g.setFont(Constants.FINAL_FEEDBACK);
+           String[] lines = feedback.split("\n");
+           int lineY = y + cardH / 2 - (lines.length * 25) / 2;
+           for (String line : lines) {
+               drawCentered(g, line.trim(), x + cardW / 2, lineY);
+               lineY += 30;
+           }
+           return;
+       }
+        
         // number of attempts
-        int dot = y + 270;
+        int dot = y + 300;
         int spacing = 14;
-        int start = x + cardW/ 2 - (Constants.MAX_ATTEMPTS * spacing)/2;
+        int dotsWidth = (Constants.MAX_ATTEMPTS - 1)* spacing + 8;
+        int start = x + cardW/ 2 - dotsWidth/2;
         for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
             g.setColor(i < riddle.getCountAttempts()
-                    ? (Constants.WHITE) // used
+                    ? (Constants.LIGHT_GRAY) // used
                     : (Constants.GRAY)); // remaining
             g.fillOval(start + i * spacing, dot, 8, 8);
         }
 
         String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
-        g.setColor(Constants.BLACK);
+        g.setColor(Constants.GRAY);
         g.setFont(Constants.ATTEMPTS_FONT);
-        drawCentered(g, attempts, x + cardW/2, dot + 20);
+        drawCentered(g, attempts, x + cardW/2, dot + 25);
 
         // question
         g.setColor(Constants.BLACK);
@@ -183,7 +209,7 @@ public class GameManager {
         }
 
         // answer input field
-        int input = y + 195;
+        int input = y + 220;
         g.setColor(Constants.WHITE);
         g.fillRect(x + 20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
@@ -197,13 +223,13 @@ public class GameManager {
         g.fillRect(button, input, 70, 30);
         g.setColor(Constants.WHITE);
         g.setFont(Constants.QUESTION_FONT);
-        drawCentered(g, "Submit", button + 35, input + 20);
+        drawCentered(g, "Answer", button + 35, input + 20);
 
         // feedback
-        if (!feedback.isEmpty()) {
+        if (!feedback.isEmpty() && !feedbackActive) {
             g.setColor(Constants.BLACK);
             g.setFont(Constants.QUESTION_FONT);
-            drawCentered(g, feedback, x + cardW/2, y + 250);
+            drawCentered(g, feedback, x + cardW/2, input + 63);
         }
     }
 
@@ -234,10 +260,31 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
+        if (feedbackActive) {
+            if (keyCode == Constants.ENTERKEY) {
+                feedbackActive = false;
+                dismissCheckpoint();
+                createCheckpoint();
+            }
+        return;
+    }
         if (riddleActive) {
-            if (keyCode == Constants.ENTERKEY)
+            // BACKSPACE
+            if (keyCode == Constants.BACKSPACEKEY) {
+                if (!userInput.isEmpty()) {
+                    userInput = userInput.substring(0, userInput.length() - 1);
+                }
+            return;
+            }
+            // ENTER
+            if (keyCode == Constants.ENTERKEY) {
                 submitAnswer();
+                return;
+            }
+            //BLOCK ALL MOVEMENT INPUT
+            return;
         }
+    
         switch (keyCode) {
             // Player1
             case Constants.RIGHTKEY: // right
@@ -295,14 +342,22 @@ public class GameManager {
     }
 
     // CHECKPOINT CONDITION (both players)
-    private boolean reachedCheckpoint() {
-        return Math.abs(player1.getX() - checkpoint.getX()) < 30 &&
-                Math.abs(player2.getX() - checkpoint.getX()) < 30;
-    }
+   private boolean reachedCheckpoint() {
+    if (checkpoint == null) return false;
+    return Math.abs(player1.getX() - checkpoint.getX()) < 30 && Math.abs(player2.getX() - checkpoint.getX()) < 30;
+}
 
     // UPDATE GAME
     public void update() {
 
+        if (riddleActive || feedbackActive) {
+            player1.setDirection(0);
+            player2.setDirection(0);
+        }
+        if (!riddleActive && !feedbackActive) {
+            player1.update();
+            player2.update();
+        }
         // Movement disabled when answering
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
@@ -320,8 +375,17 @@ public class GameManager {
         player2.update();
 
         // Trigger checkpoint
-        if (!riddleActive && reachedCheckpoint()) {
+        if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
             riddleActive = true;
+        }
+
+        if (riddleActive && checkpoint != null) {
+        if (checkpoint.getRiddle().attemptsFinished()) {
+             feedback = "No attempts left.\nThe answer was: "  + checkpoint.getRiddle().getAnswer();
+            userInput = "";
+            riddleActive = false;
+            feedbackActive = true;
+            }
         }
     }
 
@@ -331,23 +395,23 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        if (checkpoint.getRiddle().attemptsFinished())
-            return;
+        if (checkpoint == null) return;
 
         if (checkpoint.attempt(userInput)) {
             feedback = "Correct!";
-            riddleActive = false;
             userInput = "";
-            createCheckpoint();
+            riddleActive = false;
+            feedbackActive = true;
         } else {
+            userInput = "";
             if (checkpoint.getRiddle().attemptsFinished()) {
-                feedback = "No attempts left. The answer was: " + checkpoint.getRiddle().getAnswer();
+                feedback = "No attempts left.\nThe answer was: " 
+                     + checkpoint.getRiddle().getAnswer();
                 riddleActive = false;
-                createCheckpoint();
+                feedbackActive = true;
             } else {
                 feedback = "Wrong answer, try again.";
-            }
-            userInput = "";
+           }
         }
     }
 
@@ -384,17 +448,22 @@ public class GameManager {
         return riddleActive;
     }
 
-    public void mouseClicked(int mouseX, int mouseY) {
+    public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
+        if (feedbackActive) {
+            feedbackActive = false;
+            return;
+        }
+
         if (!riddleActive)
             return;
 
-        int cardW = 400;
-        int cardH = 300;
-        int cardX = (Constants.SCREEN_SIZE.width - cardW) / 2;
-        int cardY = (Constants.SCREEN_SIZE.height - cardH) / 2;
+        int cardW = 500;
+        int cardH = 350;
+        int cardX = (panelWidth - cardW) / 2;
+        int cardY = (panelHeight - cardH) / 2;
 
         int buttonX = cardX + cardW - 90;
-        int inputY = cardY + 195;
+        int inputY = cardY + 220;
 
         // Check if click is inside the submit button
         if (mouseX >= buttonX && mouseX <= buttonX + 70 &&

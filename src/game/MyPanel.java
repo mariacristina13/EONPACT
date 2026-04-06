@@ -150,7 +150,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 }
                 break;
             case PLAYING:
-                game.mouseClicked(e.getX(), e.getY());
+                game.mouseClicked(e.getX(), e.getY(), getWidth(), getHeight());
                 break;
             default:
                 currentState = GameStates.MENU;
