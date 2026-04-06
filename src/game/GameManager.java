@@ -143,8 +143,10 @@ public class GameManager {
         g.drawImage(player2.getImage(), player2.getX(), player2.getY(),
                 player2.getWidth(), player2.getHeight(), panel);
 
+        if (checkpoint != null) {
         g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
+        }
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
