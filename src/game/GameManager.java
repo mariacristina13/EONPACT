@@ -263,9 +263,11 @@ public class GameManager {
         if (feedbackActive) {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
+                dismissCheckpoint();
+                createCheckpoint();
             }
-            return;
-        }
+        return;
+    }
         if (riddleActive) {
             // BACKSPACE
             if (keyCode == Constants.BACKSPACEKEY) {
@@ -383,8 +385,6 @@ public class GameManager {
             userInput = "";
             riddleActive = false;
             feedbackActive = true;
-            dismissCheckpoint();
-            createCheckpoint();
             }
         }
     }
