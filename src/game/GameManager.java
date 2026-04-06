@@ -49,6 +49,10 @@ public class GameManager {
 
     // Checkpoint
     private CheckPoint checkpoint;
+    private void dismissCheckpoint() {
+        checkpoint = null;
+        riddleActive = false;
+    }
 
     public GameManager() {
         // Load riddles
