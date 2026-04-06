@@ -361,6 +361,17 @@ public class GameManager {
         if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
             riddleActive = true;
         }
+
+        if (riddleActive && checkpoint != null) {
+        if (checkpoint.getRiddle().attemptsFinished()) {
+             feedback = "No attempts left.\nThe answer was: "  + checkpoint.getRiddle().getAnswer();
+            userInput = "";
+            riddleActive = false;
+            feedbackActive = true;
+            dismissCheckpoint();
+            createCheckpoint();
+            }
+        }
     }
 
     // Getters
@@ -369,7 +380,7 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        
+
         if (checkpoint == null) return;
         if (checkpoint.attempt(userInput)) {
 
