@@ -68,7 +68,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     // Draw the game when the PLAYING state is reached.
     private void drawGame(Graphics2D g) {
         // Add the backgound.
-        drawBG(g);
+        game.drawBG(g, getWidth(), getHeight());
         // Add the animals and checkpoints.
         game.drawSprites(g, this);
         // Add the riddle card.
