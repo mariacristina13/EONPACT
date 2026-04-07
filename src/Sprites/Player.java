@@ -26,6 +26,7 @@ public class Player extends Sprite {// Class represents a player in the game
 			if (getY() >= Constants.GROUND_HEIGHT - getHeight()) {
 				setY(Constants.GROUND_HEIGHT - getHeight());
 				jump = false;// reset jump
+				jumpCount=0;//Reset jumpcount
 			}
 		}
 	}
