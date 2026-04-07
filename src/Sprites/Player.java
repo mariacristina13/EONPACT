@@ -4,13 +4,14 @@ import constants.Constants;
 
 public class Player extends Sprite {// Class represents a player in the game
 	public String name;
-	public boolean jump = false;
+	public int jumpCount;//Counts the number of jumps
 	public int direction;// -1left , 0 none ,+1 right
 
 	// Constructor
 	public Player(String fileName, int x, int y, int width, int height) {
 		super(fileName, x, y, width, height);
 		direction = 0;
+		jumpCount=0;
 	}
 
 	public void update() {
@@ -24,17 +25,14 @@ public class Player extends Sprite {// Class represents a player in the game
 		} else {
 			if (getY() >= Constants.GROUND_HEIGHT - getHeight()) {
 				setY(Constants.GROUND_HEIGHT - getHeight());
-				jump = false;// reset jump
+				jumpCount = 0;// reset jump
 			}
 		}
 	}
 
 	// jump
 	public void jump() {
-		if (jump == false) {
-			setY(getY() - Constants.PLAYER_JUMP_HEIGHT);
-			jump = true;
-		}
+		jumpCount=0;
 	}
 
 	// Move Left

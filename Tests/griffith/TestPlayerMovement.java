@@ -26,8 +26,9 @@ public class TestPlayerMovement {
     }
 
     @Test
-    public void testPlayerJump() {
+    public void testPlayerDoubleJump() {
         Player player = new Player(null, 20, 40, 0, 0);
+        int start=player.getY();//Before jumping
         player.jump();
         assertEquals(40 - Constants.PLAYER_JUMP_HEIGHT, player.getY());
     }
