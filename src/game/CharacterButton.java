@@ -13,19 +13,19 @@ import ui.Button;
 public class CharacterButton extends Button{
     // Class variables.
     private String name;
-    private BufferedImage image;
+    private BufferedImage characterImg;
     private boolean selected = false;
 
     public CharacterButton(String name, String fileName,int x, int y, int width, int height) {
         super(x, y, width, height);
         this.name = name;
-        loadImage(fileName);
+        loadImages(fileName);
     }
 
     // Load the images for the character menu.
-    private void loadImage(String fileName){
+    public void loadImages(String fileName){
         try{
-            image = ImageIO.read(new File("images/" + fileName));
+            characterImg = ImageIO.read(new File("images/" + fileName));
         }
         catch (IOException e){
             e.printStackTrace();
@@ -41,8 +41,8 @@ public class CharacterButton extends Button{
             g.fillRect(getX() - 5, getY() - 5, getWidth() + 10, getHeight() + 10);
         }
 
-        if (image != null){
-            g.drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
+        if (characterImg != null){
+            g.drawImage(characterImg, getX(), getY(), getWidth(), getHeight(), null);
         }
 
         g.setColor(Constants.WHITE);
@@ -63,9 +63,5 @@ public class CharacterButton extends Button{
  
     public String getName() {
         return name;
-    }
- 
-    public BufferedImage getImage() {
-        return image;
-    }
+    }    
 }
