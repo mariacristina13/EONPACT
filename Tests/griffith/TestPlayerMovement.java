@@ -43,7 +43,7 @@ public class TestPlayerMovement {
     }
     @Test
     public void testResetJumpAfterLanding() {
-    	Player player = new Player(null, 50, 40, 50, 50);
+    	Player player = new Player(null, 50, 40, 0, 0);
     	player.jump();//First jump
     	player.jump();//Second jump
     	while(player.getY() < Constants.GROUND_HEIGHT - player.getHeight()) {//While the player is above the ground

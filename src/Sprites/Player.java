@@ -22,14 +22,14 @@ public class Player extends Sprite {// Class represents a player in the game
 		}
 		if (getY() < Constants.GROUND_HEIGHT - getHeight()) {// if player is above ground
 			setY(getY() + Constants.PLAYER_FALL_SPEED);// change position to fall
-		} else {
+		} 
 			if (getY() >= Constants.GROUND_HEIGHT - getHeight()) {
 				setY(Constants.GROUND_HEIGHT - getHeight());
 				jump = false;// reset jump
 				jumpCount=0;//Reset jumpcount
 			}
 		}
-	}
+	
 
 	// jump
 	public void jump() {
