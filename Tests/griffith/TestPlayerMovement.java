@@ -41,6 +41,16 @@ public class TestPlayerMovement {
     	int afterSecond=player.getY();//Position of y after second jump
     	assertTrue(afterSecond<afterFirst);//Checks if the second jump made the player go higher than the first jump
     }
+    @Test
+    public void testResetJumpAfterLanding() {
+    	Player player = new Player(null, 50, 40, 0, 0);
+    	player.jump();//First jump
+    	player.jump();//Second jump
+    	player.setY(0);
+    	int groundY=player.getY();
+    	player.jump();
+    	assertTrue(player.getY()<groundY);
+    }
 
     @Test
     public void testUpdateDirectionIs1() {
