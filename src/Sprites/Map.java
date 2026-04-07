@@ -6,4 +6,8 @@ public class Map extends Sprite{
         super(fileName, x, y, width, height);
     }
     
+
+    
+    public void update() {
+    }
 }
