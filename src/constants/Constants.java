@@ -64,7 +64,7 @@ public final class Constants {
 
 	// Button Dimensions
 	public final static int BUTTON_WIDTH = 200;
-	public final static int BUTTON_HEIGHT = 80;
+	public final static int BUTTON_HEIGHT = 200;
 	public final static int BUTTON_SPACEING = 160;
 	public final static int BUTTON_Y = SCREEN_HEIGHT / 2;
 	public final static int BUTTON_X = SCREEN_CENTER;

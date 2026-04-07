@@ -48,8 +48,8 @@ public class CharacterMenu {
         int startX = Constants.BUTTON_X - (totalWidth / 2);
 
         // Initialise the buttons.
-        playBtn = new MenuButton("Play", startX, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-        backBtn = new MenuButton("Back", startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        playBtn = new MenuButton("Play", "play button.png", "play button hover.png", startX, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        backBtn = new MenuButton("Back", "back button.png", "back button hover.png", startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
     }
 
     // Draw the character menu.
