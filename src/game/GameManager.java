@@ -130,7 +130,7 @@ public class GameManager {
 
     // Create new checkpoint with next riddle.
     private void createCheckpoint() {
-        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60);
+        checkpoint = new CheckPoint("cabage.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60);
 
         Riddle randomRiddle = data.getRandomRiddle();
         checkpoint.setRiddle(randomRiddle);
