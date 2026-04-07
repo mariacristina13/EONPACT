@@ -78,5 +78,5 @@ public final class Constants {
 
 	// Background Dimensions
 	public final static int TILE_WIDTH = 256;
-	public final static int TILE_HIGHT = 256;
+	public final static int TILE_HEIGHT = 256;
 }
