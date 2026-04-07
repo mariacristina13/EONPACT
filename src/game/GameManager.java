@@ -350,14 +350,14 @@ public class GameManager {
     // UPDATE GAME
     public void update() {
 
-        if (riddleActive || feedbackActive) {
+        /*if (riddleActive || feedbackActive) {
             player1.setDirection(0);
             player2.setDirection(0);
         }
         if (!riddleActive && !feedbackActive) {
             player1.update();
             player2.update();
-        }
+        }*/
         // Movement disabled when answering
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
