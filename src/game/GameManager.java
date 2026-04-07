@@ -54,6 +54,9 @@ public class GameManager {
     private void dismissCheckpoint() {
         checkpoint = null;
         riddleActive = false;
+        feedbackActive = false;
+        feedback = "";
+        userInput = "";
     }
 
     public GameManager() {
@@ -280,7 +283,6 @@ public class GameManager {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
                 dismissCheckpoint();
-                createCheckpoint();
             }
         return;
     }
@@ -402,6 +404,7 @@ public class GameManager {
             userInput = "";
             riddleActive = false;
             feedbackActive = true;
+            dismissCheckpoint();
             }
         }
     }
