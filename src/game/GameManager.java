@@ -72,7 +72,7 @@ public class GameManager {
  
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
-        map = new Map("tile.png",0, 0, 64, 64);
+        map = new Map("tile.png","tile2.png", "tile3.png", "log.png", 0, 0, 64, 64);
  
         // Initialize timer.
         timer();
