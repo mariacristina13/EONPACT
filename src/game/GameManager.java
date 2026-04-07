@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import Sprites.Player;
 import Sprites.CheckPoint;
+import Sprites.Map;
 import constants.Constants;
 import riddles.Riddle;
 import riddles.RiddleData;
@@ -27,6 +28,7 @@ public class GameManager {
 
     public Player player1;
     public Player player2;
+    public Map map;
 
     // Timer variables.
     private Timer timer;
@@ -70,6 +72,7 @@ public class GameManager {
  
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
+        map = new Map("tile.png",0, 0, 64, 64);
  
         // Initialize timer.
         timer();
@@ -133,6 +136,19 @@ public class GameManager {
         checkpoint.setRiddle(randomRiddle);
         feedback = "";
         userInput = "";
+    }
+    
+    // Draw Background + Tiles
+    public void drawBG(Graphics2D graphics, int width, int height) {
+        graphics.setColor(Constants.BLUE);
+        graphics.fillRect(0, 0, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
+
+        graphics.setColor(Constants.GREEN);
+        graphics.fillRect(0, Constants.GROUND_HEIGHT, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
+
+        if (map != null) {
+            map.draw(graphics, width, height);
+        }
     }
 
     // Draw players + checkpoint
@@ -370,7 +386,8 @@ public class GameManager {
             if (isKeyHeld(Constants.DKEY))
                 player2.setDirection(0);
         }
-
+       
+        map.update();
         player1.update();
         player2.update();
 

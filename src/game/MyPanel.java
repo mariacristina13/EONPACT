@@ -201,14 +201,6 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         this.repaint();
     }
 
-    public void drawBG(Graphics2D graphics) {
-        graphics.setColor(Constants.BLUE);
-        graphics.fillRect(0, 0, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
-
-        graphics.setColor(Constants.GREEN);
-        graphics.fillRect(0, Constants.GROUND_HEIGHT, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
-
-    }
 
     // Getters
     public GameManager getGameManager() {
