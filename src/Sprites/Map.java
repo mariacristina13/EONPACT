@@ -41,11 +41,26 @@ public class Map extends Sprite{
     
     public void draw(Graphics g, int panelWidth, int panelHeight) {
     
-        int x = 50;                 
+        int x = 50;   
+        int x2 = x + Constants.TILE_WIDTH + 10;
+        int x3 = x2 + Constants.TILE_WIDTH + 10;
+        int x4 =x3 + 50;        
         int y = 100; 
     
         if (getImage() != null) {
             g.drawImage(getImage(), x, y, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, null);
+        }
+
+        if (tile2 != null) {
+            g.drawImage(tile2, x2, y+50, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, null);
+        }
+
+        if (tile3 != null) {
+            g.drawImage(tile3, x3, y-30, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, null);
+        }
+
+        if (tile4 != null) {
+            g.drawImage(tile4, x4, y+60, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, null);
         }
     }
     
