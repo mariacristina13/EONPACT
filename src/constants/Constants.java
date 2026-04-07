@@ -20,7 +20,7 @@ public final class Constants {
 	public final static int SCREEN_HEIGHT = SCREEN_SIZE.height;
 	public final static int SCREEN_WIDTH = SCREEN_SIZE.width;
 	public final static int SCREEN_CENTER = SCREEN_WIDTH /2;
-
+	
 
 	// Key codes
 	public final static int LEFTKEY = 37;
@@ -76,5 +76,11 @@ public final class Constants {
 	public final static int CHARACTER_BUTTON_Y = 300;
 	public final static int CHARACTER_BUTTON_X = SCREEN_CENTER;
 
-
+	// Background Dimensions
+	public final static int TILES_DEFAULT_SIZE = 32;
+	public final static float SCALE = 1.5f;
+	public final static int TILES_IN_WIDTH = 26;
+	public final static int TILES_IN_HEIGHT = 14;
+	public final static int TILES_SIZE = (int)(TILES_DEFAULT_SIZE*SCALE);
+	
 }
