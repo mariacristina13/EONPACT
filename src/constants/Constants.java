@@ -35,7 +35,7 @@ public final class Constants {
 
 	// Player phisics
 	public final static int PLAYER_SPEED = 10;
-    public final static int Max_Jumps=2;
+    public final static int MAX_JUMPS=2;
 	public final static int PLAYER_JUMP_HEIGHT = 70;
 	public final static int PLAYER_FALL_SPEED = 15;// The amount of pixels to move the player downwards
 
