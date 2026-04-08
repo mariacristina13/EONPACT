@@ -77,7 +77,12 @@ public class GameManager {
  
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
+        
+        //initialise map
         map = new Map("tile.png","tile2.png", "tile3.png", "log.png", 0, 0, 64, 64);
+        
+        //initialise food
+        foods = new ArrayList<Food>();
         foods.add(new Food("cabage.png", 100,Constants.GROUND_HEIGHT - 90, 60, 60)); 
         foods.add(new Food("leaf.png", 250,Constants.GROUND_HEIGHT - 90, 60, 60)); 
         foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 90, 60, 60)); 
@@ -160,7 +165,7 @@ public class GameManager {
         }
     }
 
-    // Draw players + checkpoint
+    // Draw players + checkpoint + food
     public void drawSprites(Graphics2D g, JPanel panel) {
         g.drawImage(player1.getImage(), player1.getX(), player1.getY(),
                 player1.getWidth(), player1.getHeight(), panel);
@@ -171,6 +176,11 @@ public class GameManager {
         if (checkpoint != null) {
         g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
+        }
+
+        for (Food food: foods){
+            if(food.isCollected() == false)
+                g.drawImage(food.getImage(), food.getX(), food.getY(), food.getWidth(), food.getHeight(), panel);
         }
     }
 
