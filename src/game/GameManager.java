@@ -96,9 +96,18 @@ public class GameManager {
         // Initialize timer.
         timer();
         
-        // Initialise checkpoint.
-        createCheckpoint();
+        checkpoints = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            int x = 500 + i * 300; // spread the checkpoints across the map
+            CheckPoint cp = new CheckPoint("cabage.png", x,Constants.GROUND_HEIGHT - 60, 60, 60);
+            Riddle r = data.getRandomRiddle(); // assign riddle
+                if (r != null) {
+                cp.setRiddle(r);
+            }
+
+        checkpoints.add(cp); // add to list
     }
+}
 
     // Get the images file names.
     private String getCharacterImage(String characterName) {
