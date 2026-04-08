@@ -17,6 +17,7 @@ public class MenuButton extends Button {
     private String hoveredImgFile;
     private BufferedImage normalImg;
     private BufferedImage hoveredImg;
+    private boolean hovered = false;
 
     public MenuButton(String text, String normalImgFile, String hoveredImgFile, int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -74,6 +75,14 @@ public class MenuButton extends Button {
     }
 
     // Getters and setters
+    public boolean isHovered() {
+        return hovered;
+    }
+
+    public void setHovered(boolean hovered) {
+        this.hovered = hovered;
+    }
+
     public String getText() {
         return text;
     }
