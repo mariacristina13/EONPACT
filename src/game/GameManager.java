@@ -30,9 +30,7 @@ public class GameManager {
 
     public Player player1;
     public Player player2;
-    public Food food;
     public Map map;
-
     // Timer variables.
     private Timer timer;
     private int second = 0;
@@ -180,6 +178,7 @@ public class GameManager {
         g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
         }
+        
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
@@ -433,8 +432,11 @@ public void checkCollision(Player player,Sprite other) {
             dismissCheckpoint();
             }
         }
-        //check collision
-        checkCollision(player1,food);
+        //Check collision
+        for(Food food:foods) {//Loop because food is an arraylist
+        	checkCollision(player1,food);
+        	checkCollision(player2,food);
+        }
     }
 
     // Getters
