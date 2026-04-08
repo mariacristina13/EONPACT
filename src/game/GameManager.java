@@ -29,7 +29,7 @@ public class GameManager {
 
     public Player player1;
     public Player player2;
-    public Map map;
+    public ArrayList<Map>  map;
     public ArrayList<Food> foods;
 
     // Timer variables.
@@ -79,14 +79,19 @@ public class GameManager {
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
         
         //initialise map
-        map = new Map("tile.png","tile2.png", "tile3.png", "log.png", 0, 0, 64, 64);
+        map = new ArrayList<Map>();
+        map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png", Constants.TILE_WIDTH + 60, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 70, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("log.png", Constants.TILE_WIDTH + 50, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+
         
         //initialise food
         foods = new ArrayList<Food>();
         foods.add(new Food("cabage.png", 100,Constants.GROUND_HEIGHT - 90, 60, 60)); 
         foods.add(new Food("leaf.png", 250,Constants.GROUND_HEIGHT - 90, 60, 60)); 
         foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 90, 60, 60)); 
-        foods.add(new Food("bamboo.png", 600,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("bamboo.png", 20,Constants.GROUND_HEIGHT, 60, 60)); 
  
         // Initialize timer.
         timer();
@@ -153,15 +158,16 @@ public class GameManager {
     }
     
     // Draw Background + Tiles
-    public void drawBG(Graphics2D graphics, int width, int height) {
+    public void drawBG(Graphics2D graphics, JPanel panel) {
         graphics.setColor(Constants.BLUE);
         graphics.fillRect(0, 0, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
 
         graphics.setColor(Constants.GREEN);
         graphics.fillRect(0, Constants.GROUND_HEIGHT, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
 
-        if (map != null) {
-            map.draw(graphics, width, height);
+        for (Map tile: map)
+        if (tile != null) {
+           graphics.drawImage(tile.getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), panel);
         }
     }
 
@@ -411,7 +417,6 @@ public class GameManager {
                 player2.setDirection(0);
         }
        
-        map.update();
         player1.update();
         player2.update();
 
