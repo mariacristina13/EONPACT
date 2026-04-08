@@ -55,7 +55,7 @@ public final class Constants {
 
 	// Fonts
 	public final static Font ATTEMPTS_FONT = new Font("SansSerif", Font.ITALIC, 10);
-	public final static Font QUESTION_FONT = new Font("Monospaced", Font.PLAIN, 16);
+	public final static Font QUESTION_FONT = new Font("SansSerif", Font.PLAIN, 16);
 	public final static Font FINAL_FEEDBACK = new Font("Monospaced", Font.BOLD, 20);
 	public final static Font TIMER_FONT = new Font("Monospaced", Font.BOLD, 25);
 	public final static Font BUTTON_FONT = new Font("Arial", Font.BOLD, 20);
