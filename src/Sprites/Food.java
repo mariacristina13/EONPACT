@@ -12,4 +12,8 @@ public class Food extends Sprite{
         return collected;
     }
 
+    public void setCollected(boolean collected){
+        this.collected = collected;
+    }
+
 }
