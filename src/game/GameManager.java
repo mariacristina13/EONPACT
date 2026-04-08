@@ -155,27 +155,6 @@ public class GameManager {
 
         timer.start();
     }
-
-    // Create new checkpoint with next riddle.
-    private void createCheckpoint() {
-
-        int newX = checkpoint == null ? 500 : checkpoint.getX() + 300; // move forward
-        checkpoint = new CheckPoint("cabage.png", newX, Constants.SCREEN_SIZE.height / 3, 60, 60);
-        Riddle randomRiddle = data.getRandomRiddle();
-        if (randomRiddle == null)
-            return;
-        checkpoint.setRiddle(randomRiddle);
-        int rand = (int)(Math.random() * 3);//random type
-        if (rand == 0) {
-            checkpoint.setType("normal"); // normal checkpoint
-        } else if (rand == 1) {
-            checkpoint.setType("fast"); // time speeds up
-        } else {
-            checkpoint.setType("slow"); // time slows down
-        }
-        userInput = "";
-        feedback = "";
-    }
     
     // Draw Background + Tiles
     public void drawBG(Graphics2D graphics, JPanel panel) {
@@ -326,10 +305,19 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        if (feedbackActive) {
+       if (feedbackActive) {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
-                dismissCheckpoint();
+                checkpoints.remove(activeCheckpoint); // remove old checkpoint
+                int newX = activeCheckpoint.getX() + 1500;// create new checkpoint further ahead
+                CheckPoint newCP = new CheckPoint("cabage.png", newX,
+                Constants.GROUND_HEIGHT - 60, 60, 60);
+                Riddle r = data.getRandomRiddle();
+                if (r != null) {
+                    newCP.setRiddle(r);
+                }
+            checkpoints.add(newCP); // add new checkpoint
+            activeCheckpoint = null; // reset
             }
         return;
     }
