@@ -68,7 +68,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     // Draw the game when the PLAYING state is reached.
     private void drawGame(Graphics2D g) {
         // Add the backgound.
-        game.drawBG(g, getWidth(), getHeight());
+        game.drawBG(g, this);
         // Add the animals and checkpoints.
         game.drawSprites(g, this);
         // Add the riddle card.
@@ -133,6 +133,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                     currentState = GameStates.CHARACTER_SELECT;
                 }
                 if (menuScreen.quitButtonClicked(e)) {
+                    // https://forums.oracle.com/ords/apexds/post/closing-a-swing-app-through-menu-file-exit-5345
                     System.exit(0);
                 }
                 break;

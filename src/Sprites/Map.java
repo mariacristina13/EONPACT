@@ -10,14 +10,14 @@ import javax.imageio.ImageIO;
 import constants.Constants;
 public class Map extends Sprite{
 
-    private BufferedImage tile2;
-    private BufferedImage tile3;
-    private BufferedImage tile4;
+    //private BufferedImage tile2;
+    //private BufferedImage tile3;
+    //private BufferedImage tile4;
 
 
-    public Map(String fileName, String tile2FileName, String tile3FileName, String tile4FileName, int x, int y, int width, int height) {
+    public Map(String fileName,  int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
-        try {
+        /* try {
             tile2 = ImageIO.read(new File("images/" + tile2FileName));
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,9 +36,10 @@ public class Map extends Sprite{
         } catch (IOException e) {
             e.printStackTrace();
             tile3 = null;
-        }
+        } */
     }
     
+    /*  
     public void draw(Graphics g, int panelWidth, int panelHeight) {
     
         int x = 50;   
@@ -62,7 +63,7 @@ public class Map extends Sprite{
         if (tile4 != null) {
             g.drawImage(tile4, x4, y+60, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, null);
         }
-    }
+    } */
     
 
     public void update() {

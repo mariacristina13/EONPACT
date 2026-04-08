@@ -8,7 +8,7 @@ public abstract class Button {
     private int y;
     private int width;
     private int height;
-    private boolean hovered = false;
+    
    
     // Initialise class variables.
     public Button(int x, int y, int width, int height) {
@@ -26,15 +26,10 @@ public abstract class Button {
         return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
-     // Getters
-    public boolean isHovered() {
-        return hovered;
-    }
-
+    // Getters
     public int getX() {
         return x;
     }
-
     
     public int getY() {
         return y;
@@ -50,10 +45,6 @@ public abstract class Button {
     }
 
     // Setters
-    public void setHovered(boolean hovered) {
-        this.hovered = hovered;
-    }
-
     public void setPosition(int x, int y){
         this.x = x;
         this.y = y;
