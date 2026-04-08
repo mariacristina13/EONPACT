@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import Sprites.Player;
 import Sprites.CheckPoint;
+import Sprites.Food;
 import Sprites.Map;
 import constants.Constants;
 import riddles.Riddle;
@@ -29,6 +30,7 @@ public class GameManager {
     public Player player1;
     public Player player2;
     public Map map;
+    public ArrayList<Food> foods;
 
     // Timer variables.
     private Timer timer;
@@ -76,6 +78,10 @@ public class GameManager {
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
         map = new Map("tile.png","tile2.png", "tile3.png", "log.png", 0, 0, 64, 64);
+        foods.add(new Food("cabage.png", 100,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("leaf.png", 250,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("bamboo.png", 600,Constants.GROUND_HEIGHT - 90, 60, 60)); 
  
         // Initialize timer.
         timer();
