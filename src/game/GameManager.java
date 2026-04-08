@@ -361,7 +361,15 @@ public class GameManager {
     }
     
 public void checkCollision(Player player,Sprite other) {
-	
+	//Checks if the right edge of the player is between the left and right edge of the other object
+		if(player.getX() + player.getWidth() >= other.getX() && player.getX() + player.getWidth()  <= other.getX() + other.getWidth()){
+			//bottom edge of the player between top and bottom of the other edge
+			if(	player.getY()+ player.getHeight()  >= other.getY() && player.getY() + player.getHeight()  <= other.getY() + other.getHeight()){
+				if(other instanceof Food) {
+					((Food)other).setCollected(true);//Mark food as collected so it disappears
+				}
+			}
+		}
 }
 
     public boolean isKeyHeld(int keyCode) {
