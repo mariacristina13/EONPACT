@@ -58,7 +58,7 @@ public class TestPlayerMovement {
 @Test
 public void testCollisionWithFood() {
 	GameManager game=new GameManager();
-	Player player = new Player(null, 50, 40, 0, 0);
+	Player player = new Player(null, 50, 40, 30, 40);
 	Food food=new Food(null,70,70,50,50);
 	game.checkCollision(player,food);
 	assertTrue(food.isCollected());
