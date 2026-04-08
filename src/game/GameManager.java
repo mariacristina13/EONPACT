@@ -30,6 +30,7 @@ public class GameManager {
 
     public Player player1;
     public Player player2;
+    public Food food;
     public Map map;
 
     // Timer variables.
@@ -432,6 +433,8 @@ public void checkCollision(Player player,Sprite other) {
             dismissCheckpoint();
             }
         }
+        //check collision
+        checkCollision(player1,food);
     }
 
     // Getters
