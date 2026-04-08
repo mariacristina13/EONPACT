@@ -1,6 +1,7 @@
 package griffith;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -30,6 +31,27 @@ public class TestPlayerMovement {
         Player player = new Player(null, 20, 40, 0, 0);
         player.jump();
         assertEquals(40 - Constants.PLAYER_JUMP_HEIGHT, player.getY());
+    }
+    @Test
+    public void testDoubleJump() {
+    	Player player = new Player(null, 50, 40, 0, 0);
+    	player.jump();//First jump
+    	int afterFirst=player.getY();//Position of y after first jump
+    	player.jump();//Second jump
+    	int afterSecond=player.getY();//Position of y after second jump
+    	assertTrue(afterSecond<afterFirst);//Checks if the second jump made the player go higher than the first jump
+    }
+    @Test
+    public void testResetJumpAfterLanding() {
+    	Player player = new Player(null, 50, 40, 0, 0);
+    	player.jump();//First jump
+    	player.jump();//Second jump
+    	while(player.getY() < Constants.GROUND_HEIGHT - player.getHeight()) {//While the player is above the ground
+    		player.update();//Reset the jump count
+    	}
+    	int groundY=player.getY();//value of y before jumping again
+    	player.jump();//Player jumps again
+    	assertTrue(player.getY()<groundY);//checks if the jump works again
     }
 
     @Test

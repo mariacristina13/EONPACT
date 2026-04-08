@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import Sprites.Player;
 import Sprites.CheckPoint;
+import Sprites.Map;
 import constants.Constants;
 import riddles.Riddle;
 import riddles.RiddleData;
@@ -27,6 +28,7 @@ public class GameManager {
 
     public Player player1;
     public Player player2;
+    public Map map;
 
     // Timer variables.
     private Timer timer;
@@ -52,6 +54,9 @@ public class GameManager {
     private void dismissCheckpoint() {
         checkpoint = null;
         riddleActive = false;
+        feedbackActive = false;
+        feedback = "";
+        userInput = "";
     }
 
     public GameManager() {
@@ -70,6 +75,7 @@ public class GameManager {
  
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
+        map = new Map("tile.png","tile2.png", "tile3.png", "log.png", 0, 0, 64, 64);
  
         // Initialize timer.
         timer();
@@ -127,12 +133,36 @@ public class GameManager {
 
     // Create new checkpoint with next riddle.
     private void createCheckpoint() {
-        checkpoint = new CheckPoint("checkpoint.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60);
 
+        int newX = checkpoint == null ? 500 : checkpoint.getX() + 300; // move forward
+        checkpoint = new CheckPoint("cabage.png", newX, Constants.SCREEN_SIZE.height / 3, 60, 60);
         Riddle randomRiddle = data.getRandomRiddle();
+        if (randomRiddle == null)
+            return;
         checkpoint.setRiddle(randomRiddle);
-        feedback = "";
+        int rand = (int)(Math.random() * 3);//random type
+        if (rand == 0) {
+            checkpoint.setType("normal"); // normal checkpoint
+        } else if (rand == 1) {
+            checkpoint.setType("fast"); // time speeds up
+        } else {
+            checkpoint.setType("slow"); // time slows down
+        }
         userInput = "";
+        feedback = "";
+    }
+    
+    // Draw Background + Tiles
+    public void drawBG(Graphics2D graphics, int width, int height) {
+        graphics.setColor(Constants.BLUE);
+        graphics.fillRect(0, 0, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
+
+        graphics.setColor(Constants.GREEN);
+        graphics.fillRect(0, Constants.GROUND_HEIGHT, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
+
+        if (map != null) {
+            map.draw(graphics, width, height);
+        }
     }
 
     // Draw players + checkpoint
@@ -264,7 +294,6 @@ public class GameManager {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
                 dismissCheckpoint();
-                createCheckpoint();
             }
         return;
     }
@@ -350,14 +379,14 @@ public class GameManager {
     // UPDATE GAME
     public void update() {
 
-        if (riddleActive || feedbackActive) {
+        /*if (riddleActive || feedbackActive) {
             player1.setDirection(0);
             player2.setDirection(0);
         }
         if (!riddleActive && !feedbackActive) {
             player1.update();
             player2.update();
-        }
+        }*/
         // Movement disabled when answering
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
@@ -370,7 +399,8 @@ public class GameManager {
             if (isKeyHeld(Constants.DKEY))
                 player2.setDirection(0);
         }
-
+       
+        map.update();
         player1.update();
         player2.update();
 
@@ -385,6 +415,7 @@ public class GameManager {
             userInput = "";
             riddleActive = false;
             feedbackActive = true;
+            dismissCheckpoint();
             }
         }
     }
@@ -395,25 +426,22 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        if (checkpoint == null) return;
-
         if (checkpoint.attempt(userInput)) {
             feedback = "Correct!";
             userInput = "";
-            riddleActive = false;
-            feedbackActive = true;
-        } else {
-            userInput = "";
-            if (checkpoint.getRiddle().attemptsFinished()) {
-                feedback = "No attempts left.\nThe answer was: " 
-                     + checkpoint.getRiddle().getAnswer();
-                riddleActive = false;
-                feedbackActive = true;
-            } else {
-                feedback = "Wrong answer, try again.";
-           }
+        //apply the timer effect
+        if (checkpoint.getType().equals("fast")) {
+            second -= 10; // lose time
+            feedback += "\nTime sped up! (-10s)";
+        } 
+        else if (checkpoint.getType().equals("slow")) {
+            second += 10; // gain time
+            feedback += "\nTime slowed! (+10s)";
         }
+        riddleActive = false;
+        feedbackActive = true;
     }
+}
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
