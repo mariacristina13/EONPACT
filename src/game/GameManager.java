@@ -219,7 +219,7 @@ public class GameManager {
         if (!riddleActive && !feedbackActive)
             return;
 
-        Riddle riddle = checkpoint.getRiddle();
+        Riddle riddle = activeCheckpoint.getRiddle(); // use active checkpoint
 
         int cardW = 500;
         int cardH = 350;
@@ -464,22 +464,21 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        if (checkpoint.attempt(userInput)) {
-            feedback = "Correct!";
-            userInput = "";
-        //apply the timer effect
-        if (checkpoint.getType().equals("fast")) {
-            second -= 10; // lose time
-            feedback += "\nTime sped up! (-10s)";
-        } 
-        else if (checkpoint.getType().equals("slow")) {
-            second += 10; // gain time
-            feedback += "\nTime slowed! (+10s)";
+        if (activeCheckpoint == null) return; // safety
+            boolean correct = activeCheckpoint.attempt(userInput); // check answer
+            userInput = ""; // clear input
+            if (correct) {
+                feedback = "{Correct}";
+            } else {
+                feedback = "{Wrong}";
+            }
+        // if no attempts left
+        if (activeCheckpoint.getRiddle().attemptsFinished()) {
+            feedback += "\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
         }
         riddleActive = false;
         feedbackActive = true;
     }
-}
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
