@@ -135,12 +135,23 @@ public class GameManager {
 
     // Create new checkpoint with next riddle.
     private void createCheckpoint() {
-        checkpoint = new CheckPoint("cabage.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60);
 
+        int newX = checkpoint == null ? 500 : checkpoint.getX() + 300; // move forward
+        checkpoint = new CheckPoint("cabage.png", newX, Constants.SCREEN_SIZE.height / 3, 60, 60);
         Riddle randomRiddle = data.getRandomRiddle();
+        if (randomRiddle == null)
+            return;
         checkpoint.setRiddle(randomRiddle);
-        feedback = "";
+        int rand = (int)(Math.random() * 3);//random type
+        if (rand == 0) {
+            checkpoint.setType("normal"); // normal checkpoint
+        } else if (rand == 1) {
+            checkpoint.setType("fast"); // time speeds up
+        } else {
+            checkpoint.setType("slow"); // time slows down
+        }
         userInput = "";
+        feedback = "";
     }
     
     // Draw Background + Tiles
@@ -429,25 +440,22 @@ public void checkCollision(Player player,Sprite other) {
     }
 
     private void submitAnswer() {
-        if (checkpoint == null) return;
-
         if (checkpoint.attempt(userInput)) {
             feedback = "Correct!";
             userInput = "";
-            riddleActive = false;
-            feedbackActive = true;
-        } else {
-            userInput = "";
-            if (checkpoint.getRiddle().attemptsFinished()) {
-                feedback = "No attempts left.\nThe answer was: " 
-                     + checkpoint.getRiddle().getAnswer();
-                riddleActive = false;
-                feedbackActive = true;
-            } else {
-                feedback = "Wrong answer, try again.";
-           }
+        //apply the timer effect
+        if (checkpoint.getType().equals("fast")) {
+            second -= 10; // lose time
+            feedback += "\nTime sped up! (-10s)";
+        } 
+        else if (checkpoint.getType().equals("slow")) {
+            second += 10; // gain time
+            feedback += "\nTime slowed! (+10s)";
         }
+        riddleActive = false;
+        feedbackActive = true;
     }
+}
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
