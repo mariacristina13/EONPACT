@@ -52,9 +52,9 @@ public class GameManager {
 
 
     // Checkpoint
-    private CheckPoint checkpoint;
+    private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
+    private CheckPoint activeCheckpoint;       // currently triggered the checkpoint
     private void dismissCheckpoint() {
-        checkpoint = null;
         riddleActive = false;
         feedbackActive = false;
         feedback = "";
