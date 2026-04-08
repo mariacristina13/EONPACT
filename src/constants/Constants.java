@@ -16,10 +16,10 @@ public final class Constants {
 
 	// Screen dimensions
 	public final static Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-	public final static int GROUND_HEIGHT = SCREEN_SIZE.height / 3;
 	public final static int SCREEN_HEIGHT = 720;
 	public final static int SCREEN_WIDTH = 1280;
 	public final static int SCREEN_CENTER = SCREEN_WIDTH /2;
+	public final static int GROUND_HEIGHT = SCREEN_HEIGHT - 130;
 	
 
 	// Key codes
