@@ -426,25 +426,22 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        if (checkpoint == null) return;
-
         if (checkpoint.attempt(userInput)) {
             feedback = "Correct!";
             userInput = "";
-            riddleActive = false;
-            feedbackActive = true;
-        } else {
-            userInput = "";
-            if (checkpoint.getRiddle().attemptsFinished()) {
-                feedback = "No attempts left.\nThe answer was: " 
-                     + checkpoint.getRiddle().getAnswer();
-                riddleActive = false;
-                feedbackActive = true;
-            } else {
-                feedback = "Wrong answer, try again.";
-           }
+        //apply the timer effect
+        if (checkpoint.getType().equals("fast")) {
+            second -= 10; // lose time
+            feedback += "\nTime sped up! (-10s)";
+        } 
+        else if (checkpoint.getType().equals("slow")) {
+            second += 10; // gain time
+            feedback += "\nTime slowed! (+10s)";
         }
+        riddleActive = false;
+        feedbackActive = true;
     }
+}
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
