@@ -133,6 +133,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                     currentState = GameStates.CHARACTER_SELECT;
                 }
                 if (menuScreen.quitButtonClicked(e)) {
+                    // https://forums.oracle.com/ords/apexds/post/closing-a-swing-app-through-menu-file-exit-5345
                     System.exit(0);
                 }
                 break;
