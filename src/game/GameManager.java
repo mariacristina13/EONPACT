@@ -199,9 +199,8 @@ public class GameManager {
         g.drawImage(player2.getImage(), player2.getX(), player2.getY(),
                 player2.getWidth(), player2.getHeight(), panel);
 
-        if (checkpoint != null) {
-        g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
-                checkpoint.getWidth(), checkpoint.getHeight(), panel);
+        for (CheckPoint cp : checkpoints) { // loop all checkpoints
+            g.drawImage(cp.getImage(), cp.getX(), cp.getY(), cp.getWidth(), cp.getHeight(), panel);
         }
 
         // draw food
