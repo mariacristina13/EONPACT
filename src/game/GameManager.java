@@ -195,8 +195,9 @@ public class GameManager {
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive && !feedbackActive)
-            return;
+        
+        if ((!riddleActive && !feedbackActive) || activeCheckpoint == null)
+            return; // prevent crash if no active checkpoint
 
         Riddle riddle = activeCheckpoint.getRiddle(); // use active checkpoint
 
@@ -429,21 +430,6 @@ public class GameManager {
        
         player1.update();
         player2.update();
-
-        // Trigger checkpoint
-        if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
-            riddleActive = true;
-        }
-
-        if (riddleActive && checkpoint != null) {
-        if (checkpoint.getRiddle().attemptsFinished()) {
-             feedback = "No attempts left.\nThe answer was: "  + checkpoint.getRiddle().getAnswer();
-            userInput = "";
-            riddleActive = false;
-            feedbackActive = true;
-            dismissCheckpoint();
-            }
-        }
     }
 
     // Getters
