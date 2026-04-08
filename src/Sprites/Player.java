@@ -4,7 +4,8 @@ import constants.Constants;
 
 public class Player extends Sprite {// Class represents a player in the game
 	public String name;
-	public boolean jump = false;
+	public boolean jump;
+	public int jumpCount;
 	public int direction;// -1left , 0 none ,+1 right
 
 	// Constructor
@@ -21,18 +22,20 @@ public class Player extends Sprite {// Class represents a player in the game
 		}
 		if (getY() < Constants.GROUND_HEIGHT - getHeight()) {// if player is above ground
 			setY(getY() + Constants.PLAYER_FALL_SPEED);// change position to fall
-		} else {
+		} 
 			if (getY() >= Constants.GROUND_HEIGHT - getHeight()) {
 				setY(Constants.GROUND_HEIGHT - getHeight());
 				jump = false;// reset jump
+				jumpCount=0;//Reset jumpcount
 			}
 		}
-	}
+	
 
 	// jump
 	public void jump() {
-		if (jump == false) {
-			setY(getY() - Constants.PLAYER_JUMP_HEIGHT);
+		if (jumpCount<Constants.MAX_JUMPS) {//If the count is less than the jumps allowed
+			setY(getY() - Constants.PLAYER_JUMP_HEIGHT);//Y becomes current y - how high the player should jump
+			jumpCount++;//count increases
 			jump = true;
 		}
 	}
