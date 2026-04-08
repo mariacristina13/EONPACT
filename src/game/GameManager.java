@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import Sprites.Player;
 import Sprites.CheckPoint;
+import Sprites.Food;
 import Sprites.Map;
 import constants.Constants;
 import riddles.Riddle;
@@ -28,7 +29,8 @@ public class GameManager {
 
     public Player player1;
     public Player player2;
-    public Map map;
+    public ArrayList<Map>  map;
+    public ArrayList<Food> foods;
 
     // Timer variables.
     private Timer timer;
@@ -75,7 +77,21 @@ public class GameManager {
  
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
-        map = new Map("tile.png","tile2.png", "tile3.png", "log.png", 0, 0, 64, 64);
+        
+        //initialise map
+        map = new ArrayList<Map>();
+        map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png", Constants.TILE_WIDTH + 60, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 70, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("log.png", Constants.TILE_WIDTH + 50, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+
+        
+        //initialise food
+        foods = new ArrayList<Food>();
+        foods.add(new Food("cabage.png", 100,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("leaf.png", 250,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("bamboo.png", 20,Constants.GROUND_HEIGHT, 60, 60)); 
  
         // Initialize timer.
         timer();
@@ -153,19 +169,20 @@ public class GameManager {
     }
     
     // Draw Background + Tiles
-    public void drawBG(Graphics2D graphics, int width, int height) {
+    public void drawBG(Graphics2D graphics, JPanel panel) {
         graphics.setColor(Constants.BLUE);
         graphics.fillRect(0, 0, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
 
         graphics.setColor(Constants.GREEN);
         graphics.fillRect(0, Constants.GROUND_HEIGHT, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
 
-        if (map != null) {
-            map.draw(graphics, width, height);
+        for (Map tile: map)
+        if (tile != null) {
+           graphics.drawImage(tile.getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), panel);
         }
     }
 
-    // Draw players + checkpoint
+    // Draw players + checkpoint + food
     public void drawSprites(Graphics2D g, JPanel panel) {
         g.drawImage(player1.getImage(), player1.getX(), player1.getY(),
                 player1.getWidth(), player1.getHeight(), panel);
@@ -177,6 +194,17 @@ public class GameManager {
         g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
         }
+
+        // draw food
+        for (Food food: foods){
+            if(food.isCollected() == false)
+                g.drawImage(food.getImage(), food.getX(), food.getY(), food.getWidth(), food.getHeight(), panel);
+        }
+
+        //draw score
+        //g.setColor(Constants.GREEN);
+        //g.setFont(Constants.TIMER_FONT);
+        //g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20, 20);
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
@@ -400,7 +428,6 @@ public class GameManager {
                 player2.setDirection(0);
         }
        
-        map.update();
         player1.update();
         player2.update();
 
