@@ -34,10 +34,10 @@ public final class Constants {
 	public final static int WKEY = 87;// Reference: https://stackoverflow.com/questions/15313469/java-keyboard-keycodes-list
 
 	// Player phisics
-	public final static int PLAYER_SPEED = 4;
-
+	public final static int PLAYER_SPEED = 10;
+    public final static int MAX_JUMPS=2;
 	public final static int PLAYER_JUMP_HEIGHT = 70;
-	public final static int PLAYER_FALL_SPEED = 8;// The amount of pixels to move the player downwards
+	public final static int PLAYER_FALL_SPEED = 15;// The amount of pixels to move the player downwards
 
 	// Colours
 	public final static Color BLUE = new Color(174, 227, 245);
