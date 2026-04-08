@@ -80,12 +80,13 @@ public class GameManager {
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
         
+        //imitialise background
         bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         //initialise map
         map = new ArrayList<Map>();
         map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile2.png", Constants.TILE_WIDTH + 60, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 70, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 40, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("log.png", Constants.TILE_WIDTH + 50, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
 
         
