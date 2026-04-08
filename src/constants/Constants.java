@@ -73,7 +73,7 @@ public final class Constants {
 	public final static int CHARACTER_WIDTH = 100;
 	public final static int CHARACTER_HEIGHT = 100;
 	public final static int CHARACTER_SPACEING = 30;
-	public final static int CHARACTER_BUTTON_Y = 300;
+	public final static int CHARACTER_BUTTON_Y = 250;
 	public final static int CHARACTER_BUTTON_X = SCREEN_CENTER;
 
 	// Background Dimensions
