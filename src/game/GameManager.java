@@ -178,10 +178,16 @@ public class GameManager {
                 checkpoint.getWidth(), checkpoint.getHeight(), panel);
         }
 
+        // draw food
         for (Food food: foods){
             if(food.isCollected() == false)
                 g.drawImage(food.getImage(), food.getX(), food.getY(), food.getWidth(), food.getHeight(), panel);
         }
+
+        //draw score
+        //g.setColor(Constants.GREEN);
+        //g.setFont(Constants.TIMER_FONT);
+        //g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20, 20);
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
