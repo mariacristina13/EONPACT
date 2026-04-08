@@ -62,8 +62,8 @@ public class Player extends Sprite {// Class represents a player in the game
 	public int getDirection() {
 		return direction;
 	}
-
 	public void setDirection(int direction) {
 		this.direction = direction;
 	}
+	
 }

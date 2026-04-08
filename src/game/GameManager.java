@@ -354,10 +354,9 @@ public void checkCollision(Player player,Sprite other) {
 	if(player.getX() + player.getWidth() >= other.getX() && player.getX() + player.getWidth()  <= other.getX() + other.getWidth()){
 		//bottom edge of the player between top and bottom of the other edge
 		if(	player.getY()+ player.getHeight()  >= other.getY() && player.getY() + player.getHeight()  <= other.getY() + other.getHeight()){
-			/*if(other instanceof Food) {
-				****!!!!!!Increase food count!!!!!!!!!************
+			if(other instanceof Food) {
+				
 			}
-			*/
 		}
 	}
 }
