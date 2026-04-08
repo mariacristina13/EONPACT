@@ -133,12 +133,23 @@ public class GameManager {
 
     // Create new checkpoint with next riddle.
     private void createCheckpoint() {
-        checkpoint = new CheckPoint("cabage.png", 500, Constants.SCREEN_SIZE.height / 3, 60, 60);
 
+        int newX = checkpoint == null ? 500 : checkpoint.getX() + 300; // move forward
+        checkpoint = new CheckPoint("cabage.png", newX, Constants.SCREEN_SIZE.height / 3, 60, 60);
         Riddle randomRiddle = data.getRandomRiddle();
+        if (randomRiddle == null)
+            return;
         checkpoint.setRiddle(randomRiddle);
-        feedback = "";
+        int rand = (int)(Math.random() * 3);//random type
+        if (rand == 0) {
+            checkpoint.setType("normal"); // normal checkpoint
+        } else if (rand == 1) {
+            checkpoint.setType("fast"); // time speeds up
+        } else {
+            checkpoint.setType("slow"); // time slows down
+        }
         userInput = "";
+        feedback = "";
     }
     
     // Draw Background + Tiles
