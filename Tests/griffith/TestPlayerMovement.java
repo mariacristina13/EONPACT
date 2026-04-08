@@ -5,8 +5,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import Sprites.Food;
 import Sprites.Player;
 import constants.Constants;
+import game.GameManager;
 
 public class TestPlayerMovement {
     // PlayerMovement class Test
@@ -53,7 +55,15 @@ public class TestPlayerMovement {
     	player.jump();//Player jumps again
     	assertTrue(player.getY()<groundY);//checks if the jump works again
     }
-
+@Test
+public void testCollisionWithFood() {
+	GameManager game=new GameManager();
+	Player player = new Player(null, 50, 40, 0, 0);
+	Food food=new Food(null,70,70,50,50);
+	game.checkCollision(player,food);
+	assertTrue(food.isCollected());
+}
+    
     @Test
     public void testUpdateDirectionIs1() {
         Player player = new Player(null, 20, 40, 0, 0);
