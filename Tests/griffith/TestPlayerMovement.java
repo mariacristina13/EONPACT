@@ -1,12 +1,18 @@
 package griffith;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.Test;
 
+import Sprites.Food;
+import Sprites.Map;
 import Sprites.Player;
 import constants.Constants;
+import game.GameManager;
 
 public class TestPlayerMovement {
     // PlayerMovement class Test
@@ -53,7 +59,29 @@ public class TestPlayerMovement {
     	player.jump();//Player jumps again
     	assertTrue(player.getY()<groundY);//checks if the jump works again
     }
-
+@Test
+public void testCollisionWithFood() {
+	GameManager game=new GameManager();
+	Player player = new Player(null, 50, 40, 30, 40);
+	Food food=new Food(null,70,70,50,50);
+	game.checkCollision(player,food);
+	assertTrue(food.isCollected());
+}
+@Test 
+public void testPlayerLandingOnPlatform(){
+	//Platform
+	Map tile=new Map(null,100,150,50,50);
+	ArrayList<Map> map=new ArrayList<>();
+	map.add(tile);
+	//Player
+	Player player=new Player(null, 120, 130, 30, 20);
+	player.update();
+	assertEquals(130,player.getY());
+	assertFalse(player.jump);
+	assertEquals(0,player.getJumpCount());
+	
+}
+    
     @Test
     public void testUpdateDirectionIs1() {
         Player player = new Player(null, 20, 40, 0, 0);
