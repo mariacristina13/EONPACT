@@ -22,6 +22,9 @@ public class Player extends Sprite {// Class represents a player in the game
 		} else if (direction == -1) {
 			moveLeft();
 		}
+		if(tileLanding(map)) {
+			return; 
+		}
 		if (getY() < Constants.GROUND_HEIGHT - getHeight()) {// if player is above ground
 			setY(getY() + Constants.PLAYER_FALL_SPEED);// change position to fall
 		} 
@@ -30,9 +33,7 @@ public class Player extends Sprite {// Class represents a player in the game
 				jump = false;// reset jump
 				jumpCount=0;//Reset jumpcount
 			}
-			if(!tileLanding(map)) {
-				setY(getY()+Constants.PLAYER_FALL_SPEED);
-			}
+			
 		}
 	
 
