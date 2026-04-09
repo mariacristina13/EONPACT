@@ -53,8 +53,8 @@ public class Player extends Sprite {// Class represents a player in the game
 	// Move right
 	public int moveRight() {
 		int newX=getX()+Constants.PLAYER_SPEED;//new position
-		if (newX + getWidth()> Constants.SCREEN_WIDTH) {//Prevents going off the right edge
-			newX=Constants.SCREEN_WIDTH - getWidth();//Stop at the edge
+		if (newX + getWidth()> Constants.SCREEN_WIDTH) {//Prevents going off the background
+			newX=Constants.SCREEN_WIDTH - getWidth();//Stop at the background
 		}
 		setX(newX);
 		return getX();
