@@ -56,12 +56,6 @@ public class GameManager {
     // Checkpoint
     private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
     private CheckPoint activeCheckpoint;       // currently triggered the checkpoint
-    private void dismissCheckpoint() {
-        riddleActive = false;
-        feedbackActive = false;
-        feedback = "";
-        userInput = "";
-    }
 
     public GameManager() {
         // Load riddles
@@ -159,27 +153,6 @@ public class GameManager {
 
         timer.start();
     }
-
-    // Create new checkpoint with next riddle.
-    private void createCheckpoint() {
-
-        int newX = checkpoint == null ? 500 : checkpoint.getX() + 300; // move forward
-        checkpoint = new CheckPoint("cabage.png", newX, Constants.SCREEN_SIZE.height / 3, 60, 60);
-        Riddle randomRiddle = data.getRandomRiddle();
-        if (randomRiddle == null)
-            return;
-        checkpoint.setRiddle(randomRiddle);
-        int rand = (int)(Math.random() * 3);//random type
-        if (rand == 0) {
-            checkpoint.setType("normal"); // normal checkpoint
-        } else if (rand == 1) {
-            checkpoint.setType("fast"); // time speeds up
-        } else {
-            checkpoint.setType("slow"); // time slows down
-        }
-        userInput = "";
-        feedback = "";
-    }
     
     // Draw Background + Tiles
     public void drawBG(Graphics2D graphics, JPanel panel) {
@@ -216,10 +189,11 @@ public class GameManager {
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive && !feedbackActive)
-            return;
 
-        Riddle riddle = checkpoint.getRiddle();
+        if ((!riddleActive && !feedbackActive) || activeCheckpoint == null)
+            return; // prevent crash if no active checkpoint
+
+        Riddle riddle = activeCheckpoint.getRiddle(); // use active checkpoint
 
         int cardW = 500;
         int cardH = 350;
@@ -326,10 +300,19 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        if (feedbackActive) {
+       if (feedbackActive) {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
-                dismissCheckpoint();
+                checkpoints.remove(activeCheckpoint); // remove old checkpoint
+                int newX = activeCheckpoint.getX() + 1500;// create new checkpoint further ahead
+                CheckPoint newCP = new CheckPoint("cabage.png", newX,
+                Constants.GROUND_HEIGHT - 60, 60, 60);
+                Riddle r = data.getRandomRiddle();
+                if (r != null) {
+                    newCP.setRiddle(r);
+                }
+            checkpoints.add(newCP); // add new checkpoint
+            activeCheckpoint = null; // reset
             }
         return;
     }
@@ -419,14 +402,13 @@ public class GameManager {
     // UPDATE GAME
     public void update() {
 
-        /*if (riddleActive || feedbackActive) {
-            player1.setDirection(0);
-            player2.setDirection(0);
-        }
         if (!riddleActive && !feedbackActive) {
-            player1.update();
-            player2.update();
-        }*/
+            CheckPoint hit = getReachedCheckpoint(); // check which checkpoint
+            if (hit != null) {
+                activeCheckpoint = hit; // set active checkpoint
+                riddleActive = true;    // open riddle UI
+            }
+    }
         // Movement disabled when answering
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
@@ -442,21 +424,6 @@ public class GameManager {
        
         player1.update();
         player2.update();
-
-        // Trigger checkpoint
-        if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
-            riddleActive = true;
-        }
-
-        if (riddleActive && checkpoint != null) {
-        if (checkpoint.getRiddle().attemptsFinished()) {
-             feedback = "No attempts left.\nThe answer was: "  + checkpoint.getRiddle().getAnswer();
-            userInput = "";
-            riddleActive = false;
-            feedbackActive = true;
-            dismissCheckpoint();
-            }
-        }
     }
 
     // Getters
@@ -465,22 +432,21 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        if (checkpoint.attempt(userInput)) {
-            feedback = "Correct!";
-            userInput = "";
-        //apply the timer effect
-        if (checkpoint.getType().equals("fast")) {
-            second -= 10; // lose time
-            feedback += "\nTime sped up! (-10s)";
-        } 
-        else if (checkpoint.getType().equals("slow")) {
-            second += 10; // gain time
-            feedback += "\nTime slowed! (+10s)";
+        if (activeCheckpoint == null) return; // safety
+            boolean correct = activeCheckpoint.attempt(userInput); // check answer
+            userInput = ""; // clear input
+            if (correct) {
+                feedback = "{Correct}";
+            } else {
+                feedback = "{Wrong}";
+            }
+        // if no attempts left
+        if (activeCheckpoint.getRiddle().attemptsFinished()) {
+            feedback += "\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
         }
         riddleActive = false;
         feedbackActive = true;
     }
-}
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
