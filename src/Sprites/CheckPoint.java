@@ -20,11 +20,14 @@ public class CheckPoint extends Sprite {
     }
 
     public boolean attempt(String answer) {
+        
+        if (riddle == null)
+            return false;
         if (riddle.checkAnswer(answer)) {
             completed = true;
             return true;
         } else {
-            riddle.incrementAttempt();
+            riddle.incrementAttempt(); // increase attempts
             return false;
         }
     }
