@@ -76,7 +76,7 @@ public void testPlayerLandingOnPlatform(){
 	//Player
 	Player player=new Player(null, 120, 130, 30, 20);
 	player.update(map);
-	assertEquals(130,player.getY());
+	assertEquals(tile.getY()-player.getHeight(),player.getY());
 	assertFalse(player.jump);
 	assertEquals(0,player.getJumpCount());
 	
