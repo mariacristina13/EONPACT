@@ -432,21 +432,25 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        if (activeCheckpoint == null) return; // safety
+        if (activeCheckpoint == null)
+            return;
             boolean correct = activeCheckpoint.attempt(userInput); // check answer
             userInput = ""; // clear input
             if (correct) {
-                feedback = "{Correct}";
+                feedback = "Correct!";
+                riddleActive = false;
+                feedbackActive = true;
             } else {
-                feedback = "{Wrong}";
+                if (activeCheckpoint.getRiddle().attemptsFinished()) {
+                    feedback = "No attempts left!\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
+                    riddleActive = false;
+                    feedbackActive = true;
+                }
+                else {
+                    feedback = "Wrong! Try again.";
+                }
             }
-        // if no attempts left
-        if (activeCheckpoint.getRiddle().attemptsFinished()) {
-            feedback += "\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
         }
-        riddleActive = false;
-        feedbackActive = true;
-    }
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
