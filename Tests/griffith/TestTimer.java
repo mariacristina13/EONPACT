@@ -41,4 +41,27 @@ public class TestTimer {
         assertEquals(expectedMinute, actualMinute);
         assertEquals(expectedSecond,actualSecond);
     }
+
+    @Test
+    public void testTimerRunning() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+       // Create a new GameManager object.
+        game = new GameManager();
+
+        // Initialise the game with characters.
+        ArrayList<String> characters = new ArrayList<String>();
+        characters.add("Box Turtle");
+        characters.add("Lemur");
+        game.initializeGame(characters);
+
+        // Access the timer field.
+        Field timerField = GameManager.class.getDeclaredField("timer");
+        timerField.setAccessible(true);
+        Timer timer = (Timer) timerField.get(game);
+
+        // Check if the timer isn't empty.
+        assertNotNull(timer);
+
+        // Check if the timer is running.
+        assertTrue(timer.isRunning());
+    }
 }
