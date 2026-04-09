@@ -1,6 +1,7 @@
 package griffith;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -74,6 +75,10 @@ public void testPlayerLandingOnPlatform(){
 	map.add(tile);
 	//Player
 	Player player=new Player(null, 120, 130, 30, 20);
+	player.update();
+	assertEquals(130,player.getY());
+	assertFalse(player.jump);
+	assertEquals(0,player.getJumpCount());
 	
 }
     
