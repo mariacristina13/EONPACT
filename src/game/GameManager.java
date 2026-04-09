@@ -54,12 +54,6 @@ public class GameManager {
     // Checkpoint
     private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
     private CheckPoint activeCheckpoint;       // currently triggered the checkpoint
-    private void dismissCheckpoint() {
-        riddleActive = false;
-        feedbackActive = false;
-        feedback = "";
-        userInput = "";
-    }
 
     public GameManager() {
         // Load riddles
@@ -195,7 +189,7 @@ public class GameManager {
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        
+
         if ((!riddleActive && !feedbackActive) || activeCheckpoint == null)
             return; // prevent crash if no active checkpoint
 
