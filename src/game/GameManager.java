@@ -16,7 +16,11 @@ import java.util.Set;
 import javax.swing.JPanel;
 
 import Sprites.Player;
+<<<<<<< HEAD
 import Sprites.Sprite;
+=======
+import Sprites.Background;
+>>>>>>> ddda8ac638c70f226f2700e51a24e86c1db1dac3
 import Sprites.CheckPoint;
 import Sprites.Food;
 import Sprites.Map;
@@ -30,6 +34,7 @@ public class GameManager {
 
     public Player player1;
     public Player player2;
+    public Background bg;
     public ArrayList<Map>  map;
     public ArrayList<Food> foods;
 
@@ -53,14 +58,8 @@ public class GameManager {
 
 
     // Checkpoint
-    private CheckPoint checkpoint;
-    private void dismissCheckpoint() {
-        checkpoint = null;
-        riddleActive = false;
-        feedbackActive = false;
-        feedback = "";
-        userInput = "";
-    }
+    private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
+    private CheckPoint activeCheckpoint;       // currently triggered the checkpoint
 
     public GameManager() {
         // Load riddles
@@ -79,11 +78,13 @@ public class GameManager {
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
         
+        //imitialise background
+        bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         //initialise map
         map = new ArrayList<Map>();
         map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile2.png", Constants.TILE_WIDTH + 60, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 70, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 40, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("log.png", Constants.TILE_WIDTH + 50, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
 
         
@@ -97,9 +98,18 @@ public class GameManager {
         // Initialize timer.
         timer();
         
-        // Initialise checkpoint.
-        createCheckpoint();
+        checkpoints = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            int x = 500 + i * 300; // spread the checkpoints across the map
+            CheckPoint cp = new CheckPoint("cabage.png", x,Constants.GROUND_HEIGHT - 60, 60, 60);
+            Riddle r = data.getRandomRiddle(); // assign riddle
+                if (r != null) {
+                cp.setRiddle(r);
+            }
+
+        checkpoints.add(cp); // add to list
     }
+}
 
     // Get the images file names.
     private String getCharacterImage(String characterName) {
@@ -147,35 +157,10 @@ public class GameManager {
 
         timer.start();
     }
-
-    // Create new checkpoint with next riddle.
-    private void createCheckpoint() {
-
-        int newX = checkpoint == null ? 500 : checkpoint.getX() + 300; // move forward
-        checkpoint = new CheckPoint("cabage.png", newX, Constants.SCREEN_SIZE.height / 3, 60, 60);
-        Riddle randomRiddle = data.getRandomRiddle();
-        if (randomRiddle == null)
-            return;
-        checkpoint.setRiddle(randomRiddle);
-        int rand = (int)(Math.random() * 3);//random type
-        if (rand == 0) {
-            checkpoint.setType("normal"); // normal checkpoint
-        } else if (rand == 1) {
-            checkpoint.setType("fast"); // time speeds up
-        } else {
-            checkpoint.setType("slow"); // time slows down
-        }
-        userInput = "";
-        feedback = "";
-    }
     
     // Draw Background + Tiles
     public void drawBG(Graphics2D graphics, JPanel panel) {
-        graphics.setColor(Constants.BLUE);
-        graphics.fillRect(0, 0, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
-
-        graphics.setColor(Constants.GREEN);
-        graphics.fillRect(0, Constants.GROUND_HEIGHT, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
+        graphics.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), panel);
 
         for (Map tile: map)
         if (tile != null) {
@@ -191,9 +176,8 @@ public class GameManager {
         g.drawImage(player2.getImage(), player2.getX(), player2.getY(),
                 player2.getWidth(), player2.getHeight(), panel);
 
-        if (checkpoint != null) {
-        g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
-                checkpoint.getWidth(), checkpoint.getHeight(), panel);
+        for (CheckPoint cp : checkpoints) { // loop all checkpoints
+            g.drawImage(cp.getImage(), cp.getX(), cp.getY(), cp.getWidth(), cp.getHeight(), panel);
         }
 
         // draw food
@@ -209,10 +193,11 @@ public class GameManager {
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive && !feedbackActive)
-            return;
 
-        Riddle riddle = checkpoint.getRiddle();
+        if ((!riddleActive && !feedbackActive) || activeCheckpoint == null)
+            return; // prevent crash if no active checkpoint
+
+        Riddle riddle = activeCheckpoint.getRiddle(); // use active checkpoint
 
         int cardW = 500;
         int cardH = 350;
@@ -319,10 +304,19 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        if (feedbackActive) {
+       if (feedbackActive) {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
-                dismissCheckpoint();
+                checkpoints.remove(activeCheckpoint); // remove old checkpoint
+                int newX = activeCheckpoint.getX() + 1500;// create new checkpoint further ahead
+                CheckPoint newCP = new CheckPoint("cabage.png", newX,
+                Constants.GROUND_HEIGHT - 60, 60, 60);
+                Riddle r = data.getRandomRiddle();
+                if (r != null) {
+                    newCP.setRiddle(r);
+                }
+            checkpoints.add(newCP); // add new checkpoint
+            activeCheckpoint = null; // reset
             }
         return;
     }
@@ -411,23 +405,26 @@ public void checkCollision(Player player,Sprite other) {
         }
     }
 
-    // CHECKPOINT CONDITION (both players)
-   private boolean reachedCheckpoint() {
-    if (checkpoint == null) return false;
-    return Math.abs(player1.getX() - checkpoint.getX()) < 30 && Math.abs(player2.getX() - checkpoint.getX()) < 30;
+    private CheckPoint getReachedCheckpoint() {
+        for (CheckPoint cp : checkpoints) { // check each checkpoint
+            if (Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player2.getX() - cp.getX()) < 30) {
+                return cp; // return the one reached
+        }
+    }
+
+    return null; // none reached
 }
 
     // UPDATE GAME
     public void update() {
 
-        /*if (riddleActive || feedbackActive) {
-            player1.setDirection(0);
-            player2.setDirection(0);
-        }
         if (!riddleActive && !feedbackActive) {
-            player1.update();
-            player2.update();
-        }*/
+            CheckPoint hit = getReachedCheckpoint(); // check which checkpoint
+            if (hit != null) {
+                activeCheckpoint = hit; // set active checkpoint
+                riddleActive = true;    // open riddle UI
+            }
+    }
         // Movement disabled when answering
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
@@ -443,27 +440,11 @@ public void checkCollision(Player player,Sprite other) {
        
         player1.update();
         player2.update();
-
-        // Trigger checkpoint
-        if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
-            riddleActive = true;
-        }
-
-        if (riddleActive && checkpoint != null) {
-        if (checkpoint.getRiddle().attemptsFinished()) {
-             feedback = "No attempts left.\nThe answer was: "  + checkpoint.getRiddle().getAnswer();
-            userInput = "";
-            riddleActive = false;
-            feedbackActive = true;
-            dismissCheckpoint();
-            }
-        }
         //Check collision
         for(Food food:foods) {//Loop because food is an arraylist
         	checkCollision(player1,food);
         	checkCollision(player2,food);
         }
-        
     }
 
     // Getters
@@ -472,22 +453,25 @@ public void checkCollision(Player player,Sprite other) {
     }
 
     private void submitAnswer() {
-        if (checkpoint.attempt(userInput)) {
-            feedback = "Correct!";
-            userInput = "";
-        //apply the timer effect
-        if (checkpoint.getType().equals("fast")) {
-            second -= 10; // lose time
-            feedback += "\nTime sped up! (-10s)";
-        } 
-        else if (checkpoint.getType().equals("slow")) {
-            second += 10; // gain time
-            feedback += "\nTime slowed! (+10s)";
+        if (activeCheckpoint == null)
+            return;
+            boolean correct = activeCheckpoint.attempt(userInput); // check answer
+            userInput = ""; // clear input
+            if (correct) {
+                feedback = "Correct!";
+                riddleActive = false;
+                feedbackActive = true;
+            } else {
+                if (activeCheckpoint.getRiddle().attemptsFinished()) {
+                    feedback = "No attempts left!\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
+                    riddleActive = false;
+                    feedbackActive = true;
+                }
+                else {
+                    feedback = "Wrong! Try again.";
+                }
+            }
         }
-        riddleActive = false;
-        feedbackActive = true;
-    }
-}
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
@@ -517,7 +501,6 @@ public void checkCollision(Player player,Sprite other) {
             }
         }
     }*/
-
     public boolean isRiddleActive() {
         return riddleActive;
     }

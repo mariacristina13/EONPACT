@@ -6,7 +6,6 @@ public class CheckPoint extends Sprite {
 
     private Riddle riddle;
     private boolean completed;
-    private String type; // "normal", "fast", "slow"
 
     public CheckPoint(String fileName, int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
@@ -21,20 +20,16 @@ public class CheckPoint extends Sprite {
     }
 
     public boolean attempt(String answer) {
+        
+        if (riddle == null)
+            return false;
         if (riddle.checkAnswer(answer)) {
             completed = true;
             return true;
         } else {
-            riddle.incrementAttempt();
+            riddle.incrementAttempt(); // increase attempts
             return false;
         }
-    }
-    public void setType(String type) {//add setter
-        this.type = type;
-    }
-
-    public String getType() {//add getter
-        return type;
     }
 
     public boolean isCompleted() {
