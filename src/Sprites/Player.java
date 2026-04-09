@@ -52,12 +52,11 @@ public class Player extends Sprite {// Class represents a player in the game
 
 	// Move right
 	public int moveRight() {
-		if (getX() + getWidth() + Constants.PLAYER_SPEED < Constants.SCREEN_SIZE.width) {//Prevents going off the right edge
-			this.setX(getX() + Constants.PLAYER_SPEED);
+		int newX=getX()+Constants.PLAYER_SPEED;//new position
+		if (newX + getWidth()> Constants.SCREEN_WIDTH) {//Prevents going off the right edge
+			newX=Constants.SCREEN_WIDTH - getWidth();//Stop at the edge
 		}
-		else {
-			setX(Constants.SCREEN_SIZE.width-getWidth());
-		}
+		setX(newX);
 		return getX();
 	}
 
