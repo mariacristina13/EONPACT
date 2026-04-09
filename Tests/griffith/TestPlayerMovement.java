@@ -3,9 +3,12 @@ package griffith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import Sprites.Food;
+import Sprites.Map;
 import Sprites.Player;
 import constants.Constants;
 import game.GameManager;
@@ -62,6 +65,16 @@ public void testCollisionWithFood() {
 	Food food=new Food(null,70,70,50,50);
 	game.checkCollision(player,food);
 	assertTrue(food.isCollected());
+}
+@Test 
+public void testPlayerLandingOnPlatform(){
+	//Platform
+	Map tile=new Map(null,100,150,50,50);
+	ArrayList<Map> map=new ArrayList<>();
+	map.add(tile);
+	//Player
+	Player player=new Player(null, 120, 130, 30, 20);
+	
 }
     
     @Test

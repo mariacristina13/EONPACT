@@ -60,6 +60,10 @@ public class Player extends Sprite {// Class represents a player in the game
 		return getX();
 	}
 
+	public int getJumpCount() {
+		return jumpCount;
+	}
+
 	// Direction:Getter and Setter
 	public int getDirection() {
 		return direction;
