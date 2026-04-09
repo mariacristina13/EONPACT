@@ -76,5 +76,17 @@ class TestCheckPoint {
         assertEquals(3, list.size());
     }
 
-     
+    //Test removing checkpoint after completion
+    @Test
+    public void testCheckpointRemoval() {
+
+        ArrayList<CheckPoint> list = new ArrayList<>();
+        CheckPoint cp1 = new CheckPoint("cabage.png", 0, 0, 10, 10);
+        cp1.setRiddle(new Riddle("Q", "Dog", "Hint"));
+        list.add(cp1);
+        cp1.attempt("Dog"); // correct
+        list.remove(cp1);
+        assertEquals(0, list.size());
+    }
+ 
 }
