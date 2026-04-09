@@ -432,8 +432,8 @@ public void checkCollision(Player player,Food other) {
                 player2.setDirection(0);
         }
        
-        player1.update();
-        player2.update();
+        player1.update(map);
+        player2.update(map);
         //Check collision
         for(Food food:foods) {//Loop because food is an arraylist
         	checkCollision(player1,food);

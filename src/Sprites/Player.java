@@ -16,7 +16,7 @@ public class Player extends Sprite {// Class represents a player in the game
 		direction = 0;
 	}
 
-	public void update() {
+	public void update(ArrayList<Map> map) {
 		if (direction == 1) {
 			moveRight();
 		} else if (direction == -1) {
