@@ -1,5 +1,7 @@
 package Sprites;
 
+import java.util.ArrayList;
+
 import constants.Constants;
 
 public class Player extends Sprite {// Class represents a player in the game
@@ -59,7 +61,25 @@ public class Player extends Sprite {// Class represents a player in the game
 		setX(newX);
 		return getX();
 	}
-
+	
+	public boolean tileLanding(ArrayList<Map> map) {
+	for(int i=0;i<map.size();i++) {
+		Map tile=map.get(i);//get a platform
+		boolean overlapX=getX()+getWidth()>tile.getX()&&//Player right side at the left side of platform
+				getX()<tile.getX()+tile.getWidth();//Left side of the player is before the right side of platform(passed the platform completely)
+		boolean landing=getY()+getHeight()<= tile.getY()&&
+				        getY()+getHeight()+Constants.PLAYER_FALL_SPEED>=tile.getY();//If player player is about to land on the platform
+	if(overlapX&&landing){//above platform and landing on it
+	setY(tile.getY()-getHeight());//Place player on platform
+	jump=false;
+	jumpCount=0;//Allows player to jump again
+	return true;
+	}
+	}
+	return false;
+	}
+	
+ //JumpCount getter
 	public int getJumpCount() {
 		return jumpCount;
 	}
