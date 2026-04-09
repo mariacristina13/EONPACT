@@ -16,7 +16,9 @@ import java.util.Set;
 import javax.swing.JPanel;
 
 import Sprites.Player;
+import Sprites.Background;
 import Sprites.CheckPoint;
+import Sprites.Food;
 import Sprites.Map;
 import constants.Constants;
 import riddles.Riddle;
@@ -28,7 +30,9 @@ public class GameManager {
 
     public Player player1;
     public Player player2;
-    public Map map;
+    public Background bg;
+    public ArrayList<Map>  map;
+    public ArrayList<Food> foods;
 
     // Timer variables.
     private Timer timer;
@@ -50,14 +54,8 @@ public class GameManager {
 
 
     // Checkpoint
-    private CheckPoint checkpoint;
-    private void dismissCheckpoint() {
-        checkpoint = null;
-        riddleActive = false;
-        feedbackActive = false;
-        feedback = "";
-        userInput = "";
-    }
+    private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
+    private CheckPoint activeCheckpoint;       // currently triggered the checkpoint
 
     public GameManager() {
         // Load riddles
@@ -75,14 +73,39 @@ public class GameManager {
  
         player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
-        map = new Map("tile.png","tile2.png", "tile3.png", "log.png", 0, 0, 64, 64);
+        
+        //imitialise background
+        bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        //initialise map
+        map = new ArrayList<Map>();
+        map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png", Constants.TILE_WIDTH + 60, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 40, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("log.png", Constants.TILE_WIDTH + 50, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+
+        
+        //initialise food
+        foods = new ArrayList<Food>();
+        foods.add(new Food("cabage.png", 100,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("leaf.png", 250,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 90, 60, 60)); 
+        foods.add(new Food("bamboo.png", 20,Constants.GROUND_HEIGHT, 60, 60)); 
  
         // Initialize timer.
         timer();
         
-        // Initialise checkpoint.
-        createCheckpoint();
+        checkpoints = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            int x = 500 + i * 300; // spread the checkpoints across the map
+            CheckPoint cp = new CheckPoint("cabage.png", x,Constants.GROUND_HEIGHT - 60, 60, 60);
+            Riddle r = data.getRandomRiddle(); // assign riddle
+                if (r != null) {
+                cp.setRiddle(r);
+            }
+
+        checkpoints.add(cp); // add to list
     }
+}
 
     // Get the images file names.
     private String getCharacterImage(String characterName) {
@@ -130,42 +153,18 @@ public class GameManager {
 
         timer.start();
     }
-
-    // Create new checkpoint with next riddle.
-    private void createCheckpoint() {
-
-        int newX = checkpoint == null ? 500 : checkpoint.getX() + 300; // move forward
-        checkpoint = new CheckPoint("cabage.png", newX, Constants.SCREEN_SIZE.height / 3, 60, 60);
-        Riddle randomRiddle = data.getRandomRiddle();
-        if (randomRiddle == null)
-            return;
-        checkpoint.setRiddle(randomRiddle);
-        int rand = (int)(Math.random() * 3);//random type
-        if (rand == 0) {
-            checkpoint.setType("normal"); // normal checkpoint
-        } else if (rand == 1) {
-            checkpoint.setType("fast"); // time speeds up
-        } else {
-            checkpoint.setType("slow"); // time slows down
-        }
-        userInput = "";
-        feedback = "";
-    }
     
     // Draw Background + Tiles
-    public void drawBG(Graphics2D graphics, int width, int height) {
-        graphics.setColor(Constants.BLUE);
-        graphics.fillRect(0, 0, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
+    public void drawBG(Graphics2D graphics, JPanel panel) {
+        graphics.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), panel);
 
-        graphics.setColor(Constants.GREEN);
-        graphics.fillRect(0, Constants.GROUND_HEIGHT, Constants.SCREEN_SIZE.width, Constants.SCREEN_SIZE.height);
-
-        if (map != null) {
-            map.draw(graphics, width, height);
+        for (Map tile: map)
+        if (tile != null) {
+           graphics.drawImage(tile.getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), panel);
         }
     }
 
-    // Draw players + checkpoint
+    // Draw players + checkpoint + food
     public void drawSprites(Graphics2D g, JPanel panel) {
         g.drawImage(player1.getImage(), player1.getX(), player1.getY(),
                 player1.getWidth(), player1.getHeight(), panel);
@@ -173,17 +172,28 @@ public class GameManager {
         g.drawImage(player2.getImage(), player2.getX(), player2.getY(),
                 player2.getWidth(), player2.getHeight(), panel);
 
-        if (checkpoint != null) {
-        g.drawImage(checkpoint.getImage(), checkpoint.getX(), checkpoint.getY(),
-                checkpoint.getWidth(), checkpoint.getHeight(), panel);
+        for (CheckPoint cp : checkpoints) { // loop all checkpoints
+            g.drawImage(cp.getImage(), cp.getX(), cp.getY(), cp.getWidth(), cp.getHeight(), panel);
         }
+
+        // draw food
+        for (Food food: foods){
+            if(food.isCollected() == false)
+                g.drawImage(food.getImage(), food.getX(), food.getY(), food.getWidth(), food.getHeight(), panel);
+        }
+
+        //draw score
+        //g.setColor(Constants.GREEN);
+        //g.setFont(Constants.TIMER_FONT);
+        //g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20, 20);
     }
 
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
-        if (!riddleActive && !feedbackActive)
-            return;
 
-        Riddle riddle = checkpoint.getRiddle();
+        if ((!riddleActive && !feedbackActive) || activeCheckpoint == null)
+            return; // prevent crash if no active checkpoint
+
+        Riddle riddle = activeCheckpoint.getRiddle(); // use active checkpoint
 
         int cardW = 500;
         int cardH = 350;
@@ -290,10 +300,19 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-        if (feedbackActive) {
+       if (feedbackActive) {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
-                dismissCheckpoint();
+                checkpoints.remove(activeCheckpoint); // remove old checkpoint
+                int newX = activeCheckpoint.getX() + 1500;// create new checkpoint further ahead
+                CheckPoint newCP = new CheckPoint("cabage.png", newX,
+                Constants.GROUND_HEIGHT - 60, 60, 60);
+                Riddle r = data.getRandomRiddle();
+                if (r != null) {
+                    newCP.setRiddle(r);
+                }
+            checkpoints.add(newCP); // add new checkpoint
+            activeCheckpoint = null; // reset
             }
         return;
     }
@@ -370,23 +389,26 @@ public class GameManager {
         }
     }
 
-    // CHECKPOINT CONDITION (both players)
-   private boolean reachedCheckpoint() {
-    if (checkpoint == null) return false;
-    return Math.abs(player1.getX() - checkpoint.getX()) < 30 && Math.abs(player2.getX() - checkpoint.getX()) < 30;
+    private CheckPoint getReachedCheckpoint() {
+        for (CheckPoint cp : checkpoints) { // check each checkpoint
+            if (Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player2.getX() - cp.getX()) < 30) {
+                return cp; // return the one reached
+        }
+    }
+
+    return null; // none reached
 }
 
     // UPDATE GAME
     public void update() {
 
-        /*if (riddleActive || feedbackActive) {
-            player1.setDirection(0);
-            player2.setDirection(0);
-        }
         if (!riddleActive && !feedbackActive) {
-            player1.update();
-            player2.update();
-        }*/
+            CheckPoint hit = getReachedCheckpoint(); // check which checkpoint
+            if (hit != null) {
+                activeCheckpoint = hit; // set active checkpoint
+                riddleActive = true;    // open riddle UI
+            }
+    }
         // Movement disabled when answering
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
@@ -400,24 +422,8 @@ public class GameManager {
                 player2.setDirection(0);
         }
        
-        map.update();
         player1.update();
         player2.update();
-
-        // Trigger checkpoint
-        if (!riddleActive && !feedbackActive && reachedCheckpoint()) {
-            riddleActive = true;
-        }
-
-        if (riddleActive && checkpoint != null) {
-        if (checkpoint.getRiddle().attemptsFinished()) {
-             feedback = "No attempts left.\nThe answer was: "  + checkpoint.getRiddle().getAnswer();
-            userInput = "";
-            riddleActive = false;
-            feedbackActive = true;
-            dismissCheckpoint();
-            }
-        }
     }
 
     // Getters
@@ -426,22 +432,25 @@ public class GameManager {
     }
 
     private void submitAnswer() {
-        if (checkpoint.attempt(userInput)) {
-            feedback = "Correct!";
-            userInput = "";
-        //apply the timer effect
-        if (checkpoint.getType().equals("fast")) {
-            second -= 10; // lose time
-            feedback += "\nTime sped up! (-10s)";
-        } 
-        else if (checkpoint.getType().equals("slow")) {
-            second += 10; // gain time
-            feedback += "\nTime slowed! (+10s)";
+        if (activeCheckpoint == null)
+            return;
+            boolean correct = activeCheckpoint.attempt(userInput); // check answer
+            userInput = ""; // clear input
+            if (correct) {
+                feedback = "Correct!";
+                riddleActive = false;
+                feedbackActive = true;
+            } else {
+                if (activeCheckpoint.getRiddle().attemptsFinished()) {
+                    feedback = "No attempts left!\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
+                    riddleActive = false;
+                    feedbackActive = true;
+                }
+                else {
+                    feedback = "Wrong! Try again.";
+                }
+            }
         }
-        riddleActive = false;
-        feedbackActive = true;
-    }
-}
 
     // ANSWER SYSTEM
     /* public void answer(String input) {
@@ -471,7 +480,6 @@ public class GameManager {
             }
         }
     }*/
-
     public boolean isRiddleActive() {
         return riddleActive;
     }

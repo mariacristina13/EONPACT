@@ -17,7 +17,6 @@ public class Init {
         GameManager gameManager = panel.getGameManager();
         frame.add(panel);
 
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setSize(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         frame.setVisible(true);
 
