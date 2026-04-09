@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 import Sprites.CheckPoint;
@@ -59,4 +62,19 @@ class TestCheckPoint {
         assertEquals("Hint", cp.getHint());
     }
 
+     //Test multiple checkpoints handling
+    @Test
+    public void testMultipleCheckpoints() {
+        ArrayList<CheckPoint> list = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            CheckPoint cp = new CheckPoint("cabage.png", i * 100, 0, 10, 10);
+            cp.setRiddle(new Riddle("Q", "Dog", "Hint"));
+            list.add(cp);
+        }
+
+        assertEquals(3, list.size());
+    }
+
+     
 }
