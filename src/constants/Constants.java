@@ -16,10 +16,10 @@ public final class Constants {
 
 	// Screen dimensions
 	public final static Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
-	public final static int GROUND_HEIGHT = SCREEN_SIZE.height / 3;
 	public final static int SCREEN_HEIGHT = 720;
 	public final static int SCREEN_WIDTH = 1280;
 	public final static int SCREEN_CENTER = SCREEN_WIDTH /2;
+	public final static int GROUND_HEIGHT = SCREEN_HEIGHT - 130;
 	
 
 	// Key codes
@@ -34,7 +34,7 @@ public final class Constants {
 	public final static int WKEY = 87;// Reference: https://stackoverflow.com/questions/15313469/java-keyboard-keycodes-list
 
 	// Player phisics
-	public final static int PLAYER_SPEED = 10;
+	public final static int PLAYER_SPEED = 15;
     public final static int MAX_JUMPS=2;
 	public final static int PLAYER_JUMP_HEIGHT = 70;
 	public final static int PLAYER_FALL_SPEED = 15;// The amount of pixels to move the player downwards
