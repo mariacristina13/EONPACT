@@ -417,6 +417,8 @@ public void checkCollision(Player player,Food other) {
             if (hit != null) {
                 activeCheckpoint = hit; // set active checkpoint
                 riddleActive = true;    // open riddle UI
+                feedback = "";//reset the feedback again after one riddle
+                userInput = "";
             }
     }
         // Movement disabled when answering
