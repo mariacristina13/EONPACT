@@ -313,6 +313,7 @@ public class GameManager {
                 }
             checkpoints.add(newCP); // add new checkpoint
             activeCheckpoint = null; // reset
+            feedback = "";
             }
         return;
     }
