@@ -89,7 +89,7 @@ class TestCheckPoint {
         assertEquals(0, list.size());
     }
 
-    //est riddle NOT finished before max attempts
+    //est riddle not finished before max attempts
     @Test
     public void testNotFinishedBeforeMaxAttempts() {
         Riddle r = new Riddle("Q", "Dog", "Hint");
