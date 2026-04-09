@@ -88,5 +88,31 @@ class TestCheckPoint {
         list.remove(cp1);
         assertEquals(0, list.size());
     }
+
+    @Test
+    public void testNotFinishedBeforeMaxAttempts() {
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10);
+        cp.setRiddle(r);
+
+        cp.attempt("a");
+        cp.attempt("b");
+
+        assertFalse(cp.isFailed());
+    }
+
+    //Test riddle finished after max attempts(5 attempts)
+    @Test
+    public void testFinishedAfterMaxAttempts() {
+
+        Riddle r = new Riddle("Q", "Dog", "Hint");
+        CheckPoint cp = new CheckPoint("x.png", 0, 0, 10, 10);
+        cp.setRiddle(r);
+        for (int i = 0; i < 5; i++) {
+            cp.attempt("wrong");
+        }
+
+        assertTrue(cp.isFailed());
+    }
  
 }
