@@ -80,7 +80,7 @@ public class GameManager {
         map = new ArrayList<Map>();
         map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile2.png", Constants.TILE_WIDTH + 60, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 40, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 190, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("log.png", Constants.TILE_WIDTH + 50, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
 
         
