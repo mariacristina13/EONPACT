@@ -463,6 +463,7 @@ public void checkCollision(Player player,Sprite other) {
         	checkCollision(player1,food);
         	checkCollision(player2,food);
         }
+        
     }
 
     // Getters
