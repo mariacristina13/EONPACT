@@ -378,15 +378,13 @@ public class GameManager {
     }
     
 public void checkCollision(Player player,Food other) {
-	//Checks if the right edge of the player is between the left and right edge of the other object
-		if(player.getX() + player.getWidth() >= other.getX() && player.getX() + player.getWidth()  <= other.getX() + other.getWidth()){
-			//bottom edge of the player between top and bottom of the other edge
-			if(	player.getY()+ player.getHeight()  >= other.getY() && player.getY() + player.getHeight()  <= other.getY() + other.getHeight()){
-				if(other instanceof Food) {
-					((Food)other).setCollected(true);//Mark food as collected so it disappears
-				}
-			}
-		}
+	if(player.getX() < other.getX() + other.getWidth() &&//Players left side before foods right side
+		       player.getX() + player.getWidth() > other.getX() &&//Player right side is not completely to the left of food
+		       player.getY() < other.getY() + other.getHeight() &&//Player is not below food
+		       player.getY() + player.getHeight() > other.getY()) //Player is not above food
+	{        
+		other.setCollected(true);//Set collected as true
+	}
 }
 
     public boolean isKeyHeld(int keyCode) {
@@ -440,7 +438,9 @@ public void checkCollision(Player player,Food other) {
         for(Food food:foods) {//Loop because food is an arraylist
         	checkCollision(player1,food);
         	checkCollision(player2,food);
+    
         }
+        foods.removeIf(food->food.isCollected());
     }
 
     // Getters
