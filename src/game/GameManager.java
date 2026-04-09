@@ -96,7 +96,7 @@ public class GameManager {
         
         checkpoints = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            int x = 500 + i * 300; // spread the checkpoints across the map
+            int x = 250 + i * 200; // smaller spacing // spread the checkpoints across the map
             CheckPoint cp = new CheckPoint("cabage.png", x,Constants.GROUND_HEIGHT - 60, 60, 60);
             Riddle r = data.getRandomRiddle(); // assign riddle
                 if (r != null) {
