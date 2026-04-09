@@ -30,6 +30,9 @@ public class Player extends Sprite {// Class represents a player in the game
 				jump = false;// reset jump
 				jumpCount=0;//Reset jumpcount
 			}
+			if(!tileLanding(map)) {
+				setY(getY()+Constants.PLAYER_FALL_SPEED);
+			}
 		}
 	
 
