@@ -16,11 +16,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 
 import Sprites.Player;
-<<<<<<< HEAD
-import Sprites.Sprite;
-=======
 import Sprites.Background;
->>>>>>> ddda8ac638c70f226f2700e51a24e86c1db1dac3
 import Sprites.CheckPoint;
 import Sprites.Food;
 import Sprites.Map;
@@ -381,7 +377,7 @@ public class GameManager {
         }
     }
     
-public void checkCollision(Player player,Sprite other) {
+public void checkCollision(Player player,Food other) {
 	//Checks if the right edge of the player is between the left and right edge of the other object
 		if(player.getX() + player.getWidth() >= other.getX() && player.getX() + player.getWidth()  <= other.getX() + other.getWidth()){
 			//bottom edge of the player between top and bottom of the other edge
