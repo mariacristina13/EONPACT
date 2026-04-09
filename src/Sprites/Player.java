@@ -43,17 +43,20 @@ public class Player extends Sprite {// Class represents a player in the game
 	// Move Left
 	public int moveLeft() {
 		int newX = getX() - Constants.PLAYER_SPEED;
-		if (newX < 0) {
+		if (newX < 0) {// Prevents user going off board
 			newX = 0;
-		} // Prevents user going off board
+		}		
 		setX(newX);
 		return getX();
 	}
 
 	// Move right
 	public int moveRight() {
-		if (getX() + getWidth() + Constants.PLAYER_SPEED < Constants.SCREEN_SIZE.width / 2) {
+		if (getX() + getWidth() + Constants.PLAYER_SPEED < Constants.SCREEN_SIZE.width) {//Prevents going off the right edge
 			this.setX(getX() + Constants.PLAYER_SPEED);
+		}
+		else {
+			setX(Constants.SCREEN_SIZE.width-getWidth());
 		}
 		return getX();
 	}
