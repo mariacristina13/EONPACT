@@ -11,6 +11,9 @@ public final class Constants {
 	public final static int MAX_ATTEMPTS = 5;
 	public final static int SHOW_HINT_AFTER_ATTEMPTS = 3;
 
+	// Character selection constants.
+	public final static int MAX_SELECTIONS = 2;
+
 	// Refresh Rate
 	public final static int REFRESH_RATE = 100;
 

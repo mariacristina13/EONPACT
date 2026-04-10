@@ -52,7 +52,7 @@ public class Menu {
     }
 
     // Check if the play/quit buttons were pressed.
-    public boolean playButtonClicked(MouseEvent e) {
+    public boolean characterButtonClicked(MouseEvent e) {
         return characterBtn.contains(e.getX(), e.getY());
     }
  

@@ -129,28 +129,39 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         // Switch between game states.
         switch (currentState) {
             case MENU:
-                if (menuScreen.playButtonClicked(e)) {
+                // Check if the Animals button was clicked.
+                if (menuScreen.characterButtonClicked(e)) {
+                    // Change the current state.
                     currentState = GameStates.CHARACTER_SELECT;
                 }
+                // Check if the quit button was clicked.
                 if (menuScreen.quitButtonClicked(e)) {
                     // https://forums.oracle.com/ords/apexds/post/closing-a-swing-app-through-menu-file-exit-5345
+                    // Exit the game.
                     System.exit(0);
                 }
                 break;
             case CHARACTER_SELECT:
+                // Add the MouseClicked event listener to the character menu screen to handle selecting and deselecting characters.
                 characterMenu.mouseClicked(e);
 
+                // Check if the play button was clicked.
                 if (characterMenu.playButtonClicked(e)) {
+                    // Update the current state.
                     currentState = GameStates.PLAYING;
+                    // Initialise the game with the characters sdelected by the players.
                     game.initializeGame(characterMenu.getSelectedCharacters());
                 }
-
+                // Check if the back button was clicked. 
                 if (characterMenu.backButtonClicked(e)) {
+                    // Update the current state of the game.
                     currentState = GameStates.MENU;
+                    // If the players chose a character and then went back to the main menu, reset the selected characters.
                     characterMenu.resetSelection();
                 }
                 break;
             case PLAYING:
+                // Add the MouseClicked event listener to the game manager to handle any button interaction in the game.
                 game.mouseClicked(e.getX(), e.getY(), getWidth(), getHeight());
                 break;
             default:
