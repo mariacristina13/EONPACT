@@ -80,7 +80,7 @@ public class GameManager {
         map = new ArrayList<Map>();
         map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile2.png", Constants.TILE_WIDTH + 60, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 40, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 190, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("log.png", Constants.TILE_WIDTH + 50, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
 
         
@@ -96,7 +96,7 @@ public class GameManager {
         
         checkpoints = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            int x = 500 + i * 300; // spread the checkpoints across the map
+            int x = 250 + i * 200; // smaller spacing // spread the checkpoints across the map
             CheckPoint cp = new CheckPoint("cabage.png", x,Constants.GROUND_HEIGHT - 60, 60, 60);
             Riddle r = data.getRandomRiddle(); // assign riddle
                 if (r != null) {
@@ -313,6 +313,7 @@ public class GameManager {
                 }
             checkpoints.add(newCP); // add new checkpoint
             activeCheckpoint = null; // reset
+            feedback = "";
             }
         return;
     }
@@ -417,6 +418,8 @@ public void checkCollision(Player player,Food other) {
             if (hit != null) {
                 activeCheckpoint = hit; // set active checkpoint
                 riddleActive = true;    // open riddle UI
+                feedback = "";//reset the feedback again after one riddle
+                userInput = "";
             }
     }
         // Movement disabled when answering
