@@ -27,7 +27,7 @@ public class Player extends Sprite {// Class represents a player in the game
 		}
 		if (getY() < Constants.GROUND_HEIGHT - getHeight()) {// if player is above ground
 			setY(getY() + Constants.PLAYER_FALL_SPEED);// change position to fall
-		} 
+		}
 			if (getY() >= Constants.GROUND_HEIGHT - getHeight()) {
 				setY(Constants.GROUND_HEIGHT - getHeight());
 				jump = false;// reset jump
@@ -72,14 +72,26 @@ public class Player extends Sprite {// Class represents a player in the game
 		Map tile=map.get(i);//get a platform
 		boolean overlapX=getX()+getWidth()>tile.getX()&&//Player right side at the left side of platform
 				getX()<tile.getX()+tile.getWidth();//Left side of the player is before the right side of platform(passed the platform completely)
-		boolean landing=getY()+getHeight()<= tile.getY()&&
-				        getY()+getHeight()+Constants.PLAYER_FALL_SPEED>=tile.getY();//If player player is about to land on the platform
-	if(overlapX&&landing){//above platform and landing on it
-	setY(tile.getY()-getHeight());//Place player on platform
+		if(!overlapX) {
+			continue;//if player is not above platform ignore it
+		}
+		int tileTop=tile.getY()+Constants.TILE_HEIGHT;//Actual tile top
+		int playerBottom=getY()+getHeight();//Players feet
+		int nextPlayerBottom =playerBottom+Constants.PLAYER_FALL_SPEED;//Players next feet position
+		boolean landing = playerBottom<= tileTop &&
+		                  nextPlayerBottom + getHeight() >= tileTop;
+	      if(landing) {
+		                	  setY(tileTop-getHeight());
+		                	  jump=false;
+		                		jumpCount=0;//Allows player to jump again
+		                		return true;
+		                  }
+	      boolean standing=playerBottom==tileTop;//Keep player on platform
+	      if(standing) {
 	jump=false;
 	jumpCount=0;//Allows player to jump again
 	return true;
-	}
+	      }
 	}
 	return false;
 	}
