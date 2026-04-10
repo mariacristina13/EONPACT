@@ -25,7 +25,7 @@ public class TestTimer {
         game = new GameManager();
         
         // List to add characters so we can initialise the game.
-        selectedCharacters = new java.util.ArrayList<>();
+        selectedCharacters = new ArrayList<String>();
 
         // Add characters to the list.
         selectedCharacters.add("Box Turtle");
@@ -100,5 +100,35 @@ public class TestTimer {
 
         // Check if the timer is running.
         assertTrue(timer.isRunning());
+    }
+
+    @Test
+    public void testStopTimer() throws InterruptedException {
+        // Initialise a new GameManager object.
+        game = new GameManager();
+        
+        // List to add characters so we can initialise the game.
+        selectedCharacters = new ArrayList<String>();
+
+        // Add characters to the list.
+        selectedCharacters.add("Box Turtle");
+        selectedCharacters.add("Kakapo");
+
+        // Initialise the game with characters.
+        game.initializeGame(selectedCharacters);
+
+        // Store the value of the timer before its stoped.
+        String timerBeforeStop = game.getTimer();
+
+        // Stop the timer.
+        game.stopTimer();
+
+        // Wait 0.2 seconds.
+        Thread.sleep(200);
+
+        // Then store the value after the timer was toped.
+        String timerAfterStop = game.getTimer();
+        // Check if the timer stoped.
+        assertEquals(timerBeforeStop, timerAfterStop);
     }
 }
