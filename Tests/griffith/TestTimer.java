@@ -48,8 +48,7 @@ public class TestTimer {
     }
 
     @Test
-    public void testInitialiseTimer()
-            throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+    public void testInitialiseTimer() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         // Initialise a new GameManager object.
         game = new GameManager();
 
@@ -78,8 +77,7 @@ public class TestTimer {
     }
 
     @Test
-    public void testTimerRunning()
-            throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+    public void testTimerRunning() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         // Initialise a new GameManager object.
         game = new GameManager();
 
@@ -94,6 +92,7 @@ public class TestTimer {
         game.initializeGame(selectedCharacters);
 
         // Access the timer field.
+        // https://www.concretepage.com/java/java-reflection-access-private-fields-methods-constructors
         Field timerField = GameManager.class.getDeclaredField("timer");
         timerField.setAccessible(true);
         Timer timer = (Timer) timerField.get(game);
