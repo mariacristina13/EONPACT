@@ -71,10 +71,11 @@ public void testCollisionWithFood() {
 @Test 
 public void testPlayerLandingOnPlatform(){
 	//Platform
-	Map tile=new Map(null,100,150,50,50);
+	Map tile=new Map(null,100,200,50,50);
 	map.add(tile);
 	//Player
-	Player player=new Player(null, 120, 130, 0, 0);
+	Player player=new Player(null, 105, 150, 0, 40);
+	player.update(map);
 	player.update(map);
 	assertEquals(tile.getY()-player.getHeight(),player.getY());
 	assertFalse(player.jump);

@@ -66,6 +66,7 @@ public class Player extends Sprite {// Class represents a player in the game
 		return getX();
 	}
 	
+	//Platform Landing
 	public boolean tileLanding(ArrayList<Map> map) {
 	for(int i=0;i<map.size();i++) {
 		Map tile=map.get(i);//get a platform
