@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import game.GameManager;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Field;
@@ -17,6 +18,34 @@ import static org.junit.Assert.assertEquals;
 public class TestTimer {
     GameManager game;
     ArrayList<String> selectedCharacters;
+
+    @Test
+    public void testTimerDecreses() throws InterruptedException {
+        // Initialise a new GameManager object.
+        game = new GameManager();
+        
+        // List to add characters so we can initialise the game.
+        selectedCharacters = new java.util.ArrayList<>();
+
+        // Add characters to the list.
+        selectedCharacters.add("Box Turtle");
+        selectedCharacters.add("Kakapo");
+
+        // Initialise the game with characters.
+        game.initializeGame(selectedCharacters);
+
+        // Get the current timer.
+        String currentTimer = game.getTimer();
+
+        // Wait 1 second.
+        Thread.sleep(1000);
+
+        // Get the timer after 1 second.
+        String updatedTimer = game.getTimer();
+
+        // Check thet the timer decreased.
+        assertNotEquals(currentTimer, updatedTimer);
+    }
 
     @Test
     public void testInitialiseTimer() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
