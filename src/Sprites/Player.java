@@ -21,12 +21,12 @@ public class Player extends Sprite {// Class represents a player in the game
 			moveRight();
 		} else if (direction == -1) {
 			moveLeft();
+		}	
+		if (getY() < Constants.GROUND_HEIGHT - getHeight()) {// if player is above ground
+			setY(getY() + Constants.PLAYER_FALL_SPEED);// change position to fall
 		}
 		if(tileLanding(map)) {
 			return; 
-		}
-		if (getY() < Constants.GROUND_HEIGHT - getHeight()) {// if player is above ground
-			setY(getY() + Constants.PLAYER_FALL_SPEED);// change position to fall
 		}
 			if (getY() >= Constants.GROUND_HEIGHT - getHeight()) {
 				setY(Constants.GROUND_HEIGHT - getHeight());
@@ -76,22 +76,18 @@ public class Player extends Sprite {// Class represents a player in the game
 			continue;//if player is not above platform ignore it
 		}
 		int tileTop=tile.getY()+Constants.TILE_HEIGHT;//Actual tile top
-		int playerBottom=getY()+getHeight();//Players feet
+		int playerBottom=getY()+getHeight()+getHeight();//Players feet
 		int nextPlayerBottom =playerBottom+Constants.PLAYER_FALL_SPEED;//Players next feet position
-		boolean landing = playerBottom<= tileTop &&
-		                  nextPlayerBottom + getHeight() >= tileTop;
+		System.out.println("TileTop=" + tileTop + " playerBottom=" + playerBottom + " nextBottom=" + nextPlayerBottom);
+		boolean landing = playerBottom>= tileTop &&
+		                  playerBottom <= tileTop+Constants.PLAYER_FALL_SPEED;
 	      if(landing) {
-		                	  setY(tileTop-getHeight());
+		                	  setY(tileTop-getHeight()-getHeight()-Constants.PLAYER_FALL_SPEED);
 		                	  jump=false;
 		                		jumpCount=0;//Allows player to jump again
 		                		return true;
 		                  }
-	      boolean standing=playerBottom==tileTop;//Keep player on platform
-	      if(standing) {
-	jump=false;
-	jumpCount=0;//Allows player to jump again
-	return true;
-	      }
+	      
 	}
 	return false;
 	}
