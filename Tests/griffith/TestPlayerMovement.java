@@ -19,9 +19,9 @@ public class TestPlayerMovement {
     // PlayerMovement class Test
     @Test
     public void testPlayerMoveLeft() {
-        Player player = new Player(null, 5, 3, 0, 0);
+        Player player = new Player(null, 50, 3, 10, 10);
         int actual = player.moveLeft();
-        int expected = 5 - Constants.PLAYER_SPEED;
+        int expected = 50 - Constants.PLAYER_SPEED;
         assertEquals(expected, actual);
     }
 
