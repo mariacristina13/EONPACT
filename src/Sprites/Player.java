@@ -72,15 +72,19 @@ public class Player extends Sprite {// Class represents a player in the game
 		Map tile=map.get(i);//get a platform
 		boolean overlapX=getX()+getWidth()>tile.getX()&&//Player right side at the left side of platform
 				getX()<tile.getX()+tile.getWidth();//Left side of the player is before the right side of platform(passed the platform completely)
+		System.out.println("PlayerX=" + getX() + 
+                " PlayerRight=" + (getX() + getWidth()) +
+                " TileX=" + tile.getX() + 
+                " TileRight=" + (tile.getX() + tile.getWidth()) +
+                " overlapX=" + overlapX);
 		if(!overlapX) {
 			continue;//if player is not above platform ignore it
 		}
 		int tileTop=tile.getY()+Constants.TILE_HEIGHT;//Actual tile top
 		int playerBottom=getY()+getHeight()+getHeight();//Players feet
-		int nextPlayerBottom =playerBottom+Constants.PLAYER_FALL_SPEED;//Players next feet position
-		System.out.println("TileTop=" + tileTop + " playerBottom=" + playerBottom + " nextBottom=" + nextPlayerBottom);
 		boolean landing = playerBottom>= tileTop &&
 		                  playerBottom <= tileTop+Constants.PLAYER_FALL_SPEED;
+		
 	      if(landing) {
 		                	  setY(tileTop-getHeight()-getHeight()-Constants.PLAYER_FALL_SPEED);
 		                	  jump=false;
