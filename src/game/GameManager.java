@@ -82,8 +82,14 @@ public class GameManager {
         map.add(new Map("tile2.png", Constants.TILE_WIDTH + 70, Constants.GROUND_HEIGHT - 60, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-
         
+        map.add(new Map("tile.png", 0, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile.png", Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT - 300, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png",125, Constants.GROUND_HEIGHT - 140, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png",Constants.TILE_WIDTH + 550, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 770, Constants.GROUND_HEIGHT - 200, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+
         //initialise food
         foods = new ArrayList<Food>();
         foods.add(new Food("cabage.png", 100,Constants.GROUND_HEIGHT - 90, 60, 60)); 
