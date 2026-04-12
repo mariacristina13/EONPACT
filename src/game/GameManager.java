@@ -93,7 +93,7 @@ public class GameManager {
         //initialise food
         foods = new ArrayList<Food>();
         foods.add(new Food("cabage.png", 700,Constants.GROUND_HEIGHT - 250, 60, 60)); 
-        foods.add(new Food("leaf.png", 190,Constants.GROUND_HEIGHT - 285, 60, 60)); 
+        foods.add(new Food("leaf.png", 190,Constants.GROUND_HEIGHT - 290, 60, 60)); 
         foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 400, 60, 60)); 
         foods.add(new Food("bamboo.png", 1100,Constants.GROUND_HEIGHT - 355, 60, 60)); 
  
@@ -508,6 +508,18 @@ public void checkCollision(Player player,Food other) {
     }*/
     public boolean isRiddleActive() {
         return riddleActive;
+    }
+
+    public void setRiddleActive(boolean active){
+        this.riddleActive = active;
+    }
+
+    public String getUserInput(){
+        return userInput;
+    }
+
+    public void setUserInput(String userInput){
+        this.userInput = userInput;
     }
 
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
