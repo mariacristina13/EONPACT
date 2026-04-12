@@ -1,5 +1,7 @@
 package Sprites;
 
+import java.util.ArrayList;
+
 import constants.Constants;
 
 public class Player extends Sprite {// Class represents a player in the game
@@ -14,20 +16,24 @@ public class Player extends Sprite {// Class represents a player in the game
 		direction = 0;
 	}
 
-	public void update() {
+	public void update(ArrayList<Map> map) {
 		if (direction == 1) {
 			moveRight();
 		} else if (direction == -1) {
 			moveLeft();
-		}
-		if (getY() < Constants.GROUND_HEIGHT - getHeight()) {// if player is above ground
+		}	
+		
 			setY(getY() + Constants.PLAYER_FALL_SPEED);// change position to fall
-		} 
+		
+		if(tileLanding(map)) {
+			return; 
+		}
 			if (getY() >= Constants.GROUND_HEIGHT - getHeight()) {
 				setY(Constants.GROUND_HEIGHT - getHeight());
 				jump = false;// reset jump
 				jumpCount=0;//Reset jumpcount
 			}
+			
 		}
 	
 
@@ -59,7 +65,35 @@ public class Player extends Sprite {// Class represents a player in the game
 		setX(newX);
 		return getX();
 	}
-
+	
+	//Platform Landing
+	public boolean tileLanding(ArrayList<Map> map) {
+	for(int i=0;i<map.size();i++) {
+		Map tile=map.get(i);//get a platform
+		boolean overlapX=getX()+getWidth()>=tile.getX()+100&&//Player right side at the left side of platform
+				getX()<=tile.getX()+tile.getWidth()-100;//Left side of the player is before the right side of platform(passed the platform completely)
+		
+		if(!overlapX) {
+		continue;
+		}
+		int tileTop=tile.getY()+Constants.TILE_HEIGHT;//Actual tile top
+		int playerBottom=getY()+getHeight()+getHeight();//Players feet
+		
+		boolean landing = playerBottom>= tileTop &&
+		                  playerBottom <= tileTop+Constants.PLAYER_FALL_SPEED;
+		
+	      if(landing) {
+		                	  setY(tileTop-getHeight()-getHeight()-Constants.PLAYER_FALL_SPEED);
+		                	  jump=false;
+		                		jumpCount=0;//Allows player to jump again
+		                		return true;
+		                  }
+	      
+	}
+	return false;
+	}
+	
+ //JumpCount getter
 	public int getJumpCount() {
 		return jumpCount;
 	}

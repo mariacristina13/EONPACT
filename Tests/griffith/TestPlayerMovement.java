@@ -15,12 +15,13 @@ import constants.Constants;
 import game.GameManager;
 
 public class TestPlayerMovement {
+	ArrayList<Map> map=new ArrayList<>();
     // PlayerMovement class Test
     @Test
     public void testPlayerMoveLeft() {
-        Player player = new Player(null, 5, 3, 0, 0);
+        Player player = new Player(null, 50, 3, 10, 10);
         int actual = player.moveLeft();
-        int expected = 5 - Constants.PLAYER_SPEED;
+        int expected = 50 - Constants.PLAYER_SPEED;
         assertEquals(expected, actual);
     }
 
@@ -53,7 +54,7 @@ public class TestPlayerMovement {
     	player.jump();//First jump
     	player.jump();//Second jump
     	while(player.getY() < Constants.GROUND_HEIGHT - player.getHeight()) {//While the player is above the ground
-    		player.update();//Reset the jump count
+    		player.update(map);//Reset the jump count
     	}
     	int groundY=player.getY();//value of y before jumping again
     	player.jump();//Player jumps again
@@ -70,13 +71,15 @@ public void testCollisionWithFood() {
 @Test 
 public void testPlayerLandingOnPlatform(){
 	//Platform
-	Map tile=new Map(null,100,150,50,50);
-	ArrayList<Map> map=new ArrayList<>();
+	Map tile=new Map(null,100,200,50,50);
 	map.add(tile);
+	int tileTop=tile.getY()+Constants.TILE_HEIGHT;
 	//Player
-	Player player=new Player(null, 120, 130, 30, 20);
-	player.update();
-	assertEquals(130,player.getY());
+	Player player=new Player(null, 105, 150, 0, 40);
+	for(int i=0;i<10;i++) {
+	player.update(map);
+	}
+	assertEquals(tileTop-player.getHeight(),player.getY());
 	assertFalse(player.jump);
 	assertEquals(0,player.getJumpCount());
 	
@@ -86,7 +89,7 @@ public void testPlayerLandingOnPlatform(){
     public void testUpdateDirectionIs1() {
         Player player = new Player(null, 20, 40, 0, 0);
         player.setDirection(1);
-        player.update();
+        player.update(map);
         int expected = 20 + Constants.PLAYER_SPEED;
         assertEquals(expected, player.getX());
     }
@@ -95,7 +98,7 @@ public void testPlayerLandingOnPlatform(){
     public void testUpdateDirection() {
         Player player = new Player(null, 20, 40, 0, 0);
         player.setDirection(-1);
-        player.update();
+        player.update(map);
         int expected = 20 - Constants.PLAYER_SPEED;
         assertEquals(expected, player.getX());
     }
@@ -104,7 +107,7 @@ public void testPlayerLandingOnPlatform(){
     public void testPlayerFallsInAir() {
         Player player = new Player(null, 50, 40, 0, 0);
         int beforeY = player.getY();// players current position
-        player.update();
+        player.update(map);
         assertEquals(beforeY + Constants.PLAYER_FALL_SPEED, player.getY());
     }
 }

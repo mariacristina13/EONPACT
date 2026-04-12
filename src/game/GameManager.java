@@ -78,18 +78,24 @@ public class GameManager {
         bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         //initialise map
         map = new ArrayList<Map>();
-        map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile2.png", Constants.TILE_WIDTH + 60, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 160, Constants.GROUND_HEIGHT - 40, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("log.png", Constants.TILE_WIDTH + 50, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-
+        map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 300, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png", Constants.TILE_WIDTH + 70, Constants.GROUND_HEIGHT - 60, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         
+        map.add(new Map("tile.png", 0, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile.png", Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT - 300, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png",125, Constants.GROUND_HEIGHT - 140, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png",Constants.TILE_WIDTH + 550, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 770, Constants.GROUND_HEIGHT - 200, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+
         //initialise food
         foods = new ArrayList<Food>();
-        foods.add(new Food("cabage.png", 100,Constants.GROUND_HEIGHT - 90, 60, 60)); 
-        foods.add(new Food("leaf.png", 250,Constants.GROUND_HEIGHT - 90, 60, 60)); 
-        foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 90, 60, 60)); 
-        foods.add(new Food("bamboo.png", 20,Constants.GROUND_HEIGHT, 60, 60)); 
+        foods.add(new Food("cabage.png", 700,Constants.GROUND_HEIGHT - 250, 60, 60)); 
+        foods.add(new Food("leaf.png", 190,Constants.GROUND_HEIGHT - 290, 60, 60)); 
+        foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 400, 60, 60)); 
+        foods.add(new Food("bamboo.png", 1100,Constants.GROUND_HEIGHT - 355, 60, 60)); 
  
         // Initialize timer.
         timer();
@@ -435,8 +441,8 @@ public void checkCollision(Player player,Food other) {
                 player2.setDirection(0);
         }
        
-        player1.update();
-        player2.update();
+        player1.update(map);
+        player2.update(map);
         //Check collision
         for(Food food:foods) {//Loop because food is an arraylist
         	checkCollision(player1,food);
@@ -502,6 +508,18 @@ public void checkCollision(Player player,Food other) {
     }*/
     public boolean isRiddleActive() {
         return riddleActive;
+    }
+
+    public void setRiddleActive(boolean active){
+        this.riddleActive = active;
+    }
+
+    public String getUserInput(){
+        return userInput;
+    }
+
+    public void setUserInput(String userInput){
+        this.userInput = userInput;
     }
 
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {

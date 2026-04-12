@@ -11,8 +11,7 @@ public class CharacterMenu {
     private ArrayList<CharacterButton> characters;
     private ArrayList<String> selectedCharacters;
     private MenuButton playBtn;
-    private MenuButton backBtn;
-    private int maxSelections = 2;
+    private MenuButton backBtn; 
 
     // Initialise class variables.
     public CharacterMenu() {
@@ -90,7 +89,7 @@ public class CharacterMenu {
                     character.setSelected(false);
                     selectedCharacters.remove(character.getName());
                 } 
-                else if (selectedCharacters.size() < maxSelections) {
+                else if (selectedCharacters.size() < Constants.MAX_SELECTIONS) {
                     character.setSelected(true);
                     selectedCharacters.add(character.getName());
                 }
@@ -107,7 +106,7 @@ public class CharacterMenu {
 
     // Check if the play/back buttons were clicked.
     public boolean playButtonClicked(MouseEvent e) {
-        return playBtn.contains(e.getX(), e.getY()) && selectedCharacters.size() == 2;
+        return playBtn.contains(e.getX(), e.getY()) && selectedCharacters.size() == Constants.MAX_SELECTIONS;
     }
 
     public boolean backButtonClicked(MouseEvent e) {
