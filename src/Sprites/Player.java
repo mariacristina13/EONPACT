@@ -78,10 +78,12 @@ public class Player extends Sprite {// Class represents a player in the game
                 " TileRight=" + (tile.getX() + tile.getWidth()) +
                 " overlapX=" + overlapX);
 		if(!overlapX) {
+			jump=true;
 			continue;//if player is not above platform ignore it
 		}
 		int tileTop=tile.getY()+Constants.TILE_HEIGHT;//Actual tile top
 		int playerBottom=getY()+getHeight()+getHeight();//Players feet
+		System.out.println("tileTop=" + tileTop + " playerBottom=" + playerBottom);
 		boolean landing = playerBottom>= tileTop &&
 		                  playerBottom <= tileTop+Constants.PLAYER_FALL_SPEED;
 		
