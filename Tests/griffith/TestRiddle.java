@@ -1,6 +1,8 @@
 package griffith;
 
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
 
 import constants.Constants;
@@ -278,6 +280,14 @@ class TestRiddle {
         game.keyTyped('s');
         game.keyPressed(Constants.BACKSPACEKEY);
         assertEquals("song", game.getUserInput());
+    }
+
+    @Test
+    public void testBackspaceOnEmptyInput(){
+        GameManager game = new GameManager();
+        game.setRiddleActive(true); 
+        assertDoesNotThrow(() -> game.keyPressed(Constants.BACKSPACEKEY));
+        assertEquals("", game.getUserInput());
     }
 
 }
