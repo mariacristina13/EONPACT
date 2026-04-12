@@ -3,6 +3,8 @@ package griffith;
 
 import org.junit.jupiter.api.Test;
 
+import game.GameManager;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -201,5 +203,36 @@ class TestRiddle {
         }
         result = riddleData.getRandomRiddle();
         assertNull(result);
+    }
+
+    // test riddle card input handling
+    @Test
+    public void testTyping(){
+      GameManager game = new GameManager();
+      game.setRiddleActive(true);
+      game.keyTyped('c');
+      game.keyTyped('a');
+      game.keyTyped('r');
+      game.keyTyped('r');
+      game.keyTyped('o');
+      game.keyTyped('t');
+      assertEquals("carrot", game.getUserInput());
+
+      game.setUserInput("");
+      game.keyTyped('M');
+      game.keyTyped('O');
+      game.keyTyped('N');
+      game.keyTyped('K');
+      game.keyTyped('E');
+      game.keyTyped('Y');
+      assertEquals("MONKEY", game.getUserInput());
+
+      game.setUserInput("");
+      game.keyTyped('1');
+      game.keyTyped('2');
+      game.keyTyped('F');
+      game.keyTyped('0');
+      game.keyTyped('e');
+      assertEquals("12F0e", game.getUserInput());
     }
 }
