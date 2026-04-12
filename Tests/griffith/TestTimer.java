@@ -7,20 +7,19 @@ import game.GameManager;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import javax.swing.Timer;
 
-import static org.junit.Assert.assertEquals;
-
 public class TestTimer {
     GameManager game;
     ArrayList<String> selectedCharacters;
 
     @Test
-    public void testTimerDecreses() throws InterruptedException {
+    public void testTimerDecreases() throws InterruptedException {
         // Initialise a new GameManager object.
         game = new GameManager();
 
@@ -135,7 +134,7 @@ public class TestTimer {
     }
 
     @Test
-    public void testTimerFormattingCorrect() {
+    public void testTimerFormatting() {
         // Initialise a new GameManager object.
         game = new GameManager();
 
