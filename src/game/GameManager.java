@@ -510,6 +510,16 @@ public void checkCollision(Player player,Food other) {
         return riddleActive;
     }
 
+
+
+    public String getUserInput(){
+        return userInput;
+    }
+
+    public void setUserInput(String userInput){
+        this.userInput = userInput;
+    }
+
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
         if (feedbackActive) {
             feedbackActive = false;
