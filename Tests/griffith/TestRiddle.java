@@ -3,6 +3,7 @@ package griffith;
 
 import org.junit.jupiter.api.Test;
 
+import constants.Constants;
 import game.GameManager;
 
 import static org.junit.Assert.assertFalse;
@@ -235,4 +236,18 @@ class TestRiddle {
       game.keyTyped('e');
       assertEquals("12F0e", game.getUserInput());
     }
+
+    @Test
+    public void testRemoveLastChar(){
+        GameManager game = new GameManager();
+        game.setRiddleActive(true);
+        game.keyTyped('s');
+        game.keyTyped('o');
+        game.keyTyped('n');
+        game.keyTyped('g');
+        game.keyTyped('s');
+        game.keyPressed(Constants.BACKSPACEKEY);
+        assertEquals("song", game.getUserInput());
+    }
+
 }
