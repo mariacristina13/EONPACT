@@ -282,11 +282,12 @@ class TestRiddle {
         assertEquals("song", game.getUserInput());
     }
 
+    // test pressing backpace when there's no input 
     @Test
     public void testBackspaceOnEmptyInput(){
         GameManager game = new GameManager();
         game.setRiddleActive(true); 
-        assertDoesNotThrow(() -> game.keyPressed(Constants.BACKSPACEKEY));
+        assertDoesNotThrow(() -> game.keyPressed(Constants.BACKSPACEKEY)); //https://www.geeksforgeeks.org/software-testing/testing-that-no-exception-is-thrown-in-java/
         assertEquals("", game.getUserInput());
     }
 
