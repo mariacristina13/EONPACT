@@ -510,7 +510,9 @@ public void checkCollision(Player player,Food other) {
         return riddleActive;
     }
 
-
+    public void setRiddleActive(boolean active){
+        this.riddleActive = active;
+    }
 
     public String getUserInput(){
         return userInput;
