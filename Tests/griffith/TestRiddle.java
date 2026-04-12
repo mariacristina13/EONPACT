@@ -238,6 +238,36 @@ class TestRiddle {
     }
 
     @Test
+    public void testTypingWhenRiddleNotActive(){
+        GameManager game = new GameManager();
+        game.setRiddleActive(false);
+        game.keyTyped('c');
+        game.keyTyped('a');
+        game.keyTyped('r');
+        game.keyTyped('r');
+        game.keyTyped('o');
+        game.keyTyped('t');
+        assertEquals("", game.getUserInput());
+
+        game.setUserInput("");
+        game.keyTyped('M');
+        game.keyTyped('O');
+        game.keyTyped('N');
+        game.keyTyped('K');
+        game.keyTyped('E');
+        game.keyTyped('Y');
+        assertEquals("", game.getUserInput());
+
+        game.setUserInput("");
+        game.keyTyped('1');
+        game.keyTyped('2');
+        game.keyTyped('F');
+        game.keyTyped('0');
+        game.keyTyped('e');
+        assertEquals("", game.getUserInput());
+    }
+
+    @Test
     public void testRemoveLastChar(){
         GameManager game = new GameManager();
         game.setRiddleActive(true);
