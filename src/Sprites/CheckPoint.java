@@ -7,18 +7,26 @@ public class CheckPoint extends Sprite {
     private Riddle riddle;
     private boolean completed;
 
-    public CheckPoint(String fileName, int x, int y, int width, int height, Riddle riddle) {
+    public CheckPoint(String fileName, int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
+        this.riddle = null;
+        this.completed = false;
+    }
+
+    public void setRiddle(Riddle riddle) {
         this.riddle = riddle;
         this.completed = false;
     }
 
     public boolean attempt(String answer) {
+
+        if (riddle == null)
+            return false;
         if (riddle.checkAnswer(answer)) {
             completed = true;
             return true;
         } else {
-            riddle.incrementAttempt();
+            riddle.incrementAttempt(); // increase attempts
             return false;
         }
     }
