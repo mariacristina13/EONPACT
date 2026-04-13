@@ -53,9 +53,7 @@ public class GameManager {
     private String feedback = "";
 
     // Counter variables
-    private int collectedFood = 0;
     private int completedCheckpoints = 0;
-    
     // Checkpoint
     private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
     private CheckPoint activeCheckpoint;       // currently triggered the checkpoint
