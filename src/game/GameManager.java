@@ -205,8 +205,6 @@ public class GameManager {
         //int cardH = 350;
         //int x = (panelWidth - cardW) / 2;
         //int y = (panelHeight - cardH) / 2;
-        int padding = 20;
-        int questionY = 55;
         int lineHeight = 20;
 
         g.setColor(Constants.BLACK);
