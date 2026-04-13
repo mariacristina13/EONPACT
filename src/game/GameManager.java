@@ -225,7 +225,7 @@ public class GameManager {
              }
          }
 
-int cardH = 320 + Math.max(0, lineCount - 3) * lineHeight;
+        int cardH = 320 + Math.max(0, lineCount - 3) * lineHeight;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
 
@@ -241,15 +241,15 @@ int cardH = 320 + Math.max(0, lineCount - 3) * lineHeight;
            g.setFont(Constants.FINAL_FEEDBACK);
            String[] lines = feedback.split("\n");
            int lineY = y + cardH / 2 - (lines.length * 25) / 2;
-           for (String line : lines) {
-               drawCentered(g, line.trim(), x + cardW / 2, lineY);
+           for (String line1 : lines) {
+               drawCentered(g, line1.trim(), x + cardW / 2, lineY);
                lineY += 30;
            }
            return;
        }
         
         // number of attempts
-        int dot = y + 300;
+        int dot = y + cardH - 50;
         int spacing = 14;
         int dotsWidth = (Constants.MAX_ATTEMPTS - 1)* spacing + 8;
         int start = x + cardW/ 2 - dotsWidth/2;
@@ -274,12 +274,12 @@ int cardH = 320 + Math.max(0, lineCount - 3) * lineHeight;
         String hint = riddle.displayHint();
         if (!hint.isEmpty()) {
             g.setColor(Constants.BLACK);
-            g.setFont(Constants.QUESTION_FONT);
-            drawWrapped(g, "Hint:" + hint, x + 20, y + 150, cardW - 40, 18);
+            g.setFont(Constants.HINT_FONT);
+            drawWrapped(g, "Hint: " + hint, x + 20, y + cardH - 190, cardW - 40, 18);
         }
 
         // answer input field
-        int input = y + 220;
+        int input = y + cardH - 120;
         g.setColor(Constants.WHITE);
         g.fillRect(x + 20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
@@ -298,8 +298,8 @@ int cardH = 320 + Math.max(0, lineCount - 3) * lineHeight;
         // feedback
         if (!feedback.isEmpty() && !feedbackActive) {
             g.setColor(Constants.BLACK);
-            g.setFont(Constants.QUESTION_FONT);
-            drawCentered(g, feedback, x + cardW/2, input + 63);
+            g.setFont(Constants.FEEDBACK_FONT);
+            drawCentered(g, feedback, x + cardW/2, input + 60);
         }
     }
 
