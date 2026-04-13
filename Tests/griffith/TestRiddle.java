@@ -1,7 +1,12 @@
 package griffith;
 
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
+
+import constants.Constants;
+import game.GameManager;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -202,4 +207,88 @@ class TestRiddle {
         result = riddleData.getRandomRiddle();
         assertNull(result);
     }
+
+    // test riddle card input handling
+    @Test
+    public void testTyping(){
+      GameManager game = new GameManager();
+      game.setRiddleActive(true);
+      game.keyTyped('c');
+      game.keyTyped('a');
+      game.keyTyped('r');
+      game.keyTyped('r');
+      game.keyTyped('o');
+      game.keyTyped('t');
+      assertEquals("carrot", game.getUserInput());
+
+      game.setUserInput("");
+      game.keyTyped('M');
+      game.keyTyped('O');
+      game.keyTyped('N');
+      game.keyTyped('K');
+      game.keyTyped('E');
+      game.keyTyped('Y');
+      assertEquals("MONKEY", game.getUserInput());
+
+      game.setUserInput("");
+      game.keyTyped('1');
+      game.keyTyped('2');
+      game.keyTyped('F');
+      game.keyTyped('0');
+      game.keyTyped('e');
+      assertEquals("12F0e", game.getUserInput());
+    }
+
+    @Test
+    public void testTypingWhenRiddleNotActive(){
+        GameManager game = new GameManager();
+        game.setRiddleActive(false);
+        game.keyTyped('c');
+        game.keyTyped('a');
+        game.keyTyped('r');
+        game.keyTyped('r');
+        game.keyTyped('o');
+        game.keyTyped('t');
+        assertEquals("", game.getUserInput());
+
+        game.setUserInput("");
+        game.keyTyped('M');
+        game.keyTyped('O');
+        game.keyTyped('N');
+        game.keyTyped('K');
+        game.keyTyped('E');
+        game.keyTyped('Y');
+        assertEquals("", game.getUserInput());
+
+        game.setUserInput("");
+        game.keyTyped('1');
+        game.keyTyped('2');
+        game.keyTyped('F');
+        game.keyTyped('0');
+        game.keyTyped('e');
+        assertEquals("", game.getUserInput());
+    }
+
+    @Test
+    public void testRemoveLastChar(){
+        GameManager game = new GameManager();
+        game.setRiddleActive(true);
+        game.keyTyped('s');
+        game.keyTyped('o');
+        game.keyTyped('n');
+        game.keyTyped('g');
+        game.keyTyped('s');
+        game.keyPressed(Constants.BACKSPACEKEY);
+        assertEquals("song", game.getUserInput());
+    }
+
+    // test pressing backpace when there's no input 
+    @Test
+    public void testBackspaceOnEmptyInput(){
+        GameManager game = new GameManager();
+        game.setRiddleActive(true); 
+        assertDoesNotThrow(() -> game.keyPressed(Constants.BACKSPACEKEY)); //https://www.geeksforgeeks.org/software-testing/testing-that-no-exception-is-thrown-in-java/
+        assertEquals("", game.getUserInput());
+    }
+
 }

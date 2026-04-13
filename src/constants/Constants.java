@@ -39,9 +39,9 @@ public final class Constants {
 	// Player phisics
 	public final static int PLAYER_SPEED = 15;
     public final static int MAX_JUMPS=2;
-	public final static int PLAYER_JUMP_HEIGHT = 70;
-	public final static int PLAYER_FALL_SPEED = 15;// The amount of pixels to move the player downwards
-
+	public final static int PLAYER_JUMP_HEIGHT = 200;
+	public final static int PLAYER_FALL_SPEED = 30;// The amount of pixels to move the player downwards
+	
 	// Colours
 	public final static Color BLUE = new Color(174, 227, 245);
 	public final static Color GREEN = new Color(79, 179, 85);
@@ -81,5 +81,5 @@ public final class Constants {
 
 	// Background Dimensions
 	public final static int TILE_WIDTH = 256;
-	public final static int TILE_HEIGHT = 256;
+	public final static int TILE_HEIGHT = 220;
 }
