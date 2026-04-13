@@ -209,6 +209,7 @@ public class GameManager {
 
         g.setColor(Constants.BLACK);
          g.setFont(Constants.QUESTION_FONT);
+         //counting number of lines in riddle + adjusting card's height accordingly
          FontMetrics fm = g.getFontMetrics();
          String[] words = riddle.getQuestion().split(" ");
          int lineCount = 1;
@@ -301,6 +302,7 @@ public class GameManager {
         }
     }
 
+    //methods to position elements in drawRiddle()
     private void drawCentered(Graphics2D graphics, String text, int centre, int y) {
         FontMetrics font = graphics.getFontMetrics(); // https://docs.oracle.com/javase/8/docs/api/java/awt/FontMetrics.html
         int textWidth = font.stringWidth(text);
