@@ -52,6 +52,8 @@ public class GameManager {
     private String userInput = "";
     private String feedback = "";
 
+    // Counter variables
+    private int completedCheckpoints = 0;
 
     // Checkpoint
     private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
@@ -206,6 +208,14 @@ public class GameManager {
         //g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20, 20);
     }
 
+    // draw riddle counter
+    public void drawCounter(Graphics2D g){
+        g.setFont(Constants.TIMER_FONT);
+        g.setColor(Constants.GOLD);
+        g.drawString("Solved Riddles: " + completedCheckpoints + "/5", 20, 70);
+    }
+
+    // draw riddle card
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
 
         if ((!riddleActive && !feedbackActive) || activeCheckpoint == null)
@@ -500,6 +510,7 @@ public void checkCollision(Player player,Food other) {
             userInput = ""; // clear input
             if (correct) {
                 feedback = "Correct!";
+                completedCheckpoints++;
                 riddleActive = false;
                 feedbackActive = true;
             } else {

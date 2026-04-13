@@ -75,6 +75,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         game.drawRiddle(g, getWidth(), getHeight());
         // Add the timer.
         drawTimer(g);
+        game.drawCounter(g);
     }
 
     // Draw the game over screen.
@@ -102,7 +103,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         int x = getWidth() - textWidth - padding * 2 - 30;
         int y = 70;
 
-        graphics.setColor(Constants.GREEN);
+        graphics.setColor(Constants.GOLD);
         graphics.drawString(timeText, x, y);
     }
 
