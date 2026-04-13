@@ -28,19 +28,17 @@ public class MenuButton extends Button {
         loadImages(normalImgFile, hoveredImgFile);
     }
 
-     // Load the images for the main menu buttons
-    public void loadImages(String normalImgFile, String hoveredImgFile){
-        try{
+    // Load the images for the main menu buttons
+    public void loadImages(String normalImgFile, String hoveredImgFile) {
+        try {
             normalImg = ImageIO.read(new File("images/" + normalImgFile));
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try{
+        try {
             hoveredImg = ImageIO.read(new File("images/" + hoveredImgFile));
-        }
-        catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -51,11 +49,9 @@ public class MenuButton extends Button {
         // Draw the button image based on the hover state.
         if (isHovered() && getHoveredImg() != null) {
             g.drawImage(getHoveredImg(), getX(), getY(), getWidth(), getHeight(), null);
-        } 
-        else if (getNormalImg() != null) {
+        } else if (getNormalImg() != null) {
             g.drawImage(getNormalImg(), getX(), getY(), getWidth(), getHeight(), null);
-        } 
-        else {
+        } else {
             // If the images fail to load use the previous version of the buttons.
             if (isHovered()) {
                 g.setColor(Constants.MAROON);
@@ -63,13 +59,13 @@ public class MenuButton extends Button {
                 g.setColor(Constants.BROWN_RED);
             }
             g.fillRect(getX(), getY(), getWidth(), getHeight());
-            
+
             g.setColor(Constants.WHITE);
             g.setFont(Constants.BUTTON_FONT);
-        
+
             int textWidth = g.getFontMetrics().stringWidth(text);
             int textHeight = g.getFontMetrics().getAscent();
- 
+
             g.drawString(text, getX() + (getWidth() - textWidth) / 2, getY() + (getHeight() + textHeight) / 2);
         }
     }
@@ -105,14 +101,14 @@ public class MenuButton extends Button {
 
     public void setText(String text) {
         this.text = text;
-    }  
+    }
 
-    public BufferedImage getNormalImg(){
+    public BufferedImage getNormalImg() {
         return normalImg;
     }
 
-    public BufferedImage getHoveredImg(){
+    public BufferedImage getHoveredImg() {
         return hoveredImg;
-    }    
+    }
 
 }

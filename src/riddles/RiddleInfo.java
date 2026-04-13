@@ -27,5 +27,4 @@ public class RiddleInfo {
     public void setHint(String hint) {
         this.hint = hint;
     }
-
 }

@@ -15,7 +15,7 @@ import riddles.RiddleData;
 
 class TestCheckPoint {
 
-	 // Test correct answer
+    // Test correct answer
     @Test
     public void testCorrectAnswer() {
         Riddle r = new Riddle("Q", "Dog", "Hint");
@@ -63,7 +63,7 @@ class TestCheckPoint {
         assertEquals("Hint", cp.getHint());
     }
 
-     //Test multiple checkpoints handling
+    // Test multiple checkpoints handling
     @Test
     public void testMultipleCheckpoints() {
         ArrayList<CheckPoint> list = new ArrayList<>();
@@ -77,7 +77,7 @@ class TestCheckPoint {
         assertEquals(3, list.size());
     }
 
-    //Test removing checkpoint after completion
+    // Test removing checkpoint after completion
     @Test
     public void testCheckpointRemoval() {
 
@@ -90,7 +90,7 @@ class TestCheckPoint {
         assertEquals(0, list.size());
     }
 
-    //est riddle not finished before max attempts
+    // est riddle not finished before max attempts
     @Test
     public void testNotFinishedBeforeMaxAttempts() {
         Riddle r = new Riddle("Q", "Dog", "Hint");
@@ -103,7 +103,7 @@ class TestCheckPoint {
         assertFalse(cp.isFailed());
     }
 
-    //Test riddle finished after max attempts(5 attempts)
+    // Test riddle finished after max attempts(5 attempts)
     @Test
     public void testFinishedAfterMaxAttempts() {
 
@@ -116,7 +116,7 @@ class TestCheckPoint {
 
         assertTrue(cp.isFailed());
     }
- 
+
     @Test
     public void testCheckpointGetsRandomRiddle() {
         // Initialise the riddle data object.
@@ -147,7 +147,8 @@ class TestCheckPoint {
             assignedAnswers.add(randomRiddle.getAnswer());
         }
 
-        // Check that some of the asnwers are unique and add them to a list of unique answers.
+        // Check that some of the asnwers are unique and add them to a list of unique
+        // answers.
         ArrayList<String> uniqueAnswers = new ArrayList<>();
         for (String answer : assignedAnswers) {
             if (!uniqueAnswers.contains(answer)) {

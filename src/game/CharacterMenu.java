@@ -11,7 +11,7 @@ public class CharacterMenu {
     private ArrayList<CharacterButton> characters;
     private ArrayList<String> selectedCharacters;
     private MenuButton playBtn;
-    private MenuButton backBtn; 
+    private MenuButton backBtn;
 
     // Initialise class variables.
     public CharacterMenu() {
@@ -30,13 +30,20 @@ public class CharacterMenu {
         int startX = Constants.CHARACTER_BUTTON_X - (totalWidth / 2);
 
         // Initialise characters.
-        characters.add(new CharacterButton("Box Turtle", "box turtle.png", startX, Constants.CHARACTER_BUTTON_Y, Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
+        characters.add(new CharacterButton("Box Turtle", "box turtle.png", startX, Constants.CHARACTER_BUTTON_Y,
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
 
-        characters.add(new CharacterButton("Kakapo", "kakapo.png", startX + Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING, Constants.CHARACTER_BUTTON_Y, Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
+        characters.add(new CharacterButton("Kakapo", "kakapo.png",
+                startX + Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING, Constants.CHARACTER_BUTTON_Y,
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
 
-        characters.add(new CharacterButton("African Forest Elephant", "african forest elephant.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y, Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
+        characters.add(new CharacterButton("African Forest Elephant", "african forest elephant.png",
+                startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y,
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
 
-        characters.add(new CharacterButton("Lemur", "lemur.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 3, Constants.CHARACTER_BUTTON_Y, Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
+        characters.add(new CharacterButton("Lemur", "lemur.png",
+                startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 3, Constants.CHARACTER_BUTTON_Y,
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
     }
 
     // Initialise the buttons.
@@ -47,8 +54,11 @@ public class CharacterMenu {
         int startX = Constants.BUTTON_X - (totalWidth / 2);
 
         // Initialise the buttons.
-        playBtn = new MenuButton("Play", "play button.png", "play button hover.png", startX, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-        backBtn = new MenuButton("Back", "back button.png", "back button hover.png", startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        playBtn = new MenuButton("Play", "play button.png", "play button hover.png", startX, Constants.BUTTON_Y,
+                Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        backBtn = new MenuButton("Back", "back button.png", "back button hover.png",
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
+                Constants.BUTTON_HEIGHT);
     }
 
     // Draw the character menu.
