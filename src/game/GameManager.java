@@ -102,7 +102,7 @@ public class GameManager {
         
         checkpoints = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            int x = 250 + i * 200; // smaller spacing // spread the checkpoints across the map
+            int x = 250 + i * 200; // smaller spacing and also spread the checkpoints across the map
             CheckPoint cp = new CheckPoint("cabage.png", x,Constants.GROUND_HEIGHT - 60, 60, 60);
             Riddle r = data.getRandomRiddle(); // assign riddle
                 if (r != null) {
@@ -112,6 +112,13 @@ public class GameManager {
         checkpoints.add(cp); // add to list
     }
 }
+    
+    private String[] checkpointImages = {//for the checkpoint to generate the random food
+        "cabage.png",
+        "leaf.png",
+        "seeds.png",
+        "bamboo.png"
+};
 
     // Get the images file names.
     private String getCharacterImage(String characterName) {
@@ -222,7 +229,7 @@ public class GameManager {
                lineY += 30;
            }
            return;
-       }
+        }
         
         // number of attempts
         int dot = y + 300;
@@ -409,7 +416,7 @@ public void checkCollision(Player player,Food other) {
     private CheckPoint getReachedCheckpoint() {
         for (CheckPoint cp : checkpoints) { // check each checkpoint
             if (Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player2.getX() - cp.getX()) < 30) {
-                return cp; // return the one reached
+                return cp;// return the one reached
         }
     }
 
