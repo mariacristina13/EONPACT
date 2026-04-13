@@ -68,21 +68,20 @@ public void testCollisionWithFood() {
 	game.checkCollision(player,food);
 	assertTrue(food.isCollected());
 }
-@Test 
+@Test
 public void testPlayerLandingOnPlatform(){
-	//Platform
-	Map tile=new Map(null,100,200,50,50);
-	map.add(tile);
-	int tileTop=tile.getY()+Constants.TILE_HEIGHT;
-	//Player
-	Player player=new Player(null, 105, 150, 0, 40);
-	for(int i=0;i<10;i++) {
-	player.update(map);
-	}
-	assertEquals(tileTop-player.getHeight(),player.getY());
-	assertFalse(player.jump);
-	assertEquals(0,player.getJumpCount());
-	
+    Map tile = new Map(null, 100, 200, 300, 220);
+    map.add(tile);
+    int tileTop = tile.getY() + Constants.TILE_HEIGHT;//200
+    Player player = new Player(null, 105, 150, 100, 40);//Y=110
+    for (int i = 0; i < 10; i++) {
+        player.update(map); //getY()=90 each iteration
+    }
+    
+    int expected = tileTop - player.getHeight() - player.getHeight() - Constants.PLAYER_FALL_SPEED;//90
+    assertEquals(expected, player.getY());
+    assertFalse(player.jump);
+    assertEquals(0, player.getJumpCount());
 }
     
     @Test

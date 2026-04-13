@@ -52,6 +52,8 @@ public class GameManager {
     private String userInput = "";
     private String feedback = "";
 
+    // Counter variables
+    private int completedCheckpoints = 0;
 
     // Checkpoint
     private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
@@ -71,8 +73,10 @@ public class GameManager {
         String player1Img = getCharacterImage(selectedCharacters.get(0));
         String player2Img = getCharacterImage(selectedCharacters.get(1));
  
-        player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
-        player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
+        player1 = new Player(player1Img, 150, Constants.GROUND_HEIGHT - 500, 90, 90);
+        player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 200, 90, 90);
+      
+        
         
         //imitialise background
         bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -204,6 +208,14 @@ public class GameManager {
         //g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20, 20);
     }
 
+    // draw riddle counter
+    public void drawCounter(Graphics2D g){
+        g.setFont(Constants.TIMER_FONT);
+        g.setColor(Constants.GOLD);
+        g.drawString("Solved Riddles: " + completedCheckpoints + "/5", 20, 70);
+    }
+
+    // draw riddle card
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
 
         if ((!riddleActive && !feedbackActive) || activeCheckpoint == null)
@@ -498,6 +510,7 @@ public void checkCollision(Player player,Food other) {
             userInput = ""; // clear input
             if (correct) {
                 feedback = "Correct!";
+                completedCheckpoints++;
                 riddleActive = false;
                 feedbackActive = true;
             } else {
