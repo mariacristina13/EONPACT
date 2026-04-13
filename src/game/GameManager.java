@@ -206,6 +206,12 @@ public class GameManager {
         //g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20, 20);
     }
 
+    public void drawCounter(Graphics2D g){
+        g.setFont(Constants.TIMER_FONT);
+        g.setColor(Constants.GREEN);
+        g.drawString("Solved Riddles: " + completedCheckpoints + , 20, 70);
+    }
+
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
 
         if ((!riddleActive && !feedbackActive) || activeCheckpoint == null)
