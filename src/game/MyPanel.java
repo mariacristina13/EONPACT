@@ -75,6 +75,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         game.drawRiddle(g, getWidth(), getHeight());
         // Add the timer.
         drawTimer(g);
+        game.drawCounter(g);
     }
 
     // Draw the game over screen.

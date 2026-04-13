@@ -54,6 +54,7 @@ public class GameManager {
 
     // Counter variables
     private int completedCheckpoints = 0;
+
     // Checkpoint
     private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
     private CheckPoint activeCheckpoint;       // currently triggered the checkpoint
@@ -499,6 +500,7 @@ public void checkCollision(Player player,Food other) {
             userInput = ""; // clear input
             if (correct) {
                 feedback = "Correct!";
+                completedCheckpoints++;
                 riddleActive = false;
                 feedbackActive = true;
             } else {
