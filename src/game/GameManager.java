@@ -118,7 +118,11 @@ public class GameManager {
         "leaf.png",
         "seeds.png",
         "bamboo.png"
-};
+    };
+    private String getRandomCheckpointImage() {//to get a random image for the checkpoint
+        int index = (int)(Math.random() * checkpointImages.length);
+        return checkpointImages[index];
+    }
 
     // Get the images file names.
     private String getCharacterImage(String characterName) {
