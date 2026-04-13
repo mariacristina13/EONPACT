@@ -512,34 +512,6 @@ public void checkCollision(Player player,Food other) {
             }
         }
 
-    // ANSWER SYSTEM
-    /* public void answer(String input) {
-
-        if (!riddleActive)
-            return;
-
-        if (checkpoint.attempt(input)) {
-
-            System.out.println("Correct!");
-            riddleActive = false;
-            createCheckpoint();
-
-        } else {
-
-            System.out.println("Wrong!");
-
-            String hint = checkpoint.getHint();
-            if (!hint.isEmpty()) {
-                System.out.println("Hint: " + hint);
-            }
-
-            if (checkpoint.isFailed()) {
-                System.out.println("Failed → next checkpoint");
-                riddleActive = false;
-                createCheckpoint();
-            }
-        }
-    }*/
     public boolean isRiddleActive() {
         return riddleActive;
     }
