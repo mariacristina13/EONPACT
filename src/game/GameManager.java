@@ -31,7 +31,7 @@ public class GameManager {
     public Player player1;
     public Player player2;
     public Background bg;
-    public ArrayList<Map>  map;
+    public ArrayList<Map> map;
     public ArrayList<Food> foods;
 
     // Timer variables.
@@ -40,8 +40,8 @@ public class GameManager {
     private int minute = 2;
 
     // Variables to format the timer.
-    private String decimalSecond = "00"; 
-    private String decimalMinute = "02"; 
+    private String decimalSecond = "00";
+    private String decimalMinute = "02";
     private DecimalFormat decimalTime = new DecimalFormat("00");
 
     // Riddle system
@@ -57,7 +57,7 @@ public class GameManager {
 
     // Checkpoint
     private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
-    private CheckPoint activeCheckpoint;       // currently triggered the checkpoint
+    private CheckPoint activeCheckpoint; // currently triggered the checkpoint
 
     public GameManager() {
         // Load riddles
@@ -69,61 +69,68 @@ public class GameManager {
     }
 
     public void initializeGame(ArrayList<String> selectedCharacters) {
-        //Initialise the players with the characters choosen.
+        // Initialise the players with the characters choosen.
         String player1Img = getCharacterImage(selectedCharacters.get(0));
         String player2Img = getCharacterImage(selectedCharacters.get(1));
- 
+
         player1 = new Player(player1Img, 150, Constants.GROUND_HEIGHT - 500, 90, 90);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 200, 90, 90);
-      
-        
-        
-        //imitialise background
+
+        // imitialise background
         bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        //initialise map
+        // initialise map
         map = new ArrayList<Map>();
         map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 300, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile2.png", Constants.TILE_WIDTH + 70, Constants.GROUND_HEIGHT - 60, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        
-        map.add(new Map("tile.png", 0, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile.png", Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT - 300, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile2.png",125, Constants.GROUND_HEIGHT - 140, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile2.png",Constants.TILE_WIDTH + 550, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
-        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 770, Constants.GROUND_HEIGHT - 200, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png", Constants.TILE_WIDTH + 70, Constants.GROUND_HEIGHT - 60, Constants.TILE_WIDTH,
+                Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH,
+                Constants.TILE_HEIGHT));
+        map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH,
+                Constants.TILE_HEIGHT));
 
-        //initialise food
+        map.add(new Map("tile.png", 0, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile.png", Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH,
+                Constants.TILE_HEIGHT));
+        map.add(new Map("tile.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT - 300, Constants.TILE_WIDTH,
+                Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png", 125, Constants.GROUND_HEIGHT - 140, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
+        map.add(new Map("tile2.png", Constants.TILE_WIDTH + 550, Constants.GROUND_HEIGHT - 150, Constants.TILE_WIDTH,
+                Constants.TILE_HEIGHT));
+        map.add(new Map("tile3.png", Constants.TILE_WIDTH + 770, Constants.GROUND_HEIGHT - 200, Constants.TILE_WIDTH,
+                Constants.TILE_HEIGHT));
+
+        // initialise food
         foods = new ArrayList<Food>();
-        foods.add(new Food("cabage.png", 700,Constants.GROUND_HEIGHT - 250, 60, 60)); 
-        foods.add(new Food("leaf.png", 190,Constants.GROUND_HEIGHT - 290, 60, 60)); 
-        foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 400, 60, 60)); 
-        foods.add(new Food("bamboo.png", 1100,Constants.GROUND_HEIGHT - 355, 60, 60)); 
- 
+        foods.add(new Food("cabage.png", 700, Constants.GROUND_HEIGHT - 250, 60, 60));
+        foods.add(new Food("leaf.png", 190, Constants.GROUND_HEIGHT - 290, 60, 60));
+        foods.add(new Food("seeds.png", 600, Constants.GROUND_HEIGHT - 400, 60, 60));
+        foods.add(new Food("bamboo.png", 1100, Constants.GROUND_HEIGHT - 355, 60, 60));
+
         // Initialize timer.
         timer();
-        
+
         checkpoints = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             int x = 250 + i * 200; // smaller spacing and also spread the checkpoints across the map
-            CheckPoint cp = new CheckPoint(getRandomCheckpointImage(), x, Constants.GROUND_HEIGHT - 60, 60, 60);            Riddle r = data.getRandomRiddle(); // assign riddle
-                if (r != null) {
+            CheckPoint cp = new CheckPoint(getRandomCheckpointImage(), x, Constants.GROUND_HEIGHT - 60, 60, 60);
+            Riddle r = data.getRandomRiddle(); // assign riddle
+            if (r != null) {
                 cp.setRiddle(r);
             }
 
-        checkpoints.add(cp); // add to list
+            checkpoints.add(cp); // add to list
+        }
     }
-}
-    
-    private String[] checkpointImages = {//for the checkpoint to generate the random food
-        "cabage.png",
-        "leaf.png",
-        "seeds.png",
-        "bamboo.png"
+
+    private String[] checkpointImages = { // for the checkpoint to generate the random food
+            "cabage.png",
+            "leaf.png",
+            "seeds.png",
+            "bamboo.png"
     };
-    private String getRandomCheckpointImage() {//to get a random image for the checkpoint
-        int index = (int)(Math.random() * checkpointImages.length);
+
+    private String getRandomCheckpointImage() {// to get a random image for the checkpoint
+        int index = (int) (Math.random() * checkpointImages.length);
         return checkpointImages[index];
     }
 
@@ -145,8 +152,9 @@ public class GameManager {
 
     // Method that handles the timer countdown.
     // https://www.ryisnow.online/2021/04/java-beginner-code-sample-create-timer.html
-    private void timer(){
-        // Initialise the timer with a delay of 1 second and an ActionListener that updates the timer every second.
+    private void timer() {
+        // Initialise the timer with a delay of 1 second and an ActionListener that
+        // updates the timer every second.
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -156,7 +164,7 @@ public class GameManager {
                 decimalMinute = decimalTime.format(minute);
 
                 // Check if a minute has passed and update the minute variable.
-                if(second == -1){
+                if (second == -1) {
                     second = 59;
                     minute--;
 
@@ -165,7 +173,7 @@ public class GameManager {
                 }
 
                 // Check if time has run out and stop the timer.
-                if(minute == 0 && second == 0){
+                if (minute == 0 && second == 0) {
                     timer.stop();
                 }
             }
@@ -173,15 +181,15 @@ public class GameManager {
 
         timer.start();
     }
-    
+
     // Draw Background + Tiles
     public void drawBG(Graphics2D graphics, JPanel panel) {
         graphics.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), panel);
 
-        for (Map tile: map)
-        if (tile != null) {
-           graphics.drawImage(tile.getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), panel);
-        }
+        for (Map tile : map)
+            if (tile != null) {
+                graphics.drawImage(tile.getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), panel);
+            }
     }
 
     // Draw players + checkpoint + food
@@ -197,19 +205,20 @@ public class GameManager {
         }
 
         // draw food
-        for (Food food: foods){
-            if(food.isCollected() == false)
+        for (Food food : foods) {
+            if (food.isCollected() == false)
                 g.drawImage(food.getImage(), food.getX(), food.getY(), food.getWidth(), food.getHeight(), panel);
         }
 
-        //draw score
-        //g.setColor(Constants.GREEN);
-        //g.setFont(Constants.TIMER_FONT);
-        //g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20, 20);
+        // draw score
+        // g.setColor(Constants.GREEN);
+        // g.setFont(Constants.TIMER_FONT);
+        // g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20,
+        // 20);
     }
 
     // draw riddle counter
-    public void drawCounter(Graphics2D g){
+    public void drawCounter(Graphics2D g) {
         g.setFont(Constants.TIMER_FONT);
         g.setColor(Constants.GOLD);
         g.drawString("Solved Riddles: " + completedCheckpoints + "/5", 20, 70);
@@ -224,56 +233,55 @@ public class GameManager {
         Riddle riddle = activeCheckpoint.getRiddle(); // use active checkpoint
 
         int cardW = 500;
-        //int cardH = 350;
-        //int x = (panelWidth - cardW) / 2;
-        //int y = (panelHeight - cardH) / 2;
+        // int cardH = 350;
+        // int x = (panelWidth - cardW) / 2;
+        // int y = (panelHeight - cardH) / 2;
         int lineHeight = 20;
 
         g.setColor(Constants.BLACK);
-         g.setFont(Constants.QUESTION_FONT);
-         //counting number of lines in riddle + adjusting card's height accordingly
-         FontMetrics fm = g.getFontMetrics();
-         String[] words = riddle.getQuestion().split(" ");
-         int lineCount = 1;
-         StringBuilder line = new StringBuilder();
-         for (String word : words) {
-             String test = line + (line.length() > 0 ? " " : "") + word;
-             if (fm.stringWidth(test) > cardW - 40) {
-                 lineCount++;
-                 line = new StringBuilder(word);
-             } else {
-                 line = new StringBuilder(test);
-             }
-         }
+        g.setFont(Constants.QUESTION_FONT);
+        // counting number of lines in riddle + adjusting card's height accordingly
+        FontMetrics fm = g.getFontMetrics();
+        String[] words = riddle.getQuestion().split(" ");
+        int lineCount = 1;
+        StringBuilder line = new StringBuilder();
+        for (String word : words) {
+            String test = line + (line.length() > 0 ? " " : "") + word;
+            if (fm.stringWidth(test) > cardW - 40) {
+                lineCount++;
+                line = new StringBuilder(word);
+            } else {
+                line = new StringBuilder(test);
+            }
+        }
 
         int cardH = 320 + Math.max(0, lineCount - 3) * lineHeight;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
 
-
         g.setColor(Constants.BROWN);
-        g.fillRoundRect(x, y, cardW, cardH,20,20);
+        g.fillRoundRect(x, y, cardW, cardH, 20, 20);
         g.setColor(Constants.COFFEE_BROWN);
         g.setStroke(new BasicStroke(2));
-        g.drawRoundRect(x, y, cardW, cardH,20,20);
+        g.drawRoundRect(x, y, cardW, cardH, 20, 20);
 
         if (feedbackActive) {
-           g.setColor(Constants.BLACK);
-           g.setFont(Constants.FINAL_FEEDBACK);
-           String[] lines = feedback.split("\n");
-           int lineY = y + cardH / 2 - (lines.length * 25) / 2;
-           for (String line1 : lines) {
-               drawCentered(g, line1.trim(), x + cardW / 2, lineY);
-               lineY += 30;
-           }
-           return;
+            g.setColor(Constants.BLACK);
+            g.setFont(Constants.FINAL_FEEDBACK);
+            String[] lines = feedback.split("\n");
+            int lineY = y + cardH / 2 - (lines.length * 25) / 2;
+            for (String line1 : lines) {
+                drawCentered(g, line1.trim(), x + cardW / 2, lineY);
+                lineY += 30;
+            }
+            return;
         }
-        
+
         // number of attempts
         int dot = y + cardH - 50;
         int spacing = 14;
-        int dotsWidth = (Constants.MAX_ATTEMPTS - 1)* spacing + 8;
-        int start = x + cardW/ 2 - dotsWidth/2;
+        int dotsWidth = (Constants.MAX_ATTEMPTS - 1) * spacing + 8;
+        int start = x + cardW / 2 - dotsWidth / 2;
         for (int i = 0; i < Constants.MAX_ATTEMPTS; i++) {
             g.setColor(i < riddle.getCountAttempts()
                     ? (Constants.LIGHT_GRAY) // used
@@ -284,7 +292,7 @@ public class GameManager {
         String attempts = "Atempts:" + riddle.getCountAttempts() + "/" + Constants.MAX_ATTEMPTS;
         g.setColor(Constants.GRAY);
         g.setFont(Constants.ATTEMPTS_FONT);
-        drawCentered(g, attempts, x + cardW/2, dot + 25);
+        drawCentered(g, attempts, x + cardW / 2, dot + 25);
 
         // question
         g.setColor(Constants.BLACK);
@@ -320,11 +328,11 @@ public class GameManager {
         if (!feedback.isEmpty() && !feedbackActive) {
             g.setColor(Constants.BLACK);
             g.setFont(Constants.FEEDBACK_FONT);
-            drawCentered(g, feedback, x + cardW/2, input + 60);
+            drawCentered(g, feedback, x + cardW / 2, input + 60);
         }
     }
 
-    //methods to position elements in drawRiddle()
+    // methods to position elements in drawRiddle()
     private void drawCentered(Graphics2D graphics, String text, int centre, int y) {
         FontMetrics font = graphics.getFontMetrics(); // https://docs.oracle.com/javase/8/docs/api/java/awt/FontMetrics.html
         int textWidth = font.stringWidth(text);
@@ -352,40 +360,40 @@ public class GameManager {
     // INPUT
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
-       if (feedbackActive) {
+        if (feedbackActive) {
             if (keyCode == Constants.ENTERKEY) {
                 feedbackActive = false;
                 checkpoints.remove(activeCheckpoint); // remove old checkpoint
                 int newX = activeCheckpoint.getX() + 1500;// create new checkpoint further ahead
                 CheckPoint newCP = new CheckPoint("cabage.png", newX,
-                Constants.GROUND_HEIGHT - 60, 60, 60);
+                        Constants.GROUND_HEIGHT - 60, 60, 60);
                 Riddle r = data.getRandomRiddle();
                 if (r != null) {
                     newCP.setRiddle(r);
                 }
-            checkpoints.add(newCP); // add new checkpoint
-            activeCheckpoint = null; // reset
-            feedback = "";
+                checkpoints.add(newCP); // add new checkpoint
+                activeCheckpoint = null; // reset
+                feedback = "";
             }
-        return;
-    }
+            return;
+        }
         if (riddleActive) {
             // BACKSPACE
             if (keyCode == Constants.BACKSPACEKEY) {
                 if (!userInput.isEmpty()) {
                     userInput = userInput.substring(0, userInput.length() - 1);
                 }
-            return;
+                return;
             }
             // ENTER
             if (keyCode == Constants.ENTERKEY) {
                 submitAnswer();
                 return;
             }
-            //BLOCK ALL MOVEMENT INPUT
+            // BLOCK ALL MOVEMENT INPUT
             return;
         }
-    
+
         switch (keyCode) {
             // Player1
             case Constants.RIGHTKEY: // right
@@ -429,16 +437,17 @@ public class GameManager {
                 break;
         }
     }
-    
-public void checkCollision(Player player,Food other) {
-	if(player.getX() < other.getX() + other.getWidth() &&//Players left side before foods right side
-		       player.getX() + player.getWidth() > other.getX() &&//Player right side is not completely to the left of food
-		       player.getY() < other.getY() + other.getHeight() &&//Player is not below food
-		       player.getY() + player.getHeight() > other.getY()) //Player is not above food
-	{        
-		other.setCollected(true);//Set collected as true
-	}
-}
+
+    public void checkCollision(Player player, Food other) {
+        if (player.getX() < other.getX() + other.getWidth() && // Players left side before foods right side
+                player.getX() + player.getWidth() > other.getX() && // Player right side is not completely to the left
+                                                                    // of food
+                player.getY() < other.getY() + other.getHeight() && // Player is not below food
+                player.getY() + player.getHeight() > other.getY()) // Player is not above food
+        {
+            other.setCollected(true);// Set collected as true
+        }
+    }
 
     public boolean isKeyHeld(int keyCode) {
         return keysHeld.contains(keyCode);
@@ -456,11 +465,11 @@ public void checkCollision(Player player,Food other) {
         for (CheckPoint cp : checkpoints) { // check each checkpoint
             if (Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player2.getX() - cp.getX()) < 30) {
                 return cp;// return the one reached
+            }
         }
-    }
 
-    return null; // none reached
-}
+        return null; // none reached
+    }
 
     // UPDATE GAME
     public void update() {
@@ -469,11 +478,11 @@ public void checkCollision(Player player,Food other) {
             CheckPoint hit = getReachedCheckpoint(); // check which checkpoint
             if (hit != null) {
                 activeCheckpoint = hit; // set active checkpoint
-                riddleActive = true;    // open riddle UI
-                feedback = "";//reset the feedback again after one riddle
+                riddleActive = true; // open riddle UI
+                feedback = "";// reset the feedback again after one riddle
                 userInput = "";
             }
-    }
+        }
         // Movement disabled when answering
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
@@ -486,16 +495,16 @@ public void checkCollision(Player player,Food other) {
             if (isKeyHeld(Constants.DKEY))
                 player2.setDirection(0);
         }
-       
+
         player1.update(map);
         player2.update(map);
-        //Check collision
-        for(Food food:foods) {//Loop because food is an arraylist
-        	checkCollision(player1,food);
-        	checkCollision(player2,food);
-    
+        // Check collision
+        for (Food food : foods) {// Loop because food is an arraylist
+            checkCollision(player1, food);
+            checkCollision(player2, food);
+
         }
-        foods.removeIf(food->food.isCollected());
+        foods.removeIf(food -> food.isCollected());
     }
 
     // Getters
@@ -506,38 +515,38 @@ public void checkCollision(Player player,Food other) {
     private void submitAnswer() {
         if (activeCheckpoint == null)
             return;
-            boolean correct = activeCheckpoint.attempt(userInput); // check answer
-            userInput = ""; // clear input
-            if (correct) {
-                feedback = "Correct!";
-                completedCheckpoints++;
+        boolean correct = activeCheckpoint.attempt(userInput); // check answer
+        userInput = ""; // clear input
+        if (correct) {
+            feedback = "Correct!";
+            completedCheckpoints++;
+            riddleActive = false;
+            feedbackActive = true;
+        } 
+        else {
+            if (activeCheckpoint.getRiddle().attemptsFinished()) {
+                feedback = "No attempts left!\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
                 riddleActive = false;
                 feedbackActive = true;
             } else {
-                if (activeCheckpoint.getRiddle().attemptsFinished()) {
-                    feedback = "No attempts left!\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
-                    riddleActive = false;
-                    feedbackActive = true;
-                }
-                else {
-                    feedback = "Wrong! Try again.";
-                }
+                feedback = "Wrong! Try again.";
             }
         }
+    }
 
     public boolean isRiddleActive() {
         return riddleActive;
     }
 
-    public void setRiddleActive(boolean active){
+    public void setRiddleActive(boolean active) {
         this.riddleActive = active;
     }
 
-    public String getUserInput(){
+    public String getUserInput() {
         return userInput;
     }
 
-    public void setUserInput(String userInput){
+    public void setUserInput(String userInput) {
         this.userInput = userInput;
     }
 
@@ -565,22 +574,22 @@ public void checkCollision(Player player,Food other) {
             submitAnswer();
         }
     }
-    
-    public String getTimer(){
+
+    public String getTimer() {
         return decimalMinute + ":" + decimalSecond;
     }
 
-    public int getMinute(){
+    public int getMinute() {
         return minute;
     }
 
-    public int getSecond(){
+    public int getSecond() {
         return second;
     }
 
     // Method that stops the timer if the game was won or lost before the timer ran out.
-    public void stopTimer(){
-        if(timer != null){
+    public void stopTimer() {
+        if (timer != null) {
             timer.stop();
         }
     }

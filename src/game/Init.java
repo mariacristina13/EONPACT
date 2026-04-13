@@ -24,9 +24,10 @@ public class Init {
         panel.requestFocus();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         // https://projectai.in/projects/e79f02df-4d51-473e-90f0-4ff8443ff473/tasks/5b55ecc1-ac91-4092-8e63-097ce794218b?tab=task
-        // Initialise a timer for the game loop that updates the game every 100 milliseconds.
+        // Initialise a timer for the game loop that updates the game every 100
+        // milliseconds.
         Timer gameLoop = new Timer(Constants.REFRESH_RATE, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,11 +43,9 @@ public class Init {
                 }
             }
         });
-        
+
         // Start the game loop.
         gameLoop.start();
     }
 
 }
-
-

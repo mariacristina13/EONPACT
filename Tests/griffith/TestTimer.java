@@ -47,7 +47,8 @@ public class TestTimer {
     }
 
     @Test
-    public void testInitialiseTimer() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+    public void testInitialiseTimer()
+            throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         // Initialise a new GameManager object.
         game = new GameManager();
 
@@ -76,7 +77,8 @@ public class TestTimer {
     }
 
     @Test
-    public void testTimerRunning() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+    public void testTimerRunning()
+            throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         // Initialise a new GameManager object.
         game = new GameManager();
 

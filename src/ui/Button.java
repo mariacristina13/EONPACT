@@ -8,8 +8,7 @@ public abstract class Button {
     private int y;
     private int width;
     private int height;
-    
-   
+
     // Initialise class variables.
     public Button(int x, int y, int width, int height) {
         this.x = x;
@@ -30,11 +29,10 @@ public abstract class Button {
     public int getX() {
         return x;
     }
-    
+
     public int getY() {
         return y;
     }
-
 
     public int getWidth() {
         return width;
@@ -45,14 +43,13 @@ public abstract class Button {
     }
 
     // Setters
-    public void setPosition(int x, int y){
+    public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public void setSize(int width, int height){
+    public void setSize(int width, int height) {
         this.width = width;
         this.height = height;
     }
-
 }

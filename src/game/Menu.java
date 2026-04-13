@@ -11,7 +11,7 @@ public class Menu {
     private MenuButton characterBtn;
     private MenuButton quitBtn;
 
-    public Menu(){
+    public Menu() {
         initButtons();
     }
 
@@ -23,8 +23,11 @@ public class Menu {
         int startX = Constants.BUTTON_X - (totalWidth / 2);
 
         // Initialise buttons.
-        characterBtn = new MenuButton("Characters", "animals button.png", "animals button hover.png", startX, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
-        quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png", startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        characterBtn = new MenuButton("Characters", "animals button.png", "animals button hover.png", startX,
+                Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+        quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
+                Constants.BUTTON_HEIGHT);
     }
 
     // Draw the menu display.
@@ -32,14 +35,14 @@ public class Menu {
         // Dtaw the background.
         g.setColor(Constants.DARK_GREEN);
         g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
- 
+
         // Draw the title of the game.
         g.setColor(Constants.GOLD);
         g.setFont(Constants.GAME_FONT);
         String title = "EONPACT";
         int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
- 
+
         // Draw the buttons.
         characterBtn.drawButton(g);
         quitBtn.drawButton(g);
@@ -55,7 +58,7 @@ public class Menu {
     public boolean characterButtonClicked(MouseEvent e) {
         return characterBtn.contains(e.getX(), e.getY());
     }
- 
+
     public boolean quitButtonClicked(MouseEvent e) {
         return quitBtn.contains(e.getX(), e.getY());
     }
