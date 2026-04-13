@@ -202,9 +202,33 @@ public class GameManager {
         Riddle riddle = activeCheckpoint.getRiddle(); // use active checkpoint
 
         int cardW = 500;
-        int cardH = 350;
+        //int cardH = 350;
+        //int x = (panelWidth - cardW) / 2;
+        //int y = (panelHeight - cardH) / 2;
+        int padding = 20;
+        int questionY = 55;
+        int lineHeight = 20;
+
+        g.setColor(Constants.BLACK);
+         g.setFont(Constants.QUESTION_FONT);
+         FontMetrics fm = g.getFontMetrics();
+         String[] words = riddle.getQuestion().split(" ");
+         int lineCount = 1;
+         StringBuilder line = new StringBuilder();
+         for (String word : words) {
+             String test = line + (line.length() > 0 ? " " : "") + word;
+             if (fm.stringWidth(test) > cardW - 40) {
+                 lineCount++;
+                 line = new StringBuilder(word);
+             } else {
+                 line = new StringBuilder(test);
+             }
+         }
+
+int cardH = 320 + Math.max(0, lineCount - 3) * lineHeight;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
+
 
         g.setColor(Constants.BROWN);
         g.fillRoundRect(x, y, cardW, cardH,20,20);
