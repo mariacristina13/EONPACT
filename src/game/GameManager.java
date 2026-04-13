@@ -71,8 +71,10 @@ public class GameManager {
         String player1Img = getCharacterImage(selectedCharacters.get(0));
         String player2Img = getCharacterImage(selectedCharacters.get(1));
  
-        player1 = new Player(player1Img, 0, Constants.GROUND_HEIGHT - 90, 90, 90);
-        player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 90, 90, 90);
+        player1 = new Player(player1Img, 150, Constants.GROUND_HEIGHT - 500, 90, 90);
+        player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 200, 90, 90);
+      
+        
         
         //imitialise background
         bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);

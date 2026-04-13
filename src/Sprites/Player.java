@@ -72,7 +72,6 @@ public class Player extends Sprite {// Class represents a player in the game
 		Map tile=map.get(i);//get a platform
 		boolean overlapX=getX()+getWidth()>=tile.getX()+100&&//Player right side at the left side of platform
 				getX()<=tile.getX()+tile.getWidth()-100;//Left side of the player is before the right side of platform(passed the platform completely)
-		
 		if(!overlapX) {
 		continue;
 		}
