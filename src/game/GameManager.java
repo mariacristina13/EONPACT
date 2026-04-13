@@ -549,6 +549,7 @@ public void checkCollision(Player player,Food other) {
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
         if (feedbackActive) {
             feedbackActive = false;
+            checkpoints.remove(activeCheckpoint);
             return;
         }
 
