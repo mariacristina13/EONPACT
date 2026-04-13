@@ -95,7 +95,7 @@ public class GameManager {
         //initialise food
         foods = new ArrayList<Food>();
         foods.add(new Food("cabage.png", 700,Constants.GROUND_HEIGHT - 250, 60, 60)); 
-        foods.add(new Food("leaf.png", 190,Constants.GROUND_HEIGHT - 285, 60, 60)); 
+        foods.add(new Food("leaf.png", 190,Constants.GROUND_HEIGHT - 290, 60, 60)); 
         foods.add(new Food("seeds.png", 600,Constants.GROUND_HEIGHT - 400, 60, 60)); 
         foods.add(new Food("bamboo.png", 1100,Constants.GROUND_HEIGHT - 355, 60, 60)); 
  
@@ -104,9 +104,8 @@ public class GameManager {
         
         checkpoints = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            int x = 250 + i * 200; // smaller spacing // spread the checkpoints across the map
-            CheckPoint cp = new CheckPoint("cabage.png", x,Constants.GROUND_HEIGHT - 60, 60, 60);
-            Riddle r = data.getRandomRiddle(); // assign riddle
+            int x = 250 + i * 200; // smaller spacing and also spread the checkpoints across the map
+            CheckPoint cp = new CheckPoint(getRandomCheckpointImage(), x, Constants.GROUND_HEIGHT - 60, 60, 60);            Riddle r = data.getRandomRiddle(); // assign riddle
                 if (r != null) {
                 cp.setRiddle(r);
             }
@@ -114,6 +113,17 @@ public class GameManager {
         checkpoints.add(cp); // add to list
     }
 }
+    
+    private String[] checkpointImages = {//for the checkpoint to generate the random food
+        "cabage.png",
+        "leaf.png",
+        "seeds.png",
+        "bamboo.png"
+    };
+    private String getRandomCheckpointImage() {//to get a random image for the checkpoint
+        int index = (int)(Math.random() * checkpointImages.length);
+        return checkpointImages[index];
+    }
 
     // Get the images file names.
     private String getCharacterImage(String characterName) {
@@ -204,9 +214,32 @@ public class GameManager {
         Riddle riddle = activeCheckpoint.getRiddle(); // use active checkpoint
 
         int cardW = 500;
-        int cardH = 350;
+        //int cardH = 350;
+        //int x = (panelWidth - cardW) / 2;
+        //int y = (panelHeight - cardH) / 2;
+        int lineHeight = 20;
+
+        g.setColor(Constants.BLACK);
+         g.setFont(Constants.QUESTION_FONT);
+         //counting number of lines in riddle + adjusting card's height accordingly
+         FontMetrics fm = g.getFontMetrics();
+         String[] words = riddle.getQuestion().split(" ");
+         int lineCount = 1;
+         StringBuilder line = new StringBuilder();
+         for (String word : words) {
+             String test = line + (line.length() > 0 ? " " : "") + word;
+             if (fm.stringWidth(test) > cardW - 40) {
+                 lineCount++;
+                 line = new StringBuilder(word);
+             } else {
+                 line = new StringBuilder(test);
+             }
+         }
+
+        int cardH = 320 + Math.max(0, lineCount - 3) * lineHeight;
         int x = (panelWidth - cardW) / 2;
         int y = (panelHeight - cardH) / 2;
+
 
         g.setColor(Constants.BROWN);
         g.fillRoundRect(x, y, cardW, cardH,20,20);
@@ -219,15 +252,15 @@ public class GameManager {
            g.setFont(Constants.FINAL_FEEDBACK);
            String[] lines = feedback.split("\n");
            int lineY = y + cardH / 2 - (lines.length * 25) / 2;
-           for (String line : lines) {
-               drawCentered(g, line.trim(), x + cardW / 2, lineY);
+           for (String line1 : lines) {
+               drawCentered(g, line1.trim(), x + cardW / 2, lineY);
                lineY += 30;
            }
            return;
-       }
+        }
         
         // number of attempts
-        int dot = y + 300;
+        int dot = y + cardH - 50;
         int spacing = 14;
         int dotsWidth = (Constants.MAX_ATTEMPTS - 1)* spacing + 8;
         int start = x + cardW/ 2 - dotsWidth/2;
@@ -252,12 +285,12 @@ public class GameManager {
         String hint = riddle.displayHint();
         if (!hint.isEmpty()) {
             g.setColor(Constants.BLACK);
-            g.setFont(Constants.QUESTION_FONT);
-            drawWrapped(g, "Hint:" + hint, x + 20, y + 150, cardW - 40, 18);
+            g.setFont(Constants.HINT_FONT);
+            drawWrapped(g, "Hint: " + hint, x + 20, y + cardH - 190, cardW - 40, 18);
         }
 
         // answer input field
-        int input = y + 220;
+        int input = y + cardH - 120;
         g.setColor(Constants.WHITE);
         g.fillRect(x + 20, input, cardW - 120, 30);
         g.setColor(Constants.BLACK);
@@ -276,11 +309,12 @@ public class GameManager {
         // feedback
         if (!feedback.isEmpty() && !feedbackActive) {
             g.setColor(Constants.BLACK);
-            g.setFont(Constants.QUESTION_FONT);
-            drawCentered(g, feedback, x + cardW/2, input + 63);
+            g.setFont(Constants.FEEDBACK_FONT);
+            drawCentered(g, feedback, x + cardW/2, input + 60);
         }
     }
 
+    //methods to position elements in drawRiddle()
     private void drawCentered(Graphics2D graphics, String text, int centre, int y) {
         FontMetrics font = graphics.getFontMetrics(); // https://docs.oracle.com/javase/8/docs/api/java/awt/FontMetrics.html
         int textWidth = font.stringWidth(text);
@@ -411,7 +445,7 @@ public void checkCollision(Player player,Food other) {
     private CheckPoint getReachedCheckpoint() {
         for (CheckPoint cp : checkpoints) { // check each checkpoint
             if (Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player2.getX() - cp.getX()) < 30) {
-                return cp; // return the one reached
+                return cp;// return the one reached
         }
     }
 
@@ -512,9 +546,22 @@ public void checkCollision(Player player,Food other) {
         return riddleActive;
     }
 
+    public void setRiddleActive(boolean active){
+        this.riddleActive = active;
+    }
+
+    public String getUserInput(){
+        return userInput;
+    }
+
+    public void setUserInput(String userInput){
+        this.userInput = userInput;
+    }
+
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
         if (feedbackActive) {
             feedbackActive = false;
+            checkpoints.remove(activeCheckpoint);
             return;
         }
 
