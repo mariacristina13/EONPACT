@@ -21,11 +21,11 @@ public final class Constants {
 	public final static Dimension SCREEN_SIZE = Toolkit.getDefaultToolkit().getScreenSize();
 	public final static int SCREEN_HEIGHT = 720;
 	public final static int SCREEN_WIDTH = 1280;
-	public final static int SCREEN_CENTER = SCREEN_WIDTH /2;
+	public final static int SCREEN_CENTER = SCREEN_WIDTH / 2;
 	public final static int GROUND_HEIGHT = SCREEN_HEIGHT - 130;
-	
 
 	// Key codes
+	// Reference: https://stackoverflow.com/questions/15313469/java-keyboard-keycodes-list
 	public final static int LEFTKEY = 37;
 	public final static int RIGHTKEY = 39;
 	public final static int SPACEKEY = 32;
@@ -34,14 +34,14 @@ public final class Constants {
 	public final static int AKEY = 65;
 	public final static int SKEY = 83;
 	public final static int DKEY = 68;
-	public final static int WKEY = 87;// Reference: https://stackoverflow.com/questions/15313469/java-keyboard-keycodes-list
+	public final static int WKEY = 87;
 
 	// Player phisics
 	public final static int PLAYER_SPEED = 15;
-    public final static int MAX_JUMPS=2;
+	public final static int MAX_JUMPS = 2;
 	public final static int PLAYER_JUMP_HEIGHT = 200;
 	public final static int PLAYER_FALL_SPEED = 30;// The amount of pixels to move the player downwards
-	
+
 	// Colours
 	public final static Color BLUE = new Color(174, 227, 245);
 	public final static Color GREEN = new Color(79, 179, 85);
@@ -49,7 +49,7 @@ public final class Constants {
 	public final static Color COFFEE_BROWN = new Color(78, 53, 30);
 	public final static Color BLACK = new Color(0, 0, 0);
 	public final static Color WHITE = new Color(255, 255, 255);
-	public final static Color LIGHT_GRAY = new Color(224,224,222);
+	public final static Color LIGHT_GRAY = new Color(224, 224, 222);
 	public final static Color GRAY = new Color(90, 90, 85);
 	public final static Color MAROON = new Color(123, 47, 47);
 	public final static Color BROWN_RED = new Color(163, 62, 62);
@@ -59,8 +59,8 @@ public final class Constants {
 	// Fonts
 	public final static Font ATTEMPTS_FONT = new Font("SansSerif", Font.ITALIC, 10);
 	public final static Font QUESTION_FONT = new Font("SansSerif", Font.PLAIN, 16);
-	public final static Font HINT_FONT = new Font("Monospaced", Font.PLAIN, 14);
-	public final static Font FEEDBACK_FONT = new Font("Monospaced", Font.PLAIN, 14);
+	public final static Font HINT_FONT = new Font("Monospaced", Font.BOLD, 14);
+	public final static Font FEEDBACK_FONT = new Font("Monospaced", Font.BOLD, 14);
 	public final static Font FINAL_FEEDBACK = new Font("Monospaced", Font.BOLD, 20);
 	public final static Font TIMER_FONT = new Font("Monospaced", Font.BOLD, 25);
 	public final static Font BUTTON_FONT = new Font("Arial", Font.BOLD, 20);

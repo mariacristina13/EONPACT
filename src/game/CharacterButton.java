@@ -10,38 +10,38 @@ import javax.imageio.ImageIO;
 import constants.Constants;
 import ui.Button;
 
-public class CharacterButton extends Button{
+public class CharacterButton extends Button {
     // Class variables.
     private String name;
     private BufferedImage characterImg;
     private boolean selected = false;
 
-    public CharacterButton(String name, String fileName,int x, int y, int width, int height) {
+    public CharacterButton(String name, String fileName, int x, int y, int width, int height) {
         super(x, y, width, height);
         this.name = name;
         loadImages(fileName);
     }
 
     // Load the images for the character menu.
-    public void loadImages(String fileName){
-        try{
+    public void loadImages(String fileName) {
+        try {
             characterImg = ImageIO.read(new File("images/" + fileName));
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
-			System.out.print("file not found");
+            System.out.print("file not found");
         }
     }
 
-    // Draw a box around the buttons for the animals if they were selected and the text on the background.
+    // Draw a box around the buttons for the animals if they were selected and the
+    // text on the background.
     @Override
     public void drawButton(Graphics2D g) {
-        if(selected){
+        if (selected) {
             g.setColor(Constants.GOLD);
             g.fillRect(getX() - 5, getY() - 5, getWidth() + 10, getHeight() + 10);
         }
 
-        if (characterImg != null){
+        if (characterImg != null) {
             g.drawImage(characterImg, getX(), getY(), getWidth(), getHeight(), null);
         }
 
@@ -52,16 +52,16 @@ public class CharacterButton extends Button{
         g.drawString(name, getX() + (getWidth() - textWidth) / 2, getY() + getHeight() + 25);
     }
 
-     // Getters and setters.
+    // Getters and setters.
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
- 
+
     public boolean isSelected() {
         return selected;
     }
- 
+
     public String getName() {
         return name;
-    }    
+    }
 }

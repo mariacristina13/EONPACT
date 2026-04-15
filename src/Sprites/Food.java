@@ -1,6 +1,6 @@
 package Sprites;
 
-public class Food extends Sprite{
+public class Food extends Sprite {
 
     private boolean collected = false;
 
@@ -8,12 +8,11 @@ public class Food extends Sprite{
         super(fileName, x, y, width, height);
     }
 
-    public boolean isCollected(){
+    public boolean isCollected() {
         return collected;
     }
 
-    public void setCollected(boolean collected){
+    public void setCollected(boolean collected) {
         this.collected = collected;
     }
-
 }

@@ -13,14 +13,13 @@ public class CheckPoint extends Sprite {
         this.completed = false;
     }
 
-
-    public void setRiddle(Riddle riddle){
+    public void setRiddle(Riddle riddle) {
         this.riddle = riddle;
         this.completed = false;
     }
 
     public boolean attempt(String answer) {
-        
+
         if (riddle == null)
             return false;
         if (riddle.checkAnswer(answer)) {

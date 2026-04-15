@@ -75,6 +75,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         game.drawRiddle(g, getWidth(), getHeight());
         // Add the timer.
         drawTimer(g);
+        game.drawCounter(g);
     }
 
     // Draw the game over screen.
@@ -102,7 +103,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         int x = getWidth() - textWidth - padding * 2 - 30;
         int y = 70;
 
-        graphics.setColor(Constants.GREEN);
+        graphics.setColor(Constants.GOLD);
         graphics.drawString(timeText, x, y);
     }
 
@@ -142,7 +143,8 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 }
                 break;
             case CHARACTER_SELECT:
-                // Add the MouseClicked event listener to the character menu screen to handle selecting and deselecting characters.
+                // Add the MouseClicked event listener to the character menu screen to handle
+                // selecting and deselecting characters.
                 characterMenu.mouseClicked(e);
 
                 // Check if the play button was clicked.
@@ -152,16 +154,18 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                     // Initialise the game with the characters sdelected by the players.
                     game.initializeGame(characterMenu.getSelectedCharacters());
                 }
-                // Check if the back button was clicked. 
+                // Check if the back button was clicked.
                 if (characterMenu.backButtonClicked(e)) {
                     // Update the current state of the game.
                     currentState = GameStates.MENU;
-                    // If the players chose a character and then went back to the main menu, reset the selected characters.
+                    // If the players chose a character and then went back to the main menu, reset
+                    // the selected characters.
                     characterMenu.resetSelection();
                 }
                 break;
             case PLAYING:
-                // Add the MouseClicked event listener to the game manager to handle any button interaction in the game.
+                // Add the MouseClicked event listener to the game manager to handle any button
+                // interaction in the game.
                 game.mouseClicked(e.getX(), e.getY(), getWidth(), getHeight());
                 break;
             default:
@@ -212,7 +216,6 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         }
         this.repaint();
     }
-
 
     // Getters
     public GameManager getGameManager() {
