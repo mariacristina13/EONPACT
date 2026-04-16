@@ -51,7 +51,7 @@ public class GameOverMenu {
     }
 
     // Check if the menu buttons were pressed.
-    public boolean characterButtonClicked(MouseEvent e) {
+    public boolean menuButtonClicked(MouseEvent e) {
         return menuBtn.contains(e.getX(), e.getY());
     }
 
