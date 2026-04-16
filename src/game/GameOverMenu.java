@@ -1,6 +1,8 @@
 package game;
 
 import constants.Constants;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 
 public class GameOverMenu {
     // Class variables.
@@ -23,5 +25,22 @@ public class GameOverMenu {
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
                 startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
+    }
+
+    public void drawGameOver(Graphics2D g){
+        // Draw the background.
+        g.setColor(Constants.DARK_GREEN);
+        g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+        // Draw the title of the game.
+        g.setColor(Constants.GOLD);
+        g.setFont(Constants.GAME_FONT);
+        String title = "EONPACT";
+        int titleWidth = g.getFontMetrics().stringWidth(title);
+        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
+
+        // Draw the buttons.
+        menuBtn.drawButton(g);
+        quitBtn.drawButton(g);
     }
 }
