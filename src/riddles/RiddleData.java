@@ -98,7 +98,7 @@ public class RiddleData {
 
                 // Brawn Bear Riddles
                 addRiddles("I existed before I arrived.\n" + //
-                                "I was made, then unmade from time itself —\n" + //
+                                "I was made, then unmade from time itself\n" + //
                                 "suspended between becoming and being\n" + //
                                 "while my mother dreamed in darkness.\n" + //
                                 "I was born in a cave before I ever drew breath in the world.\n" + //
@@ -112,10 +112,24 @@ public class RiddleData {
                                 "It’s the sense dogs are famous for too.");
                 addRiddles("Not just strength but brains I wield,\n" + //
                                 "Problem-solving is my field.\n" + //
-                                "I’ve used a rock to scratch my back—\n" + //
+                                "I’ve used a rock to scratch my back\n" + //
                                 "A clever mind is what I pack.\n" + //
                                 "What trait does this show?", "High Intelligence",
                                 "This trait is what it what allows me to adapt, learn, and think rather than just act on instinct.");
+
+                addRiddles("They call me ghost, yet I am real,\n" + //
+                                "Through shadows dark I softly steal.\n" + //
+                                "You won’t see me, you won’t hear\n" + //
+                                "Until I suddenly appear.", "Leopard", "I’m famous for stealth and silence.");
+                addRiddles("My coat is covered, not in dots,\n" + //
+                                "But flower-shaped and shadowed spots.\n" + //
+                                "They help me hide where light is dropped\n" + //
+                                "In the jungle where I can’t be stopped.", "Leopard", "My spots are called rosettes.");
+                addRiddles("Up I go with nimble tread,\n" + //
+                                "Down I come, but first my head!\n" + //
+                                "Few can match this daring feat—\n" + //
+                                "Tree to ground on careful feet.", "Leopard",
+                                "I’m one of the only big cats that climbs down headfirst.");
         }
 
         // Get the readles from the Linked Hash Map.
