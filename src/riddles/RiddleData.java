@@ -145,6 +145,20 @@ public class RiddleData {
                                                 "I was the first to earn that fame.\n" + //
                                                 "In eighteen twenty-five, you see\n" + //
                                                 "“Panda” first belonged to me!", "Red Panda", "I was named long before the giant panda.");
+                
+                // Artic Fox Riddles
+                addRiddles("I wear a coat that shifts with time,\n" + //
+                                                "From winter white to summer grime.\n" + //
+                                                "I vanish in both snow and sand\n" + //
+                                                "A master of the shifting land.", "Artic Fox", "I disguise myself by changing how I look depending on the season.");
+                addRiddles("I hear a whisper underground,\n" + //
+                                                "A hidden heartbeat is my sound.\n" + //
+                                                "Then I leap into the snow\n" + //
+                                                "And pull my dinner from below.", "Artic Fox", "I use one of my senses more than sight to find hidden food under snow.");
+                addRiddles("I find a mate and stay quite true,\n" + //
+                                                "Together we raise pups anew.\n" + //
+                                                "A bonded pair is how I live\n" + //
+                                                "And many pups I love to give.", "Artic Fox", "I usually stick with one partner instead of switching mates often.");
         }
 
         // Get the readles from the Linked Hash Map.
