@@ -54,4 +54,9 @@ public class GameOverMenu {
     public boolean characterButtonClicked(MouseEvent e) {
         return menuBtn.contains(e.getX(), e.getY());
     }
+
+    // Check if the quit button was pressed.
+    public boolean quitButtonClicked(MouseEvent e) {
+        return quitBtn.contains(e.getX(), e.getY());
+    }
 }
