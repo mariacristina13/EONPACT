@@ -20,8 +20,8 @@ public class GameOverMenu {
         // Set the starting X position for the character display.
         int startX = Constants.BUTTON_X - (totalWidth / 2);
 
-        menuBtn = new MenuButton("Menu", "menu button.png", "menu hover button.png", startX, Constants.BUTTON_Y,
-                Constants.BUTTON_WIDTH, Constants.BUTTON_X);
+        menuBtn = new MenuButton("Menu", "menu button.png", "menu button hover.png", startX,
+                Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
                 startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
