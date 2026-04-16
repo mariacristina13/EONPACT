@@ -32,7 +32,7 @@ public class Menu {
 
     // Draw the menu display.
     public void drawMenu(Graphics2D g) {
-        // Dtaw the background.
+        // Draw the background.
         g.setColor(Constants.DARK_GREEN);
         g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
