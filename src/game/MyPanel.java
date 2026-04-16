@@ -17,6 +17,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     private GameManager game;
     private Menu menuScreen;
     private CharacterMenu characterMenu;
+    GameOverMenu gameOverScreen;
     private GameStates currentState;
 
     public MyPanel() {
@@ -32,6 +33,8 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         characterMenu = new CharacterMenu();
         // Set the initial state.
         currentState = GameStates.MENU;
+        // Initialise the game over screen.
+        gameOverScreen = new GameOverMenu();
     }
 
     // https://projectai.in/projects/e79f02df-4d51-473e-90f0-4ff8443ff473/tasks/5b55ecc1-ac91-4092-8e63-097ce794218b?tab=task
@@ -60,7 +63,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 drawGame(graphics);
                 break;
             case GAME_OVER:
-                drawGameOver(graphics);
+               gameOverScreen.drawGameOver(graphics);
                 break;
         }
     }
@@ -168,6 +171,19 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 // interaction in the game.
                 game.mouseClicked(e.getX(), e.getY(), getWidth(), getHeight());
                 break;
+
+            case GAME_OVER:
+                // Check if the play button was clicked.
+                if(gameOverScreen.menuButtonClicked(e)){
+                    // Update the game state.
+                    currentState = GameStates.MENU;
+                }
+
+                // Exit the game.
+                if(gameOverScreen.quitButtonClicked(e)){
+                    System.exit(0);
+                }
+                break;
             default:
                 currentState = GameStates.MENU;
                 break;
@@ -187,6 +203,8 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case CHARACTER_SELECT:
                 characterMenu.mouseMoved(e);
                 break;
+            case GAME_OVER:
+                gameOverScreen.mouseMoved(e);
             default:
                 break;
         }
