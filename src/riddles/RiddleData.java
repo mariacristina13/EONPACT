@@ -6,7 +6,8 @@ import java.util.Map;
 import java.util.Random;
 
 public class RiddleData {
-        // Linked Hash Map to store the riddles and the information about them (answer and hint).
+        // Linked Hash Map to store the riddles and the information about them (answer
+        // and hint).
         private LinkedHashMap<String, RiddleInfo> riddleData = new LinkedHashMap<String, RiddleInfo>();
         private ArrayList<Riddle> unplayedRiddles;
         Random rand = new Random();
@@ -94,6 +95,27 @@ public class RiddleData {
                                 "A patient bird who won’t take chance.\n" +
                                 "Years may pass before I try.\n" +
                                 "Timing matters, that’s no lie.", "Kakapo", "My family plans depend on trees.");
+
+                // Brawn Bear Riddles
+                addRiddles("I existed before I arrived.\n" + //
+                                "I was made, then unmade from time itself —\n" + //
+                                "suspended between becoming and being\n" + //
+                                "while my mother dreamed in darkness.\n" + //
+                                "I was born in a cave before I ever drew breath in the world.\n" + //
+                                "What phenomenon am I?", "Delayed Implantation",
+                                " The timing of birth is deliberately delayed by the mother's biology.");
+                addRiddles("My eyes may fail to see you well,\n" + //
+                                "But far away, I catch your smell.\n" + //
+                                "Across the land, through wind and air,\n" + //
+                                "Your scent tells me that you are there.\n" + //
+                                "What sense do I rely on most?", "A Powerfull Sense of Smell.",
+                                "It’s the sense dogs are famous for too.");
+                addRiddles("Not just strength but brains I wield,\n" + //
+                                "Problem-solving is my field.\n" + //
+                                "I’ve used a rock to scratch my back—\n" + //
+                                "A clever mind is what I pack.\n" + //
+                                "What trait does this show?", "High Intelligence",
+                                "This trait is what it what allows me to adapt, learn, and think rather than just act on instinct.");
         }
 
         // Get the readles from the Linked Hash Map.
@@ -144,7 +166,8 @@ public class RiddleData {
                         return null;
                 }
 
-                // If the array isn't empty then return the random riddle picked and delete it form the copy list.
+                // If the array isn't empty then return the random riddle picked and delete it
+                // form the copy list.
                 int index = rand.nextInt(unplayedRiddles.size());
                 Riddle pickedRiddle = unplayedRiddles.get(index);
                 unplayedRiddles.remove(index);
