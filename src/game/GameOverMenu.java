@@ -49,4 +49,9 @@ public class GameOverMenu {
         menuBtn.setHovered(menuBtn.contains(e.getX(), e.getY()));
         quitBtn.setHovered(quitBtn.contains(e.getX(), e.getY()));
     }
+
+    // Check if the menu buttons were pressed.
+    public boolean characterButtonClicked(MouseEvent e) {
+        return menuBtn.contains(e.getX(), e.getY());
+    }
 }
