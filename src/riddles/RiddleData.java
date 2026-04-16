@@ -117,7 +117,8 @@ public class RiddleData {
                                 "What trait does this show?", "High Intelligence",
                                 "This trait is what it what allows me to adapt, learn, and think rather than just act on instinct.");
 
-                addRiddles("They call me ghost, yet I am real,\n" + //
+                // Leopard Riddles
+                                addRiddles("They call me ghost, yet I am real,\n" + //
                                 "Through shadows dark I softly steal.\n" + //
                                 "You won’t see me, you won’t hear\n" + //
                                 "Until I suddenly appear.", "Leopard", "I’m famous for stealth and silence.");
@@ -127,9 +128,23 @@ public class RiddleData {
                                 "In the jungle where I can’t be stopped.", "Leopard", "My spots are called rosettes.");
                 addRiddles("Up I go with nimble tread,\n" + //
                                 "Down I come, but first my head!\n" + //
-                                "Few can match this daring feat—\n" + //
+                                "Few can match this daring feat\n" + //
                                 "Tree to ground on careful feet.", "Leopard",
                                 "I’m one of the only big cats that climbs down headfirst.");
+                
+                // Red Panda Riddles
+                addRiddles("Seventeen hours I rest each day,\n" + //
+                                                "Dreaming all my time away.\n" + //
+                                                "At dawn and dusk I come alive\n" + //
+                                                "In quiet hours, I truly thrive.", "Red Panda", "I’m most active when the sun is low in the sky, not in the middle of the day.");
+                addRiddles("Red above and dark below,\n" + //
+                                                "In moss and shade I barely show.\n" + //
+                                                "White and rust help me disappear\n" + //
+                                                "In forest homes, I’m hard to peer.", "Red Panda", "My colors match the forest environment so I can hide from predators.");
+                addRiddles("Before the giant took the name,\n" + //
+                                                "I was the first to earn that fame.\n" + //
+                                                "In eighteen twenty-five, you see\n" + //
+                                                "“Panda” first belonged to me!", "Red Panda", "I was named long before the giant panda.");
         }
 
         // Get the readles from the Linked Hash Map.
