@@ -114,6 +114,7 @@ public class CharacterMenu {
 
             if (character.isLocked()) {
                 lockX = character.getX() + (character.getWidth() - Constants.LOCK_WIDTH) / 2;
+                lockY = character.getY() + (character.getHeight() - Constants.LOCK_HEIGHT) / 2;
 
                 g.setColor(Constants.TRANS_BLACK);
                 g.fillRect(character.getX(), character.getY(), character.getWidth(), character.getHeight());
