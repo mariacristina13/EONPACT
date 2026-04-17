@@ -597,4 +597,11 @@ public class GameManager {
     public int getCompletedCheckpoints(){
         return completedCheckpoints;
     }
+
+    public void resetTimer(){
+        minute = 2;
+        second = 0;
+        decimalMinute = decimalTime.format(minute);
+        decimalSecond = decimalTime.format(second);
+    }
 }
