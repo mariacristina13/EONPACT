@@ -35,7 +35,7 @@ public class GameOverMenu {
         // Draw the title of the game.
         g.setColor(Constants.GOLD);
         g.setFont(Constants.GAME_FONT);
-        String title = "EONPACT";
+        String title = "Game Over!";
         int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
