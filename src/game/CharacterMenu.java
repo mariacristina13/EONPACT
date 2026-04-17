@@ -22,6 +22,7 @@ public class CharacterMenu {
     private MenuButton backBtn;
     private BufferedImage lockImg;
     private int lockX;
+    private int lockY;
     private int riddleScore = 0;
 
     // Initialise class variables.
