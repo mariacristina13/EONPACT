@@ -122,6 +122,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 // Check if the Animals button was clicked.
                 if (menuScreen.characterButtonClicked(e)) {
                     characterMenu.updateRiddleScore(game.getCompletedCheckpoints());
+                    characterMenu.resetSelection();
                     // Change the current state.
                     currentState = GameStates.CHARACTER_SELECT;
                 }
