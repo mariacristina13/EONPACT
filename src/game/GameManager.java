@@ -593,4 +593,8 @@ public class GameManager {
             timer.stop();
         }
     }
+
+    public int getCompletedCheckpoints(){
+        return completedCheckpoints;
+    }
 }
