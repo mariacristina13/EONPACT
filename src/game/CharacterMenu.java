@@ -46,9 +46,12 @@ public class CharacterMenu {
         elephantBtn.setLocked(true);
         characters.add(elephantBtn);
 
-        characters.add(new CharacterButton("Lemur", "lemur.png",
+        lemurBtn = new CharacterButton("Lemur", "lemur.png",
                 startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 3, Constants.CHARACTER_BUTTON_Y,
-                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
+
+        lemurBtn.setLocked(true);
+        characters.add(lemurBtn);
     }
 
     // Initialise the buttons.
