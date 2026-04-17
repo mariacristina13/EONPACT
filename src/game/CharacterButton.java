@@ -65,4 +65,8 @@ public class CharacterButton extends Button {
     public String getName() {
         return name;
     }
+
+    public void setLocked(boolean locked){
+        this.locked = locked;
+    }
 }
