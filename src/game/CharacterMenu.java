@@ -119,7 +119,7 @@ public class CharacterMenu {
                 g.setColor(Constants.TRANS_BLACK);
                 g.fillRect(character.getX(), character.getY(), character.getWidth(), character.getHeight());
 
-                g.drawImage(lockImg, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+                g.drawImage(lockImg, lockX, lockY, character.getWidth(), character.getHeight(),
                         null);
             }
         }
