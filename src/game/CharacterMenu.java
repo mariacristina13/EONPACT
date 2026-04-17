@@ -113,6 +113,7 @@ public class CharacterMenu {
             character.drawButton(g);
 
             if (character.isLocked()) {
+                lockX = character.getX() + (character.getWidth() - Constants.LOCK_WIDTH) / 2;
 
                 g.setColor(Constants.TRANS_BLACK);
                 g.fillRect(character.getX(), character.getY(), character.getWidth(), character.getHeight());
