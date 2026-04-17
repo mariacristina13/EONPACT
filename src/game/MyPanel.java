@@ -80,21 +80,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         drawTimer(g);
         game.drawCounter(g);
     }
-
-    // Draw the game over screen.
-    private void drawGameOver(Graphics2D g) {
-        // Draw the background.
-        g.setColor(Constants.DARK_GREEN);
-        g.fillRect(0, 0, getWidth(), getHeight());
-
-        // Draw the text.
-        g.setColor(Constants.WHITE);
-        g.setFont(Constants.GAME_FONT);
-        String text = "Game Over!";
-        int textWidth = g.getFontMetrics().stringWidth(text);
-        g.drawString(text, getWidth() / 2 - textWidth / 2, getHeight() / 2);
-    }
-
+    
     // Draw the timer.
     private void drawTimer(Graphics2D graphics) {
         String timeText = "Time remaining: " + game.getTimer();
