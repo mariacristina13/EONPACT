@@ -21,6 +21,8 @@ public class CharacterMenu {
     private MenuButton playBtn;
     private MenuButton backBtn;
     private BufferedImage lockImg;
+    private int lockX;
+    private int lockY;
     private int riddleScore = 0;
 
     // Initialise class variables.
@@ -111,10 +113,13 @@ public class CharacterMenu {
             character.drawButton(g);
 
             if (character.isLocked()) {
+                lockX = character.getX() + (character.getWidth() - Constants.LOCK_WIDTH) / 2;
+                lockY = character.getY() + (character.getHeight() - Constants.LOCK_HEIGHT) / 2;
+
                 g.setColor(Constants.TRANS_BLACK);
                 g.fillRect(character.getX(), character.getY(), character.getWidth(), character.getHeight());
 
-                g.drawImage(lockImg, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+                g.drawImage(lockImg, lockX, lockY, character.getWidth(), character.getHeight(),
                         null);
             }
         }
