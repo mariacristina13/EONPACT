@@ -13,6 +13,7 @@ import ui.Button;
 public class CharacterButton extends Button {
     // Class variables.
     private String name;
+    private boolean locked;
     private BufferedImage characterImg;
     private boolean selected = false;
 
