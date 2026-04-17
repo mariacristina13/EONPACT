@@ -4,6 +4,12 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import constants.Constants;
 
 public class CharacterMenu {
@@ -14,12 +20,23 @@ public class CharacterMenu {
     private ArrayList<String> selectedCharacters;
     private MenuButton playBtn;
     private MenuButton backBtn;
+    private BufferedImage lockImg;
 
     // Initialise class variables.
     public CharacterMenu() {
         selectedCharacters = new ArrayList<String>();
         initCharacters();
         initButtons();
+        loadImage();
+    }
+
+    private void loadImage() {
+        try {
+            lockImg = ImageIO.read(new File("images/" + "lock.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.print("file not found");
+        }
     }
 
     // Inithialise the character buttons.
@@ -42,7 +59,7 @@ public class CharacterMenu {
         elephantBtn = new CharacterButton("African Forest Elephant", "african forest elephant.png",
                 startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
-        
+
         elephantBtn.setLocked(true);
         characters.add(elephantBtn);
 
