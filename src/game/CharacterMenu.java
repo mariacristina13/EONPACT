@@ -21,6 +21,7 @@ public class CharacterMenu {
     private MenuButton playBtn;
     private MenuButton backBtn;
     private BufferedImage lockImg;
+    private int riddleScore = 0;
 
     // Initialise class variables.
     public CharacterMenu() {
@@ -140,6 +141,20 @@ public class CharacterMenu {
                     selectedCharacters.add(character.getName());
                 }
                 return;
+            }
+        }
+    }
+
+    public void updateRiddleScore(int newScore){
+        if (newScore > riddleScore) {
+            riddleScore = newScore;
+
+            if (riddleScore >= 3) {
+                elephantBtn.setLocked(false);
+            }
+
+            if (riddleScore >= 6) {
+                elephantBtn.setLocked(false);
             }
         }
     }
