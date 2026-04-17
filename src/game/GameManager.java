@@ -604,4 +604,8 @@ public class GameManager {
         decimalMinute = decimalTime.format(minute);
         decimalSecond = decimalTime.format(second);
     }
+
+    public void resetCompletedCheckpoints(){
+        completedCheckpoints = 0;
+    }
 }
