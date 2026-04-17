@@ -128,6 +128,10 @@ public class CharacterMenu {
         // Handle character selection.
         for (CharacterButton character : characters) {
             if (character.contains(e.getX(), e.getY())) {
+                if (character.isLocked()){
+                    return;
+                }
+                
                 if (character.isSelected()) {
                     character.setSelected(false);
                     selectedCharacters.remove(character.getName());
