@@ -36,7 +36,10 @@ public class Init {
                 // End condition.
                 if (panel.getCurrentState() == GameStates.PLAYING) {
                     if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
+                        // Stop the timer.
                         gameManager.stopTimer();
+
+                        // Change the game state when the game is over.
                         panel.setCurrentState(GameStates.GAME_OVER);
                     }
                 }
