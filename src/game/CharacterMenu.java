@@ -9,6 +9,7 @@ import constants.Constants;
 public class CharacterMenu {
     // Class variables.
     private ArrayList<CharacterButton> characters;
+    private CharacterButton elephantBtn;
     private ArrayList<String> selectedCharacters;
     private MenuButton playBtn;
     private MenuButton backBtn;
