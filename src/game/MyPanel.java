@@ -80,7 +80,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         drawTimer(g);
         game.drawCounter(g);
     }
-    
+
     // Draw the timer.
     private void drawTimer(Graphics2D graphics) {
         String timeText = "Time remaining: " + game.getTimer();
@@ -121,6 +121,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case MENU:
                 // Check if the Animals button was clicked.
                 if (menuScreen.characterButtonClicked(e)) {
+                    characterMenu.updateRiddleScore(game.getCompletedCheckpoints());
                     // Change the current state.
                     currentState = GameStates.CHARACTER_SELECT;
                 }
