@@ -108,6 +108,14 @@ public class CharacterMenu {
         // Draw the character buttons
         for (CharacterButton character : characters) {
             character.drawButton(g);
+
+            if (character.isLocked()) {
+                g.setColor(Constants.TRANS_BLACK);
+                g.fillRect(character.getX(), character.getY(), character.getWidth(), character.getHeight());
+
+                g.drawImage(lockImg, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+                        null);
+            }
         }
 
         // Draw the play/back buttons.
@@ -123,8 +131,7 @@ public class CharacterMenu {
                 if (character.isSelected()) {
                     character.setSelected(false);
                     selectedCharacters.remove(character.getName());
-                } 
-                else if (selectedCharacters.size() < Constants.MAX_SELECTIONS) {
+                } else if (selectedCharacters.size() < Constants.MAX_SELECTIONS) {
                     character.setSelected(true);
                     selectedCharacters.add(character.getName());
                 }
