@@ -13,6 +13,7 @@ import ui.Button;
 public class CharacterButton extends Button {
     // Class variables.
     private String name;
+    private boolean locked;
     private BufferedImage characterImg;
     private boolean selected = false;
 
@@ -63,5 +64,13 @@ public class CharacterButton extends Button {
 
     public String getName() {
         return name;
+    }
+
+    public void setLocked(boolean locked){
+        this.locked = locked;
+    }
+
+    public boolean isLocked(){
+        return locked;
     }
 }

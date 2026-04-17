@@ -4,20 +4,40 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import constants.Constants;
 
 public class CharacterMenu {
     // Class variables.
     private ArrayList<CharacterButton> characters;
+    private CharacterButton elephantBtn;
+    private CharacterButton lemurBtn;
     private ArrayList<String> selectedCharacters;
     private MenuButton playBtn;
     private MenuButton backBtn;
+    private BufferedImage lockImg;
+    private int riddleScore = 0;
 
     // Initialise class variables.
     public CharacterMenu() {
         selectedCharacters = new ArrayList<String>();
         initCharacters();
         initButtons();
+        loadImage();
+    }
+
+    private void loadImage() {
+        try {
+            lockImg = ImageIO.read(new File("images/" + "lock.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.print("file not found");
+        }
     }
 
     // Inithialise the character buttons.
@@ -37,13 +57,19 @@ public class CharacterMenu {
                 startX + Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
 
-        characters.add(new CharacterButton("African Forest Elephant", "african forest elephant.png",
+        elephantBtn = new CharacterButton("African Forest Elephant", "african forest elephant.png",
                 startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y,
-                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
-        characters.add(new CharacterButton("Lemur", "lemur.png",
+        elephantBtn.setLocked(true);
+        characters.add(elephantBtn);
+
+        lemurBtn = new CharacterButton("Lemur", "lemur.png",
                 startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 3, Constants.CHARACTER_BUTTON_Y,
-                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
+
+        lemurBtn.setLocked(true);
+        characters.add(lemurBtn);
     }
 
     // Initialise the buttons.
@@ -83,6 +109,14 @@ public class CharacterMenu {
         // Draw the character buttons
         for (CharacterButton character : characters) {
             character.drawButton(g);
+
+            if (character.isLocked()) {
+                g.setColor(Constants.TRANS_BLACK);
+                g.fillRect(character.getX(), character.getY(), character.getWidth(), character.getHeight());
+
+                g.drawImage(lockImg, character.getX(), character.getY(), character.getWidth(), character.getHeight(),
+                        null);
+            }
         }
 
         // Draw the play/back buttons.
@@ -95,15 +129,32 @@ public class CharacterMenu {
         // Handle character selection.
         for (CharacterButton character : characters) {
             if (character.contains(e.getX(), e.getY())) {
+                if (character.isLocked()){
+                    return;
+                }
+                
                 if (character.isSelected()) {
                     character.setSelected(false);
                     selectedCharacters.remove(character.getName());
-                } 
-                else if (selectedCharacters.size() < Constants.MAX_SELECTIONS) {
+                } else if (selectedCharacters.size() < Constants.MAX_SELECTIONS) {
                     character.setSelected(true);
                     selectedCharacters.add(character.getName());
                 }
                 return;
+            }
+        }
+    }
+
+    public void updateRiddleScore(int newScore){
+        if (newScore > riddleScore) {
+            riddleScore = newScore;
+
+            if (riddleScore >= 3) {
+                elephantBtn.setLocked(false);
+            }
+
+            if (riddleScore >= 6) {
+                elephantBtn.setLocked(false);
             }
         }
     }

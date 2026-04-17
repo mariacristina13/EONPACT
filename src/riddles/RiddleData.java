@@ -6,7 +6,8 @@ import java.util.Map;
 import java.util.Random;
 
 public class RiddleData {
-        // Linked Hash Map to store the riddles and the information about them (answer and hint).
+        // Linked Hash Map to store the riddles and the information about them (answer
+        // and hint).
         private LinkedHashMap<String, RiddleInfo> riddleData = new LinkedHashMap<String, RiddleInfo>();
         private ArrayList<Riddle> unplayedRiddles;
         Random rand = new Random();
@@ -94,6 +95,70 @@ public class RiddleData {
                                 "A patient bird who won’t take chance.\n" +
                                 "Years may pass before I try.\n" +
                                 "Timing matters, that’s no lie.", "Kakapo", "My family plans depend on trees.");
+
+                // Brawn Bear Riddles
+                addRiddles("I existed before I arrived.\n" + //
+                                "I was made, then unmade from time itself\n" + //
+                                "suspended between becoming and being\n" + //
+                                "while my mother dreamed in darkness.\n" + //
+                                "I was born in a cave before I ever drew breath in the world.\n" + //
+                                "What phenomenon am I?", "Delayed Implantation",
+                                " The timing of birth is deliberately delayed by the mother's biology.");
+                addRiddles("My eyes may fail to see you well,\n" + //
+                                "But far away, I catch your smell.\n" + //
+                                "Across the land, through wind and air,\n" + //
+                                "Your scent tells me that you are there.\n" + //
+                                "What sense do I rely on most?", "A Powerfull Sense of Smell.",
+                                "It’s the sense dogs are famous for too.");
+                addRiddles("Not just strength but brains I wield,\n" + //
+                                "Problem-solving is my field.\n" + //
+                                "I’ve used a rock to scratch my back\n" + //
+                                "A clever mind is what I pack.\n" + //
+                                "What trait does this show?", "High Intelligence",
+                                "This trait is what it what allows me to adapt, learn, and think rather than just act on instinct.");
+
+                // Leopard Riddles
+                                addRiddles("They call me ghost, yet I am real,\n" + //
+                                "Through shadows dark I softly steal.\n" + //
+                                "You won’t see me, you won’t hear\n" + //
+                                "Until I suddenly appear.", "Leopard", "I’m famous for stealth and silence.");
+                addRiddles("My coat is covered, not in dots,\n" + //
+                                "But flower-shaped and shadowed spots.\n" + //
+                                "They help me hide where light is dropped\n" + //
+                                "In the jungle where I can’t be stopped.", "Leopard", "My spots are called rosettes.");
+                addRiddles("Up I go with nimble tread,\n" + //
+                                "Down I come, but first my head!\n" + //
+                                "Few can match this daring feat\n" + //
+                                "Tree to ground on careful feet.", "Leopard",
+                                "I’m one of the only big cats that climbs down headfirst.");
+                
+                // Red Panda Riddles
+                addRiddles("Seventeen hours I rest each day,\n" + //
+                                                "Dreaming all my time away.\n" + //
+                                                "At dawn and dusk I come alive\n" + //
+                                                "In quiet hours, I truly thrive.", "Red Panda", "I’m most active when the sun is low in the sky, not in the middle of the day.");
+                addRiddles("Red above and dark below,\n" + //
+                                                "In moss and shade I barely show.\n" + //
+                                                "White and rust help me disappear\n" + //
+                                                "In forest homes, I’m hard to peer.", "Red Panda", "My colors match the forest environment so I can hide from predators.");
+                addRiddles("Before the giant took the name,\n" + //
+                                                "I was the first to earn that fame.\n" + //
+                                                "In eighteen twenty-five, you see\n" + //
+                                                "“Panda” first belonged to me!", "Red Panda", "I was named long before the giant panda.");
+                
+                // Artic Fox Riddles
+                addRiddles("I wear a coat that shifts with time,\n" + //
+                                                "From winter white to summer grime.\n" + //
+                                                "I vanish in both snow and sand\n" + //
+                                                "A master of the shifting land.", "Artic Fox", "I disguise myself by changing how I look depending on the season.");
+                addRiddles("I hear a whisper underground,\n" + //
+                                                "A hidden heartbeat is my sound.\n" + //
+                                                "Then I leap into the snow\n" + //
+                                                "And pull my dinner from below.", "Artic Fox", "I use one of my senses more than sight to find hidden food under snow.");
+                addRiddles("I find a mate and stay quite true,\n" + //
+                                                "Together we raise pups anew.\n" + //
+                                                "A bonded pair is how I live\n" + //
+                                                "And many pups I love to give.", "Artic Fox", "I usually stick with one partner instead of switching mates often.");
         }
 
         // Get the readles from the Linked Hash Map.
@@ -144,7 +209,8 @@ public class RiddleData {
                         return null;
                 }
 
-                // If the array isn't empty then return the random riddle picked and delete it form the copy list.
+                // If the array isn't empty then return the random riddle picked and delete it
+                // form the copy list.
                 int index = rand.nextInt(unplayedRiddles.size());
                 Riddle pickedRiddle = unplayedRiddles.get(index);
                 unplayedRiddles.remove(index);
