@@ -141,6 +141,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 // Check if the play button was clicked.
                 if (characterMenu.playButtonClicked(e)) {
                     game.resetTimer();
+                    game.resetCompletedCheckpoints();
                     // Update the current state.
                     currentState = GameStates.PLAYING;
                     // Initialise the game with the characters sdelected by the players.
