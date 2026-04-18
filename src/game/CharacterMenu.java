@@ -51,7 +51,7 @@ public class CharacterMenu {
         characters = new ArrayList<CharacterButton>();
 
         // Set the width of the row that the characters are going to be displayed.
-        int totalWidth = (Constants.CHARACTER_WIDTH * 4) + (Constants.CHARACTER_SPACEING * 3);
+        int totalWidth = (Constants.CHARACTER_WIDTH * 8) + (Constants.CHARACTER_SPACEING * 7);
         // Set the starting X position for the character display.
         int startX = Constants.CHARACTER_BUTTON_X - (totalWidth / 2);
 
@@ -76,6 +76,9 @@ public class CharacterMenu {
 
         lemurBtn.setLocked(true);
         characters.add(lemurBtn);
+
+        bearBtn = new CharacterButton("Gobi Bear", "gobi bear.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 4, Constants.CHARACTER_BUTTON_Y,
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
     }
 
     // Initialise the buttons.
