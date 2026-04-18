@@ -80,6 +80,7 @@ public class CharacterMenu {
         bearBtn = new CharacterButton("Gobi Bear", "gobi bear.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 4, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
         bearBtn.setLocked(true);
+        characters.add(bearBtn);
     }
 
     // Initialise the buttons.
