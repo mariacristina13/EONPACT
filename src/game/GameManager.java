@@ -535,6 +535,7 @@ public class GameManager {
         else {
             if (activeCheckpoint.getRiddle().attemptsFinished()) {
                 feedback = "No attempts left!\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
+                failedCheckPoints++;
                 riddleActive = false;
                 feedbackActive = true;
             } else {
