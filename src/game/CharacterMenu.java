@@ -112,7 +112,7 @@ public class CharacterMenu {
     }
 
     // Draw the character menu.
-    public void draw(Graphics2D g) {
+    public void drawCharacterMenu(Graphics2D g) {
         // Draw the background.
         g.setColor(Constants.DARK_GREEN);
         g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
