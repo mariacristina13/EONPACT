@@ -608,6 +608,10 @@ public class GameManager {
         return completedCheckpoints;
     }
 
+    public int getFailedCheckPoints(){
+        return failedCheckPoints;
+    }
+
     public void resetTimer(){
         minute = 2;
         second = 0;
