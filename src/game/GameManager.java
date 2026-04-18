@@ -54,6 +54,7 @@ public class GameManager {
 
     // Counter variables
     private int completedCheckpoints = 0;
+    private int failedCheckPoints = 0;
 
     // Checkpoint
     private ArrayList<CheckPoint> checkpoints; // list of all the checkpoints
