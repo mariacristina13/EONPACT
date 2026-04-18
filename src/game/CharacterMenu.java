@@ -200,6 +200,10 @@ public class CharacterMenu {
             if (riddleScore >= 15) {
                 foxBtn.setLocked(false);
             }
+
+            if (riddleScore >= 18) {
+                leopardBtn.setLocked(false);
+            }
         }
     }
 
