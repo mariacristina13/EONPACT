@@ -188,6 +188,10 @@ public class CharacterMenu {
             if (riddleScore >= 6) {
                 elephantBtn.setLocked(false);
             }
+
+            if (riddleScore >= 9) {
+                bearBtn.setLocked(false);
+            }
         }
     }
 
