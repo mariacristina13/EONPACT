@@ -48,6 +48,9 @@ public class Init {
                         gameManager.stopTimer();
                         if (gameManager.getCompletedCheckpoints() >= 3) {
                             panel.setCurrentState(GameStates.GAME_WON);
+                        } 
+                        else {
+                            panel.setCurrentState(GameStates.GAME_LOST);
                         }
                     }
                 }
