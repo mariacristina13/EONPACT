@@ -93,7 +93,7 @@ public class CharacterMenu {
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         foxBtn.setLocked(true);
-        
+        characters.add(foxBtn);
     }
 
     // Initialise the buttons.
