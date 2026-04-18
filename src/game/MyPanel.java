@@ -65,6 +65,10 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case GAME_OVER:
                gameOverScreen.drawGameOver(graphics);
                 break;
+            case GAME_WON:
+               drawGameWon(graphics);
+                break;
+
         }
     }
 
