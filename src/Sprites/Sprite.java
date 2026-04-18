@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public abstract class Sprite {
+	// Class variables.
 	private String fileName;
 	private int x;
 	private int y;
@@ -14,6 +15,7 @@ public abstract class Sprite {
 	private int height;
 	private BufferedImage image;
 
+	// Initialise the class variables.
 	public Sprite(String fileName, int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y - height;
@@ -28,6 +30,7 @@ public abstract class Sprite {
 		}
 	}
 
+	// Getters and setters.
 	public BufferedImage getImage() {
 		return image;
 	}

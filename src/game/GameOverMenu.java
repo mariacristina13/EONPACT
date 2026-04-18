@@ -27,6 +27,7 @@ public class GameOverMenu {
                 Constants.BUTTON_HEIGHT);
     }
 
+    // Draw the game over screen.
     public void drawGameOver(Graphics2D g){
         // Draw the background.
         g.setColor(Constants.DARK_GREEN);
