@@ -91,6 +91,9 @@ public class CharacterMenu {
 
         foxBtn = new CharacterButton("Actic Fox", "arctic fox.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 6, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
+
+        foxBtn.setLocked(true);
+        
     }
 
     // Initialise the buttons.
