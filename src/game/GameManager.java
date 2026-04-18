@@ -147,6 +147,8 @@ public class GameManager {
                 return "lemur.png";
             case "Gobi Bear":
                 return "gobi bear.png";
+            case "Red Panda":
+                return "red panda.png";
             default:
                 return "box turtle.png";
         }
