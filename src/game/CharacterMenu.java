@@ -192,6 +192,10 @@ public class CharacterMenu {
             if (riddleScore >= 9) {
                 bearBtn.setLocked(false);
             }
+
+            if (riddleScore >= 12) {
+                pandaBtn.setLocked(false);
+            }
         }
     }
 
