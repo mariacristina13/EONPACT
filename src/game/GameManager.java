@@ -552,6 +552,10 @@ public class GameManager {
         this.riddleActive = active;
     }
 
+    public boolean isFeedbackActive() {
+        return feedbackActive;
+    }
+
     public String getUserInput() {
         return userInput;
     }
