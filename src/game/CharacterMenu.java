@@ -196,6 +196,10 @@ public class CharacterMenu {
             if (riddleScore >= 12) {
                 pandaBtn.setLocked(false);
             }
+
+            if (riddleScore >= 15) {
+                foxBtn.setLocked(false);
+            }
         }
     }
 
