@@ -57,7 +57,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 menuScreen.drawMenu(graphics);
                 break;
             case CHARACTER_SELECT:
-                characterMenu.draw(graphics);
+                characterMenu.drawCharacterMenu(graphics);
                 break;
             case PLAYING:
                 drawGame(graphics);
