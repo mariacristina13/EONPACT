@@ -97,6 +97,9 @@ public class CharacterMenu {
 
         leopardBtn = new CharacterButton("Leopard", "leopard.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 7, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
+
+        leopardBtn.setLocked(true);
+        characters.add(leopardBtn);
     }
 
     // Initialise the buttons.
