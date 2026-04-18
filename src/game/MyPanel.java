@@ -71,6 +71,9 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case GAME_LOST:
                 drawGameLost(graphics);
                 break;
+            default: 
+                break;
+
 
         }
     }
