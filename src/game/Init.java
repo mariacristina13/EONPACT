@@ -38,10 +38,17 @@ public class Init {
                     if (gameManager.getCompletedCheckpoints() == 5) {
                         gameManager.stopTimer();
                         panel.setCurrentState(GameStates.GAME_WON);
-                    } else if (gameManager.getFailedCheckPoints() == 5 && !gameManager.isRiddleActive()
+                    } 
+                    else if (gameManager.getFailedCheckPoints() == 5 && !gameManager.isRiddleActive()
                             && !gameManager.isFeedbackActive()) {
                         gameManager.stopTimer();
                         panel.setCurrentState(GameStates.GAME_LOST);
+                    } 
+                    else if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
+                        gameManager.stopTimer();
+                        if (gameManager.getCompletedCheckpoints() >= 3) {
+                            panel.setCurrentState(GameStates.GAME_WON);
+                        }
                     }
                 }
             }
