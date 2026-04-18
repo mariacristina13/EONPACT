@@ -84,6 +84,7 @@ public class CharacterMenu {
 
         pandaBtn = new CharacterButton("Red Panda", "red panda.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 5, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
+        pandaBtn.setLocked(true);
     }
 
     // Initialise the buttons.
