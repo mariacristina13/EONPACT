@@ -88,6 +88,9 @@ public class CharacterMenu {
 
         pandaBtn.setLocked(true);
         characters.add(pandaBtn);
+
+        foxBtn = new CharacterButton("Actic Fox", "arctic fox.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 6, Constants.CHARACTER_BUTTON_Y,
+                Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
     }
 
     // Initialise the buttons.
