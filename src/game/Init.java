@@ -35,6 +35,10 @@ public class Init {
 
                 // End condition.
                 if (panel.getCurrentState() == GameStates.PLAYING) {
+                    if (gameManager.getCompletedCheckpoints() == 5) {
+                        gameManager.stopTimer();
+                        panel.setCurrentState(GameStates.GAME_WON);
+                    }
                 }
             }
         });
