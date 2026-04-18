@@ -18,6 +18,7 @@ public class CharacterMenu {
     private CharacterButton elephantBtn;
     private CharacterButton lemurBtn;
     private CharacterButton bearBtn;
+    private CharacterButton foxBtn;
     private ArrayList<String> selectedCharacters;
     private MenuButton playBtn;
     private MenuButton backBtn;
