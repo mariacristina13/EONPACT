@@ -161,7 +161,7 @@ public class RiddleData {
                                                 "And many pups I love to give.", "Artic Fox", "I usually stick with one partner instead of switching mates often.");
         }
 
-        // Get the readles from the Linked Hash Map.
+        // Get the reddles from the Linked Hash Map.
         public ArrayList<Riddle> getRiddles() {
                 ArrayList<Riddle> riddleList = new ArrayList<Riddle>();
 

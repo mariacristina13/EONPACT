@@ -37,6 +37,7 @@ public class CharacterMenu {
         loadImage();
     }
 
+    // Load the image for the locked characters.
     private void loadImage() {
         try {
             lockImg = ImageIO.read(new File("images/" + "lock.png"));
@@ -46,7 +47,7 @@ public class CharacterMenu {
         }
     }
 
-    // Inithialise the character buttons.
+    // Initialise the character buttons.
     private void initCharacters() {
         characters = new ArrayList<CharacterButton>();
 
@@ -67,6 +68,7 @@ public class CharacterMenu {
                 startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
+        // Lock the elephant character.
         elephantBtn.setLocked(true);
         characters.add(elephantBtn);
 
@@ -74,30 +76,35 @@ public class CharacterMenu {
                 startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 3, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
+        // Lock the lemur character.
         lemurBtn.setLocked(true);
         characters.add(lemurBtn);
 
         bearBtn = new CharacterButton("Gobi Bear", "gobi bear.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 4, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
+        // Lock the gobi bear character.
         bearBtn.setLocked(true);
         characters.add(bearBtn);
 
         pandaBtn = new CharacterButton("Red Panda", "red panda.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 5, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
+        // Lock the red panda character.
         pandaBtn.setLocked(true);
         characters.add(pandaBtn);
 
         foxBtn = new CharacterButton("Arctic Fox", "arctic fox.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 6, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
+        // Lock the arctic fox character.
         foxBtn.setLocked(true);
         characters.add(foxBtn);
 
         leopardBtn = new CharacterButton("Leopard", "leopard.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 7, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
+        // Lock the leopard character.
         leopardBtn.setLocked(true);
         characters.add(leopardBtn);
     }
@@ -136,10 +143,11 @@ public class CharacterMenu {
         int countWidth = g.getFontMetrics().stringWidth(countText);
         g.drawString(countText, Constants.SCREEN_CENTER - countWidth / 2, 160);
 
-        // Draw the character buttons
         for (CharacterButton character : characters) {
+            // Draw the character buttons
             character.drawButton(g);
 
+            // If the character is locked than draw a lock image with a transparent background over the character.
             if (character.isLocked()) {
                 lockX = character.getX() + (character.getWidth() - Constants.LOCK_WIDTH) / 2;
                 lockY = character.getY() + (character.getHeight() - Constants.LOCK_HEIGHT) / 2;
@@ -161,14 +169,17 @@ public class CharacterMenu {
         // Handle character selection.
         for (CharacterButton character : characters) {
             if (character.contains(e.getX(), e.getY())) {
+                // If the character os locked don't let the user select it.
                 if (character.isLocked()){
                     return;
                 }
-                
+                // Otherwise add the character's name to the selectedCharacters list and remove it from the characters one.
                 if (character.isSelected()) {
                     character.setSelected(false);
                     selectedCharacters.remove(character.getName());
-                } else if (selectedCharacters.size() < Constants.MAX_SELECTIONS) {
+                } 
+                // If the players already choose 2 characters than don't allow them to choose another one.
+                else if (selectedCharacters.size() < Constants.MAX_SELECTIONS) {
                     character.setSelected(true);
                     selectedCharacters.add(character.getName());
                 }
@@ -177,6 +188,7 @@ public class CharacterMenu {
         }
     }
 
+    // Method that unlockes a new character once the riddleScore is increased during one run of the whole game.
     public void updateRiddleScore(int newScore){
         if (newScore > riddleScore) {
             riddleScore = newScore;
