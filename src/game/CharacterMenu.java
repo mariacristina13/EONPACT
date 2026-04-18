@@ -147,7 +147,7 @@ public class CharacterMenu {
                 g.setColor(Constants.TRANS_BLACK);
                 g.fillRect(character.getX(), character.getY(), character.getWidth(), character.getHeight());
 
-               g.drawImage(lockImg, lockX, lockY, Constants.LOCK_WIDTH, character.getHeight(), null);
+               g.drawImage(lockImg, lockX, lockY, Constants.LOCK_WIDTH, Constants.LOCK_HEIGHT, null);
             }
         }
 
