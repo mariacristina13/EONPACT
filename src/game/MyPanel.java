@@ -109,6 +109,20 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
     }
 
+    public void drawGameLost(Graphics2D g){
+        // Draw the background.
+        g.setColor(Constants.DARK_GREEN);
+        g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+        // Draw the title of the game.
+        g.setColor(Constants.GOLD);
+        g.setFont(Constants.GAME_FONT);
+        String title = "Game Lost!";
+        int titleWidth = g.getFontMetrics().stringWidth(title);
+        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
+    }
+
+
     @Override
     public void keyTyped(KeyEvent e) {
         game.keyTyped(e.getKeyChar());
