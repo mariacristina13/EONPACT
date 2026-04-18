@@ -35,7 +35,7 @@ public class Init {
 
                 // End condition.
                 if (panel.getCurrentState() == GameStates.PLAYING) {
-                    // Check if the players completed all the riddles before the timer ran out.
+                    // Check if the players completed all the riddles before the timer ran out and if the riddle and feedback cards are not active.
                     if (gameManager.getCompletedCheckpoints() == 5 && !gameManager.isRiddleActive()
                             && !gameManager.isFeedbackActive()) {
                         // Stop the timer.
