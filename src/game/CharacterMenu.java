@@ -79,12 +79,15 @@ public class CharacterMenu {
 
         bearBtn = new CharacterButton("Gobi Bear", "gobi bear.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 4, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
+
         bearBtn.setLocked(true);
         characters.add(bearBtn);
 
         pandaBtn = new CharacterButton("Red Panda", "red panda.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 5, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
+
         pandaBtn.setLocked(true);
+        characters.add(pandaBtn);
     }
 
     // Initialise the buttons.
