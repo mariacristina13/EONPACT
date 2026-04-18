@@ -5,5 +5,6 @@ public enum GameStates {
     CHARACTER_SELECT,
     PLAYING,
     GAME_WON,
+    GAME_LOST,
     GAME_OVER,
 }
