@@ -38,6 +38,10 @@ public class Init {
                     if (gameManager.getCompletedCheckpoints() == 5) {
                         gameManager.stopTimer();
                         panel.setCurrentState(GameStates.GAME_WON);
+                    } else if (gameManager.getFailedCheckPoints() == 5 && !gameManager.isRiddleActive()
+                            && !gameManager.isFeedbackActive()) {
+                        gameManager.stopTimer();
+                        panel.setCurrentState(GameStates.GAME_LOST);
                     }
                 }
             }
