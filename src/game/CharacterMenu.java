@@ -20,6 +20,7 @@ public class CharacterMenu {
     private CharacterButton bearBtn;
     private CharacterButton foxBtn;
     private CharacterButton pandaBtn;
+    private CharacterButton leopardBtn;
     private ArrayList<String> selectedCharacters;
     private MenuButton playBtn;
     private MenuButton backBtn;
