@@ -118,7 +118,7 @@ public class CharacterMenu {
         g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         // Draw the text on the background.
-        g.setColor(Constants.WHITE);
+        g.setColor(Constants.GOLD);
         g.setFont(Constants.CHARACTER_MENU_FONT);
         String title = "Select Your Characters";
         int titleWidth = g.getFontMetrics().stringWidth(title);
