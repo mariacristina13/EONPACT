@@ -85,8 +85,9 @@ public class GameManager {
 
         // Initialise the player position at the start of the game.
         player1 = new Player(player1Img, 150, Constants.GROUND_HEIGHT - 500, 90, 90);
+        player1.loadFlippedImage(player1Img);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 200, 90, 90);
-
+        player2.loadFlippedImage(player2Img);
         // Imitialise background.
         bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         // Initialise map.
@@ -446,7 +447,7 @@ public class GameManager {
             // Move left.
             case Constants.LEFTKEY:
                 player1.setDirection(-1);
-                
+                player1.setImage(player1.getFlippedImage());      
                 break;
             // Jump.
             case Constants.SPACEKEY:
@@ -460,6 +461,7 @@ public class GameManager {
             // Move left.
             case Constants.AKEY:
                 player2.setDirection(-1);
+                player2.setImage(player2.getFlippedImage());
                 break;
             // Jump
             case Constants.WKEY:

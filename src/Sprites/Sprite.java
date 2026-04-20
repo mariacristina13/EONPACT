@@ -14,6 +14,7 @@ public abstract class Sprite {
 	private int width;
 	private int height;
 	private BufferedImage image;
+	private BufferedImage originalImage;
 	private BufferedImage flippedImage;
 
 	// Initialise the class variables.
@@ -26,6 +27,7 @@ public abstract class Sprite {
 		
 		try {
 			image = ImageIO.read(pic);
+			originalImage=image;//this hold a normal image of the animal so when i press the right key it goes back
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.print("file not found");
