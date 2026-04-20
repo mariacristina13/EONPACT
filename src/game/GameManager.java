@@ -173,6 +173,8 @@ public class GameManager {
                 return "box turtle.png";
         }
     }
+    
+    
 
     // Method that handles the timer countdown.
     // https://www.ryisnow.online/2021/04/java-beginner-code-sample-create-timer.html
@@ -443,6 +445,7 @@ public class GameManager {
             // Move right.
             case Constants.RIGHTKEY:
                 player1.setDirection(1);
+                player1.setImage(player1.getOriginalImage());
                 break;
             // Move left.
             case Constants.LEFTKEY:
@@ -457,6 +460,7 @@ public class GameManager {
             // Move right.
             case Constants.DKEY: 
                 player2.setDirection(1);
+                player2.setImage(player2.getOriginalImage());
                 break;
             // Move left.
             case Constants.AKEY:

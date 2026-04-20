@@ -52,7 +52,9 @@ public abstract class Sprite {
 	public BufferedImage getFlippedImage() {
 		return flippedImage;
 	}
-
+ public BufferedImage getOriginalImage() {
+	 return originalImage;
+ }
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}
