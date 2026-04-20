@@ -22,6 +22,7 @@ public abstract class Sprite {
 		this.width = width;
 		this.height = height;
 		File pic = new File("images/" + fileName);
+		
 		try {
 			image = ImageIO.read(pic);
 		} catch (IOException e) {
