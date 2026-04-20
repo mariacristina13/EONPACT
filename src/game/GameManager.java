@@ -174,7 +174,28 @@ public class GameManager {
         }
     }
     
-    
+    private String getFlippedCharacterImage(String characterName) {
+    	 switch (characterName) {
+         case "Box Turtle":
+             return "box turtle flipped.png";
+         case "Kakapo":
+             return "kakapo flipped.png";
+         case "African Forest Elephant":
+             return "african forest elephant flipped.png";
+         case "Lemur":
+             return "lemur flipped.png";
+         case "Gobi Bear":
+             return "gobi bear flipped.png";
+         case "Red Panda":
+             return "red panda flipped.png";
+         case "Arctic Fox":
+             return "arctic fox flipped.png";
+         case "Leopard":
+             return "leopard flipped.png";
+         default:
+             return "box turtle flipped.png";
+     }
+    }
 
     // Method that handles the timer countdown.
     // https://www.ryisnow.online/2021/04/java-beginner-code-sample-create-timer.html
