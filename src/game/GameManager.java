@@ -81,8 +81,11 @@ public class GameManager {
     public void initializeGame(ArrayList<String> selectedCharacters) {
         // Initialise the players with the characters choosen.
         String player1Img = getCharacterImage(selectedCharacters.get(0));
+        String player1FlippedImg=getFlippedCharacterImage(selectedCharacters.get(0));
         String player2Img = getCharacterImage(selectedCharacters.get(1));
+        String player2FlippedImg=getFlippedCharacterImage(selectedCharacters.get(1));
 
+        
         // Initialise the player position at the start of the game.
         player1 = new Player(player1Img, 150, Constants.GROUND_HEIGHT - 500, 90, 90);
         player1.loadFlippedImage(player1Img);
