@@ -14,6 +14,7 @@ public abstract class Sprite {
 	private int width;
 	private int height;
 	private BufferedImage image;
+	private BufferedImage flippedImage;
 
 	// Initialise the class variables.
 	public Sprite(String fileName, int x, int y, int width, int height) {
@@ -30,10 +31,24 @@ public abstract class Sprite {
 			System.out.print("file not found");
 		}
 	}
+	
+	public void loadFlippedImage(String flippedFileName) {
+		File pic=new File("images/"+flippedFileName);
+		try {
+			flippedImage=ImageIO.read(pic);
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			System.out.print("file not found");
+		}
+	}
 
 	// Getters and setters.
 	public BufferedImage getImage() {
 		return image;
+	}
+	public BufferedImage getFlippedImage() {
+		return flippedImage;
 	}
 
 	public void setImage(BufferedImage image) {

@@ -446,6 +446,7 @@ public class GameManager {
             // Move left.
             case Constants.LEFTKEY:
                 player1.setDirection(-1);
+                
                 break;
             // Jump.
             case Constants.SPACEKEY:
@@ -545,6 +546,7 @@ public class GameManager {
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
                 player1.setDirection(0);
+            
             if (isKeyHeld(Constants.RIGHTKEY))
                 player1.setDirection(0);
 
