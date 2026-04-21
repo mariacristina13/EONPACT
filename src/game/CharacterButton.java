@@ -13,9 +13,11 @@ import ui.Button;
 public class CharacterButton extends Button {
     // Class variables.
     private String name;
+    private boolean locked;
     private BufferedImage characterImg;
     private boolean selected = false;
 
+    // Initialise the class variables
     public CharacterButton(String name, String fileName, int x, int y, int width, int height) {
         super(x, y, width, height);
         this.name = name;
@@ -32,8 +34,7 @@ public class CharacterButton extends Button {
         }
     }
 
-    // Draw a box around the buttons for the animals if they were selected and the
-    // text on the background.
+    // Draw a box around the buttons for the animals if they were selected and the text on the background.
     @Override
     public void drawButton(Graphics2D g) {
         if (selected) {
@@ -56,6 +57,10 @@ public class CharacterButton extends Button {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+    
+    public void setLocked(boolean locked){
+        this.locked = locked;
+    }
 
     public boolean isSelected() {
         return selected;
@@ -63,5 +68,9 @@ public class CharacterButton extends Button {
 
     public String getName() {
         return name;
+    }
+
+    public boolean isLocked(){
+        return locked;
     }
 }

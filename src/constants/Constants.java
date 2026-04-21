@@ -55,6 +55,7 @@ public final class Constants {
 	public final static Color BROWN_RED = new Color(163, 62, 62);
 	public final static Color GOLD = new Color(255, 215, 0);
 	public final static Color DARK_GREEN = new Color(49, 73, 53);
+	public final static Color TRANS_BLACK = new Color(0, 0, 0, 120);
 
 	// Fonts
 	public final static Font ATTEMPTS_FONT = new Font("SansSerif", Font.ITALIC, 10);
@@ -84,4 +85,8 @@ public final class Constants {
 	// Background Dimensions
 	public final static int TILE_WIDTH = 256;
 	public final static int TILE_HEIGHT = 220;
+
+	// Lock Dimensions
+	public final static int LOCK_WIDTH = CHARACTER_WIDTH / 2;
+	public final static int LOCK_HEIGHT = CHARACTER_HEIGHT / 2;
 }

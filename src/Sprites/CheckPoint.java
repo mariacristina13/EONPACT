@@ -3,18 +3,14 @@ package Sprites;
 import riddles.Riddle;
 
 public class CheckPoint extends Sprite {
-
+    // Class variables.
     private Riddle riddle;
     private boolean completed;
 
+    // Initialise class variables.
     public CheckPoint(String fileName, int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
         this.riddle = null;
-        this.completed = false;
-    }
-
-    public void setRiddle(Riddle riddle) {
-        this.riddle = riddle;
         this.completed = false;
     }
 
@@ -31,6 +27,13 @@ public class CheckPoint extends Sprite {
         }
     }
 
+    // Setter
+    public void setRiddle(Riddle riddle) {
+        this.riddle = riddle;
+        this.completed = false;
+    }
+
+    // Getters
     public boolean isCompleted() {
         return completed;
     }

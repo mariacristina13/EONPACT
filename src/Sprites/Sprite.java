@@ -7,31 +7,54 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public abstract class Sprite {
+	// Class variables.
 	private String fileName;
 	private int x;
 	private int y;
 	private int width;
 	private int height;
 	private BufferedImage image;
+	private BufferedImage originalImage;
+	private BufferedImage flippedImage;
 
+	// Initialise the class variables.
 	public Sprite(String fileName, int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y - height;
 		this.width = width;
 		this.height = height;
 		File pic = new File("images/" + fileName);
+		
 		try {
 			image = ImageIO.read(pic);
+			originalImage=image;//this hold a normal image of the animal so when i press the right key it goes back
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.print("file not found");
 		}
 	}
+	
+	public void loadFlippedImage(String flippedFileName) {
+		File pic=new File("images/"+flippedFileName);
+		try {
+			flippedImage=ImageIO.read(pic);
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+			System.out.print("file not found");
+		}
+	}
 
+	// Getters and setters.
 	public BufferedImage getImage() {
 		return image;
 	}
-
+	public BufferedImage getFlippedImage() {
+		return flippedImage;
+	}
+ public BufferedImage getOriginalImage() {
+	 return originalImage;
+ }
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}

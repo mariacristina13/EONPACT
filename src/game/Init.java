@@ -35,10 +35,34 @@ public class Init {
 
                 // End condition.
                 if (panel.getCurrentState() == GameStates.PLAYING) {
-                    if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
+                    // Check if the players completed all the riddles before the timer ran out.
+                    if (gameManager.getCompletedCheckpoints() == 5) {
+                        // Stop the timer.
                         gameManager.stopTimer();
-                        ((Timer) e.getSource()).stop();
-                        panel.setCurrentState(GameStates.GAME_OVER);
+                        // Change the game's state to the game won state.
+                        panel.setCurrentState(GameStates.GAME_WON);
+                    } 
+                    // Check if the players failed all the checkpoints before the time ran out and if the riddle and feedback cards are not active.
+                    else if (gameManager.getFailedCheckPoints() == 5 && !gameManager.isRiddleActive()
+                            && !gameManager.isFeedbackActive()) {
+                        // Stop the timer.
+                        gameManager.stopTimer();
+                       // Change the game's state to the game lost state.
+                        panel.setCurrentState(GameStates.GAME_LOST);
+                    } 
+                    // Check if the timer ran out.
+                    else if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
+                        // Stop the timer.
+                        gameManager.stopTimer();
+                        // Check if the player completed 3 or more checkpoints.
+                        if (gameManager.getCompletedCheckpoints() >= 3) {
+                            // Change the game's state to the game won state.
+                            panel.setCurrentState(GameStates.GAME_WON);
+                        } 
+                        else {
+                            // Otherwise change the game's state to the game lost state.
+                            panel.setCurrentState(GameStates.GAME_LOST);
+                        }
                     }
                 }
             }
