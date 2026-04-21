@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import Sprites.Background;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +30,7 @@ public class CharacterMenu {
     private int lockX;
     private int lockY;
     private int riddleScore = 0;
+     public Background bg;
 
     // Initialise class variables.
     public CharacterMenu() {
@@ -35,6 +38,7 @@ public class CharacterMenu {
         initCharacters();
         initButtons();
         loadImage();
+        bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Load the image for the locked characters.
@@ -127,8 +131,9 @@ public class CharacterMenu {
     // Draw the character menu.
     public void drawCharacterMenu(Graphics2D g) {
         // Draw the background.
-        g.setColor(Constants.DARK_GREEN);
-        g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null);
+        //g.setColor(Constants.DARK_GREEN);
+        //g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         // Draw the text on the background.
         g.setColor(Constants.GOLD);
