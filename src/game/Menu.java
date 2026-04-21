@@ -4,15 +4,18 @@ import java.awt.Graphics2D;
 
 import java.awt.event.MouseEvent;
 
+import Sprites.Background;
 import constants.Constants;
 
 public class Menu {
     // Class variables.
     private MenuButton characterBtn;
     private MenuButton quitBtn;
+    public Background bg;
 
     public Menu() {
         initButtons();
+        bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Initialise buttons
@@ -33,8 +36,9 @@ public class Menu {
     // Draw the menu display.
     public void drawMenu(Graphics2D g) {
         // Draw the background.
-        g.setColor(Constants.DARK_GREEN);
-        g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null);
+        //g.setColor(Constants.DARK_GREEN);
+        //g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         // Draw the title of the game.
         g.setColor(Constants.GOLD);
