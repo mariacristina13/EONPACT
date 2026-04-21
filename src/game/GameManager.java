@@ -144,7 +144,8 @@ public class GameManager {
             "cabage.png",
             "leaf.png",
             "seeds.png",
-            "bamboo.png"
+            "bamboo.png",
+            "berries.png",
     };
 
     // Get a random food image from the array of images.
