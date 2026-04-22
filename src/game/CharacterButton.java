@@ -46,7 +46,7 @@ public class CharacterButton extends Button {
             g.drawImage(characterImg, getX(), getY(), getWidth(), getHeight(), null);
         }
 
-        g.setColor(Constants.ORANGE);
+        g.setColor(Constants.GOLD);
         g.setFont(Constants.CHARACTER_NAME_FONT);
 
         int textWidth = g.getFontMetrics().stringWidth(name);
