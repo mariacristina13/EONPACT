@@ -32,7 +32,7 @@ public class Menu {
 
         // Initialise buttons.
         characterBtn = new MenuButton("Characters", "animals button.png", "animals button hover.png", startX,
-                Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+                Constants.BUTTON_Y + 30, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
                 startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
