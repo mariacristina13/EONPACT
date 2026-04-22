@@ -49,4 +49,10 @@ public class GameLost {
         menuBtn.drawButton(g);
         quitBtn.drawButton(g);
     }
+
+    // Event listener for the mouse.
+    public void mouseMoved(MouseEvent e) {
+        menuBtn.setHovered(menuBtn.contains(e.getX(), e.getY()));
+        quitBtn.setHovered(quitBtn.contains(e.getX(), e.getY()));
+    }
 }
