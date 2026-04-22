@@ -50,7 +50,7 @@ public class Menu {
         g.setColor(Constants.GOLD);
         g.setFont(Constants.GAME_FONT);
         String title = "EONPACT";
-        int titleWidth = g.getFontMetrics().stringWidth(title);
+        //int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawImage(logo.getImage(), logo.getX(), logo.getY(), logo.getWidth(), logo.getHeight(), null);
         //g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
