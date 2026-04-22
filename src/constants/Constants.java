@@ -54,6 +54,7 @@ public final class Constants {
 	public final static Color MAROON = new Color(123, 47, 47);
 	public final static Color BROWN_RED = new Color(163, 62, 62);
 	public final static Color GOLD = new Color(255, 215, 0);
+	public final static Color ORANGE = new Color(255, 77, 0);
 	public final static Color DARK_GREEN = new Color(49, 73, 53);
 	public final static Color TRANS_BLACK = new Color(0, 0, 0, 120);
 
