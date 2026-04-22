@@ -68,12 +68,12 @@ public class CharacterMenu {
                 startX + Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
 
-        elephantBtn = new CharacterButton("African Forest Elephant", "african forest elephant.png",
+        elephantBtn = new CharacterButton("African Elephant", "african forest elephant.png",
                 startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the elephant character.
-        elephantBtn.setLocked(true);
+        elephantBtn.setLocked(false);
         characters.add(elephantBtn);
 
         lemurBtn = new CharacterButton("Lemur", "lemur.png",
