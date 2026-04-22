@@ -13,13 +13,18 @@ public class Menu {
     private MenuButton characterBtn;
     private MenuButton quitBtn;
     public Background bg;
-    public Map leo;
+    public ArrayList<Map> characters;
+    private Map randomCharacter;
     public Map logo;
 
     public Menu() {
         initButtons();
         bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        leo = new Map("leopard 2.png", 50, 700,510 , 178);
+       characters = new ArrayList<Map>();
+        characters.add(new Map("leopard 2.png", 50, 700,510 , 178));
+        characters.add(new Map("bear.png", 50, 700,510 , 178));
+        selectCharacter();
+
         logo = new Map("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
     }
 
