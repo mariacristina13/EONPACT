@@ -125,7 +125,24 @@ public class GameManager {
         // Initialize timer.
         timer();
 
+
+        
     }
+
+    //to create the checkpoint on the tiles
+    private CheckPoint createCheckpointOnTile(Map tile) {
+        int cpWidth = 60;
+        int cpHeight = 60;
+        int x = tile.getX() + tile.getWidth() / 2 - cpWidth / 2 + 40;//to place the checkpoint on the tiles
+        int y = tile.getY() + tile.getHeight() - cpHeight - 80;
+        CheckPoint cp = new CheckPoint(getRandomCheckpointImage(),x,y,cpWidth,cpHeight);//to get the random checkpoint image
+        Riddle r = data.getRandomRiddle();//for random riddle
+        if (r != null) {
+            cp.setRiddle(r);
+        }
+        return cp;
+    }
+
 
     // Add the images to an array.
     private String[] checkpointImages = {
