@@ -4,13 +4,19 @@ import constants.Constants;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
-public class GameOverMenu {
+import Sprites.Background;
+
+public class GameLost {
     // Class variables.
     private MenuButton menuBtn;
     private MenuButton quitBtn;
+    public Background background;
 
-    public GameOverMenu() {
+    public GameLost() {
         initButtons();
+
+        // Initialse the backgroeund image.
+        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Initialise the buttons.
@@ -27,16 +33,15 @@ public class GameOverMenu {
                 Constants.BUTTON_HEIGHT);
     }
 
-    // Draw the game over screen.
-    public void drawGameOver(Graphics2D g){
+    // Draw the game lost screen.
+    public void drawGameLost(Graphics2D g){
         // Draw the background.
-        g.setColor(Constants.DARK_GREEN);
-        g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
 
         // Draw the title of the game.
         g.setColor(Constants.GOLD);
         g.setFont(Constants.GAME_FONT);
-        String title = "Game Over!";
+        String title = "Game Lost!";
         int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 

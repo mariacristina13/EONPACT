@@ -32,9 +32,9 @@ public class Menu {
 
         // Initialise buttons.
         characterBtn = new MenuButton("Characters", "animals button.png", "animals button hover.png", startX,
-                Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+                Constants.BUTTON_Y + 30, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 30, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 
@@ -43,16 +43,9 @@ public class Menu {
         // Draw the background.
         g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null);
         g.drawImage(leo.getImage(),leo.getX(), leo.getY(), leo.getWidth(), leo.getHeight(), null);
-        //g.setColor(Constants.DARK_GREEN);
-        //g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         // Draw the title of the game.
-        g.setColor(Constants.GOLD);
-        g.setFont(Constants.GAME_FONT);
-        //String title = "EONPACT";
-        //int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawImage(logo.getImage(), logo.getX(), logo.getY(), logo.getWidth(), logo.getHeight(), null);
-        //g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
         // Draw the buttons.
         characterBtn.drawButton(g);
