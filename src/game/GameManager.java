@@ -125,18 +125,17 @@ public class GameManager {
         // Initialize timer.
         timer();
 
-        // Initialise the checkpoints.
-        checkpoints = new ArrayList<CheckPoint>();
-        for (int i = 0; i < 5; i++) {
-            int x = 250 + i * 200; // smaller spacing and also spread the checkpoints across the map
-            // Create a checkpoint with a random food image.
-            CheckPoint cp = new CheckPoint(getRandomCheckpointImage(), x, Constants.GROUND_HEIGHT - 60, 60, 60);
-            Riddle r = data.getRandomRiddle(); // Assign random riddle.
-            if (r != null) {
-                cp.setRiddle(r);
-            }
-            checkpoints.add(cp); // Add the checkpoint to the ArrayList.
-        }
+        //add the random checkpoint on the tiles
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),
+            Constants.TILE_WIDTH + 70, Constants.GROUND_HEIGHT - 60, 60, 60));
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),
+            Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, 60, 60));
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),125,
+            Constants.GROUND_HEIGHT - 140, 60, 60));
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),
+            Constants.TILE_WIDTH + 550, Constants.GROUND_HEIGHT - 150, 60, 60));
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),
+            Constants.TILE_WIDTH + 770, Constants.GROUND_HEIGHT - 200, 60, 60));
     }
 
     // Add the images to an array.
