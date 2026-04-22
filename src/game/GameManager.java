@@ -81,12 +81,16 @@ public class GameManager {
     public void initializeGame(ArrayList<String> selectedCharacters) {
         // Initialise the players with the characters choosen.
         String player1Img = getCharacterImage(selectedCharacters.get(0));
+        String player1FlippedImg=getFlippedCharacterImage(selectedCharacters.get(0));
         String player2Img = getCharacterImage(selectedCharacters.get(1));
+        String player2FlippedImg=getFlippedCharacterImage(selectedCharacters.get(1));
 
+        
         // Initialise the player position at the start of the game.
         player1 = new Player(player1Img, 150, Constants.GROUND_HEIGHT - 500, 90, 90);
+        player1.loadFlippedImage(player1FlippedImg);
         player2 = new Player(player2Img, 80, Constants.GROUND_HEIGHT - 200, 90, 90);
-
+        player2.loadFlippedImage(player2FlippedImg);
         // Imitialise background.
         bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         // Initialise map.
@@ -121,18 +125,17 @@ public class GameManager {
         // Initialize timer.
         timer();
 
-        // Initialise the checkpoints.
-        checkpoints = new ArrayList<CheckPoint>();
-        for (int i = 0; i < 5; i++) {
-            int x = 250 + i * 200; // smaller spacing and also spread the checkpoints across the map
-            // Create a checkpoint with a random food image.
-            CheckPoint cp = new CheckPoint(getRandomCheckpointImage(), x, Constants.GROUND_HEIGHT - 60, 60, 60);
-            Riddle r = data.getRandomRiddle(); // Assign random riddle.
-            if (r != null) {
-                cp.setRiddle(r);
-            }
-            checkpoints.add(cp); // Add the checkpoint to the ArrayList.
-        }
+        //add the random checkpoint on the tiles
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),
+            Constants.TILE_WIDTH + 70, Constants.GROUND_HEIGHT - 60, 60, 60));
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),
+            Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, 60, 60));
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),125,
+            Constants.GROUND_HEIGHT - 140, 60, 60));
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),
+            Constants.TILE_WIDTH + 550, Constants.GROUND_HEIGHT - 150, 60, 60));
+        checkpoints.add(new CheckPoint(getRandomCheckpointImage(),
+            Constants.TILE_WIDTH + 770, Constants.GROUND_HEIGHT - 200, 60, 60));
     }
 
     // Add the images to an array.
@@ -140,7 +143,10 @@ public class GameManager {
             "cabage.png",
             "leaf.png",
             "seeds.png",
-            "bamboo.png"
+            "bamboo.png",
+            "berries.png",
+            "meat.png",
+            "strawberry.png"
     };
 
     // Get a random food image from the array of images.
@@ -171,6 +177,29 @@ public class GameManager {
             default:
                 return "box turtle.png";
         }
+    }
+    
+    private String getFlippedCharacterImage(String characterName) {
+    	 switch (characterName) {
+         case "Box Turtle":
+             return "box turtle flipped.png";
+         case "Kakapo":
+             return "kakapo flipped.png";
+         case "African Forest Elephant":
+             return "african forest elephant flipped.png";
+         case "Lemur":
+             return "lemur flipped.png";
+         case "Gobi Bear":
+             return "gobi bear flipped.png";
+         case "Red Panda":
+             return "red panda flipped.png";
+         case "Arctic Fox":
+             return "arctic fox flipped.png";
+         case "Leopard":
+             return "leopard flipped.png";
+         default:
+             return "box turtle flipped.png";
+     }
     }
 
     // Method that handles the timer countdown.
@@ -442,10 +471,12 @@ public class GameManager {
             // Move right.
             case Constants.RIGHTKEY:
                 player1.setDirection(1);
+                player1.setImage(player1.getOriginalImage());
                 break;
             // Move left.
             case Constants.LEFTKEY:
                 player1.setDirection(-1);
+                player1.setImage(player1.getFlippedImage());      
                 break;
             // Jump.
             case Constants.SPACEKEY:
@@ -455,10 +486,12 @@ public class GameManager {
             // Move right.
             case Constants.DKEY: 
                 player2.setDirection(1);
+                player2.setImage(player2.getOriginalImage());
                 break;
             // Move left.
             case Constants.AKEY:
                 player2.setDirection(-1);
+                player2.setImage(player2.getFlippedImage());
                 break;
             // Jump
             case Constants.WKEY:
@@ -545,6 +578,7 @@ public class GameManager {
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
                 player1.setDirection(0);
+            
             if (isKeyHeld(Constants.RIGHTKEY))
                 player1.setDirection(0);
 
