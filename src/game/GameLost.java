@@ -10,10 +10,11 @@ public class GameLost {
     // Class variables.
     private MenuButton menuBtn;
     private MenuButton quitBtn;
-    public Background bg;
+    public Background background;
 
     public GameLost() {
         initButtons();
+        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
     // Initialise the buttons.
