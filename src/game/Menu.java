@@ -25,6 +25,8 @@ public class Menu {
         characters.add(new Map("leopard 2.png", 50, 700,510 , 178));
         characters.add(new Map("bear.png", 50, 700,510 , 178));
         characters.add(new Map("artic fox 2.png", 50, 700,510 , 178));
+        characters.add(new Map("elephant.png", 50, 700,510 , 178));
+         
         selectCharacter();
 
         logo = new Map("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
