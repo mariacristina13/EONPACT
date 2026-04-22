@@ -641,6 +641,10 @@ public class GameManager {
             }
         }
     }
+    //pushLog method
+    public void pushLog(Player player,Map logTile) {
+    	
+    }
 
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
         if (feedbackActive) {
