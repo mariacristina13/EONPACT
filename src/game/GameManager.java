@@ -163,7 +163,7 @@ public class GameManager {
                 return "box turtle.png";
             case "Kakapo":
                 return "kakapo.png";
-            case "African Forest Elephant":
+            case "African Elephant":
                 return "african forest elephant.png";
             case "Lemur":
                 return "lemur.png";
@@ -186,7 +186,7 @@ public class GameManager {
              return "box turtle flipped.png";
          case "Kakapo":
              return "kakapo flipped.png";
-         case "African Forest Elephant":
+         case "African Elephant":
              return "african forest elephant flipped.png";
          case "Lemur":
              return "lemur flipped.png";
