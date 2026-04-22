@@ -12,10 +12,14 @@ public class Menu {
     private MenuButton characterBtn;
     private MenuButton quitBtn;
     public Background bg;
+    public Map leo;
+    public Map logo;
 
     public Menu() {
         initButtons();
         bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        leo = new Map("leopard 2.png", 50, 700,510 , 178);
+        logo = new Map("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
     }
 
     // Initialise buttons
@@ -37,6 +41,7 @@ public class Menu {
     public void drawMenu(Graphics2D g) {
         // Draw the background.
         g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null);
+        g.drawImage(leo.getImage(),leo.getX(), leo.getY(), leo.getWidth(), leo.getHeight(), null);
         //g.setColor(Constants.DARK_GREEN);
         //g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
