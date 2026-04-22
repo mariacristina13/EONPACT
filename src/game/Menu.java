@@ -48,7 +48,7 @@ public class Menu {
     public void drawMenu(Graphics2D g) {
         // Draw the background.
         g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null);
-        g.drawImage(leo.getImage(),leo.getX(), leo.getY(), leo.getWidth(), leo.getHeight(), null);
+        displayCharacter(g);
 
         // Draw the title of the game.
         g.drawImage(logo.getImage(), logo.getX(), logo.getY(), logo.getWidth(), logo.getHeight(), null);
@@ -77,5 +77,10 @@ public class Menu {
     public void selectCharacter(){
         int x = (int)(Math.random()*characters.size());
         randomCharacter = characters.get(x);
+    }
+
+    //Method to display selected character 
+    public void displayCharacter(Graphics2D g){
+        g.drawImage(randomCharacter.getImage(), randomCharacter.getX(), randomCharacter.getY(), randomCharacter.getWidth(), randomCharacter.getHeight(), null);
     }
 }
