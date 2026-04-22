@@ -4,15 +4,23 @@ import java.awt.Graphics2D;
 
 import java.awt.event.MouseEvent;
 
+import Sprites.Background;
+import Sprites.Map;
 import constants.Constants;
 
 public class Menu {
     // Class variables.
     private MenuButton characterBtn;
     private MenuButton quitBtn;
+    public Background bg;
+    public Map leo;
+    public Map logo;
 
     public Menu() {
         initButtons();
+        bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        leo = new Map("leopard 2.png", 50, 700,510 , 178);
+        logo = new Map("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
     }
 
     // Initialise buttons
@@ -33,15 +41,18 @@ public class Menu {
     // Draw the menu display.
     public void drawMenu(Graphics2D g) {
         // Draw the background.
-        g.setColor(Constants.DARK_GREEN);
-        g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null);
+        g.drawImage(leo.getImage(),leo.getX(), leo.getY(), leo.getWidth(), leo.getHeight(), null);
+        //g.setColor(Constants.DARK_GREEN);
+        //g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         // Draw the title of the game.
         g.setColor(Constants.GOLD);
         g.setFont(Constants.GAME_FONT);
         String title = "EONPACT";
-        int titleWidth = g.getFontMetrics().stringWidth(title);
-        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
+        //int titleWidth = g.getFontMetrics().stringWidth(title);
+        g.drawImage(logo.getImage(), logo.getX(), logo.getY(), logo.getWidth(), logo.getHeight(), null);
+        //g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
         // Draw the buttons.
         characterBtn.drawButton(g);
