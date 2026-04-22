@@ -73,7 +73,7 @@ public class CharacterMenu {
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the elephant character.
-        elephantBtn.setLocked(false);
+        elephantBtn.setLocked(true);
         characters.add(elephantBtn);
 
         lemurBtn = new CharacterButton("Lemur", "lemur.png",
