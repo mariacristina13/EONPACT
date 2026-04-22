@@ -3,6 +3,7 @@ package game;
 import java.awt.Graphics2D;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import Sprites.Background;
 import Sprites.Map;
@@ -70,5 +71,11 @@ public class Menu {
 
     public boolean quitButtonClicked(MouseEvent e) {
         return quitBtn.contains(e.getX(), e.getY());
+    }
+
+    // Method to select random character from arraylist
+    public void selectCharacter(){
+        int x = (int)(Math.random()*characters.size());
+        randomCharacter = characters.get(x);
     }
 }
