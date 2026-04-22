@@ -124,7 +124,7 @@ public class CharacterMenu {
         playBtn = new MenuButton("Play", "play button.png", "play button hover.png", startX, Constants.BUTTON_Y + 70,
                 Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         backBtn = new MenuButton("Back", "back button.png", "back button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 70, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 
