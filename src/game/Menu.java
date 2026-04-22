@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
 import Sprites.Background;
+import Sprites.Map;
 import constants.Constants;
 
 public class Menu {
@@ -50,7 +51,8 @@ public class Menu {
         g.setFont(Constants.GAME_FONT);
         String title = "EONPACT";
         int titleWidth = g.getFontMetrics().stringWidth(title);
-        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
+        g.drawImage(logo.getImage(), logo.getX(), logo.getY(), logo.getWidth(), logo.getHeight(), null);
+        //g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
         // Draw the buttons.
         characterBtn.drawButton(g);
