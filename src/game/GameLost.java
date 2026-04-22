@@ -30,4 +30,21 @@ public class GameLost {
                 startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
+
+    // Draw the game lost screen.
+    public void drawGameLost(Graphics2D g){
+        // Draw the background.
+        g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
+
+        // Draw the title of the game.
+        g.setColor(Constants.GOLD);
+        g.setFont(Constants.GAME_FONT);
+        String title = "Game Lost!";
+        int titleWidth = g.getFontMetrics().stringWidth(title);
+        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
+
+        // Draw the buttons.
+        menuBtn.drawButton(g);
+        quitBtn.drawButton(g);
+    }
 }
