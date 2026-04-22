@@ -67,6 +67,7 @@ public final class Constants {
 	public final static Font BUTTON_FONT = new Font("Arial", Font.BOLD, 20);
 	public final static Font GAME_FONT = new Font("SansSerif", Font.BOLD, 50);
 	public final static Font CHARACTER_MENU_FONT = new Font("Arial", Font.BOLD, 40);
+	public final static Font CHARACTER_NAME_FONT = new Font("SansSerif", Font.BOLD, 15);
 
 	// Button Dimensions
 	public final static int BUTTON_WIDTH = 200;
