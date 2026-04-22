@@ -21,7 +21,7 @@ public class Menu {
     public Menu() {
         initButtons();
         bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-       characters = new ArrayList<Map>();
+        characters = new ArrayList<Map>();
         characters.add(new Map("leopard 2.png", 50, 700,510 , 178));
         characters.add(new Map("bear.png", 50, 700,510 , 178));
         selectCharacter();
@@ -83,4 +83,9 @@ public class Menu {
     public void displayCharacter(Graphics2D g){
         g.drawImage(randomCharacter.getImage(), randomCharacter.getX(), randomCharacter.getY(), randomCharacter.getWidth(), randomCharacter.getHeight(), null);
     }
+
+    //Method to reset menu = select new random character
+    public void resetMenu() {
+        selectCharacter(); 
+    }    
 }
