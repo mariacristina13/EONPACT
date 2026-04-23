@@ -99,5 +99,28 @@ public class TestUnlockingCharacters {
     }
 
     @Test
-    public void testAllCharactersLocked(){}
+    public void testAllCharactersLocked(){
+        CharacterButton elephantButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+        CharacterButton lemurButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+        CharacterButton bearButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+        CharacterButton redPandaButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+        CharacterButton arcticFoxButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+        CharacterButton leopardButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+
+        int minScore = 0;
+
+        boolean actual = elephantButton.isElephantUnlocked(minScore);
+        boolean actual1 = lemurButton.isLemmurUnlocked(minScore);
+        boolean actual2 = bearButton.isBearUnlocked(minScore);
+        boolean actual3 = redPandaButton.isPandaUnlocked(minScore);
+        boolean actual4 = arcticFoxButton.isFoxUnlocked(minScore);
+        boolean actual5 = leopardButton.isLeopardUnlocked(minScore);
+
+        assertFalse(actual);
+        assertFalse(actual1);
+        assertFalse(actual2);
+        assertFalse(actual3);
+        assertFalse(actual4);
+        assertFalse(actual5);
+    }
 }
