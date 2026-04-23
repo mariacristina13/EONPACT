@@ -272,4 +272,8 @@ public class CharacterMenu {
     public boolean isFoxUnlocked(int score){
         return score >= 15;
     }
+
+    public boolean isLeopardUnlocked(int score){
+        return score >= 18;
+    }
 }
