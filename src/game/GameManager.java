@@ -117,17 +117,17 @@ public class GameManager {
         // Initialise food.
         foods = new ArrayList<Food>();
         // Add the food to the ArrayList to be displayed in the game at diffrent positions.
-        foods.add(new Food("cabage.png", 700, Constants.GROUND_HEIGHT - 250, 60, 60));
-        foods.add(new Food("leaf.png", 190, Constants.GROUND_HEIGHT - 290, 60, 60));
-        foods.add(new Food("seeds.png", 600, Constants.GROUND_HEIGHT - 400, 60, 60));
-        foods.add(new Food("bamboo.png", 1100, Constants.GROUND_HEIGHT - 355, 60, 60));
+        foods.add(new Food("cabage.png", 1050, Constants.GROUND_HEIGHT-50, 60, 60));
+        foods.add(new Food("leaf.png", 450, Constants.GROUND_HEIGHT - 200, 60, 60));
+        foods.add(new Food("seeds.png", 620, Constants.GROUND_HEIGHT - 5, 60, 60));
+        foods.add(new Food("bamboo.png", 1100, Constants.GROUND_HEIGHT - 340, 60, 60));
 
         // Initialize timer.
         timer();
 
         //initialise checkpoints
         checkpoints = new ArrayList<CheckPoint>();
-        int[] tileIndices = {0, 2, 5, 7, 9};
+        int[] tileIndices = { 2, 5, 6, 7, 9};
         for (int i : tileIndices) {
             checkpoints.add(createCheckpointOnTile(map.get(i)));
         }
