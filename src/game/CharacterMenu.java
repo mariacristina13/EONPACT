@@ -268,4 +268,8 @@ public class CharacterMenu {
     public boolean isPandaUnlocked(int score){
         return score >= 12;
     }
+
+    public boolean isFoxUnlocked(int score){
+        return score >= 15;
+    }
 }
