@@ -36,31 +36,28 @@ private int logDirection=0;
     }
    
     
-    public boolean isMove() {
-		return move;
-	}
+  
 
-
-	public void setMove(boolean move) {
-		this.move = move;
-	}
-
-
+//Ability to move method
 	public boolean mobility() {
     return move;
     }
-    
+	
+ //Getter and setter   
 	public int getLogDirection() {
 		return logDirection;
 	}
-	
-	
-	
 	public void setLogDirection(int logDirection) {
 		this.logDirection = logDirection;
 	}
+	  public boolean isMove() {
+			return move;
+		}
+		public void setMove(boolean move) {
+			this.move = move;
+		}
 
-
+//move log method
 	public void moveLog(int direction) {
     	if(!mobility()) {//checks if movement is not allowed
     		return;

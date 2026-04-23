@@ -609,6 +609,16 @@ public class GameManager {
 
         // Remove the food that the palyer collided with.
         foods.removeIf(food -> food.isCollected());
+       
+        
+        for(Map tile:map) {
+        	if(tile.mobility()) {//Check if player is pushing right or lefty
+        		boolean player1Right= player1.pushRight(tile);
+        		boolean player1Left= player1.pushLeft(tile);
+        		boolean player2Right=player2.pushRight(tile);
+        		boolean player2Left= player2.pushLeft(tile);
+        	}
+        }
     }
 
     private void submitAnswer() {
