@@ -125,11 +125,16 @@ public class GameManager {
         // Initialize timer.
         timer();
 
-
+        //initialise checkpoints
+        checkpoints = new ArrayList<CheckPoint>();
+        int[] tileIndices = {0, 2, 5, 7, 9};
+        for (int i : tileIndices) {
+            checkpoints.add(createCheckpointOnTile(map.get(i)));
+        }
         
     }
 
-    //to create the checkpoint on the tiles
+    
     private CheckPoint createCheckpointOnTile(Map tile) {
         int cpWidth = 60;
         int cpHeight = 60;
@@ -142,6 +147,7 @@ public class GameManager {
         }
         return cp;
     }
+     
 
 
     // Add the images to an array.
