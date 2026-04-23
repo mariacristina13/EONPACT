@@ -48,7 +48,16 @@ private int logDirection=0;
     return move;
     }
     
-    
+	public int getLogDirection() {
+		return logDirection;
+	}
+	
+	public void setLogDirection(int logDirection) {
+		
+	}
+    public void moveLog(int direction) {
+    	
+    }
     /*  
     public void draw(Graphics g, int panelWidth, int panelHeight) {
     
@@ -76,6 +85,9 @@ private int logDirection=0;
     } */
     
 
-    public void update() {
+    
+
+
+	public void update() {
     }
 }
