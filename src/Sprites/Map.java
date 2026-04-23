@@ -45,7 +45,7 @@ private int logDirection=0;
 
 
 	public boolean mobility() {
-    return (Boolean) null;
+    return move;
     }
     
     
