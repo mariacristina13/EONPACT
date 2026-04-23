@@ -193,7 +193,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 if (characterMenu.backButtonClicked(e)) {
                     // Update the current state of the game.
                     currentState = GameStates.MENU;
-
+                    menuScreen.resetMenu(); // select new character to be displayed on the menu
                     // If the players chose a character and then went back to the main menu, reset the selected characters.
                     characterMenu.resetSelection();
                 }
@@ -205,6 +205,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             default:
                 // Go to the main menu if no other state is picked.
                 currentState = GameStates.MENU;
+                menuScreen.resetMenu(); // select new character to be displayed on the menu
                 break;
         }
         this.repaint();
