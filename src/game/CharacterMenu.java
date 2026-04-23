@@ -203,7 +203,7 @@ public class CharacterMenu {
             }
 
             if (riddleScore >= 6) {
-                elephantBtn.setLocked(false);
+                lemurBtn.setLocked(false);
             }
 
             if (riddleScore >= 9) {
