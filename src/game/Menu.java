@@ -26,7 +26,7 @@ public class Menu {
         characters.add(new Map("bear.png", 50, 700,510 , 178));
         characters.add(new Map("artic fox 2.png", 50, 700,510 , 178));
         characters.add(new Map("elephant.png", 50, 700,510 , 178));
-        characters.add(new Map("red panda.png", 50, 700,510 , 178));
+        characters.add(new Map("red panda 2.png", 50, 700,510 , 178));
         characters.add(new Map("kakapo 2.png", 50, 700,510 , 178));
         characters.add(new Map("lemur 2.png", 50, 700,510 , 178));
         selectCharacter();
