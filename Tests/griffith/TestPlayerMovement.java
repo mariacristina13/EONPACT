@@ -128,6 +128,13 @@ public class TestPlayerMovement {
     	log.moveLog(1);
     	assertEquals(x+Constants.PLAYER_SPEED,log.getX());
     }
-    
+    @Test
+    public void testLogMoveLeft() {
+    	Map log= new Map (null,300,200,256,140);
+    	log.setMove(true);
+    	int x=log.getX();
+    	log.moveLog(-1);
+    	assertEquals(x-Constants.PLAYER_SPEED,log.getX());
+    }
 
 }
