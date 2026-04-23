@@ -256,4 +256,8 @@ public class CharacterMenu {
     public boolean isElephantUnlocked(int score){
         return score >= 3;
     }
+
+    public boolean isLemmurUnlocked(int score){
+        return score >= 6;
+    }
 }
