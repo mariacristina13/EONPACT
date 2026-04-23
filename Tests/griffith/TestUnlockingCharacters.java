@@ -83,5 +83,18 @@ public class TestUnlockingCharacters {
         assertFalse(actual3);
     }
 
-    public void testUnlockingLeopard(){}
+    @Test
+    public void testUnlockingLeopard(){
+        CharacterButton leopardButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+
+        boolean actual = leopardButton.isLeopardUnlocked(17);
+        boolean actual1 = leopardButton.isLeopardUnlocked(18);
+        boolean actual2 = leopardButton.isLeopardUnlocked(22);
+        boolean actual3 = leopardButton.isLeopardUnlocked(-9);
+
+        assertFalse(actual);
+        assertTrue(actual1);
+        assertTrue(actual2);
+        assertFalse(actual3);
+    }
 }
