@@ -69,5 +69,17 @@ public class TestUnlockingCharacters {
     }
 
     @Test
-    public void testUnlockingArcticFox(){}
+    public void testUnlockingArcticFox(){
+        CharacterButton arcticFoxButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+
+        boolean actual = arcticFoxButton.isFoxUnlocked(12);
+        boolean actual1 = arcticFoxButton.isFoxUnlocked(15);
+        boolean actual2 = arcticFoxButton.isFoxUnlocked(20);
+        boolean actual3 = arcticFoxButton.isFoxUnlocked(-9);
+
+        assertFalse(actual);
+        assertTrue(actual1);
+        assertTrue(actual2);
+        assertFalse(actual3);
+    }
 }
