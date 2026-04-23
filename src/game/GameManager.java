@@ -132,6 +132,14 @@ public class GameManager {
             checkpoints.add(createCheckpointOnTile(map.get(i)));
         }
         
+        //initialize the checkpoint on the tile
+        checkpoints = new ArrayList<>();
+        checkpoints.add(createCheckpointOnTile(map.get(1)));
+        checkpoints.add(createCheckpointOnTile(map.get(2)));
+        checkpoints.add(createCheckpointOnTile(map.get(5)));
+        checkpoints.add(createCheckpointOnTile(map.get(7)));
+        checkpoints.add(createCheckpointOnTile(map.get(8)));
+    
     }
 
     
