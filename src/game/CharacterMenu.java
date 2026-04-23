@@ -251,4 +251,9 @@ public class CharacterMenu {
             character.setSelected(false);
         }
     }
+
+    // Helper methods for testing.
+    public boolean isElephantUnlocked(int score){
+        return score >= 3;
+    }
 }
