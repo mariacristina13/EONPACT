@@ -115,14 +115,5 @@ public class TestPlayerMovement {
         assertEquals(beforeY + Constants.PLAYER_FALL_SPEED, player.getY());
     }
     
-    @Test
-    public void testPushLogRight() {
-    	GameManager game=new GameManager();
-    	Player player= new Player (null,100,100,50,50);
-    	Map log= new Map (null,120,100,50,50);
-    	player.setDirection(1);
-    	int x =log.getX();
-    	game.pushLog(player,log);
-    	assertEquals(x+Constants.PLAYER_SPEED,log.getX());
-    }
+
 }

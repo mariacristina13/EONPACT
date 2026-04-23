@@ -16,6 +16,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 
 import Sprites.Player;
+import Sprites.Sprite;
 import Sprites.Background;
 import Sprites.CheckPoint;
 import Sprites.Food;
@@ -101,8 +102,10 @@ public class GameManager {
                 Constants.TILE_HEIGHT));
         map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
-        map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH,
-                Constants.TILE_HEIGHT));
+        Map logTile=new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH,140);
+        map.add(logTile);
+        //map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH,
+        //        Constants.TILE_HEIGHT));
         map.add(new Map("tile.png", 0, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile.png", Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
@@ -559,6 +562,7 @@ public class GameManager {
     }
 
     public void update() {
+    	
         if (!riddleActive && !feedbackActive) {
             // Check which checkpoint was reached.
             CheckPoint hit = getReachedCheckpoint(); 
@@ -592,6 +596,7 @@ public class GameManager {
         player1.update(map);
         player2.update(map);
 
+      
         // Loop through the foods to check each player's collision with the food.
         for (Food food : foods) {
             checkCollision(player1, food);
@@ -641,11 +646,7 @@ public class GameManager {
             }
         }
     }
-    //pushLog method
-    public void pushLog(Player player,Map logTile) {
-    	
-    }
-
+   
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
         if (feedbackActive) {
             // Hide the checkpoint card.
