@@ -252,28 +252,5 @@ public class CharacterMenu {
         }
     }
 
-    // Helper methods for testing.
-    public boolean isElephantUnlocked(int score){
-        return score >= 3;
-    }
-
-    public boolean isLemmurUnlocked(int score){
-        return score >= 6;
-    }
-
-    public boolean isBearUnlocked(int score){
-        return score >= 9;
-    }
-
-    public boolean isPandaUnlocked(int score){
-        return score >= 12;
-    }
-
-    public boolean isFoxUnlocked(int score){
-        return score >= 15;
-    }
-
-    public boolean isLeopardUnlocked(int score){
-        return score >= 18;
-    }
+   
 }
