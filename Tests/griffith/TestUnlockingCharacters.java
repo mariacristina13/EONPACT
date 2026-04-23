@@ -52,4 +52,9 @@ public class TestUnlockingCharacters {
         assertTrue(actual2);
         assertFalse(actual3);
     }
+
+    @Test
+    public void testUnlockingRedPanda(){
+        
+    }
 }
