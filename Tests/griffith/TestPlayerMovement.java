@@ -114,6 +114,12 @@ public class TestPlayerMovement {
         player.update(map);
         assertEquals(beforeY + Constants.PLAYER_FALL_SPEED, player.getY());
     }
+    @Test
+    public void testLogMobility() {
+    	Map log=new Map(null,100,200,256,140);
+    	log.setMove(true);
+    	assertTrue(log.mobility());
+    }
     
 
 }

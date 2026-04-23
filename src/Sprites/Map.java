@@ -1,7 +1,8 @@
 package Sprites;
 
 public class Map extends Sprite{
-
+private boolean move;
+private int logDirection=0;
     //private BufferedImage tile2;
     //private BufferedImage tile3;
     //private BufferedImage tile4;
@@ -9,6 +10,7 @@ public class Map extends Sprite{
 
     public Map(String fileName,  int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
+        this.move=false;
         /* try {
             tile2 = ImageIO.read(new File("images/" + tile2FileName));
         } catch (IOException e) {
@@ -30,6 +32,22 @@ public class Map extends Sprite{
             tile3 = null;
         } */
     }
+   
+    
+    public boolean isMove() {
+		return move;
+	}
+
+
+	public void setMove(boolean move) {
+		this.move = move;
+	}
+
+
+	public boolean mobility() {
+    return (Boolean) null;
+    }
+    
     
     /*  
     public void draw(Graphics g, int panelWidth, int panelHeight) {
