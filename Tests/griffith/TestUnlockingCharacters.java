@@ -9,5 +9,17 @@ import game.CharacterButton;
 
 public class TestUnlockingCharacters {
     @Test
-    public void testUnlockingElephant(){}
+    public void testUnlockingElephant(){
+        CharacterButton elephantButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+
+        boolean actual = elephantButton.isElephantUnlocked(2);
+        boolean actual1 = elephantButton.isElephantUnlocked(3);
+        boolean actual2 = elephantButton.isElephantUnlocked(5);
+        boolean actual3 = elephantButton.isElephantUnlocked(-9);
+
+        assertFalse(actual);
+        assertTrue(actual1);
+        assertTrue(actual2);
+        assertFalse(actual3);
+    }
 }
