@@ -55,6 +55,16 @@ public class TestUnlockingCharacters {
 
     @Test
     public void testUnlockingRedPanda(){
-        
+        CharacterButton redPandaButton = new CharacterButton("test", "test", 0, 0, 0, 0);
+
+        boolean actual = redPandaButton.isPandaUnlocked(9);
+        boolean actual1 = redPandaButton.isPandaUnlocked(12);
+        boolean actual2 = redPandaButton.isPandaUnlocked(18);
+        boolean actual3 = redPandaButton.isPandaUnlocked(-9);
+
+        assertFalse(actual);
+        assertTrue(actual1);
+        assertTrue(actual2);
+        assertFalse(actual3);
     }
 }
