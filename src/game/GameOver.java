@@ -12,6 +12,7 @@ public class GameOver {
     private MenuButton quitBtn;
     private Background background;
     private boolean gameWon;
+    private String title;
 
     public GameOver() {
         initButtons();
@@ -36,10 +37,27 @@ public class GameOver {
     }
 
     // Draw the game over screen.
-    public void drawGameOver(Graphics2D g, GameStates state) {
+    public void drawGameOver(Graphics2D g) {
         // Draw the background.
         g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(),
                 background.getHeight(), null);
+
+        g.setColor(Constants.GOLD);
+        g.setFont(Constants.GAME_FONT);
+
+        if (!gameWon) {
+            // Draw the game over message.
+
+            title = "Game Lost!";
+
+        } else if (gameWon) {
+            // Draw the game won message.
+
+            title = "Game Won!";
+        }
+
+        int titleWidth = g.getFontMetrics().stringWidth(title);
+        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
         // Draw the buttons.
         menuBtn.drawButton(g);
@@ -62,7 +80,7 @@ public class GameOver {
         return quitBtn.contains(e.getX(), e.getY());
     }
 
-    public void setGameWon(boolean gameWon){
+    public void setGameWon(boolean gameWon) {
         this.gameWon = gameWon;
     }
 }
