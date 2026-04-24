@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import Sprites.Background;
-import Sprites.Map;
+import Sprites.Decor;
 import constants.Constants;
 
 public class Menu {
@@ -14,24 +14,24 @@ public class Menu {
     private MenuButton characterBtn;
     private MenuButton quitBtn;
     public Background bg;
-    public ArrayList<Map> characters;
-    private Map randomCharacter;
-    public Map logo;
+    public ArrayList<Decor> characters;
+    private Decor randomCharacter;
+    public Decor logo;
 
     public Menu() {
         initButtons();
         bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        characters = new ArrayList<Map>();
-        characters.add(new Map("leopard 2.png", 50, 700,510 , 178));
-        characters.add(new Map("bear.png", 50, 700,510 , 178));
-        characters.add(new Map("artic fox 2.png", 50, 700,510 , 178));
-        characters.add(new Map("elephant.png", 50, 700,510 , 178));
-        characters.add(new Map("red panda 2.png", 50, 700,510 , 178));
-        characters.add(new Map("kakapo 2.png", 50, 700,510 , 178));
-        characters.add(new Map("lemur 2.png", 50, 700,510 , 178));
+        characters = new ArrayList<Decor>();
+        characters.add(new Decor("leopard 2.png", 50, 700,510 , 178));
+        characters.add(new Decor("bear.png", 50, 700,510 , 178));
+        characters.add(new Decor("artic fox 2.png", 50, 700,510 , 178));
+        characters.add(new Decor("elephant.png", 50, 700,510 , 178));
+        characters.add(new Decor("red panda 2.png", 50, 700,510 , 178));
+        characters.add(new Decor("kakapo 2.png", 50, 700,510 , 178));
+        characters.add(new Decor("lemur 2.png", 50, 700,510 , 178));
         selectCharacter();
 
-        logo = new Map("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
+        logo = new Decor("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
     }
 
     // Initialise buttons

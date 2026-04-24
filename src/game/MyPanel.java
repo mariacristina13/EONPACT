@@ -16,6 +16,7 @@ import constants.Constants;
 public class MyPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
     // Class variables.
     private GameManager game;
+    private Introduction intro;
     private Menu menuScreen;
     private CharacterMenu characterMenu;
     private GameStates currentState;
@@ -28,12 +29,13 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
 
         // Initialise the game.
         game = new GameManager();
+        intro = new Introduction();
         // Initialise the main menu.
         menuScreen = new Menu();
         // Initialise the character menu.
         characterMenu = new CharacterMenu();
         // Set the initial state.
-        currentState = GameStates.MENU;
+        currentState = GameStates.INTRODUCTION;
     }
 
     // https://projectai.in/projects/e79f02df-4d51-473e-90f0-4ff8443ff473/tasks/5b55ecc1-ac91-4092-8e63-097ce794218b?tab=task
@@ -53,6 +55,9 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     private void switchStates(Graphics2D graphics) {
 
         switch (currentState) {
+            case INTRODUCTION:
+                intro.drawIntroduction(graphics);
+                break;
             case MENU:
                 menuScreen.drawMenu(graphics);
                 break;
