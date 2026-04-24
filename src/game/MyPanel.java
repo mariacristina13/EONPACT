@@ -223,6 +223,8 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case CHARACTER_SELECT:
                 characterMenu.mouseMoved(e);
                 break;
+            case GAME_OVER:
+                gameOver.mouseMoved(e);
             default:
                 break;
         }
