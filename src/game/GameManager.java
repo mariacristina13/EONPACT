@@ -624,7 +624,7 @@ public class GameManager {
         player1.update(map);
         player2.update(map);
         
-//Check for players colliding
+      //Check for players colliding
         if(playerCollision(player1,player2)) {
         	//player1 moves right stop at player2
         	if(player1.getDirection()==1) {
