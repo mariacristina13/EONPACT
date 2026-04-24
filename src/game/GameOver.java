@@ -61,4 +61,8 @@ public class GameOver {
     public boolean quitButtonClicked(MouseEvent e) {
         return quitBtn.contains(e.getX(), e.getY());
     }
+
+    public void setGameWon(boolean gameWon){
+        this.gameWon = gameWon;
+    }
 }
