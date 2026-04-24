@@ -10,7 +10,8 @@ public class GameOver {
     // Class variables.
     private MenuButton menuBtn;
     private MenuButton quitBtn;
-    public Background background;
+    private Background background;
+    private boolean gameWon;
 
     public GameOver() {
         initButtons();
@@ -39,7 +40,7 @@ public class GameOver {
         // Draw the background.
         g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(),
                 background.getHeight(), null);
-                
+
         // Draw the buttons.
         menuBtn.drawButton(g);
         quitBtn.drawButton(g);
