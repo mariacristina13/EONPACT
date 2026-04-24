@@ -34,6 +34,10 @@ public class CheckPoint extends Sprite {
         this.completed = false;
     }
 
+    public void setHighlighted(boolean value) {
+        this.highlighted = value;
+    }
+
     // Getters
     public boolean isCompleted() {
         return completed;
