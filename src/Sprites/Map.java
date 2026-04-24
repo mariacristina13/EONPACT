@@ -2,6 +2,9 @@ package Sprites;
 
 import constants.Constants;
 
+    //Class for tiles, loaded during the game
+    public Map(String fileName,  int x, int y, int width, int height) {
+        super(fileName, x, y, width, height);
 public class Map extends Sprite{
 private boolean move;
 private int logDirection=0;
@@ -36,6 +39,7 @@ private int logDirection=0;
     }
    
     
+    public void update() {
   
 
 //Ability to move method
