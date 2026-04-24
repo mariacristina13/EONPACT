@@ -591,6 +591,11 @@ public class GameManager {
 
     public void update() {
     	
+        for (CheckPoint cp : checkpoints) { //if the players is near the checkpoint it is gonna put highlish
+            boolean near = Math.abs(player1.getX() - cp.getX()) < 100 || Math.abs(player2.getX() - cp.getX()) < 100;
+            cp.setHighlighted(near);
+        }
+
         if (!riddleActive && !feedbackActive) {
             // Check which checkpoint was reached.
             CheckPoint hit = getReachedCheckpoint(); 
