@@ -65,11 +65,6 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case PLAYING:
                 drawGame(graphics);
                 break;
-            /*
-             * case GAME_WON:
-             * drawGameWon(graphics);
-             * break;
-             */
             case GAME_OVER:
                 gameOver.drawGameOver(graphics);
                 break;
@@ -106,34 +101,6 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         graphics.setColor(Constants.GOLD);
         graphics.drawString(timeText, x, y);
     }
-
-    /*
-     * public void drawGameWon(Graphics2D g){
-     * // Draw the background.
-     * g.setColor(Constants.DARK_GREEN);
-     * g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-     * 
-     * // Draw the game won text.
-     * g.setColor(Constants.GOLD);
-     * g.setFont(Constants.GAME_FONT);
-     * String title = "Game Won!";
-     * int titleWidth = g.getFontMetrics().stringWidth(title);
-     * g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
-     * }
-     * 
-     * public void drawGameLost(Graphics2D g){
-     * // Draw the background.
-     * g.setColor(Constants.DARK_GREEN);
-     * g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-     * 
-     * // Draw the game lost text.
-     * g.setColor(Constants.GOLD);
-     * g.setFont(Constants.GAME_FONT);
-     * String title = "Game Lost!";
-     * int titleWidth = g.getFontMetrics().stringWidth(title);
-     * g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
-     * }
-     */
 
     // Get the keys that is typed during the game.
     @Override
