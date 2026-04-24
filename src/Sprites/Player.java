@@ -105,7 +105,27 @@ public class Player extends Sprite {
 		}
 		return false;
 	}
+	
+	//the player is on the right side of the log , log is moving left
+	public boolean pushLeft(Map tile) {
+		boolean touchingRight= getX()+30 <= tile.getX()+tile.getWidth()&&//player gone past the tiles right boundary
+				               getX()+30>=tile.getX()+tile.getWidth()-Constants.PLAYER_SPEED;//is the player close enough to the right edge
+	    boolean overlap = getY()+getHeight()>tile.getY()&&//the bottom of the player below the top of the log
+	    		          getY()<tile.getY()+Constants.TILE_HEIGHT;//top of the player above the bottom of the tile  
+	
+	    return touchingRight && overlap&&direction==-1;
+	}
 
+	//the player is on the left side of the log, log is moving right
+	public boolean pushRight(Map tile) {
+		boolean touchingLeft=getX()-20+getWidth()>=tile.getX()&&//players right side past the logs left side
+				             getX()-20+getWidth()<= tile.getX()+Constants.PLAYER_SPEED;//players right side close to logs left edge
+	boolean overlap= getY()+getHeight()>tile.getY()&&//players bottom below the tile
+			         getY()<tile.getY()+ Constants.TILE_HEIGHT;//player top above the bottom of the tile
+	return touchingLeft && overlap && direction == 1;
+	}
+	
+	
 	// JumpCount getter
 	public int getJumpCount() {
 		return jumpCount;
