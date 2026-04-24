@@ -16,6 +16,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 
 import Sprites.Player;
+import Sprites.Sprite;
 import Sprites.Background;
 import Sprites.CheckPoint;
 import Sprites.Food;
@@ -101,8 +102,13 @@ public class GameManager {
                 Constants.TILE_HEIGHT));
         map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
-        map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH,
-                Constants.TILE_HEIGHT));
+        
+        Map logTile=new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH,140);
+        logTile.setMove(true);
+        map.add(logTile);
+        
+        //map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH,
+        //        Constants.TILE_HEIGHT));
         map.add(new Map("tile.png", 0, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile.png", Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
@@ -132,13 +138,21 @@ public class GameManager {
             checkpoints.add(createCheckpointOnTile(map.get(i)));
         }
         
+        //initialize the checkpoint on the tile
+        checkpoints = new ArrayList<>();
+        checkpoints.add(createCheckpointOnTile(map.get(1)));
+        checkpoints.add(createCheckpointOnTile(map.get(2)));
+        checkpoints.add(createCheckpointOnTile(map.get(5)));
+        checkpoints.add(createCheckpointOnTile(map.get(7)));
+        checkpoints.add(createCheckpointOnTile(map.get(8)));
+    
     }
 
     
     private CheckPoint createCheckpointOnTile(Map tile) {
         int cpWidth = 60;
         int cpHeight = 60;
-        int x = tile.getX() + tile.getWidth() / 2 - cpWidth / 2 + 40;//to place the checkpoint on the tiles
+        int x = tile.getX() + tile.getWidth() / 2 - cpWidth / 2 ;//to place the checkpoint on the tiles
         int y = tile.getY() + tile.getHeight() - cpHeight - 80;
         CheckPoint cp = new CheckPoint(getRandomCheckpointImage(),x,y,cpWidth,cpHeight);//to get the random checkpoint image
         Riddle r = data.getRandomRiddle();//for random riddle
@@ -542,6 +556,12 @@ public class GameManager {
             other.setCollected(true);
         }
     }
+    public boolean playerCollision(Sprite p1, Sprite p2) {
+    	return p1.getX()<p2.getX()+p2.getWidth()&&
+    		   p1.getX()+p1.getWidth()>p2.getX()&&
+    		   p1.getY()<p2.getY()+p2.getHeight()&&
+    		   p1.getY()+p1.getHeight()>p2.getY();
+    }
 
     // Method that returns the key that is held.
     public boolean isKeyHeld(int keyCode) {
@@ -570,6 +590,7 @@ public class GameManager {
     }
 
     public void update() {
+    	
         if (!riddleActive && !feedbackActive) {
             // Check which checkpoint was reached.
             CheckPoint hit = getReachedCheckpoint(); 
@@ -602,7 +623,26 @@ public class GameManager {
 
         player1.update(map);
         player2.update(map);
-
+        
+      //Check for players colliding
+        if(playerCollision(player1,player2)) {
+        	//player1 moves right stop at player2
+        	if(player1.getDirection()==1) {
+        		player1.setX(player2.getX()-player1.getWidth());
+        	}
+        	//player1 moves left stop at player2
+        	else if(player1.getDirection()==-1) {
+        		player1.setX(player2.getX()+player2.getWidth());
+        	}
+        	//Player 2
+        	if(player2.getDirection()==1) {
+        		player2.setX(player1.getX()-player2.getWidth());
+        	}
+        	else if(player2.getDirection()==-1) {
+        		player2.setX(player1.getX()+player1.getWidth());
+        	}
+        }
+      
         // Loop through the foods to check each player's collision with the food.
         for (Food food : foods) {
             checkCollision(player1, food);
@@ -612,6 +652,26 @@ public class GameManager {
 
         // Remove the food that the palyer collided with.
         foods.removeIf(food -> food.isCollected());
+       
+        
+        for(Map tile:map) {
+        	if(tile.mobility()) {//Check if player is pushing right or lefty
+        		boolean player1Right= player1.pushRight(tile);
+        		boolean player1Left= player1.pushLeft(tile);
+        		boolean player2Right=player2.pushRight(tile);
+        		boolean player2Left= player2.pushLeft(tile);
+        		
+        		if(player1Right||player2Right) {
+        			tile.moveLog(1);
+        		}
+        		else if(player1Left||player2Left) {
+        			tile.moveLog(-1);
+        		}
+        		else {
+        			tile.setLogDirection(0);
+        		}
+        	}
+        }
     }
 
     private void submitAnswer() {
@@ -652,7 +712,7 @@ public class GameManager {
             }
         }
     }
-
+   
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
         if (feedbackActive) {
             // Hide the checkpoint card.
