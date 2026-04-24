@@ -55,5 +55,8 @@ public class CheckPoint extends Sprite {
         return riddle;
     }
 
+    public boolean isHighlighted() {
+        return highlighted;
+    }
 
 }
