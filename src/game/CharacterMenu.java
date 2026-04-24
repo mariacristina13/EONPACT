@@ -30,7 +30,7 @@ public class CharacterMenu {
     private int lockX;
     private int lockY;
     private int riddleScore = 0;
-     public Background bg;
+    public Background bg;
 
     // Initialise class variables.
     public CharacterMenu() {
@@ -132,8 +132,6 @@ public class CharacterMenu {
     public void drawCharacterMenu(Graphics2D g) {
         // Draw the background.
         g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null);
-        //g.setColor(Constants.DARK_GREEN);
-        //g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         // Draw the text on the background.
         g.setColor(Constants.GOLD);
