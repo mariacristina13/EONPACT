@@ -29,5 +29,9 @@ public class Introduction {
             introductionActive = false;
         }
     }
+    // getter for introductionActive
+    public boolean getIntroductionActive(){
+        return introductionActive;
+    }
 
 }
