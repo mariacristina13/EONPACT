@@ -42,20 +42,20 @@ public class GameOver {
         g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(),
                 background.getHeight(), null);
 
+        // Message typography and color.
         g.setColor(Constants.GOLD);
         g.setFont(Constants.GAME_FONT);
 
         if (!gameWon) {
             // Draw the game over message.
-
             title = "Game Lost!";
 
         } else if (gameWon) {
             // Draw the game won message.
-
             title = "Game Won!";
         }
 
+        // Draw the message.
         int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
