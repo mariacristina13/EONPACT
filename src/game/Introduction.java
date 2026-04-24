@@ -14,7 +14,7 @@ public class Introduction {
 
     public Introduction(){
         introductionActive = true;
-        bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        bg = new Background("intro_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         int imageWidth = 608;
         int x =  (Constants.SCREEN_WIDTH - imageWidth)/2; 
         msg = new Decor("msg.png", x, 540 , 608, 457);
@@ -25,6 +25,12 @@ public class Introduction {
         //draw the background
         g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null); 
         g.drawImage(msg.getImage(), msg.getX(), msg.getY(), msg.getWidth(), msg.getHeight(), null);
+
+        g.setColor(Constants.GOLD);
+        g.setFont(Constants.INTRO_FONT);
+        String instruction = "Click on the screen to continue";
+        int instructionWidth = g.getFontMetrics().stringWidth(instruction);
+        g.drawString(instruction, Constants.SCREEN_CENTER - instructionWidth / 2, Constants.GROUND_HEIGHT+5);
     }
 
     // Hide introduction card
