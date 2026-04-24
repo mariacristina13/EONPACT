@@ -29,6 +29,7 @@ public class Menu {
         characters.add(new Decor("red panda 2.png", 50, 700,510 , 178));
         characters.add(new Decor("kakapo 2.png", 50, 700,510 , 178));
         characters.add(new Decor("lemur 2.png", 50, 700,510 , 178));
+        characters.add(new Decor("box turtle 2.png", 50, 700,510 , 178));
         selectCharacter();
 
         logo = new Decor("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
