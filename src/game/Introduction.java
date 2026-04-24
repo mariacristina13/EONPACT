@@ -17,4 +17,10 @@ public class Introduction {
         bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
     }
 
+    //draw introduction display
+    public void drawIntroduction(Graphics2D g){
+        //draw the background
+        g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null); 
+    }
+
 }
