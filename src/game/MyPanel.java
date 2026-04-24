@@ -18,7 +18,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     private GameManager game;
     private Menu menuScreen;
     private CharacterMenu characterMenu;
-    private GameLost gameLost;
+    private GameOver gameOver;
     private GameStates currentState;
 
     // Initialise class variables, key listeners and mouse listeners.
@@ -34,7 +34,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         // Initialise the character menu.
         characterMenu = new CharacterMenu();
         // Initialise the game lost screen.
-        gameLost = new GameLost();
+        gameOver = new GameOver();
         // Set the initial state.
         currentState = GameStates.MENU;
     }
@@ -65,11 +65,11 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case PLAYING:
                 drawGame(graphics);
                 break;
-            case GAME_WON:
+            /*case GAME_WON:
                drawGameWon(graphics);
-                break;
-            case GAME_LOST:
-                gameLost.drawGameLost(graphics);
+                break;*/
+            case GAME_OVER:
+                gameOver.drawGameOver(graphics);
                 break;
             default: 
                 break;
@@ -106,7 +106,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         graphics.drawString(timeText, x, y);
     }
 
-    public void drawGameWon(Graphics2D g){
+    /*public void drawGameWon(Graphics2D g){
         // Draw the background.
         g.setColor(Constants.DARK_GREEN);
         g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
@@ -130,7 +130,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         String title = "Game Lost!";
         int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
-    }
+    }*/
 
 
     // Get the keys that is typed during the game.
@@ -204,14 +204,6 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case PLAYING:
                 // Add the MouseClicked event listener to the game manager to handle any button interaction in the game.
                 game.mouseClicked(e.getX(), e.getY(), getWidth(), getHeight());
-                break;
-            case GAME_LOST:
-                if (gameLost.menuButtonClicked(e)){
-                    currentState = GameStates.MENU;
-                }
-                if(gameLost.quitButtonClicked(e)){
-                    System.exit(0);
-                }
                 break;
             default:
                 // Go to the main menu if no other state is picked.
