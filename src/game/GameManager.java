@@ -556,6 +556,12 @@ public class GameManager {
             other.setCollected(true);
         }
     }
+    public boolean playerCollision(Sprite p1, Sprite p2) {
+    	return p1.getX()<p2.getX()+p2.getWidth()&&
+    		   p1.getX()+p1.getWidth()>p2.getX()&&
+    		   p1.getY()<p2.getY()+p2.getHeight()&&
+    		   p1.getY()+p1.getHeight()>p2.getY();
+    }
 
     // Method that returns the key that is held.
     public boolean isKeyHeld(int keyCode) {
@@ -617,7 +623,25 @@ public class GameManager {
 
         player1.update(map);
         player2.update(map);
-
+        
+//Check for players colliding
+        if(playerCollision(player1,player2)) {
+        	//player1 moves right stop at player2
+        	if(player1.getDirection()==1) {
+        		player1.setX(player2.getX()-player1.getWidth());
+        	}
+        	//player1 moves left stop at player2
+        	else if(player1.getDirection()==-1) {
+        		player1.setX(player2.getX()+player2.getWidth());
+        	}
+        	//Player 2
+        	if(player2.getDirection()==1) {
+        		player2.setX(player1.getX()-player2.getWidth());
+        	}
+        	else if(player2.getDirection()==-1) {
+        		player2.setX(player1.getX()+player1.getWidth());
+        	}
+        }
       
         // Loop through the foods to check each player's collision with the food.
         for (Food food : foods) {
