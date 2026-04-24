@@ -26,6 +26,7 @@ public class Introduction {
         g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null); 
         g.drawImage(msg.getImage(), msg.getX(), msg.getY(), msg.getWidth(), msg.getHeight(), null);
 
+        //add instruction text 
         g.setColor(Constants.GOLD);
         g.setFont(Constants.INTRO_FONT);
         String instruction = "Click on the screen to continue";
