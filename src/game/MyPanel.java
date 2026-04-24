@@ -18,6 +18,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     private GameManager game;
     private Menu menuScreen;
     private CharacterMenu characterMenu;
+    private GameLost gameLost;
     private GameStates currentState;
 
     // Initialise class variables, key listeners and mouse listeners.
