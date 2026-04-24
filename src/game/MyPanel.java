@@ -53,6 +53,9 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     private void switchStates(Graphics2D graphics) {
 
         switch (currentState) {
+            case INTRODUCTION:
+                intro.drawIntroduction(graphics);
+                break;
             case MENU:
                 menuScreen.drawMenu(graphics);
                 break;
