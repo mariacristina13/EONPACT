@@ -285,6 +285,17 @@ public class GameManager {
             g.drawImage(cp.getImage(), cp.getX(), cp.getY(), cp.getWidth(), cp.getHeight(), panel);
         }
 
+        for (CheckPoint cp : checkpoints) {//set up the color for the checkpont
+            if (cp.isHighlighted()) {
+                g.setColor(Constants.GOLD);
+                g.drawOval(cp.getX() - 5, cp.getY() - 5,
+                cp.getWidth() + 10, cp.getHeight() + 10);
+        }
+
+    g.drawImage(cp.getImage(), cp.getX(), cp.getY(),
+            cp.getWidth(), cp.getHeight(), panel);
+}
+
         // Check that the food wasn't collected and draw the it.
         for (Food food : foods) {
             if (food.isCollected() == false)
