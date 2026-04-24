@@ -16,7 +16,8 @@ public class GameWon {
         initButtons();
 
         // Initialse the backgroeund image.
-        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH,
+                Constants.SCREEN_HEIGHT);
     }
 
     // Initialise the buttons.
@@ -34,9 +35,10 @@ public class GameWon {
     }
 
     // Draw the game won screen.
-    public void drawGameWon(Graphics2D g){
+    public void drawGameWon(Graphics2D g) {
         // Draw the background.
-        g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
+        g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(),
+                background.getHeight(), null);
 
         // Draw the title of the game.
         g.setColor(Constants.GOLD);
@@ -50,5 +52,10 @@ public class GameWon {
         quitBtn.drawButton(g);
     }
 
-}
+    // Event listener for the mouse.
+    public void mouseMoved(MouseEvent e) {
+        menuBtn.setHovered(menuBtn.contains(e.getX(), e.getY()));
+        quitBtn.setHovered(quitBtn.contains(e.getX(), e.getY()));
+    }
 
+}
