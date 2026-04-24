@@ -69,7 +69,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                drawGameWon(graphics);
                 break;
             case GAME_LOST:
-                drawGameLost(graphics);
+                gameLost.drawGameLost(graphics);
                 break;
             default: 
                 break;
