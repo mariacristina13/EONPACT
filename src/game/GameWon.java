@@ -12,6 +12,13 @@ public class GameWon {
     private MenuButton quitBtn;
     public Background background;
 
+    public GameWon() {
+        initButtons();
+
+        // Initialse the backgroeund image.
+        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+    }
+
     // Initialise the buttons.
     private void initButtons() {
         // Set the width of the row that the buttons are going to be displayed.
