@@ -33,6 +33,8 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         menuScreen = new Menu();
         // Initialise the character menu.
         characterMenu = new CharacterMenu();
+        // Initialise the game lost screen.
+        gameLost = new GameLost();
         // Set the initial state.
         currentState = GameStates.MENU;
     }
