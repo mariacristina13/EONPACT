@@ -23,4 +23,11 @@ public class Introduction {
         g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null); 
     }
 
+    // Hide introduction card
+    public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
+        if (introductionActive) {
+            introductionActive = false;
+        }
+    }
+
 }
