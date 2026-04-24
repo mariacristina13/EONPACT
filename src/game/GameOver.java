@@ -6,17 +6,18 @@ import java.awt.event.MouseEvent;
 
 import Sprites.Background;
 
-public class GameLost {
+public class GameOver {
     // Class variables.
     private MenuButton menuBtn;
     private MenuButton quitBtn;
     public Background background;
 
-    public GameLost() {
+    public GameOver() {
         initButtons();
 
         // Initialse the backgroeund image.
-        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH,
+                Constants.SCREEN_HEIGHT);
     }
 
     // Initialise the buttons.
@@ -33,18 +34,12 @@ public class GameLost {
                 Constants.BUTTON_HEIGHT);
     }
 
-    // Draw the game lost screen.
-    public void drawGameLost(Graphics2D g){
+    // Draw the game over screen.
+    public void drawGameOver(Graphics2D g, GameStates state) {
         // Draw the background.
-        g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
-
-        // Draw the title of the game.
-        g.setColor(Constants.GOLD);
-        g.setFont(Constants.GAME_FONT);
-        String title = "Game Lost!";
-        int titleWidth = g.getFontMetrics().stringWidth(title);
-        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
-
+        g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(),
+                background.getHeight(), null);
+                
         // Draw the buttons.
         menuBtn.drawButton(g);
         quitBtn.drawButton(g);
