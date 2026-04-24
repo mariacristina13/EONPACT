@@ -279,6 +279,10 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         return game;
     }
 
+    public GameOver getGameOver() {
+        return gameOver;
+    }
+
     public GameStates getCurrentState() {
         return currentState;
     }
