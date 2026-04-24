@@ -205,6 +205,14 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 // Add the MouseClicked event listener to the game manager to handle any button interaction in the game.
                 game.mouseClicked(e.getX(), e.getY(), getWidth(), getHeight());
                 break;
+            case GAME_LOST:
+                if (gameLost.menuButtonClicked(e)){
+                    currentState = GameStates.MENU;
+                }
+                if(gameLost.quitButtonClicked(e)){
+                    System.exit(0);
+                }
+                break;
             default:
                 // Go to the main menu if no other state is picked.
                 currentState = GameStates.MENU;
