@@ -15,7 +15,9 @@ public class Introduction {
     public Introduction(){
         introductionActive = true;
         bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        msg = new Decor("msg.png", 0, 0, 900, 610);
+        int imageWidth = 608;
+        int x =  (Constants.SCREEN_WIDTH - imageWidth)/2; 
+        msg = new Decor("msg.png", x, 540 , 608, 457);
     }
 
     //draw introduction display
