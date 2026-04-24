@@ -117,27 +117,46 @@ public class GameManager {
         // Initialise food.
         foods = new ArrayList<Food>();
         // Add the food to the ArrayList to be displayed in the game at diffrent positions.
-        foods.add(new Food("cabage.png", 700, Constants.GROUND_HEIGHT - 250, 60, 60));
-        foods.add(new Food("leaf.png", 190, Constants.GROUND_HEIGHT - 290, 60, 60));
-        foods.add(new Food("seeds.png", 600, Constants.GROUND_HEIGHT - 400, 60, 60));
-        foods.add(new Food("bamboo.png", 1100, Constants.GROUND_HEIGHT - 355, 60, 60));
+        foods.add(new Food("cabage.png", 1050, Constants.GROUND_HEIGHT-50, 60, 60));
+        foods.add(new Food("leaf.png", 450, Constants.GROUND_HEIGHT - 200, 60, 60));
+        foods.add(new Food("seeds.png", 620, Constants.GROUND_HEIGHT - 5, 60, 60));
+        foods.add(new Food("bamboo.png", 1100, Constants.GROUND_HEIGHT - 340, 60, 60));
 
         // Initialize timer.
         timer();
 
-         // Initialise the checkpoints.
-         checkpoints = new ArrayList<CheckPoint>();
-         for (int i = 0; i < 5; i++) {
-             int x = 250 + i * 200; // smaller spacing and also spread the checkpoints across the map
-             // Create a checkpoint with a random food image.
-             CheckPoint cp = new CheckPoint(getRandomCheckpointImage(), x, Constants.GROUND_HEIGHT - 60, 60, 60);
-             Riddle r = data.getRandomRiddle(); // Assign random riddle.
-             if (r != null) {
-                 cp.setRiddle(r);
-             }
-             checkpoints.add(cp); // Add the checkpoint to the ArrayList.
-         }
+        //initialise checkpoints
+        checkpoints = new ArrayList<CheckPoint>();
+        int[] tileIndices = { 2, 5, 6, 7, 9};
+        for (int i : tileIndices) {
+            checkpoints.add(createCheckpointOnTile(map.get(i)));
+        }
+        
+        //initialize the checkpoint on the tile
+        checkpoints = new ArrayList<>();
+        checkpoints.add(createCheckpointOnTile(map.get(1)));
+        checkpoints.add(createCheckpointOnTile(map.get(2)));
+        checkpoints.add(createCheckpointOnTile(map.get(5)));
+        checkpoints.add(createCheckpointOnTile(map.get(7)));
+        checkpoints.add(createCheckpointOnTile(map.get(8)));
+    
     }
+
+    
+    private CheckPoint createCheckpointOnTile(Map tile) {
+        int cpWidth = 60;
+        int cpHeight = 60;
+        int x = tile.getX() + tile.getWidth() / 2 - cpWidth / 2 ;//to place the checkpoint on the tiles
+        int y = tile.getY() + tile.getHeight() - cpHeight - 80;
+        CheckPoint cp = new CheckPoint(getRandomCheckpointImage(),x,y,cpWidth,cpHeight);//to get the random checkpoint image
+        Riddle r = data.getRandomRiddle();//for random riddle
+        if (r != null) {
+            cp.setRiddle(r);
+        }
+        return cp;
+    }
+     
+
 
     // Add the images to an array.
     private String[] checkpointImages = {
