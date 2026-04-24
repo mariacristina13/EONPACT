@@ -617,6 +617,16 @@ public class GameManager {
         		boolean player1Left= player1.pushLeft(tile);
         		boolean player2Right=player2.pushRight(tile);
         		boolean player2Left= player2.pushLeft(tile);
+        		
+        		if(player1Right||player2Right) {
+        			tile.moveLog(1);
+        		}
+        		else if(player1Left||player2Left) {
+        			tile.moveLog(-1);
+        		}
+        		else {
+        			tile.setLogDirection(0);
+        		}
         	}
         }
     }
