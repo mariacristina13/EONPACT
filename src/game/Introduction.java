@@ -10,4 +10,11 @@ public class Introduction {
     // Class variables
     public Background bg;
     public Decor msg;
+    private boolean introductionActive;
+
+    public Introduction(){
+        introductionActive = true;
+        bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+    }
+
 }
