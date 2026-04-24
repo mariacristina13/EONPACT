@@ -56,7 +56,7 @@ public class CharacterMenu {
         characters = new ArrayList<CharacterButton>();
 
         // Set the width of the row that the characters are going to be displayed.
-        int totalWidth = (Constants.CHARACTER_WIDTH * 8) + (Constants.CHARACTER_SPACEING * 7);
+        int totalWidth = (Constants.CHARACTER_WIDTH * 4) + (Constants.CHARACTER_SPACEING * 3);
         // Set the starting X position for the character display.
         int startX = Constants.CHARACTER_BUTTON_X - (totalWidth / 2);
 
@@ -68,7 +68,7 @@ public class CharacterMenu {
                 startX + Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT));
 
-        elephantBtn = new CharacterButton("African Forest Elephant", "african forest elephant.png",
+        elephantBtn = new CharacterButton("African Elephant", "african forest elephant.png",
                 startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
@@ -84,28 +84,28 @@ public class CharacterMenu {
         lemurBtn.setLocked(true);
         characters.add(lemurBtn);
 
-        bearBtn = new CharacterButton("Gobi Bear", "gobi bear.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 4, Constants.CHARACTER_BUTTON_Y,
+        bearBtn = new CharacterButton("Gobi Bear", "gobi bear.png", startX, Constants.CHARACTER_BUTTON_Y + 150,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the gobi bear character.
         bearBtn.setLocked(true);
         characters.add(bearBtn);
 
-        pandaBtn = new CharacterButton("Red Panda", "red panda.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 5, Constants.CHARACTER_BUTTON_Y,
+        pandaBtn = new CharacterButton("Red Panda", "red panda.png", startX + Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING, Constants.CHARACTER_BUTTON_Y + 150,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the red panda character.
         pandaBtn.setLocked(true);
         characters.add(pandaBtn);
 
-        foxBtn = new CharacterButton("Arctic Fox", "arctic fox.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 6, Constants.CHARACTER_BUTTON_Y,
+        foxBtn = new CharacterButton("Arctic Fox", "arctic fox.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y + 150,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the arctic fox character.
         foxBtn.setLocked(true);
         characters.add(foxBtn);
 
-        leopardBtn = new CharacterButton("Leopard", "leopard.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 7, Constants.CHARACTER_BUTTON_Y,
+        leopardBtn = new CharacterButton("Leopard", "leopard.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 3, Constants.CHARACTER_BUTTON_Y + 150,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the leopard character.
@@ -121,10 +121,10 @@ public class CharacterMenu {
         int startX = Constants.BUTTON_X - (totalWidth / 2);
 
         // Initialise the buttons.
-        playBtn = new MenuButton("Play", "play button.png", "play button hover.png", startX, Constants.BUTTON_Y,
+        playBtn = new MenuButton("Play", "play button.png", "play button hover.png", startX, Constants.BUTTON_Y + 70,
                 Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         backBtn = new MenuButton("Back", "back button.png", "back button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 70, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 

@@ -3,6 +3,7 @@ package game;
 import java.awt.Graphics2D;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import Sprites.Background;
 import Sprites.Map;
@@ -13,13 +14,23 @@ public class Menu {
     private MenuButton characterBtn;
     private MenuButton quitBtn;
     public Background bg;
-    public Map leo;
+    public ArrayList<Map> characters;
+    private Map randomCharacter;
     public Map logo;
 
     public Menu() {
         initButtons();
         bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        leo = new Map("leopard 2.png", 50, 700,510 , 178);
+        characters = new ArrayList<Map>();
+        characters.add(new Map("leopard 2.png", 50, 700,510 , 178));
+        characters.add(new Map("bear.png", 50, 700,510 , 178));
+        characters.add(new Map("artic fox 2.png", 50, 700,510 , 178));
+        characters.add(new Map("elephant.png", 50, 700,510 , 178));
+        characters.add(new Map("red panda 2.png", 50, 700,510 , 178));
+        characters.add(new Map("kakapo 2.png", 50, 700,510 , 178));
+        characters.add(new Map("lemur 2.png", 50, 700,510 , 178));
+        selectCharacter();
+
         logo = new Map("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
     }
 
@@ -32,9 +43,9 @@ public class Menu {
 
         // Initialise buttons.
         characterBtn = new MenuButton("Characters", "animals button.png", "animals button hover.png", startX,
-                Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+                Constants.BUTTON_Y + 30, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 30, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 
@@ -42,17 +53,10 @@ public class Menu {
     public void drawMenu(Graphics2D g) {
         // Draw the background.
         g.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), null);
-        g.drawImage(leo.getImage(),leo.getX(), leo.getY(), leo.getWidth(), leo.getHeight(), null);
-        //g.setColor(Constants.DARK_GREEN);
-        //g.fillRect(0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        displayCharacter(g);
 
         // Draw the title of the game.
-        g.setColor(Constants.GOLD);
-        g.setFont(Constants.GAME_FONT);
-        //String title = "EONPACT";
-        //int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawImage(logo.getImage(), logo.getX(), logo.getY(), logo.getWidth(), logo.getHeight(), null);
-        //g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
         // Draw the buttons.
         characterBtn.drawButton(g);
@@ -73,4 +77,20 @@ public class Menu {
     public boolean quitButtonClicked(MouseEvent e) {
         return quitBtn.contains(e.getX(), e.getY());
     }
+
+    // Method to select random character from arraylist
+    public void selectCharacter(){
+        int x = (int)(Math.random()*characters.size());
+        randomCharacter = characters.get(x);
+    }
+
+    //Method to display selected character 
+    public void displayCharacter(Graphics2D g){
+        g.drawImage(randomCharacter.getImage(), randomCharacter.getX(), randomCharacter.getY(), randomCharacter.getWidth(), randomCharacter.getHeight(), null);
+    }
+
+    //Method to reset menu = select new random character
+    public void resetMenu() {
+        selectCharacter(); 
+    }    
 }
