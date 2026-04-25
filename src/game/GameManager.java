@@ -280,10 +280,6 @@ public class GameManager {
         g.drawImage(player2.getImage(), player2.getX(), player2.getY(),
                 player2.getWidth(), player2.getHeight(), panel);
 
-        // Display the checkpoints.
-        for (CheckPoint cp : checkpoints) {
-            g.drawImage(cp.getImage(), cp.getX(), cp.getY(), cp.getWidth(), cp.getHeight(), panel);
-        }
 
         for (CheckPoint cp : checkpoints) {//for movement of animation
             int sizeOffset = cp.getAnimatedSizeOffset();
