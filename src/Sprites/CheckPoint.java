@@ -32,6 +32,10 @@ public class CheckPoint extends Sprite {
         animationTick += 0.1f;
     }
 
+    public void resetAnimation() {
+         animationTick = 0;
+    }
+
     // Setter
     public void setRiddle(Riddle riddle) {
         this.riddle = riddle;
