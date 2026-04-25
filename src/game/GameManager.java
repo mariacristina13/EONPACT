@@ -285,7 +285,7 @@ public class GameManager {
             g.drawImage(cp.getImage(), cp.getX(), cp.getY(), cp.getWidth(), cp.getHeight(), panel);
         }
 
-        for (CheckPoint cp : checkpoints) {//for animation
+        for (CheckPoint cp : checkpoints) {//for movement of animation
             int sizeOffset = cp.getAnimatedSizeOffset();
             int drawX = cp.getX() - sizeOffset / 2;
             int drawY = cp.getAnimatedY() - sizeOffset / 2;
@@ -599,15 +599,12 @@ public class GameManager {
     }
 
     public void update() {
-    	
-        for (CheckPoint cp : checkpoints) { //if the players is near the checkpoint it is gonna put highlish
-            boolean near = Math.abs(player1.getX() - cp.getX()) < 100 || Math.abs(player2.getX() - cp.getX()) < 100;
-            cp.setHighlighted(near);
-        }
 
-        for (CheckPoint cp : checkpoints) {//update the animation
-            cp.updateAnimation();
+        for (CheckPoint cp : checkpoints) {
+            if (cp.isHighlighted()) {
+            cp.updateAnimation(); // animate when it is near to the animal
         }
+    }
 
 
         if (!riddleActive && !feedbackActive) {
