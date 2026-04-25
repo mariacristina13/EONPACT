@@ -18,6 +18,17 @@ import riddles.RiddleData;
 
 class TestCheckPoint {
 
+    // Helper method to initialize a GameManager instance with test players
+    private GameManager setupGame() {
+        GameManager gm = new GameManager();
+        ArrayList<String> chars = new ArrayList<>();
+        chars.add("Box Turtle");
+        chars.add("Kakapo");
+        gm.initializeGame(chars);
+        return gm;
+        
+    }
+
     // Test correct answer
     @Test
     public void testCorrectAnswer() {
