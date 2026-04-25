@@ -6,17 +6,20 @@ import java.awt.event.MouseEvent;
 
 import Sprites.Background;
 
-public class GameLost {
+public class GameOver {
     // Class variables.
     private MenuButton menuBtn;
     private MenuButton quitBtn;
-    public Background background;
+    private Background background;
+    private boolean gameWon;
+    private String title;
 
-    public GameLost() {
+    public GameOver() {
         initButtons();
 
         // Initialse the backgroeund image.
-        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+        background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH,
+                Constants.SCREEN_HEIGHT);
     }
 
     // Initialise the buttons.
@@ -33,15 +36,26 @@ public class GameLost {
                 Constants.BUTTON_HEIGHT);
     }
 
-    // Draw the game lost screen.
-    public void drawGameLost(Graphics2D g){
+    // Draw the game over screen.
+    public void drawGameOver(Graphics2D g) {
         // Draw the background.
-        g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(), background.getHeight(), null);
+        g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(),
+                background.getHeight(), null);
 
-        // Draw the title of the game.
+        // Message typography and color.
         g.setColor(Constants.GOLD);
         g.setFont(Constants.GAME_FONT);
-        String title = "Game Lost!";
+
+        if (!gameWon) {
+            // Draw the game over message.
+            title = "Game Lost!";
+
+        } else if (gameWon) {
+            // Draw the game won message.
+            title = "Game Won!";
+        }
+
+        // Draw the message.
         int titleWidth = g.getFontMetrics().stringWidth(title);
         g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
@@ -64,5 +78,9 @@ public class GameLost {
     // Check if the quit button was pressed.
     public boolean quitButtonClicked(MouseEvent e) {
         return quitBtn.contains(e.getX(), e.getY());
+    }
+
+    public void setGameWon(boolean gameWon) {
+        this.gameWon = gameWon;
     }
 }
