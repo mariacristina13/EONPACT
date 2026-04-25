@@ -28,6 +28,9 @@ public class CheckPoint extends Sprite {
             return false;
         }
     }
+    public void updateAnimation() {
+        animationTick += 0.1f;
+    }
 
     // Setter
     public void setRiddle(Riddle riddle) {
