@@ -607,6 +607,10 @@ public class GameManager {
             cp.setHighlighted(near);
         }
 
+        for (CheckPoint cp : checkpoints) {//update the animation
+            cp.updateAnimation();
+        }
+
 
         if (!riddleActive && !feedbackActive) {
             // Check which checkpoint was reached.
