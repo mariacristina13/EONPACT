@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 
@@ -158,5 +159,11 @@ class TestCheckPoint {
 
         // Check if there are more than two answers that are diffrent.
         assertTrue(uniqueAnswers.size() > 2);
+    }
+
+    @Test
+    public void testCheckpointHasRandomImage() {
+        CheckPoint cp = new CheckPoint("test.png", 0, 0, 10, 10);
+        assertNotNull(cp.getImage());
     }
 }
