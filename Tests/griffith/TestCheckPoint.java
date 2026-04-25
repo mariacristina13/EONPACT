@@ -187,6 +187,15 @@ class TestCheckPoint {
         assertNotNull(cp.getImage());
     }
 
+    // Test that each checkpoint is assigned a riddle
+    @Test
+    public void testCheckpointsHaveRiddles() {
+        GameManager gm = setupGame();
+        for (CheckPoint cp : gm.getCheckpoints()) {
+            assertNotNull(cp.getRiddle());
+        }
+    }
+
     @Test
     public void testCheckpointAnimationChangesValues() {//checking for animation
         CheckPoint cp = new CheckPoint("x.png", 0, 100, 10, 10);
