@@ -599,9 +599,31 @@ public class GameManager {
     }
 
     public void update() {
-
+        CheckPoint closest = null;// Find closest checkpoint to players
+        int minDistance = Integer.MAX_VALUE;
         for (CheckPoint cp : checkpoints) {
-            if (cp.isHighlighted()) {
+            int distance = Math.min(
+            Math.abs(player1.getX() - cp.getX()),
+            Math.abs(player2.getX() - cp.getX())
+    );
+
+    if (distance < minDistance) {
+        minDistance = distance;
+        closest = cp;
+    }
+}
+
+     // Highlight only the closest one (within range)
+    for (CheckPoint cp : checkpoints) {
+        if (cp == closest && minDistance < 150) {
+        cp.setHighlighted(true);
+    } else {
+        cp.setHighlighted(false);
+    }
+}
+
+    for (CheckPoint cp : checkpoints) {
+        if (cp.isHighlighted()) {
             cp.updateAnimation(); // animate when it is near to the animal
         }
     }
