@@ -33,7 +33,7 @@ public class CheckPoint extends Sprite {
     }
 
     public void resetAnimation() {
-         animationTick = 0;
+       animationTick *= 0.9f; // smooth slowdown the animation
     }
 
     // Setter
