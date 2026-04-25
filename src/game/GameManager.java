@@ -78,6 +78,7 @@ public class GameManager {
         riddleActive = false;
     }
 
+    // Getter method to access checkpoints list for testing purposes
     public ArrayList<CheckPoint> getCheckpoints() {
         return checkpoints;
     }

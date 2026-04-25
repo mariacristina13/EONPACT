@@ -174,6 +174,13 @@ class TestCheckPoint {
         assertTrue(uniqueAnswers.size() > 2);
     }
 
+    // Test to ensure checkpoints are created after game initialization
+    @Test
+    public void testCheckpointsCreated() {
+        GameManager gm = setupGame();
+        assertEquals(5, gm.getCheckpoints().size());
+    }
+
     @Test
     public void testCheckpointHasRandomImage() {//check for random image 
         CheckPoint cp = new CheckPoint("test.png", 0, 0, 10, 10);
