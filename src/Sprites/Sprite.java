@@ -10,7 +10,7 @@ public abstract class Sprite {
 	// Class variables.
 	private String fileName;
 	private int x;
-	private int y;
+	protected int y;
 	private int width;
 	private int height;
 	private BufferedImage image;

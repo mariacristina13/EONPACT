@@ -280,9 +280,14 @@ public class GameManager {
         g.drawImage(player2.getImage(), player2.getX(), player2.getY(),
                 player2.getWidth(), player2.getHeight(), panel);
 
-        // Display the checkpoints.
-        for (CheckPoint cp : checkpoints) {
-            g.drawImage(cp.getImage(), cp.getX(), cp.getY(), cp.getWidth(), cp.getHeight(), panel);
+
+        for (CheckPoint cp : checkpoints) {//for movement of animation
+            int sizeOffset = cp.getAnimatedSizeOffset();
+            int drawX = cp.getX() - sizeOffset / 2;
+            int drawY = cp.getAnimatedY() - sizeOffset / 2;
+            int drawW = cp.getWidth() + sizeOffset;
+            int drawH = cp.getHeight() + sizeOffset;
+            g.drawImage(cp.getImage(), drawX, drawY, drawW, drawH, panel);
         }
 
         // Check that the food wasn't collected and draw the it.
@@ -578,19 +583,51 @@ public class GameManager {
     }
 
     private CheckPoint getReachedCheckpoint() {
+        
         // For each checkpoint in the array list check if both characters have rached it.
         for (CheckPoint cp : checkpoints) {
-            if (Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player2.getX() - cp.getX()) < 30) {
-                // Return the checkpoint that was reached.
-                return cp;
-            }
+            boolean player1Near = Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player1.getY() - cp.getY()) < 30;
+            boolean player2Near =Math.abs(player2.getX() - cp.getX()) < 30 && Math.abs(player2.getY() - cp.getY()) < 30;
+
+        if (player1Near && player2Near) {
+            return cp;
         }
+    }
         // If the characters didn't reach any checkpoints then return null.
         return null;
     }
 
     public void update() {
-    	
+        CheckPoint closest = null;// Find closest checkpoint to players
+        int minDistance = Integer.MAX_VALUE;
+        for (CheckPoint cp : checkpoints) {
+            int distance = Math.min(
+            Math.abs(player1.getX() - cp.getX()),
+            Math.abs(player2.getX() - cp.getX())
+    );
+
+    if (distance < minDistance) {
+        minDistance = distance;
+        closest = cp;
+    }
+}
+
+     // Highlight only the closest one (within range)
+    for (CheckPoint cp : checkpoints) {
+        if (cp == closest && minDistance < 150) {
+        cp.setHighlighted(true);
+    } else {
+        cp.setHighlighted(false);
+    }
+}
+
+    for (CheckPoint cp : checkpoints) {
+        if (cp.isHighlighted()) {
+            cp.updateAnimation(); // animate when it is near to the animal
+        }
+    }
+
+
         if (!riddleActive && !feedbackActive) {
             // Check which checkpoint was reached.
             CheckPoint hit = getReachedCheckpoint(); 

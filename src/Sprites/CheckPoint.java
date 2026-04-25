@@ -6,6 +6,8 @@ public class CheckPoint extends Sprite {
     // Class variables.
     private Riddle riddle;
     private boolean completed;
+    private boolean highlighted = false;
+    private float animationTick = 0;
 
     // Initialise class variables.
     public CheckPoint(String fileName, int x, int y, int width, int height) {
@@ -26,11 +28,22 @@ public class CheckPoint extends Sprite {
             return false;
         }
     }
+    public void updateAnimation() {
+        animationTick += 0.1f;
+    }
+
+    public void resetAnimation() {
+       animationTick *= 0.9f; // smooth slowdown the animation
+    }
 
     // Setter
     public void setRiddle(Riddle riddle) {
         this.riddle = riddle;
         this.completed = false;
+    }
+
+    public void setHighlighted(boolean value) {
+        this.highlighted = value;
     }
 
     // Getters
@@ -49,4 +62,17 @@ public class CheckPoint extends Sprite {
     public Riddle getRiddle() {
         return riddle;
     }
+
+    public boolean isHighlighted() {
+        return highlighted;
+    }
+
+    public int getAnimatedY() {
+        return (int)(y + Math.sin(animationTick) * 5); // bob up/down
+    }
+
+    public int getAnimatedSizeOffset() {
+        return (int)(Math.sin(animationTick) * 3); // pulse size
+    }
+
 }
