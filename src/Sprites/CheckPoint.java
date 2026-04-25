@@ -67,8 +67,8 @@ public class CheckPoint extends Sprite {
         return (int)(y + Math.sin(animationTick) * 5); // bob up/down
     }
 
-public int getAnimatedSizeOffset() {
-    return (int)(Math.sin(animationTick) * 3); // pulse size
+    public int getAnimatedSizeOffset() {
+        return (int)(Math.sin(animationTick) * 3); // pulse size
     }
 
 }
