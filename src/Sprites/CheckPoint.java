@@ -7,6 +7,7 @@ public class CheckPoint extends Sprite {
     private Riddle riddle;
     private boolean completed;
     private boolean highlighted = false;
+    private float animationTick = 0;
 
     // Initialise class variables.
     public CheckPoint(String fileName, int x, int y, int width, int height) {

@@ -607,6 +607,7 @@ public class GameManager {
             cp.setHighlighted(near);
         }
 
+
         if (!riddleActive && !feedbackActive) {
             // Check which checkpoint was reached.
             CheckPoint hit = getReachedCheckpoint(); 
