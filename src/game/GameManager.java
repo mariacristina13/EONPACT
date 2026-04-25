@@ -583,13 +583,16 @@ public class GameManager {
     }
 
     private CheckPoint getReachedCheckpoint() {
+        
         // For each checkpoint in the array list check if both characters have rached it.
         for (CheckPoint cp : checkpoints) {
-            if (Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player2.getX() - cp.getX()) < 30) {
-                // Return the checkpoint that was reached.
-                return cp;
-            }
+            boolean player1Near = Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player1.getY() - cp.getY()) < 30;
+            boolean player2Near =Math.abs(player2.getX() - cp.getX()) < 30 && Math.abs(player2.getY() - cp.getY()) < 30;
+
+        if (player1Near && player2Near) {
+            return cp;
         }
+    }
         // If the characters didn't reach any checkpoints then return null.
         return null;
     }
