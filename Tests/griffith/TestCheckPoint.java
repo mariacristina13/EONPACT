@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
@@ -162,8 +163,17 @@ class TestCheckPoint {
     }
 
     @Test
-    public void testCheckpointHasRandomImage() {
+    public void testCheckpointHasRandomImage() {//check for random image 
         CheckPoint cp = new CheckPoint("test.png", 0, 0, 10, 10);
         assertNotNull(cp.getImage());
+    }
+
+    @Test
+    public void testCheckpointAnimationChangesValues() {//checking for animation
+        CheckPoint cp = new CheckPoint("x.png", 0, 100, 10, 10);
+        int y1 = cp.getAnimatedY();
+        cp.updateAnimation();
+        int y2 = cp.getAnimatedY();
+        assertNotEquals(y1, y2);
     }
 }
