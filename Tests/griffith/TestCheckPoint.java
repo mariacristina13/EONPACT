@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 import Sprites.CheckPoint;
+import game.GameManager;
 import riddles.Riddle;
 import riddles.RiddleData;
 
@@ -175,5 +176,24 @@ class TestCheckPoint {
         cp.updateAnimation();
         int y2 = cp.getAnimatedY();
         assertNotEquals(y1, y2);
+    }
+
+    @Test
+    public void testCheckpointRequiresBothPlayers() {//Riddle triggers only when BOTH players near
+        GameManager gm = new GameManager();
+        ArrayList<String> chars = new ArrayList<>();
+        chars.add("Box Turtle");
+        chars.add("Kakapo");
+        
+        gm.initializeGame(chars);
+        CheckPoint cp = gm.getCheckpoints().get(0);// Move both near checkpoint
+
+        gm.player1.setX(cp.getX());// Only when the player1 near
+        gm.player1.setY(cp.getY());
+        
+        gm.player2.setX(0);
+        gm.player2.setY(0);
+        gm.update();
+        assertFalse(gm.isRiddleActive());
     }
 }

@@ -78,6 +78,10 @@ public class GameManager {
         riddleActive = false;
     }
 
+    public ArrayList<CheckPoint> getCheckpoints() {
+        return checkpoints;
+    }
+
     // Initialise the game.
     public void initializeGame(ArrayList<String> selectedCharacters) {
         // Initialise the players with the characters choosen.
@@ -583,7 +587,7 @@ public class GameManager {
     }
 
     private CheckPoint getReachedCheckpoint() {
-        
+
         // For each checkpoint in the array list check if both characters have rached it.
         for (CheckPoint cp : checkpoints) {
             boolean player1Near = Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player1.getY() - cp.getY()) < 30;
