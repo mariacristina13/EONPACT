@@ -57,6 +57,7 @@ public final class Constants {
 	public final static Color ORANGE = new Color(255, 77, 0);
 	public final static Color DARK_GREEN = new Color(49, 73, 53);
 	public final static Color TRANS_BLACK = new Color(0, 0, 0, 120);
+	public final static Color RED = new Color(1f, 0f, 0f);
 
 	// Fonts
 	public final static Font ATTEMPTS_FONT = new Font("SansSerif", Font.ITALIC, 10);
@@ -92,4 +93,7 @@ public final class Constants {
 	// Lock Dimensions
 	public final static int LOCK_WIDTH = CHARACTER_WIDTH / 2;
 	public final static int LOCK_HEIGHT = CHARACTER_HEIGHT / 2;
+
+	// floating effect duration for timer subtraction
+	public static final int EFFECT_DURATION = 2000; 
 }
