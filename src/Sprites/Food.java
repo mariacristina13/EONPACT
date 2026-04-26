@@ -1,6 +1,11 @@
 package Sprites;
 
 public class Food extends Sprite {
+    
+    public enum FoodType {
+        NORMAL, 
+        FAST_TIMER,   // makes timer faster
+    }
     // Class variable.
     private boolean collected = false;
 
