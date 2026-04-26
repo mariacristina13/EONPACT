@@ -21,6 +21,16 @@ public class Food extends Sprite {
         this.type = FoodType.NORMAL;
     }
 
+    //methods to animate food floating
+    public void updateAnimation() {
+        animationTick += 0.05f;
+        animationOffset = (float)(Math.sin(animationTick) * 4); // 4px float range
+    }
+
+    public int getAnimatedY() {
+        return getY() + (int) animationOffset;
+    }
+
     // Getter and setter for collected.
     public boolean isCollected() {
         return collected;
