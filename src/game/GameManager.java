@@ -564,6 +564,26 @@ public class GameManager {
         {
             // Set collected to true to remove the food.
             other.setCollected(true);
+            // switch depending on food type
+            switch (other.getType()) {
+                // if food labeled as fast_timer reached, subtract 20 seconds from curremt time
+                case FAST_TIMER:
+                    second -= 20;
+                    if (second < 0) {
+                        second += 60;
+                        minute--;
+                        if (minute < 0) { // prevent negative minutes
+                            minute = 0;
+                            second = 0;
+                            timer.stop();
+                        }
+                    }
+                    break;
+                    // default state
+                    case NORMAL:
+                    default:
+                        break;
+                }
         }
     }
     public boolean playerCollision(Sprite p1, Sprite p2) {
