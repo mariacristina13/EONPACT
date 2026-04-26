@@ -112,7 +112,7 @@ public class GameManager {
         map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
         
-        Map logTile=new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH,140);
+        Map logTile=new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH,70);
         logTile.setMove(true);
         map.add(logTile);
         
