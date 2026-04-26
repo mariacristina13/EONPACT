@@ -614,7 +614,7 @@ public class GameManager {
                         if (minute < 0) { // prevent negative minutes
                             minute = 0;
                             second = 0;
-                            timer.stop();
+                            if (timer != null) timer.stop();
                         }
                     }
                     timerEffect = "-20s";
