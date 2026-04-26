@@ -132,10 +132,10 @@ public class GameManager {
         // Initialise food.
         foods = new ArrayList<Food>();
         // Add the food to the ArrayList to be displayed in the game at diffrent positions.
-        foods.add(new Food("cabage.png", 1050, Constants.GROUND_HEIGHT-50, 60, 60, Food.FoodType.FAST_TIMER));
-        foods.add(new Food("leaf.png", 450, Constants.GROUND_HEIGHT - 200, 60, 60));
-        foods.add(new Food("seeds.png", 620, Constants.GROUND_HEIGHT - 5, 60, 60));
-        foods.add(new Food("bamboo.png", 1100, Constants.GROUND_HEIGHT - 340, 60, 60));
+        foods.add(new Food(getRandomFoodImage(), 1050, Constants.GROUND_HEIGHT-50, 60, 60, Food.FoodType.FAST_TIMER));
+        foods.add(new Food(getRandomFoodImage(), 450, Constants.GROUND_HEIGHT - 200, 60, 60));
+        foods.add(new Food(getRandomFoodImage(), 620, Constants.GROUND_HEIGHT - 5, 60, 60));
+        foods.add(new Food(getRandomFoodImage(), 1100, Constants.GROUND_HEIGHT - 340, 60, 60));
 
         // Initialize timer.
         timer();
@@ -167,6 +167,12 @@ public class GameManager {
         "meat.png",
         "strawberry.png"
     };
+
+    //choose random image out of foodImage array
+    private String getRandomFoodImage() {
+        int index = (int)(Math.random() * foodImages.length);
+        return foodImages[index];
+    }
 
     
     private CheckPoint createCheckpointOnTile(Map tile) {
