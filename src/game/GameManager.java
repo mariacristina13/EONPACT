@@ -47,6 +47,10 @@ public class GameManager {
     private int second = 0;
     private int minute = 2;
 
+    //variables to draw substraction from timer
+    private String timerEffect = "";
+    private long timerEffectStart = 0;
+
     // Variables to format the timer.
     private String decimalSecond = "00";
     private String decimalMinute = "02";
@@ -108,7 +112,7 @@ public class GameManager {
         map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
         
-        Map logTile=new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH,140);
+        Map logTile=new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH,70);
         logTile.setMove(true);
         map.add(logTile);
         
@@ -128,10 +132,10 @@ public class GameManager {
         // Initialise food.
         foods = new ArrayList<Food>();
         // Add the food to the ArrayList to be displayed in the game at diffrent positions.
-        foods.add(new Food("cabage.png", 1050, Constants.GROUND_HEIGHT-50, 60, 60));
-        foods.add(new Food("leaf.png", 450, Constants.GROUND_HEIGHT - 200, 60, 60));
-        foods.add(new Food("seeds.png", 620, Constants.GROUND_HEIGHT - 5, 60, 60));
-        foods.add(new Food("bamboo.png", 1100, Constants.GROUND_HEIGHT - 340, 60, 60));
+        foods.add(new Food(getRandomFoodImage(), 1050, Constants.GROUND_HEIGHT-50, 60, 60, Food.FoodType.FAST_TIMER));
+        foods.add(new Food(getRandomFoodImage(), 450, Constants.GROUND_HEIGHT - 200, 60, 60));
+        foods.add(new Food(getRandomFoodImage(), 620, Constants.GROUND_HEIGHT - 5, 60, 60));
+        foods.add(new Food(getRandomFoodImage(), 1100, Constants.GROUND_HEIGHT - 340, 60, 60));
 
         // Initialize timer.
         timer();
@@ -151,6 +155,23 @@ public class GameManager {
         checkpoints.add(createCheckpointOnTile(map.get(7)));
         checkpoints.add(createCheckpointOnTile(map.get(8)));
     
+    }
+
+    // Add foodImage array
+    private String[] foodImages = {
+        "cabage.png",
+        "leaf.png",
+        "seeds.png",
+        "bamboo.png",
+        "berries.png",
+        "meat.png",
+        "strawberry.png"
+    };
+
+    //choose random image out of foodImage array
+    private String getRandomFoodImage() {
+        int index = (int)(Math.random() * foodImages.length);
+        return foodImages[index];
     }
 
     
@@ -462,6 +483,23 @@ public class GameManager {
             graphics.drawString(line.toString(), x, y);
     }
 
+    //draw subtract 20s text
+    public void drawTimerEffect(Graphics2D g, int panelWidth) {
+        if (timerEffect.isEmpty()) return;
+    
+        long elapsed = System.currentTimeMillis() - timerEffectStart;
+        if (elapsed > Constants.EFFECT_DURATION) {
+            timerEffect = ""; 
+            return;
+        }
+    
+        int floatY = (int)(elapsed / 20); 
+    
+        g.setFont(Constants.TIMER_FONT);
+        g.setColor(Constants.RED); 
+        g.drawString(timerEffect, panelWidth - 120, 70 - floatY); // near timer
+    }
+
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
         if (feedbackActive) {
@@ -564,6 +602,28 @@ public class GameManager {
         {
             // Set collected to true to remove the food.
             other.setCollected(true);
+            // switch depending on food type
+            switch (other.getType()) {
+                // if food labeled as fast_timer reached, subtract 20 seconds from curremt time
+                case FAST_TIMER:
+                    second -= 20;
+                    if (second < 0) {
+                        second += 60;
+                        minute--;
+                        if (minute < 0) { // prevent negative minutes
+                            minute = 0;
+                            second = 0;
+                            timer.stop();
+                        }
+                    }
+                    timerEffect = "-20s";
+                    timerEffectStart = System.currentTimeMillis();
+                    break;
+                    // default state
+                    case NORMAL:
+                    default:
+                        break;
+                }
         }
     }
     public boolean playerCollision(Sprite p1, Sprite p2) {
