@@ -466,6 +466,23 @@ public class GameManager {
             graphics.drawString(line.toString(), x, y);
     }
 
+    //draw subtract 20s text
+    public void drawTimerEffect(Graphics2D g, int panelWidth) {
+        if (timerEffect.isEmpty()) return;
+    
+        long elapsed = System.currentTimeMillis() - timerEffectStart;
+        if (elapsed > Constants.EFFECT_DURATION) {
+            timerEffect = ""; 
+            return;
+        }
+    
+        int floatY = (int)(elapsed / 20); 
+    
+        g.setFont(Constants.TIMER_FONT);
+        g.setColor(Constants.RED); 
+        g.drawString(timerEffect, panelWidth - 120, 70 - floatY); // near timer
+    }
+
     public void keyPressed(int keyCode) {
         keysHeld.add(keyCode);
         if (feedbackActive) {
@@ -582,6 +599,8 @@ public class GameManager {
                             timer.stop();
                         }
                     }
+                    timerEffect = "-20s";
+                    timerEffectStart = System.currentTimeMillis();
                     break;
                     // default state
                     case NORMAL:
