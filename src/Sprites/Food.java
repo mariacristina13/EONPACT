@@ -21,12 +21,17 @@ public class Food extends Sprite {
         this.type = FoodType.NORMAL;
     }
 
-    // Getter and setter.
+    // Getter and setter for collected.
     public boolean isCollected() {
         return collected;
     }
 
     public void setCollected(boolean collected) {
         this.collected = collected;
+    }
+
+    //getter for food type
+    public FoodType getType(){
+        return type;
     }
 }
