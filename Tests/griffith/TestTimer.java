@@ -2,6 +2,8 @@ package griffith;
 
 import org.junit.jupiter.api.Test;
 
+import Sprites.Food;
+import Sprites.Player;
 import game.GameManager;
 
 import static org.junit.Assert.assertNotNull;
@@ -155,5 +157,22 @@ public class TestTimer {
 
         // Check that the timer is formated properly.
         assertTrue(timer.matches("\\d{2}:\\d{2}"));
+    }
+
+    // test if timer subtracts 20 seconds after collecting food with type: FAST_TIMER
+    @Test
+    public void testTimerReducesSeconds() {
+        GameManager gm = new GameManager();
+        
+        Food food = new Food("cabage.png", 100, 100, 60, 60, Food.FoodType.FAST_TIMER);
+        Player player = new Player("box turtle.png", 100, 100, 90, 90);
+        gm.checkCollision(player, food);
+    
+        //test if collision happened
+        assertTrue("Collision was not detected", food.isCollected());
+        
+        //check if time changed
+        assertEquals(1, gm.getMinute());
+        assertEquals(40, gm.getSecond());
     }
 }
