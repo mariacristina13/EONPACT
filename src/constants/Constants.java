@@ -95,5 +95,5 @@ public final class Constants {
 	public final static int LOCK_HEIGHT = CHARACTER_HEIGHT / 2;
 
 	// floating effect duration for timer subtraction
-	public static final int EFFECT_DURATION = 2000; 
+	public static final int EFFECT_DURATION = 4000; 
 }
