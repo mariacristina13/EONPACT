@@ -40,9 +40,9 @@ private int logDirection=0;
     		}
     	this.logDirection=direction;
     	int x=getX()+direction*Constants.PLAYER_SPEED;
-    	if(x<0) {x=0;}//if the new position is past the left edge of the screen reset position
+    	if(x<0) {x=0;}//if the new position is past the left edge of the screen 
     	if(x+getWidth()>Constants.SCREEN_WIDTH) {//checks if the log goes past the right edge
-    		x=Constants.SCREEN_WIDTH-getWidth();//moves the log back so it fits inside the right edge		
+    		x=Constants.SCREEN_WIDTH-getWidth()-60;//moves the log back so it fits inside the right edge		
     	}
     	setX(x);//updates the position
     }
