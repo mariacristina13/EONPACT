@@ -175,4 +175,19 @@ public class TestTimer {
         assertEquals(1, gm.getMinute());
         assertEquals(40, gm.getSecond());
     }
+
+    // testing if, for example, when timer is at 2 it switches to 1:40 
+    @Test
+public void testFastTimerBorrowsFromMinute() {
+    GameManager gm = new GameManager();
+    Food food = new Food("cabage.png", 100, 100, 60, 60, Food.FoodType.FAST_TIMER);
+    Player player = new Player("box turtle.png", 100, 100, 90, 90);
+    gm.checkCollision(player, food);
+
+    assertEquals(1, gm.getMinute());
+    assertEquals(40, gm.getSecond());
+}
+
+
+
 }
