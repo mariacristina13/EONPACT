@@ -157,6 +157,17 @@ public class GameManager {
     
     }
 
+    // Add foodImage array
+    private String[] foodImages = {
+        "cabage.png",
+        "leaf.png",
+        "seeds.png",
+        "bamboo.png",
+        "berries.png",
+        "meat.png",
+        "strawberry.png"
+    };
+
     
     private CheckPoint createCheckpointOnTile(Map tile) {
         int cpWidth = 60;
