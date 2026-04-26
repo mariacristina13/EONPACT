@@ -90,6 +90,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         // Add the timer.
         drawTimer(g);
         game.drawCounter(g);
+        game.drawTimerEffect(g, getWidth());
     }
 
     // Draw the timer.
