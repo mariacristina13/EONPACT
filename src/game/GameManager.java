@@ -47,6 +47,10 @@ public class GameManager {
     private int second = 0;
     private int minute = 2;
 
+    //variables to draw substraction from timer
+    private String timerEffect = "";
+    private long timerEffectStart = 0;
+
     // Variables to format the timer.
     private String decimalSecond = "00";
     private String decimalMinute = "02";
