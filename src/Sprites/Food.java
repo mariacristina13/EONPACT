@@ -8,10 +8,17 @@ public class Food extends Sprite {
     }
     // Class variable.
     private boolean collected = false;
+    private FoodType type;
 
     // Initialise the constructor in the parent class.
+    public Food(String fileName, int x, int y, int width, int height, FoodType type) {
+        super(fileName, x, y, width, height);
+        this.type = type;
+    }
+
     public Food(String fileName, int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
+        this.type = FoodType.NORMAL;
     }
 
     // Getter and setter.
