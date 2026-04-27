@@ -13,7 +13,6 @@ public class GameOver {
     private MenuButton quitBtn;
     private Background background;
     private boolean gameWon;
-    private String title;
     private Decor gameLost;
     private Decor gameWonImg;
     private Decor panda;
@@ -38,9 +37,9 @@ public class GameOver {
         int startX = Constants.BUTTON_X - (totalWidth / 2);
 
         menuBtn = new MenuButton("Menu", "menu button.png", "menu button hover.png", startX,
-                Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+                Constants.BUTTON_Y + 50, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 50, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 
@@ -56,17 +55,14 @@ public class GameOver {
 
         if (!gameWon) {
             // Draw the game over message.
-            //title = "Game Lost!";
             g.drawImage(gameLost.getImage(), gameLost.getX(), gameLost.getY(), gameLost.getWidth(), gameLost.getHeight(), null);
             g.drawImage(panda.getImage(), panda.getX(), panda.getY(), panda.getWidth(), panda.getHeight(), null);
 
         } else if (gameWon) {
             // Draw the game won message.
-            //title = "Game Won!";
             g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(), gameWonImg.getHeight(), null);
             g.drawImage(win.getImage(), win.getX(), win.getY(), win.getWidth(), win.getHeight(), null);
         }
-
 
         // Draw the buttons.
         menuBtn.drawButton(g);
