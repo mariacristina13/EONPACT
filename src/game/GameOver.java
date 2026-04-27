@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
 import Sprites.Background;
+import Sprites.Decor;
 
 public class GameOver {
     // Class variables.
@@ -13,6 +14,8 @@ public class GameOver {
     private Background background;
     private boolean gameWon;
     private String title;
+    public Decor gameLost;
+    public Decor gameWonImg;
 
     public GameOver() {
         initButtons();
@@ -20,8 +23,9 @@ public class GameOver {
         // Initialse the backgroeund image.
         background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH,
                 Constants.SCREEN_HEIGHT);
+        gameLost = new Decor("game lost.png", 420,Constants.SCREEN_CENTER-400,445 , 180);
+        gameWonImg = new Decor("game won.png", 420,Constants.SCREEN_CENTER-400,445 , 180);
     }
-
     // Initialise the buttons.
     private void initButtons() {
         // Set the width of the row that the buttons are going to be displayed.
@@ -48,11 +52,13 @@ public class GameOver {
 
         if (!gameWon) {
             // Draw the game over message.
-            title = "Game Lost!";
+            //title = "Game Lost!";
+            g.drawImage(gameLost.getImage(), gameLost.getX(), gameLost.getY(), gameLost.getWidth(), gameLost.getHeight(), null);
 
         } else if (gameWon) {
             // Draw the game won message.
-            title = "Game Won!";
+            //title = "Game Won!";
+            g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(), gameWonImg.getHeight(), null);
         }
 
         // Draw the message.
