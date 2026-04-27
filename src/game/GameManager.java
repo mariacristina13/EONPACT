@@ -319,7 +319,8 @@ public class GameManager {
         // Check that the food wasn't collected and draw the it.
         for (Food food : foods) {
             if (food.isCollected() == false)
-                g.drawImage(food.getImage(), food.getX(), food.getY(), food.getWidth(), food.getHeight(), panel);
+                g.drawImage(food.getImage(), food.getX(), food.getAnimatedY(), 
+            food.getWidth(), food.getHeight(), panel);
         }
 
         // draw score
@@ -613,7 +614,7 @@ public class GameManager {
                         if (minute < 0) { // prevent negative minutes
                             minute = 0;
                             second = 0;
-                            timer.stop();
+                            if (timer != null) timer.stop();
                         }
                     }
                     timerEffect = "-20s";
@@ -690,6 +691,10 @@ public class GameManager {
         if (cp.isHighlighted()) {
             cp.updateAnimation(); // animate when it is near to the animal
         }
+    }
+
+    for (Food food : foods) {
+        food.updateAnimation();
     }
 
 
