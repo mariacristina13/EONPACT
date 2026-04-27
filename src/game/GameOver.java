@@ -14,10 +14,10 @@ public class GameOver {
     private Background background;
     private boolean gameWon;
     private String title;
-    public Decor gameLost;
-    public Decor gameWonImg;
-    public Decor panda;
-    public Decor win;
+    private Decor gameLost;
+    private Decor gameWonImg;
+    private Decor panda;
+    private Decor win;
 
     public GameOver() {
         initButtons();
