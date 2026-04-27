@@ -63,8 +63,8 @@ public class GameOver {
         } else if (gameWon) {
             // Draw the game won message.
             //title = "Game Won!";
-            g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(), gam g.drawImage(win.getImage(), win.getX(), win.getY(), win.getWidth(), win.getHeight(), null);eWonImg.getHeight(), null);
-
+            g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(), gameWonImg.getHeight(), null);
+            g.drawImage(win.getImage(), win.getX(), win.getY(), win.getWidth(), win.getHeight(), null);
         }
 
         // Draw the message.
