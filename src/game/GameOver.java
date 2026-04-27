@@ -15,6 +15,7 @@ public class GameOver {
     private boolean gameWon;
     public Decor gameLost;
     public Decor gameWonImg;
+    private Decor win;
 
     public GameOver() {
         initButtons();
@@ -22,8 +23,8 @@ public class GameOver {
         // Initialse the backgroeund image.
         background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH,
                 Constants.SCREEN_HEIGHT);
-        gameLost = new Decor("game lost.png", 420,Constants.SCREEN_CENTER-400,445 , 180);
-        gameWonImg = new Decor("game won.png", 420,Constants.SCREEN_CENTER-400,445 , 180);
+        gameLost = new Decor("game lost.png", 420, Constants.SCREEN_CENTER-400, 445, 180);
+        gameWonImg = new Decor("game won.png", 420, Constants.SCREEN_CENTER-400, 445, 180);
     }
     // Initialise the buttons.
     private void initButtons() {
