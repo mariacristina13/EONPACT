@@ -22,20 +22,19 @@ public class Menu {
         initButtons();
         bg = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         characters = new ArrayList<Decor>();
-        characters.add(new Decor("leopard 2.png", 50, 700,510 , 178));
-        characters.add(new Decor("bear.png", 50, 700,510 , 178));
-        characters.add(new Decor("artic fox 2.png", 50, 700,510 , 178));
-        characters.add(new Decor("elephant.png", 50, 700,510 , 178));
-        characters.add(new Decor("red panda 2.png", 50, 700,510 , 178));
-        characters.add(new Decor("kakapo 2.png", 50, 700,510 , 178));
-        characters.add(new Decor("lemur 2.png", 50, 700,510 , 178));
-        characters.add(new Decor("box turtle 2.png", 50, 700,510 , 178));
+        characters.add(new Decor("leopard 2.png", 50, 700, 510, 178));
+        characters.add(new Decor("bear.png", 50, 700, 510, 178));
+        characters.add(new Decor("artic fox 2.png", 50, 700, 510, 178));
+        characters.add(new Decor("elephant.png", 50, 700, 510, 178));
+        characters.add(new Decor("red panda 2.png", 50, 700, 510, 178));
+        characters.add(new Decor("kakapo 2.png", 50, 700, 510, 178));
+        characters.add(new Decor("lemur 2.png", 50, 700, 510, 178));
+        characters.add(new Decor("box turtle 2.png", 50, 700, 510, 178));
         selectCharacter();
 
-        logo = new Decor("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
+        logo = new Decor("logo.png", 225, Constants.SCREEN_CENTER - 50, 850, 590);
     }
-    
-    
+
     // Initialise buttons
     private void initButtons() {
         // Set the width of the row that the buttons are going to be displayed.
@@ -47,7 +46,8 @@ public class Menu {
         characterBtn = new MenuButton("Characters", "animals button.png", "animals button hover.png", startX,
                 Constants.BUTTON_Y + 30, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 30, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 30,
+                Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 
@@ -81,18 +81,19 @@ public class Menu {
     }
 
     // Method to select random character from arraylist
-    public void selectCharacter(){
-        int x = (int)(Math.random()*characters.size());
+    public void selectCharacter() {
+        int x = (int) (Math.random() * characters.size());
         randomCharacter = characters.get(x);
     }
 
-    //Method to display selected character 
-    public void displayCharacter(Graphics2D g){
-        g.drawImage(randomCharacter.getImage(), randomCharacter.getX(), randomCharacter.getY(), randomCharacter.getWidth(), randomCharacter.getHeight(), null);
+    // Method to display selected character
+    public void displayCharacter(Graphics2D g) {
+        g.drawImage(randomCharacter.getImage(), randomCharacter.getX(), randomCharacter.getY(),
+                randomCharacter.getWidth(), randomCharacter.getHeight(), null);
     }
 
-    //Method to reset menu = select new random character
+    // Method to reset menu = select new random character
     public void resetMenu() {
-        selectCharacter(); 
-    }    
+        selectCharacter();
+    }
 }

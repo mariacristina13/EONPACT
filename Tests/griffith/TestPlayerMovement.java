@@ -114,27 +114,30 @@ public class TestPlayerMovement {
         player.update(map);
         assertEquals(beforeY + Constants.PLAYER_FALL_SPEED, player.getY());
     }
+
     @Test
     public void testLogMobility() {
-    	Map log=new Map(null,100,200,256,140);
-    	log.setMove(true);
-    	assertTrue(log.mobility());
+        Map log = new Map(null, 100, 200, 256, 140);
+        log.setMove(true);
+        assertTrue(log.mobility());
     }
+
     @Test
     public void testLogMoveRight() {
-    	Map log=new Map(null,100,200,256,140);
-    	log.setMove(true);
-    	int x= log.getX();
-    	log.moveLog(1);
-    	assertEquals(x+Constants.PLAYER_SPEED,log.getX());
+        Map log = new Map(null, 100, 200, 256, 140);
+        log.setMove(true);
+        int x = log.getX();
+        log.moveLog(1);
+        assertEquals(x + Constants.PLAYER_SPEED, log.getX());
     }
+
     @Test
     public void testLogMoveLeft() {
-    	Map log= new Map (null,300,200,256,140);
-    	log.setMove(true);
-    	int x=log.getX();
-    	log.moveLog(-1);
-    	assertEquals(x-Constants.PLAYER_SPEED,log.getX());
+        Map log = new Map(null, 300, 200, 256, 140);
+        log.setMove(true);
+        int x = log.getX();
+        log.moveLog(-1);
+        assertEquals(x - Constants.PLAYER_SPEED, log.getX());
     }
 
 }

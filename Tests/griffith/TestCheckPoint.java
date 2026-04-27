@@ -26,7 +26,7 @@ class TestCheckPoint {
         chars.add("Kakapo");
         gm.initializeGame(chars);
         return gm;
-        
+
     }
 
     // Test correct answer
@@ -182,7 +182,7 @@ class TestCheckPoint {
     }
 
     @Test
-    public void testCheckpointHasRandomImage() {//check for random image 
+    public void testCheckpointHasRandomImage() {// check for random image
         CheckPoint cp = new CheckPoint("test.png", 0, 0, 10, 10);
         assertNotNull(cp.getImage());
     }
@@ -197,7 +197,7 @@ class TestCheckPoint {
     }
 
     @Test
-    public void testCheckpointAnimationChangesValues() {//checking for animation
+    public void testCheckpointAnimationChangesValues() {// checking for animation
         CheckPoint cp = new CheckPoint("x.png", 0, 100, 10, 10);
         int y1 = cp.getAnimatedY();
         cp.updateAnimation();
@@ -206,18 +206,18 @@ class TestCheckPoint {
     }
 
     @Test
-    public void testCheckpointRequiresBothPlayers() {//Riddle triggers only when BOTH players near
+    public void testCheckpointRequiresBothPlayers() {// Riddle triggers only when BOTH players near
         GameManager gm = new GameManager();
         ArrayList<String> chars = new ArrayList<>();
         chars.add("Box Turtle");
         chars.add("Kakapo");
-        
+
         gm.initializeGame(chars);
         CheckPoint cp = gm.getCheckpoints().get(0);// Move both near checkpoint
 
         gm.player1.setX(cp.getX());// Only when the player1 near
         gm.player1.setY(cp.getY());
-        
+
         gm.player2.setX(0);
         gm.player2.setY(0);
         gm.update();

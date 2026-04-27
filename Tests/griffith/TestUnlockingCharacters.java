@@ -9,7 +9,7 @@ import game.CharacterButton;
 
 public class TestUnlockingCharacters {
     @Test
-    public void testUnlockingElephant(){
+    public void testUnlockingElephant() {
         // Initialise character button.
         CharacterButton elephantButton = new CharacterButton("test", "test", 0, 0, 0, 0);
 
@@ -27,7 +27,7 @@ public class TestUnlockingCharacters {
     }
 
     @Test
-    public void testUnlockingLemur(){
+    public void testUnlockingLemur() {
         // Initialise character button.
         CharacterButton lemurButton = new CharacterButton("test", "test", 0, 0, 0, 0);
 
@@ -45,7 +45,7 @@ public class TestUnlockingCharacters {
     }
 
     @Test
-    public void testUnlockingBear(){
+    public void testUnlockingBear() {
         // Initialise character button.
         CharacterButton bearButton = new CharacterButton("test", "test", 0, 0, 0, 0);
 
@@ -63,7 +63,7 @@ public class TestUnlockingCharacters {
     }
 
     @Test
-    public void testUnlockingRedPanda(){
+    public void testUnlockingRedPanda() {
         // Initialise character button.
         CharacterButton redPandaButton = new CharacterButton("test", "test", 0, 0, 0, 0);
 
@@ -81,7 +81,7 @@ public class TestUnlockingCharacters {
     }
 
     @Test
-    public void testUnlockingArcticFox(){
+    public void testUnlockingArcticFox() {
         // Initialise character button.
         CharacterButton arcticFoxButton = new CharacterButton("test", "test", 0, 0, 0, 0);
 
@@ -99,7 +99,7 @@ public class TestUnlockingCharacters {
     }
 
     @Test
-    public void testUnlockingLeopard(){
+    public void testUnlockingLeopard() {
         // Initialise character button.
         CharacterButton leopardButton = new CharacterButton("test", "test", 0, 0, 0, 0);
 
@@ -117,7 +117,7 @@ public class TestUnlockingCharacters {
     }
 
     @Test
-    public void testAllCharactersLocked(){
+    public void testAllCharactersLocked() {
         // Initialise character buttons.
         CharacterButton elephantButton = new CharacterButton("test", "test", 0, 0, 0, 0);
         CharacterButton lemurButton = new CharacterButton("test", "test", 0, 0, 0, 0);

@@ -34,7 +34,8 @@ public class CharacterButton extends Button {
         }
     }
 
-    // Draw a box around the buttons for the animals if they were selected and the text on the background.
+    // Draw a box around the buttons for the animals if they were selected and the
+    // text on the background.
     @Override
     public void drawButton(Graphics2D g) {
         if (selected) {
@@ -57,8 +58,8 @@ public class CharacterButton extends Button {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
-    
-    public void setLocked(boolean locked){
+
+    public void setLocked(boolean locked) {
         this.locked = locked;
     }
 
@@ -70,32 +71,32 @@ public class CharacterButton extends Button {
         return name;
     }
 
-    public boolean isLocked(){
+    public boolean isLocked() {
         return locked;
     }
 
-     // Helper methods for testing.
-    public boolean isElephantUnlocked(int score){
+    // Helper methods for testing.
+    public boolean isElephantUnlocked(int score) {
         return score >= 3;
     }
 
-    public boolean isLemmurUnlocked(int score){
+    public boolean isLemmurUnlocked(int score) {
         return score >= 6;
     }
 
-    public boolean isBearUnlocked(int score){
+    public boolean isBearUnlocked(int score) {
         return score >= 9;
     }
 
-    public boolean isPandaUnlocked(int score){
+    public boolean isPandaUnlocked(int score) {
         return score >= 12;
     }
 
-    public boolean isFoxUnlocked(int score){
+    public boolean isFoxUnlocked(int score) {
         return score >= 15;
     }
 
-    public boolean isLeopardUnlocked(int score){
+    public boolean isLeopardUnlocked(int score) {
         return score >= 18;
     }
 }

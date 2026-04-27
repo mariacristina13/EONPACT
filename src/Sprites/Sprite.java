@@ -24,22 +24,22 @@ public abstract class Sprite {
 		this.width = width;
 		this.height = height;
 		File pic = new File("images/" + fileName);
-		
+
 		try {
 			image = ImageIO.read(pic);
-			originalImage=image;//this hold a normal image of the animal so when i press the right key it goes back
+			originalImage = image;// this hold a normal image of the animal so when i press the right key it goes
+									// back
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.print("file not found");
 		}
 	}
-	
+
 	public void loadFlippedImage(String flippedFileName) {
-		File pic=new File("images/"+flippedFileName);
+		File pic = new File("images/" + flippedFileName);
 		try {
-			flippedImage=ImageIO.read(pic);
-		}
-		catch(IOException e) {
+			flippedImage = ImageIO.read(pic);
+		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.print("file not found");
 		}
@@ -49,12 +49,15 @@ public abstract class Sprite {
 	public BufferedImage getImage() {
 		return image;
 	}
+
 	public BufferedImage getFlippedImage() {
 		return flippedImage;
 	}
- public BufferedImage getOriginalImage() {
-	 return originalImage;
- }
+
+	public BufferedImage getOriginalImage() {
+		return originalImage;
+	}
+
 	public void setImage(BufferedImage image) {
 		this.image = image;
 	}

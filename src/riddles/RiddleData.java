@@ -118,7 +118,7 @@ public class RiddleData {
                                 "This trait is what it what allows me to adapt, learn, and think rather than just act on instinct.");
 
                 // Leopard Riddles
-                                addRiddles("They call me ghost, yet I am real,\n" + //
+                addRiddles("They call me ghost, yet I am real,\n" + //
                                 "Through shadows dark I softly steal.\n" + //
                                 "You won’t see me, you won’t hear\n" + //
                                 "Until I suddenly appear.", "Leopard", "I’m famous for stealth and silence.");
@@ -131,34 +131,40 @@ public class RiddleData {
                                 "Few can match this daring feat\n" + //
                                 "Tree to ground on careful feet.", "Leopard",
                                 "I’m one of the only big cats that climbs down headfirst.");
-                
+
                 // Red Panda Riddles
                 addRiddles("Seventeen hours I rest each day,\n" + //
-                                                "Dreaming all my time away.\n" + //
-                                                "At dawn and dusk I come alive\n" + //
-                                                "In quiet hours, I truly thrive.", "Red Panda", "I’m most active when the sun is low in the sky, not in the middle of the day.");
+                                "Dreaming all my time away.\n" + //
+                                "At dawn and dusk I come alive\n" + //
+                                "In quiet hours, I truly thrive.", "Red Panda",
+                                "I’m most active when the sun is low in the sky, not in the middle of the day.");
                 addRiddles("Red above and dark below,\n" + //
-                                                "In moss and shade I barely show.\n" + //
-                                                "White and rust help me disappear\n" + //
-                                                "In forest homes, I’m hard to peer.", "Red Panda", "My colors match the forest environment so I can hide from predators.");
+                                "In moss and shade I barely show.\n" + //
+                                "White and rust help me disappear\n" + //
+                                "In forest homes, I’m hard to peer.", "Red Panda",
+                                "My colors match the forest environment so I can hide from predators.");
                 addRiddles("Before the giant took the name,\n" + //
-                                                "I was the first to earn that fame.\n" + //
-                                                "In eighteen twenty-five, you see\n" + //
-                                                "“Panda” first belonged to me!", "Red Panda", "I was named long before the giant panda.");
-                
+                                "I was the first to earn that fame.\n" + //
+                                "In eighteen twenty-five, you see\n" + //
+                                "“Panda” first belonged to me!", "Red Panda",
+                                "I was named long before the giant panda.");
+
                 // Artic Fox Riddles
                 addRiddles("I wear a coat that shifts with time,\n" + //
-                                                "From winter white to summer grime.\n" + //
-                                                "I vanish in both snow and sand\n" + //
-                                                "A master of the shifting land.", "Artic Fox", "I disguise myself by changing how I look depending on the season.");
+                                "From winter white to summer grime.\n" + //
+                                "I vanish in both snow and sand\n" + //
+                                "A master of the shifting land.", "Artic Fox",
+                                "I disguise myself by changing how I look depending on the season.");
                 addRiddles("I hear a whisper underground,\n" + //
-                                                "A hidden heartbeat is my sound.\n" + //
-                                                "Then I leap into the snow\n" + //
-                                                "And pull my dinner from below.", "Artic Fox", "I use one of my senses more than sight to find hidden food under snow.");
+                                "A hidden heartbeat is my sound.\n" + //
+                                "Then I leap into the snow\n" + //
+                                "And pull my dinner from below.", "Artic Fox",
+                                "I use one of my senses more than sight to find hidden food under snow.");
                 addRiddles("I find a mate and stay quite true,\n" + //
-                                                "Together we raise pups anew.\n" + //
-                                                "A bonded pair is how I live\n" + //
-                                                "And many pups I love to give.", "Artic Fox", "I usually stick with one partner instead of switching mates often.");
+                                "Together we raise pups anew.\n" + //
+                                "A bonded pair is how I live\n" + //
+                                "And many pups I love to give.", "Artic Fox",
+                                "I usually stick with one partner instead of switching mates often.");
         }
 
         // Get the reddles from the Linked Hash Map.
