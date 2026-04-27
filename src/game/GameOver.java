@@ -51,12 +51,6 @@ public class GameOver {
         g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(),
                 background.getHeight(), null);
 
-        // Message typography and color.
-        /*
-         * g.setColor(Constants.GOLD);
-         * g.setFont(Constants.GAME_FONT);
-         */
-
         if (!gameWon) {
             // Draw the game over message.
             g.drawImage(gameLost.getImage(), gameLost.getX(), gameLost.getY(), gameLost.getWidth(),
