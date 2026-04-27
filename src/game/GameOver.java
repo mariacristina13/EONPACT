@@ -13,7 +13,6 @@ public class GameOver {
     private MenuButton quitBtn;
     private Background background;
     private boolean gameWon;
-    private String title;
     public Decor gameLost;
     public Decor gameWonImg;
 
@@ -34,9 +33,9 @@ public class GameOver {
         int startX = Constants.BUTTON_X - (totalWidth / 2);
 
         menuBtn = new MenuButton("Menu", "menu button.png", "menu button hover.png", startX,
-                Constants.BUTTON_Y, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
+                Constants.BUTTON_Y + 50, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 50, Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 
@@ -52,18 +51,12 @@ public class GameOver {
 
         if (!gameWon) {
             // Draw the game over message.
-            //title = "Game Lost!";
             g.drawImage(gameLost.getImage(), gameLost.getX(), gameLost.getY(), gameLost.getWidth(), gameLost.getHeight(), null);
 
         } else if (gameWon) {
             // Draw the game won message.
-            //title = "Game Won!";
             g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(), gameWonImg.getHeight(), null);
         }
-
-        // Draw the message.
-        int titleWidth = g.getFontMetrics().stringWidth(title);
-        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
         // Draw the buttons.
         menuBtn.drawButton(g);
