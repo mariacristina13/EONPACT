@@ -67,9 +67,6 @@ public class GameOver {
             g.drawImage(win.getImage(), win.getX(), win.getY(), win.getWidth(), win.getHeight(), null);
         }
 
-        // Draw the message.
-        int titleWidth = g.getFontMetrics().stringWidth(title);
-        g.drawString(title, Constants.SCREEN_CENTER - titleWidth / 2, 200);
 
         // Draw the buttons.
         menuBtn.drawButton(g);
