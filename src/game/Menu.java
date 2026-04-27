@@ -34,7 +34,8 @@ public class Menu {
 
         logo = new Decor("logo.png", 225,Constants.SCREEN_CENTER-50,850 , 590);
     }
-
+    
+    
     // Initialise buttons
     private void initButtons() {
         // Set the width of the row that the buttons are going to be displayed.
