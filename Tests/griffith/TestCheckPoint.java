@@ -4,16 +4,30 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
 import Sprites.CheckPoint;
+import game.GameManager;
 import riddles.Riddle;
 import riddles.RiddleData;
 
 class TestCheckPoint {
+
+    // Helper method to initialize a GameManager instance with test players
+    private GameManager setupGame() {
+        GameManager gm = new GameManager();
+        ArrayList<String> chars = new ArrayList<>();
+        chars.add("Box Turtle");
+        chars.add("Kakapo");
+        gm.initializeGame(chars);
+        return gm;
+
+    }
 
     // Test correct answer
     @Test
@@ -158,5 +172,55 @@ class TestCheckPoint {
 
         // Check if there are more than two answers that are diffrent.
         assertTrue(uniqueAnswers.size() > 2);
+    }
+
+    // Test to ensure checkpoints are created after game initialization
+    @Test
+    public void testCheckpointsCreated() {
+        GameManager gm = setupGame();
+        assertEquals(5, gm.getCheckpoints().size());
+    }
+
+    @Test
+    public void testCheckpointHasRandomImage() {// check for random image
+        CheckPoint cp = new CheckPoint("test.png", 0, 0, 10, 10);
+        assertNotNull(cp.getImage());
+    }
+
+    // Test that each checkpoint is assigned a riddle
+    @Test
+    public void testCheckpointsHaveRiddles() {
+        GameManager gm = setupGame();
+        for (CheckPoint cp : gm.getCheckpoints()) {
+            assertNotNull(cp.getRiddle());
+        }
+    }
+
+    @Test
+    public void testCheckpointAnimationChangesValues() {// checking for animation
+        CheckPoint cp = new CheckPoint("x.png", 0, 100, 10, 10);
+        int y1 = cp.getAnimatedY();
+        cp.updateAnimation();
+        int y2 = cp.getAnimatedY();
+        assertNotEquals(y1, y2);
+    }
+
+    @Test
+    public void testCheckpointRequiresBothPlayers() {// Riddle triggers only when BOTH players near
+        GameManager gm = new GameManager();
+        ArrayList<String> chars = new ArrayList<>();
+        chars.add("Box Turtle");
+        chars.add("Kakapo");
+
+        gm.initializeGame(chars);
+        CheckPoint cp = gm.getCheckpoints().get(0);// Move both near checkpoint
+
+        gm.player1.setX(cp.getX());// Only when the player1 near
+        gm.player1.setY(cp.getY());
+
+        gm.player2.setX(0);
+        gm.player2.setY(0);
+        gm.update();
+        assertFalse(gm.isRiddleActive());
     }
 }

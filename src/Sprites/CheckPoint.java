@@ -3,18 +3,16 @@ package Sprites;
 import riddles.Riddle;
 
 public class CheckPoint extends Sprite {
-
+    // Class variables.
     private Riddle riddle;
     private boolean completed;
+    private boolean highlighted = false;
+    private float animationTick = 0;
 
+    // Initialise class variables.
     public CheckPoint(String fileName, int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
         this.riddle = null;
-        this.completed = false;
-    }
-
-    public void setRiddle(Riddle riddle) {
-        this.riddle = riddle;
         this.completed = false;
     }
 
@@ -26,11 +24,30 @@ public class CheckPoint extends Sprite {
             completed = true;
             return true;
         } else {
-            riddle.incrementAttempt(); // increase attempts
+            riddle.incrementAttempt(); // Increase attempts,
             return false;
         }
     }
 
+    public void updateAnimation() {
+        animationTick += 0.1f;
+    }
+
+    public void resetAnimation() {
+        animationTick *= 0.9f; // Smooth slowdown the animation,
+    }
+
+    // Setter.
+    public void setRiddle(Riddle riddle) {
+        this.riddle = riddle;
+        this.completed = false;
+    }
+
+    public void setHighlighted(boolean value) {
+        this.highlighted = value;
+    }
+
+    // Getters.
     public boolean isCompleted() {
         return completed;
     }
@@ -46,4 +63,17 @@ public class CheckPoint extends Sprite {
     public Riddle getRiddle() {
         return riddle;
     }
+
+    public boolean isHighlighted() {
+        return highlighted;
+    }
+
+    public int getAnimatedY() {
+        return (int) (y + Math.sin(animationTick) * 5); // Bob up and down.
+    }
+
+    public int getAnimatedSizeOffset() {
+        return (int) (Math.sin(animationTick) * 3); // Pulse size.
+    }
+
 }

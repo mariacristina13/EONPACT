@@ -14,11 +14,15 @@ import javax.swing.JPanel;
 import constants.Constants;
 
 public class MyPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
+    // Class variables.
     private GameManager game;
+    private Introduction intro;
     private Menu menuScreen;
     private CharacterMenu characterMenu;
+    private GameOver gameOver;
     private GameStates currentState;
 
+    // Initialise class variables, key listeners and mouse listeners.
     public MyPanel() {
         addKeyListener(this);
         addMouseListener(this);
@@ -26,20 +30,24 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
 
         // Initialise the game.
         game = new GameManager();
+        intro = new Introduction();
         // Initialise the main menu.
         menuScreen = new Menu();
         // Initialise the character menu.
         characterMenu = new CharacterMenu();
+        // Initialise the game lost screen.
+        gameOver = new GameOver();
         // Set the initial state.
-        currentState = GameStates.MENU;
+        currentState = GameStates.INTRODUCTION;
     }
 
     // https://projectai.in/projects/e79f02df-4d51-473e-90f0-4ff8443ff473/tasks/5b55ecc1-ac91-4092-8e63-097ce794218b?tab=task
     @Override
+    // Display each screen depending of the state that the game is in.
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D) g;
-        // improve rendering quality
+        // Improve rendering quality.
         RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics.setRenderingHints(hints); // https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html
 
@@ -50,18 +58,24 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     private void switchStates(Graphics2D graphics) {
 
         switch (currentState) {
+            case INTRODUCTION:
+                intro.drawIntroduction(graphics);
+                break;
             case MENU:
                 menuScreen.drawMenu(graphics);
                 break;
             case CHARACTER_SELECT:
-                characterMenu.draw(graphics);
+                characterMenu.drawCharacterMenu(graphics);
                 break;
             case PLAYING:
                 drawGame(graphics);
                 break;
             case GAME_OVER:
-                drawGameOver(graphics);
+                gameOver.drawGameOver(graphics);
                 break;
+            default:
+                break;
+
         }
     }
 
@@ -76,20 +90,7 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         // Add the timer.
         drawTimer(g);
         game.drawCounter(g);
-    }
-
-    // Draw the game over screen.
-    private void drawGameOver(Graphics2D g) {
-        // Draw the background.
-        g.setColor(Constants.DARK_GREEN);
-        g.fillRect(0, 0, getWidth(), getHeight());
-
-        // Draw the text.
-        g.setColor(Constants.WHITE);
-        g.setFont(Constants.GAME_FONT);
-        String text = "Game Over!";
-        int textWidth = g.getFontMetrics().stringWidth(text);
-        g.drawString(text, getWidth() / 2 - textWidth / 2, getHeight() / 2);
+        game.drawTimerEffect(g, getWidth());
     }
 
     // Draw the timer.
@@ -107,18 +108,21 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
         graphics.drawString(timeText, x, y);
     }
 
+    // Get the keys that is typed during the game.
     @Override
     public void keyTyped(KeyEvent e) {
         game.keyTyped(e.getKeyChar());
         this.repaint();
     }
 
+    // Get the keys that was oressed during the game.
     @Override
     public void keyPressed(KeyEvent e) {
         game.keyPressed(e.getKeyCode());
         this.repaint();
     }
 
+    // Get the keys that was released during the game.
     @Override
     public void keyReleased(KeyEvent e) {
         game.keyReleased(e.getKeyCode());
@@ -132,6 +136,10 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case MENU:
                 // Check if the Animals button was clicked.
                 if (menuScreen.characterButtonClicked(e)) {
+                    // Update the riddle score to unlock new characters during one game.
+                    characterMenu.updateRiddleScore(game.getCompletedCheckpoints());
+                    // Reset the character selection everytime the player goes into the character menu during the game.
+                    characterMenu.resetSelection();
                     // Change the current state.
                     currentState = GameStates.CHARACTER_SELECT;
                 }
@@ -143,14 +151,19 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 }
                 break;
             case CHARACTER_SELECT:
-                // Add the MouseClicked event listener to the character menu screen to handle
-                // selecting and deselecting characters.
+                // Add the MouseClicked event listener to the character menu screen to handle selecting and deselecting characters.
                 characterMenu.mouseClicked(e);
 
                 // Check if the play button was clicked.
                 if (characterMenu.playButtonClicked(e)) {
+                    // Reset the timer for each game.
+                    game.resetTimer();
+                    // Reset the number of completed checkpoints everytime the game starts.
+                    game.resetCompletedCheckpoints();
+
                     // Update the current state.
                     currentState = GameStates.PLAYING;
+
                     // Initialise the game with the characters sdelected by the players.
                     game.initializeGame(characterMenu.getSelectedCharacters());
                 }
@@ -158,27 +171,34 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
                 if (characterMenu.backButtonClicked(e)) {
                     // Update the current state of the game.
                     currentState = GameStates.MENU;
-                    // If the players chose a character and then went back to the main menu, reset
-                    // the selected characters.
+                    menuScreen.resetMenu(); // select new character to be displayed on the menu
+                    // If the players chose a character and then went back to the main menu, reset the selected characters.
                     characterMenu.resetSelection();
                 }
                 break;
+            case GAME_OVER:
+                if (gameOver.menuButtonClicked(e)) {
+                    currentState = GameStates.MENU;
+                    menuScreen.resetMenu();
+                }
+                if (gameOver.quitButtonClicked(e)) {
+                    System.exit(0);
+                }
+                break;
             case PLAYING:
-                // Add the MouseClicked event listener to the game manager to handle any button
-                // interaction in the game.
+                // Add the MouseClicked event listener to the game manager to handle any button interaction in the game.
                 game.mouseClicked(e.getX(), e.getY(), getWidth(), getHeight());
                 break;
             default:
+                // Go to the main menu if no other state is picked.
                 currentState = GameStates.MENU;
+                menuScreen.resetMenu(); // Select new character to be displayed on the menu.
                 break;
         }
         this.repaint();
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
+    // Check if the mouse is on top of the main menu buttons.
     public void mouseMoved(MouseEvent e) {
         switch (currentState) {
             case MENU:
@@ -187,10 +207,16 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
             case CHARACTER_SELECT:
                 characterMenu.mouseMoved(e);
                 break;
+            case GAME_OVER:
+                gameOver.mouseMoved(e);
             default:
                 break;
         }
         this.repaint();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
     }
 
     @Override
@@ -220,6 +246,10 @@ public class MyPanel extends JPanel implements KeyListener, MouseListener, Mouse
     // Getters
     public GameManager getGameManager() {
         return game;
+    }
+
+    public GameOver getGameOver() {
+        return gameOver;
     }
 
     public GameStates getCurrentState() {

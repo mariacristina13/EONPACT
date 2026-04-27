@@ -13,9 +13,11 @@ import ui.Button;
 public class CharacterButton extends Button {
     // Class variables.
     private String name;
+    private boolean locked;
     private BufferedImage characterImg;
     private boolean selected = false;
 
+    // Initialise the class variables
     public CharacterButton(String name, String fileName, int x, int y, int width, int height) {
         super(x, y, width, height);
         this.name = name;
@@ -45,8 +47,8 @@ public class CharacterButton extends Button {
             g.drawImage(characterImg, getX(), getY(), getWidth(), getHeight(), null);
         }
 
-        g.setColor(Constants.WHITE);
-        g.setFont(Constants.ATTEMPTS_FONT);
+        g.setColor(Constants.GOLD);
+        g.setFont(Constants.CHARACTER_NAME_FONT);
 
         int textWidth = g.getFontMetrics().stringWidth(name);
         g.drawString(name, getX() + (getWidth() - textWidth) / 2, getY() + getHeight() + 25);
@@ -57,11 +59,44 @@ public class CharacterButton extends Button {
         this.selected = selected;
     }
 
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
     public boolean isSelected() {
         return selected;
     }
 
     public String getName() {
         return name;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    // Helper methods for testing.
+    public boolean isElephantUnlocked(int score) {
+        return score >= 3;
+    }
+
+    public boolean isLemmurUnlocked(int score) {
+        return score >= 6;
+    }
+
+    public boolean isBearUnlocked(int score) {
+        return score >= 9;
+    }
+
+    public boolean isPandaUnlocked(int score) {
+        return score >= 12;
+    }
+
+    public boolean isFoxUnlocked(int score) {
+        return score >= 15;
+    }
+
+    public boolean isLeopardUnlocked(int score) {
+        return score >= 18;
     }
 }
