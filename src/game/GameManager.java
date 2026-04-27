@@ -327,12 +327,6 @@ public class GameManager {
                 g.drawImage(food.getImage(), food.getX(), food.getAnimatedY(),
                         food.getWidth(), food.getHeight(), panel);
         }
-
-        // draw score
-        // g.setColor(Constants.GREEN);
-        // g.setFont(Constants.TIMER_FONT);
-        // g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20,
-        // 20);
     }
 
     // Draw the riddle counter.
