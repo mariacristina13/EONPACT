@@ -24,11 +24,12 @@ public class GameOver {
         // Initialse the backgroeund image.
         background = new Background("menu_bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH,
                 Constants.SCREEN_HEIGHT);
-        gameLost = new Decor("game lost.png", 420,Constants.SCREEN_CENTER-400,445 , 180);
-        gameWonImg = new Decor("game won.png", 420,Constants.SCREEN_CENTER-400,445 , 180);
-        panda =  new Decor("sad panda.png", 500,Constants.SCREEN_CENTER-180,270 , 202);
-        win = new Decor("win.png", 500,Constants.SCREEN_CENTER-180,270 , 202);
+        gameLost = new Decor("game lost.png", 420, Constants.SCREEN_CENTER - 400, 445, 180);
+        gameWonImg = new Decor("game won.png", 420, Constants.SCREEN_CENTER - 400, 445, 180);
+        panda = new Decor("sad panda.png", 500, Constants.SCREEN_CENTER - 180, 270, 202);
+        win = new Decor("win.png", 500, Constants.SCREEN_CENTER - 180, 270, 202);
     }
+
     // Initialise the buttons.
     private void initButtons() {
         // Set the width of the row that the buttons are going to be displayed.
@@ -39,7 +40,8 @@ public class GameOver {
         menuBtn = new MenuButton("Menu", "menu button.png", "menu button hover.png", startX,
                 Constants.BUTTON_Y + 50, Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         quitBtn = new MenuButton("Quit", "quit button.png", "quit button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 50, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 50,
+                Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 
@@ -49,18 +51,16 @@ public class GameOver {
         g.drawImage(background.getImage(), background.getX(), background.getY(), background.getWidth(),
                 background.getHeight(), null);
 
-        // Message typography and color.
-        g.setColor(Constants.GOLD);
-        g.setFont(Constants.GAME_FONT);
-
         if (!gameWon) {
             // Draw the game over message.
-            g.drawImage(gameLost.getImage(), gameLost.getX(), gameLost.getY(), gameLost.getWidth(), gameLost.getHeight(), null);
+            g.drawImage(gameLost.getImage(), gameLost.getX(), gameLost.getY(), gameLost.getWidth(),
+                    gameLost.getHeight(), null);
             g.drawImage(panda.getImage(), panda.getX(), panda.getY(), panda.getWidth(), panda.getHeight(), null);
 
         } else if (gameWon) {
             // Draw the game won message.
-            g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(), gameWonImg.getHeight(), null);
+            g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(),
+                    gameWonImg.getHeight(), null);
             g.drawImage(win.getImage(), win.getX(), win.getY(), win.getWidth(), win.getHeight(), null);
         }
 

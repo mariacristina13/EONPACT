@@ -2,7 +2,7 @@ package Sprites;
 
 public class Background extends Sprite {
 
-    // class for backgrounds
+    // Class for backgrounds,
     public Background(String fileName, int x, int y, int width, int height) {
         super(fileName, x, y, width, height);
     }

@@ -91,21 +91,26 @@ public class CharacterMenu {
         bearBtn.setLocked(true);
         characters.add(bearBtn);
 
-        pandaBtn = new CharacterButton("Red Panda", "red panda.png", startX + Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING, Constants.CHARACTER_BUTTON_Y + 150,
+        pandaBtn = new CharacterButton("Red Panda", "red panda.png",
+                startX + Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING, Constants.CHARACTER_BUTTON_Y + 150,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the red panda character.
         pandaBtn.setLocked(true);
         characters.add(pandaBtn);
 
-        foxBtn = new CharacterButton("Arctic Fox", "arctic fox.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2, Constants.CHARACTER_BUTTON_Y + 150,
+        foxBtn = new CharacterButton("Arctic Fox", "arctic fox.png",
+                startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 2,
+                Constants.CHARACTER_BUTTON_Y + 150,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the arctic fox character.
         foxBtn.setLocked(true);
         characters.add(foxBtn);
 
-        leopardBtn = new CharacterButton("Leopard", "leopard.png", startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 3, Constants.CHARACTER_BUTTON_Y + 150,
+        leopardBtn = new CharacterButton("Leopard", "leopard.png",
+                startX + (Constants.CHARACTER_WIDTH + Constants.CHARACTER_SPACEING) * 3,
+                Constants.CHARACTER_BUTTON_Y + 150,
                 Constants.CHARACTER_WIDTH, Constants.CHARACTER_HEIGHT);
 
         // Lock the leopard character.
@@ -124,7 +129,8 @@ public class CharacterMenu {
         playBtn = new MenuButton("Play", "play button.png", "play button hover.png", startX, Constants.BUTTON_Y + 70,
                 Constants.BUTTON_WIDTH, Constants.BUTTON_HEIGHT);
         backBtn = new MenuButton("Back", "back button.png", "back button hover.png",
-                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 70, Constants.BUTTON_WIDTH,
+                startX + Constants.BUTTON_WIDTH + Constants.BUTTON_SPACEING, Constants.BUTTON_Y + 70,
+                Constants.BUTTON_WIDTH,
                 Constants.BUTTON_HEIGHT);
     }
 
@@ -150,7 +156,8 @@ public class CharacterMenu {
             // Draw the character buttons
             character.drawButton(g);
 
-            // If the character is locked than draw a lock image with a transparent background over the character.
+            // If the character is locked than draw a lock image with a transparent
+            // background over the character.
             if (character.isLocked()) {
                 lockX = character.getX() + (character.getWidth() - Constants.LOCK_WIDTH) / 2;
                 lockY = character.getY() + (character.getHeight() - Constants.LOCK_HEIGHT) / 2;
@@ -158,11 +165,11 @@ public class CharacterMenu {
                 g.setColor(Constants.TRANS_BLACK);
                 g.fillRect(character.getX(), character.getY(), character.getWidth(), character.getHeight());
 
-               g.drawImage(lockImg, lockX, lockY, Constants.LOCK_WIDTH, Constants.LOCK_HEIGHT, null);
+                g.drawImage(lockImg, lockX, lockY, Constants.LOCK_WIDTH, Constants.LOCK_HEIGHT, null);
             }
         }
 
-        // Draw the play/back buttons.
+        // Draw the play and back buttons.
         playBtn.drawButton(g);
         backBtn.drawButton(g);
     }
@@ -173,15 +180,17 @@ public class CharacterMenu {
         for (CharacterButton character : characters) {
             if (character.contains(e.getX(), e.getY())) {
                 // If the character os locked don't let the user select it.
-                if (character.isLocked()){
+                if (character.isLocked()) {
                     return;
                 }
-                // Otherwise add the character's name to the selectedCharacters list and remove it from the characters one.
+                // Otherwise add the character's name to the selectedCharacters list and remove
+                // it from the characters one.
                 if (character.isSelected()) {
                     character.setSelected(false);
                     selectedCharacters.remove(character.getName());
-                } 
-                // If the players already choose 2 characters than don't allow them to choose another one.
+                }
+                // If the players already choose 2 characters than don't allow them to choose
+                // another one.
                 else if (selectedCharacters.size() < Constants.MAX_SELECTIONS) {
                     character.setSelected(true);
                     selectedCharacters.add(character.getName());
@@ -191,8 +200,9 @@ public class CharacterMenu {
         }
     }
 
-    // Method that unlockes a new character once the riddleScore is increased during one run of the whole game.
-    public void updateRiddleScore(int newScore){
+    // Method that unlockes a new character once the riddleScore is increased during
+    // one run of the game.
+    public void updateRiddleScore(int newScore) {
         if (newScore > riddleScore) {
             riddleScore = newScore;
 
@@ -228,11 +238,12 @@ public class CharacterMenu {
         backBtn.setHovered(backBtn.contains(e.getX(), e.getY()));
     }
 
-    // Check if the play/back buttons were clicked.
+    // Check if the play buttons were clicked.
     public boolean playButtonClicked(MouseEvent e) {
         return playBtn.contains(e.getX(), e.getY()) && selectedCharacters.size() == Constants.MAX_SELECTIONS;
     }
 
+    // Check if the back buttons were clicked.
     public boolean backButtonClicked(MouseEvent e) {
         return backBtn.contains(e.getX(), e.getY());
     }
@@ -250,5 +261,4 @@ public class CharacterMenu {
         }
     }
 
-   
 }

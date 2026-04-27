@@ -47,7 +47,7 @@ public class GameManager {
     private int second = 0;
     private int minute = 2;
 
-    //variables to draw substraction from timer
+    // variables to draw substraction from timer
     private String timerEffect = "";
     private long timerEffectStart = 0;
 
@@ -91,11 +91,10 @@ public class GameManager {
     public void initializeGame(ArrayList<String> selectedCharacters) {
         // Initialise the players with the characters choosen.
         String player1Img = getCharacterImage(selectedCharacters.get(0));
-        String player1FlippedImg=getFlippedCharacterImage(selectedCharacters.get(0));
+        String player1FlippedImg = getFlippedCharacterImage(selectedCharacters.get(0));
         String player2Img = getCharacterImage(selectedCharacters.get(1));
-        String player2FlippedImg=getFlippedCharacterImage(selectedCharacters.get(1));
+        String player2FlippedImg = getFlippedCharacterImage(selectedCharacters.get(1));
 
-        
         // Initialise the player position at the start of the game.
         player1 = new Player(player1Img, 150, Constants.GROUND_HEIGHT - 500, 90, 90);
         player1.loadFlippedImage(player1FlippedImg);
@@ -105,19 +104,21 @@ public class GameManager {
         bg = new Background("bg.png", 0, Constants.SCREEN_HEIGHT, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         // Initialise map.
         map = new ArrayList<Map>();
-        // Add the tiles to the ArrayList to be displayed in the game at diffrent positions.
+        // Add the tiles to the ArrayList to be displayed in the game at diffrent
+        // positions.
         map.add(new Map("tile.png", 50, Constants.GROUND_HEIGHT - 300, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile2.png", Constants.TILE_WIDTH + 70, Constants.GROUND_HEIGHT - 60, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
         map.add(new Map("tile3.png", Constants.TILE_WIDTH + 260, Constants.GROUND_HEIGHT - 250, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
-        
-        Map logTile=new Map("log.png", Constants.TILE_WIDTH + 650, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH,70);
+
+        Map logTile = new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH, 70);
         logTile.setMove(true);
         map.add(logTile);
-        
-        //map.add(new Map("log.png", Constants.TILE_WIDTH + 600, Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH,
-        //        Constants.TILE_HEIGHT));
+
+        // map.add(new Map("log.png", Constants.TILE_WIDTH + 600,
+        // Constants.GROUND_HEIGHT + 10, Constants.TILE_WIDTH,
+        // Constants.TILE_HEIGHT));
         map.add(new Map("tile.png", 0, Constants.GROUND_HEIGHT, Constants.TILE_WIDTH, Constants.TILE_HEIGHT));
         map.add(new Map("tile.png", Constants.TILE_WIDTH + 350, Constants.GROUND_HEIGHT - 100, Constants.TILE_WIDTH,
                 Constants.TILE_HEIGHT));
@@ -147,41 +148,41 @@ public class GameManager {
         checkpoints.add(createCheckpointOnTile(map.get(5)));
         checkpoints.add(createCheckpointOnTile(map.get(7)));
         checkpoints.add(createCheckpointOnTile(map.get(8)));
-    
+
     }
 
     // Add foodImage array
     private String[] foodImages = {
-        "cabage.png",
-        "leaf.png",
-        "seeds.png",
-        "bamboo.png",
-        "berries.png",
-        "meat.png",
-        "strawberry.png"
+            "cabage.png",
+            "leaf.png",
+            "seeds.png",
+            "bamboo.png",
+            "berries.png",
+            "meat.png",
+            "strawberry.png"
     };
 
-    //choose random image out of foodImage array
+    // Choose random images out of foodImage array for the food sprites in the game.
     private String getRandomFoodImage() {
-        int index = (int)(Math.random() * foodImages.length);
+        int index = (int) (Math.random() * foodImages.length);
         return foodImages[index];
     }
 
-    
     private CheckPoint createCheckpointOnTile(Map tile) {
+        // Set the size of the checkpoints.
         int cpWidth = 60;
         int cpHeight = 60;
-        int x = tile.getX() + tile.getWidth() / 2 - cpWidth / 2 ;//to place the checkpoint on the tiles
+        // Place the checkpoints on the tiles.
+        int x = tile.getX() + tile.getWidth() / 2 - cpWidth / 2;
         int y = tile.getY() + tile.getHeight() - cpHeight - 80;
-        CheckPoint cp = new CheckPoint(getRandomCheckpointImage(),x,y,cpWidth,cpHeight);//to get the random checkpoint image
-        Riddle r = data.getRandomRiddle();//for random riddle
+        // Create checkpoint with random images.
+        CheckPoint cp = new CheckPoint(getRandomCheckpointImage(), x, y, cpWidth, cpHeight);
+        Riddle r = data.getRandomRiddle();// for random riddle
         if (r != null) {
             cp.setRiddle(r);
         }
         return cp;
     }
-     
-
 
     // Add the images to an array.
     private String[] checkpointImages = {
@@ -200,7 +201,7 @@ public class GameManager {
         return checkpointImages[index];
     }
 
-    // Get the images' file names.
+    // Get the images file names.
     private String getCharacterImage(String characterName) {
         switch (characterName) {
             case "Box Turtle":
@@ -223,34 +224,36 @@ public class GameManager {
                 return "box turtle.png";
         }
     }
-    
+
+    // Get the images for when the character moves backwords.
     private String getFlippedCharacterImage(String characterName) {
-    	 switch (characterName) {
-         case "Box Turtle":
-             return "box turtle flipped.png";
-         case "Kakapo":
-             return "kakapo flipped.png";
-         case "African Elephant":
-             return "african forest elephant flipped.png";
-         case "Lemur":
-             return "lemur flipped.png";
-         case "Gobi Bear":
-             return "gobi bear flipped.png";
-         case "Red Panda":
-             return "red panda flipped.png";
-         case "Arctic Fox":
-             return "arctic fox flipped.png";
-         case "Leopard":
-             return "leopard flipped.png";
-         default:
-             return "box turtle flipped.png";
-     }
+        switch (characterName) {
+            case "Box Turtle":
+                return "box turtle flipped.png";
+            case "Kakapo":
+                return "kakapo flipped.png";
+            case "African Elephant":
+                return "african forest elephant flipped.png";
+            case "Lemur":
+                return "lemur flipped.png";
+            case "Gobi Bear":
+                return "gobi bear flipped.png";
+            case "Red Panda":
+                return "red panda flipped.png";
+            case "Arctic Fox":
+                return "arctic fox flipped.png";
+            case "Leopard":
+                return "leopard flipped.png";
+            default:
+                return "box turtle flipped.png";
+        }
     }
 
     // Method that handles the timer countdown.
     // https://www.ryisnow.online/2021/04/java-beginner-code-sample-create-timer.html
     private void timer() {
-        // Initialise the timer with a delay of 1 second and an ActionListener that updates the timer every second.
+        // Initialise the timer with a delay of 1 second and an ActionListener that
+        // updates the timer every second.
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -261,7 +264,8 @@ public class GameManager {
                 decimalSecond = decimalTime.format(second);
                 decimalMinute = decimalTime.format(minute);
 
-                // Check if a minute has passed and update the minute variable then format the timer again.
+                // Check if a minute has passed and update the minute variable then format the
+                // timer again.
                 if (second == -1) {
                     second = 59;
                     minute--;
@@ -284,7 +288,8 @@ public class GameManager {
     public void drawBG(Graphics2D graphics, JPanel panel) {
         graphics.drawImage(bg.getImage(), bg.getX(), bg.getY(), bg.getWidth(), bg.getHeight(), panel);
 
-        // Check if for each tile in the map ArrayList there is a tile, otherwise create it.
+        // Check if for each tile in the map ArrayList there is a tile, otherwise create
+        // it.
         for (Map tile : map)
             if (tile != null) {
                 graphics.drawImage(tile.getImage(), tile.getX(), tile.getY(), tile.getWidth(), tile.getHeight(), panel);
@@ -299,8 +304,7 @@ public class GameManager {
         g.drawImage(player2.getImage(), player2.getX(), player2.getY(),
                 player2.getWidth(), player2.getHeight(), panel);
 
-
-        for (CheckPoint cp : checkpoints) {//for movement of animation
+        for (CheckPoint cp : checkpoints) {// for movement of animation
             int sizeOffset = cp.getAnimatedSizeOffset();
             int drawX = cp.getX() - sizeOffset / 2;
             int drawY = cp.getAnimatedY() - sizeOffset / 2;
@@ -312,15 +316,9 @@ public class GameManager {
         // Check that the food wasn't collected and draw the it.
         for (Food food : foods) {
             if (food.isCollected() == false)
-                g.drawImage(food.getImage(), food.getX(), food.getAnimatedY(), 
-            food.getWidth(), food.getHeight(), panel);
+                g.drawImage(food.getImage(), food.getX(), food.getAnimatedY(),
+                        food.getWidth(), food.getHeight(), panel);
         }
-
-        // draw score
-        // g.setColor(Constants.GREEN);
-        // g.setFont(Constants.TIMER_FONT);
-        // g.drawString(Integer.toString(player1.getScore() + player2.getScore()), 20,
-        // 20);
     }
 
     // Draw the riddle counter.
@@ -333,7 +331,7 @@ public class GameManager {
     // Draw the riddle card.
     public void drawRiddle(Graphics2D g, int panelWidth, int panelHeight) {
         // Prevent a crash if none of the checkpoints are active.
-        if ((!riddleActive && !feedbackActive) || activeCheckpoint == null){
+        if ((!riddleActive && !feedbackActive) || activeCheckpoint == null) {
             return;
         }
 
@@ -443,7 +441,7 @@ public class GameManager {
         }
     }
 
-    //Add methods to postion elements in the drawRiddle method.
+    // Add methods to postion elements in the drawRiddle method.
     private void drawCentered(Graphics2D graphics, String text, int centre, int y) {
         FontMetrics font = graphics.getFontMetrics(); // https://docs.oracle.com/javase/8/docs/api/java/awt/FontMetrics.html
         // Calculate the text width.
@@ -459,7 +457,8 @@ public class GameManager {
 
         // Add space after each word in the sentance.
         for (String word : words) {
-            // Buid the sentence by adding the next word with a space if its not the first word. 
+            // Buid the sentence by adding the next word with a space if its not the first
+            // word.
             String test = line + (line.length() > 0 ? " " : "") + word;
             // If the sentence is too wide then continue it on the next row.
             if (font.stringWidth(test) > maxWidth) {
@@ -472,25 +471,26 @@ public class GameManager {
                 line = new StringBuilder(test);
             }
         }
-        // Draw any remaining text that wasn't abel to fill a full line.
+        // Draw any remaining text that wasn't able to fill a full line.
         if (line.length() > 0)
             graphics.drawString(line.toString(), x, y);
     }
 
-    //draw subtract 20s text
+    // Draw subtract 20s text.
     public void drawTimerEffect(Graphics2D g, int panelWidth) {
-        if (timerEffect.isEmpty()) return;
-    
+        if (timerEffect.isEmpty())
+            return;
+
         long elapsed = System.currentTimeMillis() - timerEffectStart;
         if (elapsed > Constants.EFFECT_DURATION) {
-            timerEffect = ""; 
+            timerEffect = "";
             return;
         }
-    
-        int floatY = (int)(elapsed / 20); 
-    
+
+        int floatY = (int) (elapsed / 20);
+
         g.setFont(Constants.TIMER_FONT);
-        g.setColor(Constants.RED); 
+        g.setColor(Constants.RED);
         g.drawString(timerEffect, panelWidth - 120, 70 - floatY); // near timer
     }
 
@@ -511,7 +511,7 @@ public class GameManager {
                     newCP.setRiddle(r);
                 }
                 // Add the new checkpoint to the ArrayList
-                checkpoints.add(newCP); 
+                checkpoints.add(newCP);
                 // Reset the checkpoint.
                 activeCheckpoint = null;
                 feedback = "";
@@ -519,7 +519,8 @@ public class GameManager {
             return;
         }
         if (riddleActive) {
-            // Enable the backspace key to allow the user to delete characters from the input filed.
+            // Enable the backspace key to allow the user to delete characters from the
+            // input filed.
             if (keyCode == Constants.BACKSPACEKEY) {
                 if (!userInput.isEmpty()) {
                     userInput = userInput.substring(0, userInput.length() - 1);
@@ -544,7 +545,7 @@ public class GameManager {
             // Move left.
             case Constants.LEFTKEY:
                 player1.setDirection(-1);
-                player1.setImage(player1.getFlippedImage());      
+                player1.setImage(player1.getFlippedImage());
                 break;
             // Jump.
             case Constants.SPACEKEY:
@@ -552,7 +553,7 @@ public class GameManager {
                 break;
             // Player 2 movement.
             // Move right.
-            case Constants.DKEY: 
+            case Constants.DKEY:
                 player2.setDirection(1);
                 player2.setImage(player2.getOriginalImage());
                 break;
@@ -572,25 +573,28 @@ public class GameManager {
         keysHeld.remove(keyCode);
         switch (keyCode) {
             // Remove player1's movement when the key isn't pressed.
-            case Constants.RIGHTKEY: 
+            case Constants.RIGHTKEY:
                 player1.setDirection(0);
                 break;
             case Constants.LEFTKEY:
                 player1.setDirection(0);
                 break;
             // Remove player2's movement when the key isn't pressed.
-            case Constants.DKEY: 
+            case Constants.DKEY:
                 player2.setDirection(0);
                 break;
-            case Constants.AKEY: 
+            case Constants.AKEY:
                 player2.setDirection(0);
                 break;
         }
     }
 
+    // If the players collide with the food.
     public void checkCollision(Player player, Food other) {
-        if (player.getX() < other.getX() + other.getWidth() && // if the player's left side collides with the food's right side,
-                player.getX() + player.getWidth() > other.getX() && // Player right side is not completely to the left of the food,
+        if (player.getX() < other.getX() + other.getWidth() && // If the player's left side collides with the food's
+                                                               // right side,
+                player.getX() + player.getWidth() > other.getX() && // Player right side is not completely to the left
+                                                                    // of the food,
                 player.getY() < other.getY() + other.getHeight() && // Player is not below food
                 player.getY() + player.getHeight() > other.getY()) // Player is not above food
         {
@@ -598,7 +602,7 @@ public class GameManager {
             other.setCollected(true);
             // switch depending on food type
             switch (other.getType()) {
-                // if food labeled as fast_timer reached, subtract 20 seconds from curremt time
+                // If food labeled as fast_timer reached, subtract 20 seconds from curremt time.
                 case FAST_TIMER:
                     second -= 20;
                     if (second < 0) {
@@ -607,24 +611,27 @@ public class GameManager {
                         if (minute < 0) { // prevent negative minutes
                             minute = 0;
                             second = 0;
-                            if (timer != null) timer.stop();
+                            if (timer != null)
+                                timer.stop();
                         }
                     }
                     timerEffect = "-20s";
                     timerEffectStart = System.currentTimeMillis();
                     break;
-                    // default state
-                    case NORMAL:
-                    default:
-                        break;
-                }
+                // Default state.
+                case NORMAL:
+                default:
+                    break;
+            }
         }
     }
+
+    // Method that checks if the players collide.
     public boolean playerCollision(Sprite p1, Sprite p2) {
-    	return p1.getX()<p2.getX()+p2.getWidth()&&
-    		   p1.getX()+p1.getWidth()>p2.getX()&&
-    		   p1.getY()<p2.getY()+p2.getHeight()&&
-    		   p1.getY()+p1.getHeight()>p2.getY();
+        return p1.getX() < p2.getX() + p2.getWidth() &&
+                p1.getX() + p1.getWidth() > p2.getX() &&
+                p1.getY() < p2.getY() + p2.getHeight() &&
+                p1.getY() + p1.getHeight() > p2.getY();
     }
 
     // Method that returns the key that is held.
@@ -643,63 +650,67 @@ public class GameManager {
 
     private CheckPoint getReachedCheckpoint() {
 
-        // For each checkpoint in the array list check if both characters have rached it.
+        // For each checkpoint in the array list check if both characters have rached
+        // it.
         for (CheckPoint cp : checkpoints) {
-            boolean player1Near = Math.abs(player1.getX() - cp.getX()) < 30 && Math.abs(player1.getY() - cp.getY()) < 30;
-            boolean player2Near =Math.abs(player2.getX() - cp.getX()) < 30 && Math.abs(player2.getY() - cp.getY()) < 30;
+            boolean player1Near = Math.abs(player1.getX() - cp.getX()) < 30
+                    && Math.abs(player1.getY() - cp.getY()) < 30;
+            boolean player2Near = Math.abs(player2.getX() - cp.getX()) < 30
+                    && Math.abs(player2.getY() - cp.getY()) < 30;
 
-        if (player1Near && player2Near) {
-            return cp;
+            if (player1Near && player2Near) {
+                return cp;
+            }
         }
-    }
         // If the characters didn't reach any checkpoints then return null.
         return null;
     }
 
     public void update() {
-        CheckPoint closest = null;// Find closest checkpoint to players
+        CheckPoint closest = null;
+        // Find closest checkpoint to the player.
         int minDistance = Integer.MAX_VALUE;
         for (CheckPoint cp : checkpoints) {
             int distance = Math.min(
-            Math.abs(player1.getX() - cp.getX()),
-            Math.abs(player2.getX() - cp.getX())
-    );
+                    Math.abs(player1.getX() - cp.getX()),
+                    Math.abs(player2.getX() - cp.getX()));
 
-    if (distance < minDistance) {
-        minDistance = distance;
-        closest = cp;
-    }
-}
-
-     // Highlight only the closest one (within range)
-    for (CheckPoint cp : checkpoints) {
-        if (cp == closest && minDistance < 150) {
-        cp.setHighlighted(true);
-    } else {
-        cp.setHighlighted(false);
-    }
-}
-
-    for (CheckPoint cp : checkpoints) {
-        if (cp.isHighlighted()) {
-            cp.updateAnimation(); // animate when it is near to the animal
+            if (distance < minDistance) {
+                minDistance = distance;
+                closest = cp;
+            }
         }
-    }
 
-    for (Food food : foods) {
-        food.updateAnimation();
-    }
+        // Highlight only the closest one (within range).
+        for (CheckPoint cp : checkpoints) {
+            if (cp == closest && minDistance < 150) {
+                cp.setHighlighted(true);
+            } else {
+                cp.setHighlighted(false);
+            }
+        }
 
+        for (CheckPoint cp : checkpoints) {
+            // Animate the checkpoint when the player is it.
+            if (cp.isHighlighted()) {
+                cp.updateAnimation();
+            }
+        }
+
+        // Update the food animation.
+        for (Food food : foods) {
+            food.updateAnimation();
+        }
 
         if (!riddleActive && !feedbackActive) {
             // Check which checkpoint was reached.
-            CheckPoint hit = getReachedCheckpoint(); 
+            CheckPoint hit = getReachedCheckpoint();
             // If a checkpoint was reached,
             if (hit != null) {
                 // Activate the checkpoint.
                 activeCheckpoint = hit;
                 // Display the riddle card.
-                riddleActive = true; 
+                riddleActive = true;
                 // Reset the feedback for each checkpoint.
                 feedback = "";
                 // Reset the user input for each checkpoint.
@@ -711,7 +722,7 @@ public class GameManager {
         if (riddleActive) {
             if (isKeyHeld(Constants.LEFTKEY))
                 player1.setDirection(0);
-            
+
             if (isKeyHeld(Constants.RIGHTKEY))
                 player1.setDirection(0);
 
@@ -723,26 +734,25 @@ public class GameManager {
 
         player1.update(map);
         player2.update(map);
-        
-      //Check for players colliding
-        if(playerCollision(player1,player2)) {
-        	//player1 moves right stop at player2
-        	if(player1.getDirection()==1) {
-        		player1.setX(player2.getX()-player1.getWidth());
-        	}
-        	//player1 moves left stop at player2
-        	else if(player1.getDirection()==-1) {
-        		player1.setX(player2.getX()+player2.getWidth());
-        	}
-        	//Player 2
-        	if(player2.getDirection()==1) {
-        		player2.setX(player1.getX()-player2.getWidth());
-        	}
-        	else if(player2.getDirection()==-1) {
-        		player2.setX(player1.getX()+player1.getWidth());
-        	}
+
+        // Check for players colliding
+        if (playerCollision(player1, player2)) {
+            // player1 moves right stop at player2
+            if (player1.getDirection() == 1) {
+                player1.setX(player2.getX() - player1.getWidth());
+            }
+            // player1 moves left stop at player2
+            else if (player1.getDirection() == -1) {
+                player1.setX(player2.getX() + player2.getWidth());
+            }
+            // Player 2
+            if (player2.getDirection() == 1) {
+                player2.setX(player1.getX() - player2.getWidth());
+            } else if (player2.getDirection() == -1) {
+                player2.setX(player1.getX() + player1.getWidth());
+            }
         }
-      
+
         // Loop through the foods to check each player's collision with the food.
         for (Food food : foods) {
             checkCollision(player1, food);
@@ -752,25 +762,23 @@ public class GameManager {
 
         // Remove the food that the palyer collided with.
         foods.removeIf(food -> food.isCollected());
-       
-        
-        for(Map tile:map) {
-        	if(tile.mobility()) {//Check if player is pushing right or lefty
-        		boolean player1Right= player1.pushRight(tile);
-        		boolean player1Left= player1.pushLeft(tile);
-        		boolean player2Right=player2.pushRight(tile);
-        		boolean player2Left= player2.pushLeft(tile);
-        		
-        		if(player1Right||player2Right) {
-        			tile.moveLog(1);
-        		}
-        		else if(player1Left||player2Left) {
-        			tile.moveLog(-1);
-        		}
-        		else {
-        			tile.setLogDirection(0);
-        		}
-        	}
+
+        for (Map tile : map) {
+            // Check if player is pushing the log right or left.
+            if (tile.mobility()) {
+                boolean player1Right = player1.pushRight(tile);
+                boolean player1Left = player1.pushLeft(tile);
+                boolean player2Right = player2.pushRight(tile);
+                boolean player2Left = player2.pushLeft(tile);
+
+                if (player1Right || player2Right) {
+                    tile.moveLog(1);
+                } else if (player1Left || player2Left) {
+                    tile.moveLog(-1);
+                } else {
+                    tile.setLogDirection(0);
+                }
+            }
         }
     }
 
@@ -778,7 +786,7 @@ public class GameManager {
         if (activeCheckpoint == null)
             return;
         // Get the user input.
-        boolean correct = activeCheckpoint.attempt(userInput); 
+        boolean correct = activeCheckpoint.attempt(userInput);
         // Clear input.
         userInput = "";
 
@@ -792,12 +800,12 @@ public class GameManager {
             riddleActive = false;
             // Display the feedback card.
             feedbackActive = true;
-        } 
+        }
         // If the answer is wrong.
         else {
             // Check if the attempts are finished.
             if (activeCheckpoint.getRiddle().attemptsFinished()) {
-                // Display the answer if the atempts finished. 
+                // Display the answer if the atempts finished.
                 feedback = "No attempts left!\nAnswer: " + activeCheckpoint.getRiddle().getAnswer();
                 // Incraese the counter for the failed checkpoints.
                 failedCheckPoints++;
@@ -805,14 +813,13 @@ public class GameManager {
                 riddleActive = false;
                 // Show the feedback card.
                 feedbackActive = true;
-            } 
-            else {
+            } else {
                 // Display the feedback on the riddle card.
                 feedback = "Wrong! Try again.";
             }
         }
     }
-   
+
     public void mouseClicked(int mouseX, int mouseY, int panelWidth, int panelHeight) {
         if (feedbackActive) {
             // Hide the checkpoint card.
@@ -822,10 +829,10 @@ public class GameManager {
             return;
         }
 
-        if (!riddleActive){
+        if (!riddleActive) {
             return;
         }
-        
+
         // Draw the riddle card.
         int cardW = 500;
         int cardH = 350;
@@ -843,7 +850,8 @@ public class GameManager {
         }
     }
 
-    // Method that stops the timer if the game was won or lost before the timer ran out.
+    // Method that stops the timer if the game was won or lost before the timer ran
+    // out.
     public void stopTimer() {
         if (timer != null) {
             timer.stop();
@@ -851,7 +859,7 @@ public class GameManager {
     }
 
     // Reset the timer for each game.
-    public void resetTimer(){
+    public void resetTimer() {
         minute = 2;
         second = 0;
         decimalMinute = decimalTime.format(minute);
@@ -859,7 +867,7 @@ public class GameManager {
     }
 
     // Reset the completed checkpoints for each game.
-    public void resetCompletedCheckpoints(){
+    public void resetCompletedCheckpoints() {
         completedCheckpoints = 0;
     }
 
@@ -900,11 +908,11 @@ public class GameManager {
         return second;
     }
 
-    public int getCompletedCheckpoints(){
+    public int getCompletedCheckpoints() {
         return completedCheckpoints;
     }
 
-    public int getFailedCheckPoints(){
+    public int getFailedCheckPoints() {
         return failedCheckPoints;
     }
 }

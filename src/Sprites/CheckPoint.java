@@ -24,19 +24,20 @@ public class CheckPoint extends Sprite {
             completed = true;
             return true;
         } else {
-            riddle.incrementAttempt(); // increase attempts
+            riddle.incrementAttempt(); // Increase attempts,
             return false;
         }
     }
+
     public void updateAnimation() {
         animationTick += 0.1f;
     }
 
     public void resetAnimation() {
-       animationTick *= 0.9f; // smooth slowdown the animation
+        animationTick *= 0.9f; // Smooth slowdown the animation,
     }
 
-    // Setter
+    // Setter.
     public void setRiddle(Riddle riddle) {
         this.riddle = riddle;
         this.completed = false;
@@ -46,7 +47,7 @@ public class CheckPoint extends Sprite {
         this.highlighted = value;
     }
 
-    // Getters
+    // Getters.
     public boolean isCompleted() {
         return completed;
     }
@@ -68,11 +69,11 @@ public class CheckPoint extends Sprite {
     }
 
     public int getAnimatedY() {
-        return (int)(y + Math.sin(animationTick) * 5); // bob up/down
+        return (int) (y + Math.sin(animationTick) * 5); // Bob up and down.
     }
 
     public int getAnimatedSizeOffset() {
-        return (int)(Math.sin(animationTick) * 3); // pulse size
+        return (int) (Math.sin(animationTick) * 3); // Pulse size.
     }
 
 }

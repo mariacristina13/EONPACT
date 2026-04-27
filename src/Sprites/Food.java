@@ -1,15 +1,16 @@
 package Sprites;
 
 public class Food extends Sprite {
-    
+
     public enum FoodType {
-        NORMAL, 
-        FAST_TIMER,   // makes timer faster
+        NORMAL,
+        FAST_TIMER, // Makes timer faster.
     }
+
     // Class variable.
     private boolean collected = false;
     private FoodType type;
-    //variables for floating animation
+    // Variables for floating animation.
     private float animationTick = 0f;
     private float animationOffset = 0f;
 
@@ -17,7 +18,7 @@ public class Food extends Sprite {
     public Food(String fileName, int x, int y, int width, int height, FoodType type) {
         super(fileName, x, y, width, height);
         this.type = type;
-        animationTick = (float)(Math.random() * Math.PI * 2);
+        animationTick = (float) (Math.random() * Math.PI * 2);
     }
 
     public Food(String fileName, int x, int y, int width, int height) {
@@ -25,10 +26,10 @@ public class Food extends Sprite {
         this.type = FoodType.NORMAL;
     }
 
-    //methods to animate food floating
+    // Methods to animate food floating.
     public void updateAnimation() {
         animationTick += 0.05f;
-        animationOffset = (float)(Math.sin(animationTick) * 4); // 4px float range
+        animationOffset = (float) (Math.sin(animationTick) * 4); // 4px float range
     }
 
     public int getAnimatedY() {
@@ -44,8 +45,8 @@ public class Food extends Sprite {
         this.collected = collected;
     }
 
-    //getter for food type
-    public FoodType getType(){
+    // Getter for food type.
+    public FoodType getType() {
         return type;
     }
 }
