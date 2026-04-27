@@ -17,6 +17,7 @@ public class GameOver {
     public Decor gameLost;
     public Decor gameWonImg;
     public Decor panda;
+    public Decor win;
 
     public GameOver() {
         initButtons();
@@ -27,6 +28,7 @@ public class GameOver {
         gameLost = new Decor("game lost.png", 420,Constants.SCREEN_CENTER-400,445 , 180);
         gameWonImg = new Decor("game won.png", 420,Constants.SCREEN_CENTER-400,445 , 180);
         panda =  new Decor("sad panda.png", 500,Constants.SCREEN_CENTER-180,270 , 202);
+        win = new Decor("win.png", 500,Constants.SCREEN_CENTER-180,270 , 202);
     }
     // Initialise the buttons.
     private void initButtons() {
@@ -61,7 +63,8 @@ public class GameOver {
         } else if (gameWon) {
             // Draw the game won message.
             //title = "Game Won!";
-            g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(), gameWonImg.getHeight(), null);
+            g.drawImage(gameWonImg.getImage(), gameWonImg.getX(), gameWonImg.getY(), gameWonImg.getWidth(), gam g.drawImage(win.getImage(), win.getX(), win.getY(), win.getWidth(), win.getHeight(), null);eWonImg.getHeight(), null);
+
         }
 
         // Draw the message.
