@@ -136,20 +136,13 @@ public class GameManager {
         // positions.
         foods.add(new Food(getRandomFoodImage(), 1160, Constants.GROUND_HEIGHT - 5, 60, 60, Food.FoodType.FAST_TIMER));
         foods.add(new Food(getRandomFoodImage(), 450, Constants.GROUND_HEIGHT - 200, 60, 60));
-        foods.add(new Food(getRandomFoodImage(), 620, Constants.GROUND_HEIGHT - 5, 60, 60));
+        foods.add(new Food(getRandomFoodImage(), 620, Constants.GROUND_HEIGHT - 5, 60, 60)); //on the ground
         foods.add(new Food(getRandomFoodImage(), 1100, Constants.GROUND_HEIGHT - 340, 60, 60));
 
         // Initialize timer.
         timer();
 
-        // Initialise checkpoints.
-        checkpoints = new ArrayList<CheckPoint>();
-        int[] tileIndices = { 2, 5, 6, 7, 9 };
-        for (int i : tileIndices) {
-            checkpoints.add(createCheckpointOnTile(map.get(i)));
-        }
-
-        // Initialize the checkpoints on tiles.
+        //initialize the checkpoint on the tile
         checkpoints = new ArrayList<>();
         checkpoints.add(createCheckpointOnTile(map.get(6)));
         checkpoints.add(createCheckpointOnTile(map.get(2)));
