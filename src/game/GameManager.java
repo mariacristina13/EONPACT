@@ -134,7 +134,7 @@ public class GameManager {
         foods = new ArrayList<Food>();
         // Add the food to the ArrayList to be displayed in the game at diffrent
         // positions.
-        foods.add(new Food(getRandomFoodImage(), 1050, Constants.GROUND_HEIGHT - 50, 60, 60, Food.FoodType.FAST_TIMER));
+        foods.add(new Food(getRandomFoodImage(), 1160, Constants.GROUND_HEIGHT - 5, 60, 60, Food.FoodType.FAST_TIMER));
         foods.add(new Food(getRandomFoodImage(), 450, Constants.GROUND_HEIGHT - 200, 60, 60));
         foods.add(new Food(getRandomFoodImage(), 620, Constants.GROUND_HEIGHT - 5, 60, 60));
         foods.add(new Food(getRandomFoodImage(), 1100, Constants.GROUND_HEIGHT - 340, 60, 60));
@@ -151,7 +151,7 @@ public class GameManager {
 
         // Initialize the checkpoints on tiles.
         checkpoints = new ArrayList<>();
-        checkpoints.add(createCheckpointOnTile(map.get(1)));
+        checkpoints.add(createCheckpointOnTile(map.get(6)));
         checkpoints.add(createCheckpointOnTile(map.get(2)));
         checkpoints.add(createCheckpointOnTile(map.get(5)));
         checkpoints.add(createCheckpointOnTile(map.get(7)));
@@ -895,7 +895,10 @@ public class GameManager {
     public boolean isFeedbackActive() {
         return feedbackActive;
     }
-
+    
+    public void setFeedbackActive(boolean active){
+        this.feedbackActive = active;
+    }
     public String getUserInput() {
         return userInput;
     }
