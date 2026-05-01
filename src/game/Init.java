@@ -57,6 +57,10 @@ public class Init {
                     }
                     // Check if the timer ran out.
                     else if (gameManager.getMinute() == 0 && gameManager.getSecond() == 0) {
+                        // Hide the riddle card.
+                        gameManager.setRiddleActive(false);
+                        // Hide the feedback card.
+                        gameManager.setFeedbackActive(false);
                         // Stop the timer.
                         gameManager.stopTimer();
                         // Check if the player completed 3 or more checkpoints.
